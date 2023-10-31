@@ -67,10 +67,10 @@ void CPlayLevel::enter()
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
 
-	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
-	pSound->SetVolume(100);
-	pSound->SetPosition(45.f);
-	pSound->Play(true);
+	//CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
+	//pSound->SetVolume(100);
+	//pSound->SetPosition(45.f);
+	//pSound->Play(true);
 }
 
 void CPlayLevel::exit()
@@ -88,13 +88,13 @@ void CPlayLevel::tick()
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
 
-	if (KEY_TAP(KEY::M))
-	{
-		CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\BGM_Stage1.wav");
-		pSound->SetVolume(100);
-		pSound->SetPosition(45.f);
-		pSound->Play(true);
-	}
+	//if (KEY_TAP(KEY::M))
+	//{
+	//	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\BGM_Stage1.wav");
+	//	pSound->SetVolume(100);
+	//	pSound->SetPosition(45.f);
+	//	pSound->Play(true);
+	//}
 
 	//if (KEY_TAP(KEY::F))
 	//{

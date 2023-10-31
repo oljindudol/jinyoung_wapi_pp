@@ -21,6 +21,12 @@ public:
 	Vec2& Normalize()
 	{
 		float f = Length();
+
+		if (0 == f) 
+		{
+			return;
+		}
+		
 		x /= f;
 		y /= f;
 

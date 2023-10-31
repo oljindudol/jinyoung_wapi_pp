@@ -90,7 +90,7 @@ CPlayer::CPlayer()
 	m_Movement->SetMaxSpeed(400.f);
 	m_Movement->SetFrictionScale(1000.f);
 
-	m_Movement->UseGravity(false);
+	m_Movement->UseGravity(true);
 	m_Movement->SetGravity(Vec2(0.f, 980.f));
 	m_Movement->SetGround(true);
 
