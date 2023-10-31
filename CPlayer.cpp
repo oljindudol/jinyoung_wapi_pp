@@ -91,8 +91,8 @@ CPlayer::CPlayer()
 	m_Movement->SetFrictionScale(1000.f);
 
 	m_Movement->UseGravity(true);
-	m_Movement->SetGravity(Vec2(0.f, 980.f));
-	m_Movement->SetGround(true);
+	m_Movement->SetGravity(Vec2(0.f, 1600.f));
+	m_Movement->SetGround(false);
 
 	//m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	//m_ImageDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());

@@ -8,7 +8,7 @@ CPlatform::CPlatform()
 	m_Collider = AddComponent<CCollider>(L"Collider");
 
 	//m_Collider->SetOffsetPos();
-	m_Collider->SetScale(Vec2(800.f, 100.f));
+	m_Collider->SetScale(Vec2(2000.f, 100.f));
 }
 
 CPlatform::CPlatform(const CPlatform& _Origin)

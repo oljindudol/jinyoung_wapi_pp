@@ -18,7 +18,7 @@ CMonster::CMonster()
 {
 	m_Collider = AddComponent<CCollider>(L"MonsterCollider");
 	m_Info.HP = 5.f;
-	m_Texture = CAssetMgr::GetInst()->LoadTexture(L"StartTex", L"texture\\MagicCircle_01.png");
+	m_Texture = CAssetMgr::GetInst()->LoadTexture(L"StartTex", L"texture\\ma.bmp");
 
 	// 상태머신 컴포넌트 추가 및 설정
 	m_AI = AddComponent<CStateMachine>(L"AI");

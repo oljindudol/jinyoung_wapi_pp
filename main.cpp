@@ -43,7 +43,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     {
         return FALSE;
     }
-    CEngine::GetInst()->init(g_hWnd, POINT{ 1280, 768 });
+    CEngine::GetInst()->init(g_hWnd, POINT{ 1600 , 900 });
 
 
     //단축키 테이블 참조

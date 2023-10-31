@@ -24,7 +24,8 @@ public:
 
 		if (0 == f) 
 		{
-			return;
+			Vec2 tmp;
+			return tmp;
 		}
 		
 		x /= f;

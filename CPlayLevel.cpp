@@ -35,7 +35,7 @@ void CPlayLevel::init()
 
 	// ÇÃ·§Æû ¼³Ä¡
 	CPlatform* pPlatform = new CPlatform;
-	pPlatform->SetPos(Vec2(800.f, 700.f));
+	pPlatform->SetPos(Vec2(800.f, 900.f));
 	AddObject(PLATFORM, pPlatform);
 
 
@@ -52,8 +52,9 @@ void CPlayLevel::init()
 
 void CPlayLevel::enter()
 {
+	init();
 	//CCamera::GetInst()->FadeOut(3.f);
-	CCamera::GetInst()->FadeIn(0.3f);
+	//CCamera::GetInst()->FadeIn(0.3f);
 
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
