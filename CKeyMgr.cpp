@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 #include "CEngine.h"
 
@@ -79,15 +79,15 @@ int g_KeySync[KEY::KEY_END] =
 
 
 
-CKeyman::CKeyman()
+CKeyMgr::CKeyMgr()
 {
 }
 
-CKeyman::~CKeyman()
+CKeyMgr::~CKeyMgr()
 {
 }
 
-void CKeyman::init()
+void CKeyMgr::init()
 {
 	//capacity만늘림
 	m_vecKeyData.reserve(KEY::KEY_END);
@@ -111,7 +111,7 @@ void CKeyman::init()
 
 
 
-void CKeyman::tick()
+void CKeyMgr::tick()
 {
 	if (nullptr == GetFocus())
 	{

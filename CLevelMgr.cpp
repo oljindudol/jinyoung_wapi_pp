@@ -16,7 +16,7 @@
 #include "CCollisionMgr.h"
 #include "CLogMgr.h"
 
-#include "CPlayLevel.h"
+#include "CEnteranceLevel.h"
 #include "CStartLevel.h"
 #include "CEditorLevel.h"
 
@@ -45,7 +45,7 @@ void CLevelMgr::init()
 {
 	// 모든 레벨 생성
 	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
-	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new CPlayLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new CEnteranceLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
 
 	// 레벨 초기화

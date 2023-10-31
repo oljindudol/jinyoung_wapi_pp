@@ -3,7 +3,7 @@
 
 #include "CLevelMgr.h"
 
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 #include "CEngine.h"
 #include "CCamera.h"
@@ -95,7 +95,7 @@ void CEditorLevel::tick()
 
 	if (KEY_TAP(KEY::LBTN))
 	{
-		Vec2 vMousePos = CKeyman::GetInst()->GetMousePos();
+		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
 		vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
 
 		int col = (int)vMousePos.x / TILE_SIZE;

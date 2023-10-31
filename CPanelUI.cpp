@@ -15,12 +15,12 @@ void CPanelUI::tick(float _DT)
 {
 	if (IsLBtnDown())
 	{
-		Vec2 vDiff = m_vLbtnDownPos - CKeyman::GetInst()->GetMousePos();
+		Vec2 vDiff = m_vLbtnDownPos - CKeyMgr::GetInst()->GetMousePos();
 		Vec2 vPos = GetPos();
 		vPos -= vDiff;
 		SetPos(vPos);
 
-		m_vLbtnDownPos = CKeyman::GetInst()->GetMousePos();
+		m_vLbtnDownPos = CKeyMgr::GetInst()->GetMousePos();
 	}
 
 	Super::tick(_DT);

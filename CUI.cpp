@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CUI.h"
 
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 CUI::CUI()
 	: m_ParentUI(nullptr)
@@ -49,7 +49,7 @@ void CUI::tick(float _DT)
 	// 마우스 상태 체크
 	m_bMouseOn_Prev = m_bMouseOn;
 
-	Vec2 vMousePos = CKeyman::GetInst()->GetMousePos();
+	Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
 	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= m_vFinalPos.x + GetScale().x
 		&& m_vFinalPos.y <= vMousePos.y && vMousePos.y <= m_vFinalPos.y + GetScale().y)
 	{

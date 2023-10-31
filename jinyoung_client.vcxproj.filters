@@ -91,7 +91,7 @@
     <ClInclude Include="CMonsterm.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
-    <ClInclude Include="CKeyman.h">
+    <ClInclude Include="CKeyMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
     <ClInclude Include="CLevelMgr.h">
@@ -166,7 +166,7 @@
     <ClInclude Include="CEditorLevel.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayLevel.h">
+    <ClInclude Include="CEnteranceLevel.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
     <ClInclude Include="CStartLevel.h">
@@ -214,6 +214,7 @@
     <ClInclude Include="CNormalMonIdle.h">
       <Filter>Game\06.Component\StateMachine\state</Filter>
     </ClInclude>
+    <ClInclude Include="CBackGround.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -256,7 +257,7 @@
     <ClCompile Include="CMonsterm.cpp">
       <Filter>Game\04.Object</Filter>
     </ClCompile>
-    <ClCompile Include="CKeyman.cpp">
+    <ClCompile Include="CKeyMgr.cpp">
       <Filter>Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CLevelMgr.cpp">
@@ -322,7 +323,7 @@
     <ClCompile Include="CEditorLevel.cpp">
       <Filter>Game\05.Level</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayLevel.cpp">
+    <ClCompile Include="CEnteranceLevel.cpp">
       <Filter>Game\05.Level</Filter>
     </ClCompile>
     <ClCompile Include="CStartLevel.cpp">
@@ -370,5 +371,6 @@
     <ClCompile Include="CNormalMonIdle.cpp">
       <Filter>Game\06.Component\StateMachine\state</Filter>
     </ClCompile>
+    <ClCompile Include="CBackGround.cpp" />
   </ItemGroup>
 </Project>

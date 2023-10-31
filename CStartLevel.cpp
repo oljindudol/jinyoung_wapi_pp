@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CStartLevel.h"
-#include "CKeyMan.h"
+#include "CKeyMgr.h"
 #include "CLevelMgr.h"
 
 void CStartLevel::init()

@@ -3,7 +3,7 @@
 
 #include "CTimeManager.h"
 #include "CPal.h"
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 #include "CLevelMgr.h"
 #include "CLevel.h"

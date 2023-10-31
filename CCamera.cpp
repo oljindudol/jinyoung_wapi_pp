@@ -2,7 +2,7 @@
 #include "CCamera.h"
 
 #include "CEngine.h"
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 #include "CTimeManager.h"
 
 #include "CAssetMgr.h"

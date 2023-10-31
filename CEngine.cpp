@@ -6,7 +6,7 @@
 #include "CMonster.h"
 
 #include "CTimeManager.h"
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 #include "CAssetMgr.h"
 #include "CLevelMgr.h"
 #include "CPathMgr.h"
@@ -92,7 +92,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	// Manager 초기화
 	CTimeManager::GetInst()->init();
-	CKeyman::GetInst()->init();
+	CKeyMgr::GetInst()->init();
 	CPathMgr::init();
 	CSoundMgr::GetInst()->init();
 
@@ -127,7 +127,7 @@ void CEngine::tick()
 {
 	// TimeMgr
 	CTimeManager::GetInst()->tick();
-	CKeyman::GetInst()->tick();
+	CKeyMgr::GetInst()->tick();
 	CCamera::GetInst()->tick();
 	
 	

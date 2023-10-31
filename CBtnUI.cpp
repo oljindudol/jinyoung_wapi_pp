@@ -4,7 +4,7 @@
 #include "CEngine.h"
 #include "Resource.h"
 
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 CBtnUI::CBtnUI()
 	: m_NormalImg(nullptr)

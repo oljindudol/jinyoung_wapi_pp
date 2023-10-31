@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPlayLevel.h"
+#include "CEnteranceLevel.h"
 
 #include "CPlayer.h"
 #include "CMonster.h"
@@ -9,14 +9,25 @@
 #include "CCamera.h"
 #include "CCollisionMgr.h"
 
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 #include "CLevelMgr.h"
 
 #include "CAssetMgr.h"
 #include "CSound.h"
 
-void CPlayLevel::init()
+#include "CBackGround.h"
+
+void CEnteranceLevel::init()
 {
+	// 배경생성
+	CBackGround* pBackGround = nullptr;
+
+	pBackGround = new CBackGround;
+	pBackGround->SetPos(Vec2(800.f, 450.f));
+	pBackGround->SetScale(Vec2(1990.f, 767.f));
+	AddObject(BACKGROUND, pBackGround);
+
+
 	// 플레이어 생성
 	CPlayer* pPlayer = new CPlayer;
 
@@ -50,7 +61,7 @@ void CPlayLevel::init()
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 }
 
-void CPlayLevel::enter()
+void CEnteranceLevel::enter()
 {
 	init();
 	//CCamera::GetInst()->FadeOut(3.f);
@@ -74,12 +85,12 @@ void CPlayLevel::enter()
 	//pSound->Play(true);
 }
 
-void CPlayLevel::exit()
+void CEnteranceLevel::exit()
 {
 	DeleteAllObjects();
 }
 
-void CPlayLevel::tick()
+void CEnteranceLevel::tick()
 {
 	CLevel::tick();
 

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CUIMgr.h"
 
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 #include "CLevelMgr.h"
 #include "CLevel.h"
@@ -23,7 +23,7 @@ CUIMgr::~CUIMgr()
 
 void CUIMgr::tick()
 {
-	Vec2 vMousePos = CKeyman::GetInst()->GetMousePos();
+	Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
 	bool bLBtnTap = KEY_TAP(KEY::LBTN);
 	bool bLbtnReleased = KEY_RELEASED(KEY::LBTN);
 

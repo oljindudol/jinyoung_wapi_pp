@@ -1,6 +1,6 @@
 #pragma once
 #include "CLevel.h"
-class CPlayLevel :
+class CEnteranceLevel :
     public CLevel
 {
 public:
