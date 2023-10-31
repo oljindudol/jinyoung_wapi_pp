@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CPanelUI.h"
 
-#include "CKeyman.h"
+#include "CKeyMgr.h"
 
 CPanelUI::CPanelUI()
 {

@@ -8,11 +8,16 @@
 #include "CTimeManager.h"
 #include "CLogMgr.h"
 #include "CAssetMgr.h"
-#include "CAssetMgr.h"
+#include "CPathMgr.h"
+
+#include <algorithm>
+#include <filesystem>
+
+using namespace std;
 
 CAnim::CAnim()
 	: m_pAnimator(nullptr)
-	, m_Atlas(nullptr)
+	//, m_Atlas(nullptr)
 	, m_iCurFrm(0)
 	, m_bFinish(false)
 	, m_AccTime(0.f)
@@ -71,7 +76,7 @@ void CAnim::render(HDC _dc)
 	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, m_Atlas->GetDC()
+		, frm.m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, blend);
@@ -97,6 +102,77 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas
 
 		m_vecFrm.push_back(frm);
 	}
+}
+
+static bool comparefirst(pair<wstring, wstring> _p1, pair<wstring, wstring> _p2)
+{
+	return stoi(_p1.first) < stoi(_p2.first);
+}
+
+void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset ,float _playmul)
+{
+	SetName(_strphase+ _strobj+_stranimname);
+
+
+
+	wstring filePath = CPathMgr::GetContentPath();
+	wstring addipath = 
+		_strphase + L"\\"
+		+ _strobj + L"\\"
+		+ _stranimname;
+
+	filePath += L"texture\\anim\\"
+		+ addipath;
+
+	vector<pair<wstring,wstring>> tmpvec;
+	wstring t;
+
+
+	for (auto& p : std::filesystem::directory_iterator(filePath))
+	{
+
+		t = p.path().filename();
+		int idxu = t.find(L"_");
+		tmpvec.push_back(
+			pair<wstring, wstring>
+			(t.substr(0,idxu), t.substr(idxu+1,t.find(L".png")- idxu-1))
+		);
+
+	}
+
+	sort(tmpvec.begin(), tmpvec.end(),comparefirst);
+
+	int maxfrm = tmpvec.size();
+	m_vecFrm.reserve(maxfrm);
+
+	wstring tmpname;
+
+	for(int i=0;i<maxfrm;i++)
+	{
+		FFrame frm = {};
+		tmpname = addipath +L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
+
+		CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(tmpname, L"texture\\anim\\" +tmpname+L".png");
+
+		frm.m_Atlas = pAtlas;
+		frm.vOffset = _vOffset;
+		frm.Duration = ((stoi(tmpvec[i].second)- stoi(tmpvec[i].first))/1000.f)/_playmul;
+		frm.vCutSize = Vec2(pAtlas->GetWidth(), pAtlas->GetHeight());
+		m_vecFrm.push_back(frm);
+	}
+
+
+	//for (size_t i = 0; i < _MaxFrm; ++i)
+	//{
+	//	
+
+	//	frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
+	//	frm.vCutSize = _vCutSize;
+	//	frm.vOffset = _vOffset;
+	//	frm.Duration = _Duration;
+
+	//	m_vecFrm.push_back(frm);
+	//}
 }
 
 bool CAnim::Save(const wstring& _FilePath)

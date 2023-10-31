@@ -99,6 +99,21 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
 	m_mapAnim.insert(make_pair(_strName, pAnim));
 }
 
+void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul)
+{
+	CAnim* pAnim = FindAnim(_strphase+ _strobj+ _stranimname);
+	if (IsValid(pAnim))
+	{
+		return;
+	}
+
+	pAnim = new CAnim;
+	pAnim->m_pAnimator = this;
+	pAnim->Create(_strphase, _strobj, _stranimname);
+	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
+
+}
+
 
 void CAnimator::SaveAnimations(const wstring& _strRelativePath)
 {

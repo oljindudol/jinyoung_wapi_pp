@@ -22,7 +22,7 @@ void CPathMgr::init()
 		}
 	}
 
-	wcscat_s(g_szContent, 255, L"\\contents\\");
+	wcscat_s(g_szContent, 255, L"contents\\");
 
 
 }

@@ -5,6 +5,7 @@ class CTexture;
 
 struct FFrame
 {
+    CTexture* m_Atlas;
     Vec2 vLeftTop;  // 아틀라스 내에서 잘라낼 좌상단 위치
     Vec2 vCutSize;  // 잘라낼 크기
     Vec2 vOffset;   // 오브젝트 중심에서 이동 값
@@ -38,6 +39,9 @@ public:
 public:
     void Create(const wstring& _strName, CTexture* _Atlas
         , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm);
+
+    // 아틀라스x 애님 생성
+    void Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset = Vec2(), float _playmul = 1.f);
 
     bool IsFinish() { return m_bFinish; }
 

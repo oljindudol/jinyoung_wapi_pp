@@ -47,6 +47,8 @@ CPlayer::CPlayer()
 	// 애니메이터 컴포넌트 추가
 	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
+
+
 	m_Animator = AddComponent<CAnimator>(L"Animator");
 	//m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 	//m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
@@ -58,6 +60,8 @@ CPlayer::CPlayer()
 	//m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 	//m_Animator->SaveAnimations(L"animdata");
 
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(0.f,0.f));
+
 	m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
 	m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
 	m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
@@ -68,7 +72,7 @@ CPlayer::CPlayer()
 	m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
 
 
-	m_Animator->Play(L"WalkDown", true);
+	m_Animator->Play(L"commonpinkbeanidle", true);
 
 	//m_Animator = AddComponent<CAnimator>(L"Animator");
 

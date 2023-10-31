@@ -79,10 +79,10 @@ void CEnteranceLevel::enter()
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
 
-	//CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
-	//pSound->SetVolume(100);
-	//pSound->SetPosition(45.f);
-	//pSound->Play(true);
+	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld¡¯sEnd.wav");
+	pSound->SetVolume(100);
+	pSound->SetPosition(45.f);
+	pSound->Play(true);
 }
 
 void CEnteranceLevel::exit()

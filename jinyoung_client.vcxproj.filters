@@ -53,6 +53,9 @@
     <Filter Include="Game\06.Component\StateMachine\state">
       <UniqueIdentifier>{1c97e7b8-792c-420e-8419-40b809d1bc02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\background">
+      <UniqueIdentifier>{2308563e-6c6a-4bf4-9bf5-c22f1ff551ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -214,7 +217,9 @@
     <ClInclude Include="CNormalMonIdle.h">
       <Filter>Game\06.Component\StateMachine\state</Filter>
     </ClInclude>
-    <ClInclude Include="CBackGround.h" />
+    <ClInclude Include="CBackGround.h">
+      <Filter>Game\04.Object\background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -371,6 +376,8 @@
     <ClCompile Include="CNormalMonIdle.cpp">
       <Filter>Game\06.Component\StateMachine\state</Filter>
     </ClCompile>
-    <ClCompile Include="CBackGround.cpp" />
+    <ClCompile Include="CBackGround.cpp">
+      <Filter>Game\04.Object\background</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
