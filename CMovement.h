@@ -5,7 +5,7 @@ class CMovement :
 {
 private:
     // 누적 점프
-    int jumpcount;
+    int m_jumpcount;
 
     // 누적된 힘
     Vec2    m_Force;
@@ -39,6 +39,17 @@ private:
 
 
 public:
+
+    void SetJmpCnt(int _cnt)
+    {
+        m_jumpcount = _cnt;
+    }
+    int& GetJmpCnt()
+    {
+        return m_jumpcount;
+    }
+
+
     void AddForce(Vec2 _vForce)
     {
         m_Force += _vForce;
@@ -135,8 +146,9 @@ public:
         {
             m_Velocity.y = 0.f;
         }
-
+        
         m_Ground = _Ground;
+        m_jumpcount = 0;
     }
 
 

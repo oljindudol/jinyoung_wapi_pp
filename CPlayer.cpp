@@ -58,9 +58,12 @@ CPlayer::CPlayer()
 
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(0.f, -50.f));
+
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -50.f),2.f);
+
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(0.f, -50.f),3.f);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -50.f), 1.f,false);
 	m_Animator->Play(L"commonpinkbeanidle", true);
-
-
 
 
 	//m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
@@ -102,11 +105,11 @@ CPlayer::CPlayer()
 	m_Movement = AddComponent<CMovement>(L"PlayerMovement");
 	m_Movement->SetMass(1.f);
 	m_Movement->SetInitSpeed(200.f);
-	m_Movement->SetMaxSpeed(400.f);
-	m_Movement->SetFrictionScale(1000.f);
+	m_Movement->SetMaxSpeed(200.f);
+	m_Movement->SetFrictionScale(2000.f);
 
 	m_Movement->UseGravity(true);
-	m_Movement->SetGravity(Vec2(0.f, 1600.f));
+	m_Movement->SetGravity(Vec2(0.f, 2500.f));
 	m_Movement->SetGround(false);
 
 	//m_Image= (HBITMAP)LoadImage(nullptr, strPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
@@ -124,6 +127,7 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	, mp(_Origin.mp)
 	, att(_Origin.att)
 	, def(_Origin.def)
+	, state(PLAYER_STATE::IDLE_1)
 {
 	m_Collider = GetComponent<CCollider>();
 	m_Animator = GetComponent<CAnimator>();
@@ -145,55 +149,91 @@ void CPlayer::tick(float _DT)
 
 	Vec2 vPos = GetPos();
 
-	if (KEY_PRESSED(A))
+	if (KEY_PRESSED(KEY::LEFT))
 	{
 		ort = ORT_LEFT;
-		m_Movement->AddForce(Vec2(-300.f, 0.f));
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		if (m_Movement->IsGround()) {
+			m_Animator->Play(L"commonpinkbeanmove", true);
+		}
+		if (400.f > abs(m_Movement->GetVelocity().x)) 
+		{
+			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+		}
 	}
 
-	if (KEY_RELEASED(A))
+	if (KEY_RELEASED(KEY::LEFT))
 	{
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		if (m_Movement->IsGround()) {
+			m_Animator->Play(L"commonpinkbeanidle", true);
+		}
 	}
 
-	if (KEY_PRESSED(D))
+	if (KEY_PRESSED(KEY::RIGHT))
 	{
 		ort = ORT_RIGHT;
-		m_Movement->AddForce(Vec2(300.f, 0.f));
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		if (m_Movement->IsGround()) {
+			m_Animator->Play(L"commonpinkbeanmove", true);
+		}
+		if (400.f > abs(m_Movement->GetVelocity().x))
+		{
+			m_Movement->AddForce(Vec2(1000.f, 0.f));
+		}
+
 	}
-	if (KEY_RELEASED(D))
+	if (KEY_RELEASED(KEY::RIGHT))
 	{
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		if (m_Movement->IsGround()) {
+			m_Animator->Play(L"commonpinkbeanidle", true);
+		}
 	}
 
 
-	if (KEY_PRESSED(W))
+	if (KEY_PRESSED(KEY::UP))
 	{
-		/*m_Movement->AddForce(Vec2(0.f, -300.f));
-		m_Animator->Play(L"WalkUp", true);*/
+
 	}
-	if (KEY_RELEASED(W))
+	if (KEY_RELEASED(KEY::UP))
 	{
-		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 
-	if (KEY_PRESSED(S))
+	if (KEY_PRESSED(KEY::DOWN))
 	{
 		m_Movement->AddForce(Vec2(0.f, 300.f));
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		if (m_Movement->IsGround()) {
+			m_Animator->Play(L"commonpinkbeanidle", true);
+		}
 	}
-	if (KEY_RELEASED(S))
+	if (KEY_RELEASED(KEY::DOWN))
 	{
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		if (m_Movement->IsGround()) {
+			m_Animator->Play(L"commonpinkbeanidle", true);
+		}
 	}
 
-	if (KEY_TAP(SPACE))
+	if (KEY_TAP(LALT))
 	{
-		m_Movement->SetGround(false);
 
-		m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
+		if (m_Movement->IsGround()) 
+		{
+			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
+		}
+		else if (2 > m_Movement->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
+		{
+			++(m_Movement->GetJmpCnt());
+			float xvel = 600.f;
+			if (ort == ORT_LEFT) xvel *= (-1);
+			m_Movement->SetVelocity(Vec2( xvel, m_Movement->GetVelocity().y-300.f));
+		}
+		else if (2 > m_Movement->GetJmpCnt() && (KEY_PRESSED(KEY::UP)))
+		{
+			++(m_Movement->GetJmpCnt());
+			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, m_Movement->GetVelocity().y - 1000.f));
+		}
+		else
+		{
+
+		}
+
 
 		//CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
@@ -268,6 +308,8 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(true);
+		state = PLAYER_STATE::IDLE_1;
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 }
 
@@ -277,5 +319,7 @@ void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(false);
+		state = PLAYER_STATE::ON_AIR;
+		m_Animator->Play(L"commonpinkbeanonair", true);
 	}
 }

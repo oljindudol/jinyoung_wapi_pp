@@ -21,6 +21,7 @@ CAnim::CAnim()
 	, m_Atlas(nullptr)
 	, m_iCurFrm(0)
 	, m_bFinish(false)
+	, m_bRoop(true)
 	, m_AccTime(0.f)
 	, m_ort(ORT_LEFT)
 {

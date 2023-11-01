@@ -31,6 +31,7 @@ private:
 
     // animation 재생 완료 체크
     bool            m_bFinish;
+    bool            m_bRoop;
     ORIENTATION m_ort;
 
 
