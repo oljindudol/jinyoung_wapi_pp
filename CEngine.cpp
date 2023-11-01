@@ -18,6 +18,7 @@
 #include "CCamera.h"
 #include "CUIMgr.h"
 #include "CSoundMgr.h"
+#include "CSkillMgr.h"
 
 #include "CTexture.h"
 
@@ -95,6 +96,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CKeyMgr::GetInst()->init();
 	CPathMgr::init();
 	CSoundMgr::GetInst()->init();
+	//CSkillMgr::GetInst()->init();
 
 	CLevelMgr::GetInst()->init();
 

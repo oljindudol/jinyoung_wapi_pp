@@ -224,3 +224,11 @@ enum ORIENTATION
 	ORT_LEFT,
 	ORT_RIGHT,
 };
+
+
+enum class DEBUFF
+{
+	STUN,
+
+	NONE,
+};

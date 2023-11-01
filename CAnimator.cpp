@@ -44,7 +44,7 @@ void CAnimator::finaltick(float _DT)
 {
 	if (IsValid(m_CurAnim))
 	{
-		if (m_CurAnim->m_bRoop && m_CurAnim->IsFinish())
+		if ((m_CurAnim->m_iRoop>-1) && m_CurAnim->IsFinish())
 		{
 			m_CurAnim->Reset();
 		}
@@ -61,11 +61,12 @@ void CAnimator::render(HDC _dc)
 	}
 }
 
-void CAnimator::Play(const wstring& _strName, bool _bRepeat)
+void CAnimator::Play(const wstring& _strName)
 {
-	m_bRepeat = _bRepeat;
+	//m_bRepeat = _bRepeat;
 
 	m_CurAnim = FindAnim(_strName);
+	m_CurAnim->m_iCurFrm = 0;
 }
 
 void CAnimator::Stop()
@@ -99,7 +100,7 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
 	m_mapAnim.insert(make_pair(_strName, pAnim));
 }
 
-void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,bool _roop, ORIENTATION _ort)
+void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,int _roop, ORIENTATION _ort)
 {
 	CAnim* pAnim = FindAnim(_strphase+ _strobj+ _stranimname);
 	if (IsValid(pAnim))
@@ -109,7 +110,7 @@ void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj
 
 	pAnim = new CAnim;
 	pAnim->m_pAnimator = this;
-	pAnim->m_bRoop = _roop;
+	pAnim->m_iRoop = _roop;
 	pAnim->m_ort = _ort;
 	pAnim->Create(_strphase, _strobj, _stranimname,_vOffset,_playmul);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));

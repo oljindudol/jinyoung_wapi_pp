@@ -190,6 +190,8 @@
     <ClInclude Include="CPlatform.h" />
     <ClInclude Include="CEnteranceLevel.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CSkill.h" />
+    <ClInclude Include="CSkillMgr.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CStartLevel.h" />
@@ -247,6 +249,8 @@
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlatform.cpp" />
     <ClCompile Include="CEnteranceLevel.cpp" />
+    <ClCompile Include="CSkill.cpp" />
+    <ClCompile Include="CSkillMgr.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CStartLevel.cpp" />

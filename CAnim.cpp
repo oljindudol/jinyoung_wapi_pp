@@ -21,7 +21,7 @@ CAnim::CAnim()
 	, m_Atlas(nullptr)
 	, m_iCurFrm(0)
 	, m_bFinish(false)
-	, m_bRoop(true)
+	, m_iRoop(0)
 	, m_AccTime(0.f)
 	, m_ort(ORT_LEFT)
 {
@@ -80,12 +80,16 @@ void CAnim::render(HDC _dc)
 
 	HDC tmpdc = frm.m_Atlas->GetDC();;
 
+	float offsetx = frm.vOffset.x;
+
 	if(ORT_RIGHT==m_pAnimator->GetOwner()->ort){
 		tmpdc = frm.m_Atlas_r->GetDC();
+		offsetx *= -1;
+
 	}
 
 	
-	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + offsetx)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, tmpdc

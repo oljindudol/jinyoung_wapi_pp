@@ -53,17 +53,19 @@ CPlayer::CPlayer()
 	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
 
-
 	m_Animator = AddComponent<CAnimator>(L"Animator");
-
-
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(0.f, -50.f));
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -50.f),2.f);
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(0.f, -50.f),3.f);
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -50.f), 1.f,false);
-	m_Animator->Play(L"commonpinkbeanidle", true);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -50.f), 1.f,-1);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"down", Vec2(-30.f, -20.f), 1.f, -1);
+
+	m_Animator->Play(L"commonpinkbeanidle");
+
+
+
 
 
 	//m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
@@ -92,7 +94,7 @@ CPlayer::CPlayer()
 
 	// 충돌체 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(L"PlayerCollider");
-	m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
+	//m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
 	m_Collider->SetScale(Vec2(40.f, 80.f));
 	m_Collider->SetOffsetPos(Vec2(0.f, -40.f));
 	//AddComponent<CAnimator>();
@@ -106,7 +108,7 @@ CPlayer::CPlayer()
 	m_Movement->SetMass(1.f);
 	m_Movement->SetInitSpeed(200.f);
 	m_Movement->SetMaxSpeed(200.f);
-	m_Movement->SetFrictionScale(2000.f);
+	m_Movement->SetFrictionScale(2200.f);
 
 	m_Movement->UseGravity(true);
 	m_Movement->SetGravity(Vec2(0.f, 2500.f));
@@ -153,7 +155,7 @@ void CPlayer::tick(float _DT)
 	{
 		ort = ORT_LEFT;
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanmove", true);
+			m_Animator->Play(L"commonpinkbeanmove");
 		}
 		if (400.f > abs(m_Movement->GetVelocity().x)) 
 		{
@@ -164,7 +166,7 @@ void CPlayer::tick(float _DT)
 	if (KEY_RELEASED(KEY::LEFT))
 	{
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanidle", true);
+			m_Animator->Play(L"commonpinkbeanidle");
 		}
 	}
 
@@ -172,7 +174,7 @@ void CPlayer::tick(float _DT)
 	{
 		ort = ORT_RIGHT;
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanmove", true);
+			m_Animator->Play(L"commonpinkbeanmove");
 		}
 		if (400.f > abs(m_Movement->GetVelocity().x))
 		{
@@ -183,7 +185,7 @@ void CPlayer::tick(float _DT)
 	if (KEY_RELEASED(KEY::RIGHT))
 	{
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanidle", true);
+			m_Animator->Play(L"commonpinkbeanidle");
 		}
 	}
 
@@ -200,13 +202,13 @@ void CPlayer::tick(float _DT)
 	{
 		m_Movement->AddForce(Vec2(0.f, 300.f));
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanidle", true);
+			m_Animator->Play(L"commonpinkbeandown");
 		}
 	}
 	if (KEY_RELEASED(KEY::DOWN))
 	{
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanidle", true);
+			m_Animator->Play(L"commonpinkbeanidle");
 		}
 	}
 
@@ -215,12 +217,12 @@ void CPlayer::tick(float _DT)
 
 		if (m_Movement->IsGround()) 
 		{
-			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -500.f));
+			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -750.f));
 		}
 		else if (2 > m_Movement->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
 		{
 			++(m_Movement->GetJmpCnt());
-			float xvel = 600.f;
+			float xvel = 700.f;
 			if (ort == ORT_LEFT) xvel *= (-1);
 			m_Movement->SetVelocity(Vec2( xvel, m_Movement->GetVelocity().y-300.f));
 		}
@@ -309,7 +311,7 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	{
 		m_Movement->SetGround(true);
 		state = PLAYER_STATE::IDLE_1;
-		m_Animator->Play(L"commonpinkbeanidle", true);
+		m_Animator->Play(L"commonpinkbeanidle");
 	}
 }
 
@@ -320,6 +322,6 @@ void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 	{
 		m_Movement->SetGround(false);
 		state = PLAYER_STATE::ON_AIR;
-		m_Animator->Play(L"commonpinkbeanonair", true);
+		m_Animator->Play(L"commonpinkbeanonair");
 	}
 }

@@ -18,6 +18,7 @@
 #include <string>
 #include <crtdbg.h>
 #include <assert.h>
+#include <unordered_map>
 
 
 #pragma comment(lib, "Msimg32.lib")

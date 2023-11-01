@@ -31,7 +31,8 @@ private:
 
     // animation 재생 완료 체크
     bool            m_bFinish;
-    bool            m_bRoop;
+    // -1 루프안함, 루프할 프레임
+    int            m_iRoop;
     ORIENTATION m_ort;
 
 
@@ -51,7 +52,7 @@ public:
     void Reset()
     {
         m_AccTime = 0.f;
-        m_iCurFrm = 0;
+        m_iCurFrm = m_iRoop;
         m_bFinish = false;
     }
 

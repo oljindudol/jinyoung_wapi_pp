@@ -123,7 +123,7 @@ void CTexture::Create(UINT _Width, UINT Height)
 	m_hBit = CreateCompatibleBitmap(CEngine::GetInst()->GetMainDC(), _Width, Height);
 	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 
-	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+	//m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_hDC, m_hBit));
 	GetObject(m_hBit, sizeof(BITMAP), &m_Info);
 }
