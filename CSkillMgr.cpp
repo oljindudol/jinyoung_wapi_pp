@@ -1,5 +1,18 @@
 #include "pch.h"
+
+#include "CSkill.h"
 #include "CSkillMgr.h"
+
+
+CSkillMgr::CSkillMgr()
+{
+
+}
+
+CSkillMgr::~CSkillMgr()
+{
+
+}
 
 void CSkillMgr::init()
 {

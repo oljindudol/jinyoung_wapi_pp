@@ -1,8 +1,7 @@
 #pragma once
 
-#include <unordered_map>
-#include "CSkill.h"
-using namespace std;
+
+class CSkill;
 
 class CSkillMgr
 {

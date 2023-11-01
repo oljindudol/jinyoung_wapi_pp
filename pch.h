@@ -43,6 +43,8 @@ using std::map;
 using std::string;
 using std::wstring;
 using std::make_pair;
+using std::unordered_map;
+using std::pair;
 
 //순서 의존성 해결?
 #define RGB_BLACK   (RGB(0, 0, 0))
