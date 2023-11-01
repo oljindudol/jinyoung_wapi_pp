@@ -172,9 +172,6 @@
     <ClInclude Include="CEnteranceLevel.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
-    <ClInclude Include="CStartLevel.h">
-      <Filter>Game\05.Level</Filter>
-    </ClInclude>
     <ClInclude Include="CEntity.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
@@ -220,8 +217,13 @@
     <ClInclude Include="CBackGround.h">
       <Filter>Game\04.Object\background</Filter>
     </ClInclude>
+    <ClInclude Include="CStartLevel.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillMgr.h">
+      <Filter>Game\05.Level</Filter>
+    </ClInclude>
     <ClInclude Include="CSkill.h" />
-    <ClInclude Include="CSkillMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -381,7 +383,9 @@
     <ClCompile Include="CBackGround.cpp">
       <Filter>Game\04.Object\background</Filter>
     </ClCompile>
+    <ClCompile Include="CSkillMgr.cpp">
+      <Filter>Game\05.Level</Filter>
+    </ClCompile>
     <ClCompile Include="CSkill.cpp" />
-    <ClCompile Include="CSkillMgr.cpp" />
   </ItemGroup>
 </Project>
