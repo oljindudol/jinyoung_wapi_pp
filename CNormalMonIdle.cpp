@@ -33,7 +33,7 @@ void CNormalMonIdle::finaltick(float _DT)
 
 	if (fDist < DetectRange)
 	{
-		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::NORMAL_MON_TRACE);
+		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::TRACE);
 	}
 }
 

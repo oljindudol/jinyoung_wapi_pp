@@ -22,8 +22,8 @@ CMonster::CMonster()
 
 	// 상태머신 컴포넌트 추가 및 설정
 	m_AI = AddComponent<CStateMachine>(L"AI");
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::NORMAL_MON_IDLE, new CNormalMonIdle);
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::NORMAL_MON_TRACE, new CNormalMonTrace);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::IDLE, new CNormalMonIdle);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::TRACE, new CNormalMonTrace);
 }
 
 CMonster::CMonster(const CMonster& _Origin)
@@ -51,7 +51,7 @@ void CMonster::begin()
 	m_AI->AddDataToBlackboard(L"Attack Range", 50.f);
 	m_AI->AddDataToBlackboard(L"Speed", 100.f);
 
-	m_AI->ChangeState((UINT)ENORMAL_MON_STATE::NORMAL_MON_IDLE);
+	m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 }
 
 

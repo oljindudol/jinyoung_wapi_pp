@@ -30,6 +30,7 @@ private:
 
     // animation 재생 완료 체크
     bool            m_bFinish;
+    ORIENTATION m_ort;
 
 
 public:
@@ -41,7 +42,7 @@ public:
         , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm);
 
     // 아틀라스x 애님 생성
-    void Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset = Vec2(), float _playmul = 1.f);
+    void Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul );
 
     bool IsFinish() { return m_bFinish; }
 

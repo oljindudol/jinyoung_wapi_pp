@@ -32,7 +32,7 @@ void CNormalMonTrace::finaltick(float _DT)
 	// 3. 플레이어와 몬스터의 거리가 탐지범위 이상이면 Idle 상태로 변경한다.
 	if (DetectRange < fDist)
 	{
-		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::NORMAL_MON_IDLE);
+		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 		return;
 	}
 

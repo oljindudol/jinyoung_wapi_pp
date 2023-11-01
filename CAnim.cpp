@@ -17,10 +17,11 @@ using namespace std;
 
 CAnim::CAnim()
 	: m_pAnimator(nullptr)
-	//, m_Atlas(nullptr)
+	, m_Atlas(nullptr)
 	, m_iCurFrm(0)
 	, m_bFinish(false)
 	, m_AccTime(0.f)
+	, m_ort(LEFT)
 {
 }
 
@@ -109,7 +110,7 @@ static bool comparefirst(pair<wstring, wstring> _p1, pair<wstring, wstring> _p2)
 	return stoi(_p1.first) < stoi(_p2.first);
 }
 
-void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset ,float _playmul)
+void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset ,float _playmul )
 {
 	SetName(_strphase+ _strobj+_stranimname);
 
