@@ -16,6 +16,69 @@ CTexture::~CTexture()
 	DeleteDC(m_hDC);
 }
 
+HBITMAP FlipBitmapHorizontally(HBITMAP hbm) {
+	BITMAP bm;
+	GetObject(hbm, sizeof(BITMAP), &bm);
+	int wd = bm.bmWidth;
+	int hgt = bm.bmHeight;
+
+	HDC hdcScr = GetDC(NULL);
+	HDC hdcFlipped = CreateCompatibleDC(hdcScr);
+	HBITMAP hbmFlipped = CreateCompatibleBitmap(hdcScr, wd, hgt);
+	HGDIOBJ oldFlipped = SelectObject(hdcFlipped, hbmFlipped);
+	HDC hdcSrc = CreateCompatibleDC(hdcScr);
+	HGDIOBJ oldSrc = SelectObject(hdcSrc, hbm);
+
+	StretchBlt(hdcFlipped, wd, 0, -wd, hgt, hdcSrc, 0, 0, wd, hgt, SRCCOPY);
+
+	SelectObject(hdcSrc, oldSrc);
+	DeleteDC(hdcSrc);
+	SelectObject(hdcFlipped, oldFlipped);
+	DeleteDC(hdcFlipped);
+	ReleaseDC(NULL, hdcScr);
+
+	return hbmFlipped;
+}
+
+
+bool CTexture::Load_r(const wstring& _strFilePath)
+{
+
+	wchar_t szExt[20] = {};
+	_wsplitpath_s(_strFilePath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, szExt, 20);
+
+	if (!wcscmp(szExt, L".bmp") || !wcscmp(szExt, L".BMP"))
+	{
+		// 플레이어가 사용할 이미지 비트맵 로딩
+		m_hBit = FlipBitmapHorizontally((HBITMAP)LoadImage(nullptr, _strFilePath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION));
+		if (nullptr == m_hBit)
+		{
+			return false;
+		}
+	}
+
+	else if (!wcscmp(szExt, L".png") || !wcscmp(szExt, L".PNG"))
+	{
+		ULONG_PTR gdiplusToken = 0;
+		GdiplusStartupInput gidstartupInput = {};
+		GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
+		Image* pImg = Image::FromFile(_strFilePath.c_str(), false);
+
+		Bitmap* pBitmap = (Bitmap*)pImg->Clone();
+		Status stat = pBitmap->GetHBITMAP(Color(0, 0, 0, 0), &m_hBit);
+
+		if (Status::Ok != stat)
+			return false;
+	}
+
+
+	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+	DeleteObject(SelectObject(m_hDC, FlipBitmapHorizontally(m_hBit)));
+	GetObject(m_hBit, sizeof(BITMAP), &m_Info);
+
+	return true;
+}
+
 bool CTexture::Load(const wstring& _strFilePath)
 {
 

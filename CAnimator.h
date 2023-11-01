@@ -30,7 +30,7 @@ public:
         , Vec2 _vOffset, float _duration, int _MaxFrm);
 
     // 아틀라스x 애니메이션 생성
-    void CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset = Vec2(), float _playmul = 1.f ,ORIENTATION _ort =LEFT);
+    void CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset = Vec2(), float _playmul = 1.f ,ORIENTATION _ort = ORT_LEFT);
 
 
     void SaveAnimations(const wstring& _strRelativePath);

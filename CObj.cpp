@@ -8,6 +8,7 @@
 
 CObj::CObj()
 	: m_iLayerIdx(-1)
+	, ort(ORT_LEFT)
 {
 }
 
@@ -16,6 +17,7 @@ CObj::CObj(const CObj& _Origin)
 	, m_Pos(_Origin.m_Pos)
 	, m_Scale(_Origin.m_Scale)
 	, m_iLayerIdx(-1)
+	, ort(ORT_LEFT)
 {
 	for (size_t i = 0; i < _Origin.m_vecComponent.size(); ++i)
 	{

@@ -221,6 +221,6 @@ enum class PLAYER_STATE
 
 enum ORIENTATION
 {
-	LEFT,
-	RIGHT,
+	ORT_LEFT,
+	ORT_RIGHT,
 };

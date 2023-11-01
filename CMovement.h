@@ -4,6 +4,9 @@ class CMovement :
     public CComponent
 {
 private:
+    // 누적 점프
+    int jumpcount;
+
     // 누적된 힘
     Vec2    m_Force;
 

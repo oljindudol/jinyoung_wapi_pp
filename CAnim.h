@@ -6,6 +6,7 @@ class CTexture;
 struct FFrame
 {
     CTexture* m_Atlas;
+    CTexture* m_Atlas_r;
     Vec2 vLeftTop;  // 아틀라스 내에서 잘라낼 좌상단 위치
     Vec2 vCutSize;  // 잘라낼 크기
     Vec2 vOffset;   // 오브젝트 중심에서 이동 값

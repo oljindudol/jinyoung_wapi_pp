@@ -22,6 +22,14 @@ private:
 
 
 public:
+    int hp;
+    int mp;
+    int att;
+    int def;
+    PLAYER_STATE state;
+
+
+
     virtual void tick(float _DT) override;
     //더이상 오버라이드하지않고,애님에 이관한다.
     //void render(HDC _dc) override;

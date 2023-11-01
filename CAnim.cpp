@@ -9,6 +9,7 @@
 #include "CLogMgr.h"
 #include "CAssetMgr.h"
 #include "CPathMgr.h"
+#include "CEngine.h"
 
 #include <algorithm>
 #include <filesystem>
@@ -21,7 +22,7 @@ CAnim::CAnim()
 	, m_iCurFrm(0)
 	, m_bFinish(false)
 	, m_AccTime(0.f)
-	, m_ort(LEFT)
+	, m_ort(ORT_LEFT)
 {
 }
 
@@ -52,6 +53,8 @@ void CAnim::finaltick()
 
 }
 
+
+
 void CAnim::render(HDC _dc)
 {
 	const FFrame& frm = m_vecFrm[m_iCurFrm];
@@ -74,14 +77,24 @@ void CAnim::render(HDC _dc)
 	blend.SourceConstantAlpha = 255; // 0 ~ 255
 	blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
+	HDC tmpdc = frm.m_Atlas->GetDC();;
+
+	if(ORT_RIGHT==m_pAnimator->GetOwner()->ort){
+		tmpdc = frm.m_Atlas_r->GetDC();
+	}
+
+	
 	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, frm.m_Atlas->GetDC()
+		, tmpdc
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, blend);
+
 }
+
+
 
 void CAnim::Create(const wstring& _strName, CTexture* _Atlas
 	, Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
@@ -154,8 +167,11 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 		tmpname = addipath +L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
 
 		CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(tmpname, L"texture\\anim\\" +tmpname+L".png");
+		CTexture* pAtlas_r = CAssetMgr::GetInst()->LoadTexture_r(tmpname + L"_r", L"texture\\anim\\" + tmpname + L".png");
+
 
 		frm.m_Atlas = pAtlas;
+		frm.m_Atlas_r = pAtlas_r;
 		frm.vOffset = _vOffset;
 		frm.Duration = ((stoi(tmpvec[i].second)- stoi(tmpvec[i].first))/1000.f)/_playmul;
 		frm.vCutSize = Vec2(pAtlas->GetWidth(), pAtlas->GetHeight());

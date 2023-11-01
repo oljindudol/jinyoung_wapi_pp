@@ -35,6 +35,11 @@ CPlayer::CPlayer()
 	: m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
+	, hp(100)
+	, mp(100)
+	, att(5)
+	, def(1000)
+	, state(PLAYER_STATE::IDLE_1)
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {
@@ -50,6 +55,14 @@ CPlayer::CPlayer()
 
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
+
+
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(0.f, -50.f));
+	m_Animator->Play(L"commonpinkbeanidle", true);
+
+
+
+
 	//m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 	//m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
 	//m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
@@ -60,7 +73,6 @@ CPlayer::CPlayer()
 	//m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 	//m_Animator->SaveAnimations(L"animdata");
 
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(0.f,0.f));
 
 	m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
 	m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
@@ -72,7 +84,6 @@ CPlayer::CPlayer()
 	m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
 
 
-	m_Animator->Play(L"commonpinkbeanidle", true);
 
 	//m_Animator = AddComponent<CAnimator>(L"Animator");
 
@@ -109,6 +120,10 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	, m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
+	, hp(_Origin.hp)
+	, mp(_Origin.mp)
+	, att(_Origin.att)
+	, def(_Origin.def)
 {
 	m_Collider = GetComponent<CCollider>();
 	m_Animator = GetComponent<CAnimator>();
@@ -132,44 +147,46 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_PRESSED(A))
 	{
+		ort = ORT_LEFT;
 		m_Movement->AddForce(Vec2(-300.f, 0.f));
-		m_Animator->Play(L"WalkLeft", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 
 	if (KEY_RELEASED(A))
 	{
-		m_Animator->Play(L"IdleLeft", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 
 	if (KEY_PRESSED(D))
 	{
+		ort = ORT_RIGHT;
 		m_Movement->AddForce(Vec2(300.f, 0.f));
-		m_Animator->Play(L"WalkRight", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 	if (KEY_RELEASED(D))
 	{
-		m_Animator->Play(L"IdleRight", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 
 
 	if (KEY_PRESSED(W))
 	{
-		m_Movement->AddForce(Vec2(0.f, -300.f));
-		m_Animator->Play(L"WalkUp", true);
+		/*m_Movement->AddForce(Vec2(0.f, -300.f));
+		m_Animator->Play(L"WalkUp", true);*/
 	}
 	if (KEY_RELEASED(W))
 	{
-		m_Animator->Play(L"IdleUp", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 
 	if (KEY_PRESSED(S))
 	{
 		m_Movement->AddForce(Vec2(0.f, 300.f));
-		m_Animator->Play(L"WalkDown", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 	if (KEY_RELEASED(S))
 	{
-		m_Animator->Play(L"IdleDown", true);
+		m_Animator->Play(L"commonpinkbeanidle", true);
 	}
 
 	if (KEY_TAP(SPACE))
