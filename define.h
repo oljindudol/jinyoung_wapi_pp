@@ -133,12 +133,14 @@ enum LAYER
 	PLATFORM,
 	PLAYER,
 	MONSTER,
+	PLAYER_SKILL,
 	PLAYER_PJ,
 	MONSTER_PJ,
 	PORTAL,
 	WORLD_STATIC,
 
-	UI = 31,
+	UI = 30,
+	CUT_SCENE =31,
 	END = 32,
 };
 
@@ -147,6 +149,9 @@ enum TASK_TYPE
 {
 	// Param1 : Layer Type, Param2 : Object Adress
 	CREATE_OBJECT,
+
+	// Object Adress
+	EXPEL_OBJECT,
 
 	// Param1 : Object Adress
 	DELETE_OBJECT,

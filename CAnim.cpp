@@ -85,7 +85,6 @@ void CAnim::render(HDC _dc)
 	if(ORT_RIGHT==m_pAnimator->GetOwner()->ort){
 		tmpdc = frm.m_Atlas_r->GetDC();
 		offsetx *= -1;
-
 	}
 
 	

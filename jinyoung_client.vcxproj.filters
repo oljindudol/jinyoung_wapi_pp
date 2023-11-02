@@ -169,9 +169,6 @@
     <ClInclude Include="CEditorLevel.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
-    <ClInclude Include="CEnteranceLevel.h">
-      <Filter>Game\05.Level</Filter>
-    </ClInclude>
     <ClInclude Include="CEntity.h">
       <Filter>Game\04.Object</Filter>
     </ClInclude>
@@ -221,9 +218,12 @@
       <Filter>Game\05.Level</Filter>
     </ClInclude>
     <ClInclude Include="CSkill.h" />
-    <ClInclude Include="CSkillMgr.h">
-      <Filter>Game\03.Manager</Filter>
+    <ClInclude Include="pinkbean_doublejump.h" />
+    <ClInclude Include="skills.h">
+      <Filter>Game\01.Header</Filter>
     </ClInclude>
+    <ClInclude Include="CSkillMgr.h" />
+    <ClInclude Include="CEnteranceLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -250,9 +250,6 @@
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
       <Filter>Game\03.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>Game\04.Object</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>리소스 파일</Filter>
@@ -332,9 +329,6 @@
     <ClCompile Include="CEditorLevel.cpp">
       <Filter>Game\05.Level</Filter>
     </ClCompile>
-    <ClCompile Include="CEnteranceLevel.cpp">
-      <Filter>Game\05.Level</Filter>
-    </ClCompile>
     <ClCompile Include="CStartLevel.cpp">
       <Filter>Game\05.Level</Filter>
     </ClCompile>
@@ -384,8 +378,9 @@
       <Filter>Game\04.Object\background</Filter>
     </ClCompile>
     <ClCompile Include="CSkill.cpp" />
-    <ClCompile Include="CSkillMgr.cpp">
-      <Filter>Game\03.Manager</Filter>
-    </ClCompile>
+    <ClCompile Include="pinkbean_doublejump.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CSkillMgr.cpp" />
+    <ClCompile Include="CEnteranceLevel.cpp" />
   </ItemGroup>
 </Project>

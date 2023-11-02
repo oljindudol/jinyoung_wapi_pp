@@ -5,6 +5,7 @@
 #include "framework.h"
 #include "jinyoung_client.h"
 #include "CEngine.h"
+#include "CKeyMgr.h"
 
 #define MAX_LOADSTRING 100
 
@@ -84,14 +85,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             //{
             //    int a = 0;
             //}
-
-            //단축키 조합이 눌렸는지 확인
-            //if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-            //{
-            //    //메세지 처리
-            //    TranslateMessage(&msg);
-            //    DispatchMessage(&msg);
-            //}
+            if(!KEY_PRESSED(KEY::LALT))
+            {
+                //단축키 조합이 눌렸는지 확인
+                if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+                {
+                    //메세지 처리
+                    TranslateMessage(&msg);
+                    DispatchMessage(&msg);
+                }
+            }
 
         }
         //메세지가 없었다.(대부분의 시간)

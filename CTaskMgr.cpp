@@ -33,6 +33,27 @@ void CTaskMgr::tick()
 			Object->begin();
 		}
 		break;
+		case EXPEL_OBJECT:
+		{
+			CObj* pObj = (CObj*)m_vecTask[i].Param_1;
+			LAYER objLayer= (LAYER) pObj->GetLayerIdx();
+
+			CLayer* pLayer = CLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT_PTR)objLayer);
+			auto objs = pLayer->GetObjects();
+			auto iter = objs.begin();
+
+			while (iter != objs.end())
+			{
+				if (pObj == (*iter))
+				{
+					(*iter)->m_iLayerIdx = -1;
+					iter = objs.erase(iter);
+					break;
+				}
+				++iter;
+			}
+		}
+		break;
 		case DELETE_OBJECT:
 		{
 			CObj* pDeadObj = (CObj*)m_vecTask[i].Param_1;

@@ -1,5 +1,6 @@
 #pragma once
 #include "CComponent.h"
+#include "CAnim.h"
 
 class CAnim;
 class CTexture;
@@ -20,6 +21,7 @@ private:
 public:
     void Play(const wstring& _strName);//, bool _bRepeat);
     void Stop();
+    wstring GetCurAnimName() { return m_CurAnim->GetName(); }
 
 
     // Animation Ã£±â

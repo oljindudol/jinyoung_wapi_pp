@@ -21,6 +21,8 @@
 
 #include "components.h"
 #include "CPlatform.h"
+
+#include "CSkillMgr.h"
 /*
 #include "CCollider.h"
 #include "CAnimator.h"
@@ -155,7 +157,10 @@ void CPlayer::tick(float _DT)
 	{
 		ort = ORT_LEFT;
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanmove");
+			if (L"commonpinkbeanmove" != m_Animator->GetCurAnimName())
+			{
+				m_Animator->Play(L"commonpinkbeanmove");
+			}
 		}
 		if (400.f > abs(m_Movement->GetVelocity().x)) 
 		{
@@ -170,11 +175,17 @@ void CPlayer::tick(float _DT)
 		}
 	}
 
+
+
+
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
 		ort = ORT_RIGHT;
 		if (m_Movement->IsGround()) {
-			m_Animator->Play(L"commonpinkbeanmove");
+			if (L"commonpinkbeanmove" != m_Animator->GetCurAnimName())
+			{
+				m_Animator->Play(L"commonpinkbeanmove");
+			}
 		}
 		if (400.f > abs(m_Movement->GetVelocity().x))
 		{
@@ -200,7 +211,6 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_PRESSED(KEY::DOWN))
 	{
-		m_Movement->AddForce(Vec2(0.f, 300.f));
 		if (m_Movement->IsGround()) {
 			m_Animator->Play(L"commonpinkbeandown");
 		}
@@ -221,6 +231,9 @@ void CPlayer::tick(float _DT)
 		}
 		else if (2 > m_Movement->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
 		{
+			//if (!CSkillMgr::GetInst()->IsActive(L"common", L"pinkbean", L"doublejump")) {
+			//CSkillMgr::GetInst()->ActivateSkill(L"common", L"pinkbean", L"doublejump", GetPos(), ort);
+			//}
 			++(m_Movement->GetJmpCnt());
 			float xvel = 700.f;
 			if (ort == ORT_LEFT) xvel *= (-1);
@@ -255,7 +268,7 @@ void CPlayer::tick(float _DT)
 		//		
 		//LOG(WARNING, L"°æ°í");		
 	}
-	SetPos(vPos);
+	//SetPos(vPos);
 }
 
 

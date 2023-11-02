@@ -27,14 +27,14 @@ void CEditorLevel::enter()
 	// 메뉴바 생성
 // 리소스 아이디로 메뉴를 골라서 생성
 	//HMENU hMenu = LoadMenu(nullptr, MAKEINTRESOURCE(IDC_CLIENT));
-	HMENU hMenu = LoadMenu(nullptr, MAKEINTRESOURCE(IDC_JINYOUNGCLIENT));
+	//HMENU hMenu = LoadMenu(nullptr, MAKEINTRESOURCE(IDC_JINYOUNGCLIENT));
 
 	// 메인 윈도우에 생성시킨 메뉴를 붙이기
-	SetMenu(CEngine::GetInst()->GetMainWind(), hMenu);
+	//SetMenu(CEngine::GetInst()->GetMainWind(), hMenu);
 
 	// 메뉴가 추가되었기 때문에 윈도우 크기를 재조정
-	POINT ptResSol = CEngine::GetInst()->GetResolution();
-	CEngine::GetInst()->ChangeWindowSize(ptResSol, true);
+	//POINT ptResSol = CEngine::GetInst()->GetResolution();
+	//CEngine::GetInst()->ChangeWindowSize(ptResSol, true);
 
 	// 카메라 설정
 	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
