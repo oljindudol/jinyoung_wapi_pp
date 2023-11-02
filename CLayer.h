@@ -38,5 +38,6 @@ public:
 
 	friend class CLevel;
 	friend class CUIMgr;
+	friend class CTaskMgr;
 };
 

@@ -85,16 +85,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             //{
             //    int a = 0;
             //}
-            if(!KEY_PRESSED(KEY::LALT))
-            {
-                //단축키 조합이 눌렸는지 확인
-                if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-                {
-                    //메세지 처리
-                    TranslateMessage(&msg);
-                    DispatchMessage(&msg);
-                }
-            }
+
+         //단축키 조합이 눌렸는지 확인
+         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+         {
+             //메세지 처리
+             TranslateMessage(&msg);
+             DispatchMessage(&msg);
+         }
 
         }
         //메세지가 없었다.(대부분의 시간)
@@ -187,6 +185,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+
+
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -208,6 +208,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
+        }
+        break;
+
+    case WM_SYSKEYDOWN:
+    case WM_KEYDOWN://alt키막기
+        switch (wParam)
+        {
+        case VK_MENU:
+            break;
         }
         break;
 

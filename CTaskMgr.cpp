@@ -39,7 +39,7 @@ void CTaskMgr::tick()
 			LAYER objLayer= (LAYER) pObj->GetLayerIdx();
 
 			CLayer* pLayer = CLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT_PTR)objLayer);
-			auto objs = pLayer->GetObjects();
+			vector<CObj*>& objs = pLayer->m_vecObjects;
 			auto iter = objs.begin();
 
 			while (iter != objs.end())
