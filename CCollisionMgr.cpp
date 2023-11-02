@@ -122,6 +122,7 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 							vecLeft[i]->BeginOverlap(vecRight[j]);
 							vecRight[j]->BeginOverlap(vecLeft[i]);
 						}
+						iter->second = true;
 					}
 					else
 					{
@@ -133,14 +134,16 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 						{
 							vecLeft[i]->EndOverlap(vecRight[j]);
 							vecRight[j]->EndOverlap(vecLeft[i]);
+							iter->second = false;
 						}
 						else
 						{
 							vecLeft[i]->Overlap(vecRight[j]);
 							vecRight[j]->Overlap(vecLeft[i]);
+							iter->second = true;
 						}
 					}
-					iter->second = true;
+					//iter->second = true;
 				}
 
 				// 현재 충돌하지 않고 있다.
@@ -153,6 +156,9 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 						vecRight[j]->EndOverlap(vecLeft[i]);
 					}
 					iter->second = false;
+
+
+
 				}
 			}
 		}

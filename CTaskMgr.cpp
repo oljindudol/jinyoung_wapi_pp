@@ -60,7 +60,6 @@ void CTaskMgr::tick()
 		{
 			CObj* pDeadObj = (CObj*)m_vecTask[i].Param_1;
 
-			//pDeadObj->m_bDead = true;
 			pDeadObj->SetDead();
 		}
 			break;
