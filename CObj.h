@@ -21,6 +21,7 @@ private:
 	int					m_iLayerIdx;
 	bool				m_bDead;
 
+
 public:
 	ORIENTATION ort;
 	Vec2 GetPos() { return m_Pos; }
@@ -95,8 +96,9 @@ public:
 	virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 
 
-private:
+protected:
 	void SetDead();
+	void SetLive();
 
 public:
 	virtual CObj* Clone() = 0;

@@ -224,6 +224,7 @@
     </ClInclude>
     <ClInclude Include="CSkillMgr.h" />
     <ClInclude Include="CEnteranceLevel.h" />
+    <ClInclude Include="pinkbean_phantomblow.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -382,5 +383,6 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CSkillMgr.cpp" />
     <ClCompile Include="CEnteranceLevel.cpp" />
+    <ClCompile Include="pinkbean_phantomblow.cpp" />
   </ItemGroup>
 </Project>

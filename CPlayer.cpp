@@ -42,9 +42,13 @@ CPlayer::CPlayer()
 	, att(5)
 	, def(1000)
 	, state(PLAYER_STATE::IDLE_1)
+	, m_acctime(0.f)
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {
+
+
+
 	SetName(L"Player");
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
 	//힙메모리에할당
@@ -66,7 +70,9 @@ CPlayer::CPlayer()
 	m_Animator->CreateAnimation(L"first", L"ion", L"stand", Vec2(-0.f, -300.f), 1.f);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack2", Vec2(-0.f, -300.f), 1.f);
 
-	m_Animator->Play(L"firstionattack2");
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -50.f), 1.f,-1);
+
+	m_Animator->Play(L"commonpinkbeanidle");
 
 
 
@@ -134,6 +140,7 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	, att(_Origin.att)
 	, def(_Origin.def)
 	, state(PLAYER_STATE::IDLE_1)
+	, m_acctime(0.f)
 {
 	m_Collider = GetComponent<CCollider>();
 	m_Animator = GetComponent<CAnimator>();
@@ -154,6 +161,24 @@ void CPlayer::tick(float _DT)
 	Super::tick(_DT);
 
 	Vec2 vPos = GetPos();
+
+
+	if (L"commonpinkbeanstab" == m_Animator->GetCurAnimName())
+	{
+		m_acctime += _DT;
+
+		if (0.6f < m_acctime)
+		{
+			m_Movement->IsGround() ? 
+				m_Animator->Play(L"commonpinkbeanidle") :
+				m_Animator->Play(L"commonpinkbeanonair");
+			m_acctime = 0.f;
+		}
+
+	}
+	else 
+	{
+
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
@@ -225,6 +250,14 @@ void CPlayer::tick(float _DT)
 			m_Animator->Play(L"commonpinkbeanidle");
 		}
 	}
+
+	if (KEY_TAP(C))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeanphantomblow", GetPos(), ort);
+		m_Animator->Play(L"commonpinkbeanstab");
+	}
+
+
 	if (KEY_TAP(M))
 	{
 		CBackGround* pBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackGround;
@@ -255,9 +288,7 @@ void CPlayer::tick(float _DT)
 		}
 		else if (2 > m_Movement->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
 		{
-			//if (!CSkillMgr::GetInst()->IsActive(L"common", L"pinkbean", L"doublejump")) {
-			//CSkillMgr::GetInst()->ActivateSkill(L"common", L"pinkbean", L"doublejump", GetPos(), ort);
-			//}
+
 			CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeandoublejump",  GetPos(), ort);
 
 			++(m_Movement->GetJmpCnt());
@@ -274,7 +305,8 @@ void CPlayer::tick(float _DT)
 		{
 
 		}
-
+		
+	}
 
 		//CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
@@ -350,7 +382,11 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	{
 		m_Movement->SetGround(true);
 		state = PLAYER_STATE::IDLE_1;
-		m_Animator->Play(L"firstionattack2");
+
+		if (L"commonpinkbeanstab" != m_Animator->GetCurAnimName())
+		{
+			m_Animator->Play(L"commonpinkbeanidle");
+		}
 	}
 }
 

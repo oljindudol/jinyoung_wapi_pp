@@ -12,6 +12,10 @@ void CSkillMgr::init()
 {
 	AddSkill((CSkill*)new pinkbean_doublejump);
 	AddSkill((CSkill*)new pinkbean_doublejump);
+
+
+
+	AddSkill((CSkill*)new pinkbean_phantomblow);
 }
 
 

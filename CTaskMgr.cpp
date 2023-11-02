@@ -47,6 +47,8 @@ void CTaskMgr::tick()
 				if (pObj == (*iter))
 				{
 					(*iter)->m_iLayerIdx = -1;
+					(*iter)->SetDead();
+
 					iter = objs.erase(iter);
 					break;
 				}
@@ -57,7 +59,8 @@ void CTaskMgr::tick()
 		case DELETE_OBJECT:
 		{
 			CObj* pDeadObj = (CObj*)m_vecTask[i].Param_1;
-			pDeadObj->m_bDead = true;
+
+			//pDeadObj->m_bDead = true;
 			pDeadObj->SetDead();
 		}
 			break;

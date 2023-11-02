@@ -49,7 +49,8 @@ void CLayer::render(HDC _dc)
 	{
 		if ((*iter)->IsDead())
 		{
-			CGCMgr::GetInst()->AddEntity((*iter));
+			
+			//CGCMgr::GetInst()->AddEntity((*iter));
 			iter = m_vecObjects.erase(iter);
 		}
 		else

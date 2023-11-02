@@ -31,6 +31,7 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 	// activatedtime 초기화
 	m_activedtime = 0.f;
 	
+
 	//스킬 위치설정
 	SetPos(_beginpos);
 
@@ -38,6 +39,8 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 	ort = _ort;
 
 	m_OnActivate = true;
+
+	SetLive();
 	
 	// 레벨에참여
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)m_skilllayer, (UINT_PTR)this });

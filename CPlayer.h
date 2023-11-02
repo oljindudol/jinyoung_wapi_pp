@@ -19,6 +19,7 @@ private:
     class CCollider* m_Collider;
     class CAnimator* m_Animator;
     class CMovement* m_Movement;
+    float m_acctime;
 
 
 public:

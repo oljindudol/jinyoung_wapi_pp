@@ -96,3 +96,13 @@ void CObj::SetDead()
 		m_vecComponent[i]->m_bDead = true;
 	}
 }
+
+void CObj::SetLive()
+{
+	m_bDead = false;
+
+	for (size_t i = 0; i < m_vecComponent.size(); ++i)
+	{
+		m_vecComponent[i]->m_bDead = false;
+	}
+}
