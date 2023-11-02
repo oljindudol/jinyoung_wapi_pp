@@ -256,7 +256,7 @@ void CPlayer::tick(float _DT)
 			//if (!CSkillMgr::GetInst()->IsActive(L"common", L"pinkbean", L"doublejump")) {
 			//CSkillMgr::GetInst()->ActivateSkill(L"common", L"pinkbean", L"doublejump", GetPos(), ort);
 			//}
-
+			CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeandoublejump",  GetPos(), ort);
 
 			++(m_Movement->GetJmpCnt());
 			float xvel = 700.f;

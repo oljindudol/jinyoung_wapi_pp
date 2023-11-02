@@ -97,7 +97,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CKeyMgr::GetInst()->init();
 	CPathMgr::init();
 	CSoundMgr::GetInst()->init();
-	//CSkillMgr::GetInst()->init();
+	CSkillMgr::GetInst()->init();
 
 	CLevelMgr::GetInst()->init();
 

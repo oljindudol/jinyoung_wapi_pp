@@ -8,6 +8,17 @@
 void CSkill::tick(float _DT)
 {
 	Super::tick(_DT);
+
+
+	m_activedtime += _DT;
+
+	if (duration < m_activedtime)
+	{
+		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)this });
+		m_OnActivate = false;
+	}
+
+
 }
 
 void CSkill::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
@@ -40,7 +51,10 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 
 
 CSkill::CSkill()
-	: m_skillname(L"")
+	: m_s1(L"")
+	, m_s2(L"")
+	, m_s3(L"")
+	, m_skillname(L"")
 	, m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, duration(0)
@@ -55,7 +69,10 @@ CSkill::CSkill()
 }
 
 CSkill::CSkill(const CSkill& _Origin)
-	: m_skillname(L"")
+	: m_s1(L"")
+	, m_s2(L"")
+	, m_s3(L"")
+	, m_skillname(L"")
 	, m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, duration(0)

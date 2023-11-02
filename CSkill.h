@@ -9,6 +9,9 @@ class CSkill :
     GENERATED_OBJECT(CObj);
 
 protected:
+    wstring m_s1;
+    wstring m_s2;
+    wstring m_s3;
     wstring m_skillname;
     int m_skillnum;
     CCollider* m_Collider;

@@ -66,6 +66,7 @@ void CAnimator::Play(const wstring& _strName)
 	//m_bRepeat = _bRepeat;
 
 	m_CurAnim = FindAnim(_strName);
+	m_CurAnim->m_bFinish = false;
 	m_CurAnim->m_iCurFrm = 0;
 }
 

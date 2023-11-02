@@ -12,24 +12,24 @@ void pinkbean_doublejump::tick(float _DT)
 pinkbean_doublejump::pinkbean_doublejump()
 {
 
-	wstring s1 = L"common";
-	wstring s2 = L"pinkbean";
-	wstring s3 = L"doublejump";
+	m_s1 = L"common";
+	m_s2 = L"pinkbean";
+	m_s3 = L"doublejump";
 
-	m_skillname = s1 + s2 + s3;
-	int skillnum;
+	m_skillname = m_s1 + m_s2 + m_s3;
 
 	//몇번째 스킬인지
 	auto iter = CSkillMgr::GetInst()->m_skillmap.find(L"m_skillname");
 	if(CSkillMgr::GetInst()->m_skillmap.end() == iter) 
 	{
-		skillnum = 0;
+		m_skillnum = 0;
 	}
 	else
 	{
-		skillnum = iter->second.size();
+		m_skillnum = iter->second.size();
 	}
-	SetName(m_skillname + L"_" + std::to_wstring(skillnum));
+
+	SetName(m_skillname + L"_" + std::to_wstring(m_skillnum));
 
 	//컬라이더
 	m_Collider =
@@ -42,10 +42,11 @@ pinkbean_doublejump::pinkbean_doublejump()
 		AddComponent<CAnimator>(GetName() + L"Animator");
 
 	m_Animator->
-		CreateAnimation(s1, s2, s3,
-			Vec2(100.f, 0.f), 1.f, -1, ORT_LEFT);
+		CreateAnimation(m_s1, m_s2, m_s3,
+			Vec2(50.f, 0.f), 1.f, -1, ORT_LEFT);
 
-	duration = 1.5f;
+	m_skilllayer = LAYER::PLAYER_SKILL;
+	duration = .6f;
 	cooltime = 0.f;
 	m_att = 0;
 	m_debuff = DEBUFF::NONE;

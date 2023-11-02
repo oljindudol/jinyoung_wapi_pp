@@ -4,32 +4,64 @@
 #include "CSkillMgr.h"
 #include "skills.h"
 
-
 CSkillMgr::CSkillMgr()
 {
-	CSkill* pNewSkill = (CSkill*)new pinkbean_doublejump;
-	m_skillmap.insert(pair<wstring, vector<CSkill*>>(L"pinkbean_doublejump", pNewSkill));
-}
-
-CSkillMgr::~CSkillMgr()
-{
-
 }
 
 void CSkillMgr::init()
 {
-	//CreateSkill(Vec2(100,100)
-	//	,L"common", L"pinkbean", L"doublejump"
-	//	,Vec2(100.f,0.f),1.f,-1,ORT_LEFT
-	//	,1.f,0.f,0.f,DEBUFF::NONE
-	//);
-
-
+	AddSkill((CSkill*)new pinkbean_doublejump);
+	AddSkill((CSkill*)new pinkbean_doublejump);
 }
 
-vector<CSkill*>* CSkillMgr::FindSkill(wstring _aname1, wstring _aname2, wstring _aname3)
+
+
+void CSkillMgr::AddSkill(CSkill* _pSkill)
 {
-	auto iter = m_skillmap.find(_aname1 + _aname2 + _aname3);
+	vector<CSkill*>* pSkills;
+	wstring skillname = _pSkill->m_skillname;
+	pSkills = FindSkill(skillname);
+
+	if (nullptr == pSkills)
+	{
+		vector<CSkill*> newskillvec;
+		newskillvec.push_back(_pSkill);
+		m_skillmap.insert(pair<wstring, vector<CSkill*>>(skillname, newskillvec));
+	}
+	else
+	{
+		pSkills->push_back(_pSkill);
+	}
+}
+
+CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
+{
+	CSkill* pSkill = nullptr;
+	vector< CSkill* >* pSkills = FindSkill(_skillname);
+
+	if (nullptr == pSkills)
+	{
+		pSkill =  nullptr;
+	}
+	else
+	{
+		for (auto p : (*pSkills) )
+		{
+			if (false == (p->m_OnActivate))
+			{
+				pSkill = p;
+				break;
+			}
+		}
+	}
+	return pSkill;
+}
+
+
+
+vector<CSkill*>* CSkillMgr::FindSkill(wstring _skillname)
+{
+	auto iter = m_skillmap.find(_skillname);
 
 	if (iter == m_skillmap.end())
 	{
@@ -38,9 +70,9 @@ vector<CSkill*>* CSkillMgr::FindSkill(wstring _aname1, wstring _aname2, wstring 
 	return &(iter->second);
 }
 
-float CSkillMgr::GetCoolTime(wstring _aname1, wstring _aname2, wstring _aname3)
+float CSkillMgr::GetCoolTime(wstring _skillname)
 {
-	vector<CSkill*>* pskills = FindSkill(_aname1, _aname2, _aname3);
+	vector<CSkill*>* pskills = FindSkill(_skillname);
 	if (nullptr == pskills)
 	{
 		//없는스킬 로그 띄우기
@@ -52,26 +84,24 @@ float CSkillMgr::GetCoolTime(wstring _aname1, wstring _aname2, wstring _aname3)
 	return (*iter)->cooltime;
 }
 
-bool CSkillMgr::IsActive(wstring _aname1, wstring _aname2, wstring _aname3)
-{
-	vector<CSkill*>* = FindSkill(_aname1, _aname2, _aname3);
-	if (nullptr == pskill)
-	{
-		//없는스킬 로그 띄우기
-		return true;
-	}
 
-	return pskill->m_OnActivate;
-}
 
-void CSkillMgr::ActivateSkill(
-	wstring _aname1,
-	wstring _aname2,
-	wstring _aname3, 
-	Vec2 _pos,
-	ORIENTATION _ort)
+//bool CSkillMgr::IsActive(wstring _aname1, wstring _aname2, wstring _aname3)
+//{
+//	vector<CSkill*>* pskills = FindSkill(_aname1, _aname2, _aname3);
+//	if (nullptr == pskills)
+//	{
+//		//없는스킬 로그 띄우기
+//		return true;
+//	}
+//	return pskills->m_OnActivate;
+//}
+
+void CSkillMgr::ActivateSkill(wstring _skillname
+	,Vec2 _pos
+	,ORIENTATION _ort)
 {
-	CSkill* pskill = FindSkill(_aname1, _aname2, _aname3);
+	CSkill* pskill = FindAvailableSkill(_skillname);
 	if (nullptr == pskill)
 	{
 		//없는스킬 로그 띄우기
@@ -135,3 +165,9 @@ void CSkillMgr::ActivateSkill(
 //
 //
 //
+
+
+CSkillMgr::~CSkillMgr()
+{
+
+}

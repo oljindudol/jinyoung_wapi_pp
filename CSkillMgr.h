@@ -9,32 +9,28 @@ class CSkillMgr
 
 public:
 	void init();
-	void ActivateSkill(
-		wstring _aname1,
-		wstring _aname2,
-		wstring _aname3,
+	void ActivateSkill(wstring _skillname,
 		Vec2 _pos,
 		ORIENTATION _ort);
 
 	vector<CSkill*>* FindSkill(
-		wstring _aname1,
-		wstring _aname2,
-		wstring _aname3);
+		wstring _skillname);
 
 	float GetCoolTime(
-		wstring _aname1,
-		wstring _aname2,
-		wstring _aname3);
+		wstring _skillname);
 
-	bool IsActive(
-		wstring _aname1,
-		wstring _aname2,
-		wstring _aname3);
+	CSkill* FindAvailableSkill(
+		wstring _skillname);
+
+	//bool IsActive(
+	//	wstring _aname1,
+	//	wstring _aname2,
+	//	wstring _aname3);
 
 	unordered_map<wstring, vector<CSkill*>> m_skillmap;
 		
 private: 
-	void CreateSkill();
+	void AddSkill(CSkill* _pSkill);
 
 	//void CreateSkill(
 	//	  Vec2 _colbox
