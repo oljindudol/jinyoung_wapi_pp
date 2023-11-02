@@ -27,7 +27,7 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 	ort = _ort;
 
 	m_OnActivate = true;
-
+	
 	// 레벨에참여
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)m_skilllayer, (UINT_PTR)this });
 

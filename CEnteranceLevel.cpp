@@ -20,12 +20,12 @@
 void CEnteranceLevel::init()
 {
 	// 배경생성
-	CBackGround* pBackGround = nullptr;
+	//CBackGround* pBackGround = nullptr;
 
-	pBackGround = new CBackGround;
-	pBackGround->SetPos(Vec2(800.f, 450.f));
-	pBackGround->SetScale(Vec2(1990.f, 767.f));
-	AddObject(BACKGROUND, pBackGround);
+	m_BackGround = new CBackGround;
+	m_BackGround->SetPos(Vec2(800.f, 450.f));
+	m_BackGround->SetScale(Vec2(1990.f, 767.f));
+	//AddObject(BACKGROUND, pBackGround);
 
 
 	// 플레이어 생성

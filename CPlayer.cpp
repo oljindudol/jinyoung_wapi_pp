@@ -191,8 +191,10 @@ void CPlayer::tick(float _DT)
 		{
 			m_Movement->AddForce(Vec2(1000.f, 0.f));
 		}
-
 	}
+
+
+
 	if (KEY_RELEASED(KEY::RIGHT))
 	{
 		if (m_Movement->IsGround()) {
@@ -221,6 +223,26 @@ void CPlayer::tick(float _DT)
 			m_Animator->Play(L"commonpinkbeanidle");
 		}
 	}
+	if (KEY_TAP(M))
+	{
+		CBackGround* pBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackGround;
+		bool bBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackOn;
+
+		// pback 이 설정되어있고 백그라운드off이라면
+		// 켜준다
+		if (nullptr != pBack && !bBack)
+		{
+			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT,(UINT_PTR)LAYER::BACKGROUND ,(UINT_PTR)pBack});
+			CLevelMgr::GetInst()->GetCurLevel()->m_BackOn = true;
+		}
+		// pback 이 설정되어있고 백그라운드on이라면
+		// 꺼준다
+		else if (nullptr != pBack && bBack) 
+		{
+			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)pBack });
+			CLevelMgr::GetInst()->GetCurLevel()->m_BackOn = false;
+		}
+	}
 
 	if (KEY_TAP(LALT))
 	{
@@ -234,6 +256,8 @@ void CPlayer::tick(float _DT)
 			//if (!CSkillMgr::GetInst()->IsActive(L"common", L"pinkbean", L"doublejump")) {
 			//CSkillMgr::GetInst()->ActivateSkill(L"common", L"pinkbean", L"doublejump", GetPos(), ort);
 			//}
+
+
 			++(m_Movement->GetJmpCnt());
 			float xvel = 700.f;
 			if (ort == ORT_LEFT) xvel *= (-1);

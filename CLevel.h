@@ -11,11 +11,12 @@ class CLevel
 {
 private:
 	CLayer* m_Layer[LAYER::END];
-
 	UINT	m_TileRow;
 	UINT	m_TileCol;
 
 public:
+	class CBackGround* m_BackGround;
+	bool m_BackOn;
 	virtual void init() = 0;
 	virtual void enter() = 0;
 	virtual void exit() = 0;

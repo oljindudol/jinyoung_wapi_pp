@@ -55,7 +55,7 @@ void CLevelMgr::init()
 	}
 
 	// Level
-	::ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+	GoStartLevel(LEVEL_TYPE::PLAY_LEVEL);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
@@ -169,6 +169,19 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 	m_pCurLevel = m_arrLevels[(UINT)_Type];
 
 	m_pCurLevel->enter();
+
+	m_pCurLevel->begin();
+}
+
+void CLevelMgr::GoStartLevel(LEVEL_TYPE _Type)
+{
+	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
+		return;
+
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->exit();
+
+	m_pCurLevel = m_arrLevels[(UINT)_Type];
 
 	m_pCurLevel->begin();
 }

@@ -15,6 +15,7 @@ public:
 
 private:
 	void ChangeLevel(LEVEL_TYPE _Type);
+	void GoStartLevel(LEVEL_TYPE _Type);
 
 public:
 	void init();

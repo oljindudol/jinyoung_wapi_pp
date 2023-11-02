@@ -13,6 +13,8 @@ class CLayer;
 CLevel::CLevel()
 	: m_TileRow(0)
 	, m_TileCol(0)
+	, m_BackGround(nullptr)
+	, m_BackOn(false)
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
