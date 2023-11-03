@@ -72,8 +72,6 @@ CPlayer::CPlayer()
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(0.f, -50.f),3.f);
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -50.f), 1.f,-1);
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"down", Vec2(-30.f, -20.f), 1.f, -1);
-	m_Animator->CreateAnimation(L"first", L"ion", L"stand", Vec2(-0.f, -300.f), 1.f);
-	m_Animator->CreateAnimation(L"first", L"ion", L"attack2", Vec2(-0.f, -300.f), 1.f);
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -50.f), 1.f,-1);
 

@@ -103,9 +103,6 @@
     <ClInclude Include="CPathMgr.h">
       <Filter>Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CMonster.h">
-      <Filter>Game\04.Object</Filter>
-    </ClInclude>
     <ClInclude Include="CLayer.h">
       <Filter>Game\05.Level</Filter>
     </ClInclude>
@@ -225,6 +222,11 @@
     <ClInclude Include="CSkillMgr.h" />
     <ClInclude Include="CEnteranceLevel.h" />
     <ClInclude Include="pinkbean_phantomblow.h" />
+    <ClInclude Include="CMonster.h" />
+    <ClInclude Include="ion.h" />
+    <ClInclude Include="monsters.h">
+      <Filter>Game\01.Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -272,9 +274,6 @@
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Game\03.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonster.cpp">
-      <Filter>Game\04.Object</Filter>
     </ClCompile>
     <ClCompile Include="CLayer.cpp">
       <Filter>Game\05.Level</Filter>
@@ -384,5 +383,7 @@
     <ClCompile Include="CSkillMgr.cpp" />
     <ClCompile Include="CEnteranceLevel.cpp" />
     <ClCompile Include="pinkbean_phantomblow.cpp" />
+    <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="ion.cpp" />
   </ItemGroup>
 </Project>

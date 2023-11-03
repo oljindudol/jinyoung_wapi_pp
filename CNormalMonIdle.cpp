@@ -33,12 +33,16 @@ void CNormalMonIdle::finaltick(float _DT)
 
 	if (fDist < DetectRange)
 	{
+
 		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::TRACE);
 	}
 }
 
 void CNormalMonIdle::Enter()
 {
+
+	CAnimator* pAni = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
+	pAni->Play(L"firstionstand");
 	//CAnimator* pAnimator = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
 	//pAnimator->Play(L"")
 

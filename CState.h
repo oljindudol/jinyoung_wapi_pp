@@ -18,6 +18,9 @@ private:
     CStateMachine* m_pSM;
     UINT            m_StateID;
 
+protected:
+    float m_acctime;
+
 
 public:
     CStateMachine* GetOwnerSM() { return m_pSM; }

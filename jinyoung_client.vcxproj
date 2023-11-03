@@ -218,6 +218,7 @@
     <ClInclude Include="func.h" />
     <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="ion.h" />
     <ClInclude Include="jinyoung_client.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="CPlayer.h" />
@@ -232,6 +233,7 @@
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="skills.h" />
+    <ClInclude Include="monsters.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAnim.cpp" />
@@ -292,6 +294,7 @@
     <ClCompile Include="CUIMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="CGCMgr.cpp" />
+    <ClCompile Include="ion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

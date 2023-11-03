@@ -99,6 +99,7 @@ void CStateMachine::ChangeState(UINT _NextID)
 	// 새로운 스테이트를 현재 스테이트로 지정
 	m_pCurState = pNextState;
 
+	pNextState->m_acctime = 0.f;
 
 	// 새로운 스테이트로 진입(초기작업 수행)
 	m_pCurState->Enter();

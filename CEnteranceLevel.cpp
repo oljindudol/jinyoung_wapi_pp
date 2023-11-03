@@ -15,7 +15,17 @@
 #include "CAssetMgr.h"
 #include "CSound.h"
 
+#include "monsters.h"
+
 #include "CBackGround.h"
+
+CEnteranceLevel::~CEnteranceLevel()
+{
+	//디버그용
+	if(m_tmpmon->IsDead() )
+	delete m_tmpmon;
+
+}
 
 void CEnteranceLevel::init()
 {
@@ -39,12 +49,15 @@ void CEnteranceLevel::init()
 	AddObject(PLAYER, pPlayer);
 
 	// 몬스터 생성
-	CMonster* pMonster = nullptr;
+	ion* p_ion = nullptr;
 
-	pMonster = new CMonster;
-	pMonster->SetPos(Vec2(900.f, 500.f));
-	pMonster->SetScale(Vec2(100.f, 100.f));
-	AddObject(MONSTER, pMonster);
+	p_ion = new ion;
+	p_ion->SetPos(Vec2(900.f, 800.f));
+	p_ion->SetScale(Vec2(100.f, 100.f));
+	AddObject(MONSTER, p_ion);
+
+	//디버그용
+	m_tmpmon = p_ion;
 
 	// 플랫폼 설치
 	CPlatform* pPlatform = new CPlatform;
@@ -61,6 +74,7 @@ void CEnteranceLevel::init()
 	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
+	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLATFORM);
 
 
 	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");

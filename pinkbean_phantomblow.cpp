@@ -52,7 +52,7 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 	m_skilllayer = LAYER::PLAYER_PJ;
 	duration = .6f;
 	cooltime = 0.f;
-	m_att = 0;
+	m_att = 5.f;
 	m_debuff = DEBUFF::NONE;
 
 }

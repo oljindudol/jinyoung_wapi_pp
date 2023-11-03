@@ -1,5 +1,9 @@
 #pragma once
 #include "CObj.h"
+
+
+#include "CPlatform.h"
+#include "CSkill.h"
 class CTexture;
 
 
@@ -9,16 +13,18 @@ class CMonster :
     public CObj
 {
     GENERATED_OBJECT(CObj);
-private:
+
+protected:
     FMonInfo        m_Info;
     CCollider* m_Collider;
     CStateMachine* m_AI;
-    CTexture* m_Texture;
+    CAnimator* m_Animator;
+    CMovement* m_Movement ;
 
 public:
     virtual void begin() override;
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
-    virtual void render(HDC _dc) override;
+    //virtual void render(HDC _dc) override;
 
 public:
     virtual void tick(float _DT) override;

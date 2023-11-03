@@ -65,6 +65,7 @@ void CLayer::DeleteAllObjects()
 {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
+		if(m_vecObjects[i])
 		delete m_vecObjects[i];
 	}
 
