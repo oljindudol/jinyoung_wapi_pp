@@ -22,8 +22,7 @@ void CNormalMonTrace::finaltick(float _DT)
 	Vec2 vMonsterPos = pMonster->GetPos();
 
 
-	//left:-1
-	int skillortsign = -1;
+	
 
 	if (0.0 == m_acctime)
 	{
@@ -59,28 +58,31 @@ void CNormalMonTrace::finaltick(float _DT)
 		Vec2 vDir = vPlayerPos - vMonsterPos;
 		vDir.Normalize();
 
-		skillortsign = vDir.x > 0 ? 1 : -1;
+		m_skillortsign = vDir.x > 0 ? 1 : -1;
 	}
 
 
 	m_acctime += _DT;
 
-	if (1.2f > m_acctime)
+	if (1.3f > m_acctime)
 	{
 		return;
 	}
+
 	if (3.45f < m_acctime)
 	{
 		m_acctime = 0.f;
-
-
+	}
+	if (2.82f < m_acctime)
+	{
+		return;
 	}
 	// 2. 본인(몬스터) 의 이동속도를 알아낸다.
 	float* pSpeed = (float*)GetOwnerSM()->GetDataFromBlackboard(L"Speed");
 	float fSpeed = *pSpeed;
 
 	// 3. 플레이어를 향해서 이동한다.
-	vMonsterPos += Vec2((float)skillortsign,0.f) * fSpeed * _DT;
+	vMonsterPos += Vec2((float)m_skillortsign,0.f) * fSpeed * _DT;
 	pMonster->SetPos(vMonsterPos);
 }
 

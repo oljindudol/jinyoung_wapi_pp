@@ -4,6 +4,7 @@
 CState::CState()
 	: m_pSM(nullptr)
 	, m_acctime(0.f)
+	, m_skillortsign(-1)
 {
 }
 

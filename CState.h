@@ -20,6 +20,7 @@ private:
 
 protected:
     float m_acctime;
+    int m_skillortsign;
 
 
 public:
