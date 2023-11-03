@@ -36,7 +36,7 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 	//컬라이더
 	m_Collider =
 		AddComponent<CCollider>(GetName() + L"Collider");
-	m_Collider->SetScale(Vec2(600.f, 250.f));
+	m_Collider->SetScale(Vec2(400.f, 250.f));
 	m_Collider->m_vOffsetPos=(Vec2(-250.f, -110.f));
 
 	//pNewSkill -> m_Collider->SetOffsetPos(Vec2(0.f, 0.f));

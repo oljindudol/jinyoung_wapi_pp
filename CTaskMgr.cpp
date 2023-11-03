@@ -47,8 +47,7 @@ void CTaskMgr::tick()
 				if (pObj == (*iter))
 				{
 					(*iter)->m_iLayerIdx = -1;
-					(*iter)->SetDead();
-
+					//(*iter)->SetDead();
 					iter = objs.erase(iter);
 					break;
 				}

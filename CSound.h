@@ -10,6 +10,7 @@ private:
 	LPDIRECTSOUNDBUFFER		m_pSoundBuffer;
 	DSBUFFERDESC			m_tBuffInfo;
 	int						m_iVolume;
+	bool m_bPlay;
 
 public:
 	virtual bool Load(const wstring& _strFilePath) override;
@@ -36,5 +37,7 @@ private:
 public:
 	CSound();
 	virtual ~CSound();
+
+	friend class CAssetMgr;
 };
 

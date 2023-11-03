@@ -7,6 +7,7 @@ CSound::CSound()
 	: m_pSoundBuffer(nullptr)
 	, m_tBuffInfo{}
 	, m_iVolume(0)
+	, m_bPlay(false)
 {
 }
 
@@ -106,6 +107,9 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 
 void CSound::Play(bool _bLoop)
 {
+
+	m_bPlay = _bLoop;
+
 	m_pSoundBuffer->SetCurrentPosition(0);
 
 	if (_bLoop)
@@ -116,6 +120,8 @@ void CSound::Play(bool _bLoop)
 
 void CSound::PlayToBGM(bool _bLoop)
 {
+	m_bPlay = true;
+
 	CSoundMgr::GetInst()->RegisterToBGM(this);
 
 	if (_bLoop)
@@ -126,6 +132,8 @@ void CSound::PlayToBGM(bool _bLoop)
 
 void CSound::Stop(bool _bReset)
 {
+	m_bPlay = false;
+
 	m_pSoundBuffer->Stop();
 
 	if (_bReset)

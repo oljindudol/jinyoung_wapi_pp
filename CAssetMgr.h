@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CSound.h"
+
 class CTexture;
 class CSound;
 
@@ -18,5 +20,6 @@ public:
 
 	CSound* LoadSound(const wstring& _strKey, const wstring& _strRelativePath);
 	CSound* FindSound(const wstring& _strKey);
+	bool IsPlaying(CSound* _pSound) { return _pSound->m_bPlay; }
 
 };

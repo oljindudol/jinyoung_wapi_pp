@@ -25,7 +25,9 @@ void CEnteranceLevel::init()
 	m_BackGround = new CBackGround;
 	m_BackGround->SetPos(Vec2(800.f, 450.f));
 	m_BackGround->SetScale(Vec2(1990.f, 767.f));
-	//AddObject(BACKGROUND, pBackGround);
+	m_BackOn = true;
+	AddObject(BACKGROUND, m_BackGround);
+
 
 
 	// 플레이어 생성
@@ -59,6 +61,12 @@ void CEnteranceLevel::init()
 	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
 	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
+
+
+	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");
+	pSound->SetVolume(20);
+	pSound->SetPosition(45.f);
+	pSound->Play(true);
 }
 
 void CEnteranceLevel::enter()
@@ -79,10 +87,6 @@ void CEnteranceLevel::enter()
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
 
-	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");
-	pSound->SetVolume(100);
-	pSound->SetPosition(45.f);
-	pSound->Play(true);
 }
 
 void CEnteranceLevel::exit()

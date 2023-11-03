@@ -23,6 +23,11 @@
 #include "CPlatform.h"
 
 #include "CSkillMgr.h"
+
+#include "CAssetmgr.h"
+#include "CSound.h"
+
+
 /*
 #include "CCollider.h"
 #include "CAnimator.h"
@@ -255,6 +260,22 @@ void CPlayer::tick(float _DT)
 	{
 		CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeanphantomblow", GetPos(), ort);
 		m_Animator->Play(L"commonpinkbeanstab");
+	}
+
+	if (KEY_TAP(N))
+	{
+
+		CAssetMgr* pAssetMgr = CAssetMgr::GetInst();
+		CSound* pSound = pAssetMgr->LoadSound(L"BGM_01", L"sound\\TheWorld¡¯sEnd.wav");
+		if (pAssetMgr->IsPlaying(pSound))
+		{
+			pSound->Stop(false);
+		}
+		else
+		{
+			pSound->Play(true);
+		}
+		
 	}
 
 
