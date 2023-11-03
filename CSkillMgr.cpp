@@ -19,6 +19,16 @@ void CSkillMgr::init()
 }
 
 
+CSkillMgr::~CSkillMgr()
+{
+	for (const auto& pair : m_skillmap)
+	{
+		for(const auto& p : pair.second )
+		{
+			delete p;
+		}
+	}
+}
 
 void CSkillMgr::AddSkill(CSkill* _pSkill)
 {
@@ -171,7 +181,3 @@ void CSkillMgr::ActivateSkill(wstring _skillname
 //
 
 
-CSkillMgr::~CSkillMgr()
-{
-
-}
