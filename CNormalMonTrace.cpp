@@ -71,6 +71,8 @@ void CNormalMonTrace::finaltick(float _DT)
 
 	if (3.45f < m_acctime)
 	{
+		CAnimator* pAni = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
+		pAni->Play(L"firstionattack2");
 		m_acctime = 0.f;
 	}
 	if (2.82f < m_acctime)

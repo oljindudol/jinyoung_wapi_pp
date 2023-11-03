@@ -71,9 +71,9 @@ bool CTexture::Load_r(const wstring& _strFilePath)
 			return false;
 	}
 
-
+	m_hBit = FlipBitmapHorizontally(m_hBit);
 	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
-	DeleteObject(SelectObject(m_hDC, FlipBitmapHorizontally(m_hBit)));
+	DeleteObject(SelectObject(m_hDC, m_hBit));
 	GetObject(m_hBit, sizeof(BITMAP), &m_Info);
 
 	return true;

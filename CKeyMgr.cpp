@@ -71,8 +71,11 @@ int g_KeySync[KEY::KEY_END] =
 	VK_UP,
 	VK_DOWN,
 
+
 	VK_LBUTTON,
 	VK_RBUTTON,
+
+	';',
 };
 
 

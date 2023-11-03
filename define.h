@@ -114,6 +114,8 @@ enum KEY
 	LBTN,
 	RBTN,
 
+	SEMICOL,
+
 	KEY_END,
 };
 

@@ -182,6 +182,10 @@ void CPlayer::tick(float _DT)
 	else 
 	{
 
+	if (KEY_TAP(KEY::SEMICOL))
+	{
+
+	}
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
