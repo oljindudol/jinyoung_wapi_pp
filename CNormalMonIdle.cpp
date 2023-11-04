@@ -13,7 +13,7 @@ CNormalMonIdle::~CNormalMonIdle()
 
 void CNormalMonIdle::finaltick(float _DT)
 {
-	if (nullptr == m_pTarget)
+	if (nullptr == m_pPlayer)
 		return;
 
 	// 플레이어가 탐지범위 내에 있는지 확인
@@ -22,7 +22,7 @@ void CNormalMonIdle::finaltick(float _DT)
 	float DetectRange = *pDetectRange;
 
 	// 2. 플레이어와 몬스터간의 거리를 체크
-	Vec2 vPlayerPos = m_pTarget->GetPos();
+	Vec2 vPlayerPos = m_pPlayer->GetPos();
 	CMonster* pMonster = dynamic_cast<CMonster*>(GetOwnerSM()->GetOwner());
 	if (nullptr == pMonster)
 		return;
@@ -47,7 +47,7 @@ void CNormalMonIdle::Enter()
 	//pAnimator->Play(L"")
 
 	// 레벨에 있는 플레이어를 알아낸다.
-	m_pTarget = dynamic_cast<CPlayer*>(CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
+	m_pPlayer = dynamic_cast<CPlayer*>(CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 }
 
 void CNormalMonIdle::Exit()

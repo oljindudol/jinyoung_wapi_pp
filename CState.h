@@ -21,11 +21,22 @@ private:
 protected:
     float m_acctime;
     int m_skillortsign;
+    CPlayer* m_pPlayer;
 
 
 public:
     CStateMachine* GetOwnerSM() { return m_pSM; }
+    CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }
     UINT GetStateID() { return m_StateID; }
+    class CAnimator* GetAnimator()
+    {
+        return GetOwnerSM()->GetAnimatorComponent();
+    }
+
+    class CMovement* GetMovement()
+    {
+        return GetOwnerSM()->GetMoveMentComponent();
+    }
 
 public:
     virtual void finaltick(float _DT) = 0;

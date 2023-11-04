@@ -13,7 +13,7 @@ void CNormalMonTrace::finaltick(float _DT)
 {
 
 	// 플레이어의 위치를 알아낸다.
-	Vec2 vPlayerPos = m_pTarget->GetPos();
+	Vec2 vPlayerPos = m_pPlayer->GetPos();
 
 	// 몬스터 본인의 위치를 알아낸다.
 	CMonster* pMonster = dynamic_cast<CMonster*>(GetOwnerSM()->GetOwner());
@@ -94,7 +94,7 @@ void CNormalMonTrace::Enter()
 	pAni->Play(L"firstionattack2");
 
 	// 레벨에 있는 플레이어를 알아낸다.
-	m_pTarget = dynamic_cast<CPlayer*>(CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
+	m_pPlayer = dynamic_cast<CPlayer*>(CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 
 	// Animator 에 Move Animation 재생
 }

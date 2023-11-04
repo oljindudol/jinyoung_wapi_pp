@@ -18,6 +18,7 @@ public:
 
     CLONE_DISABLE(CBackGround);
     CBackGround();
+    void SetTextre(CTexture* _Texture) { m_Texture = _Texture; }
     CBackGround(const CBackGround& _Origin) = delete;
     ~CBackGround();
 };

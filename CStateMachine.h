@@ -25,7 +25,7 @@ public:
 
     void* GetDataFromBlackboard(const wstring _strKey);
 
-    class CAnimator* GetAnimaterComponent();
+    class CAnimator* GetAnimatorComponent();
 
     class CMovement* GetMoveMentComponent();
 

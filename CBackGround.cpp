@@ -8,7 +8,6 @@
 CBackGround::CBackGround()
 	:m_Texture(nullptr)
 {
-	m_Texture = CAssetMgr::GetInst()->LoadTexture(L"Stage0", L"texture\\Stage0.png");
 }
 
 void CBackGround::begin()

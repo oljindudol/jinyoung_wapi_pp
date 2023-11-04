@@ -35,6 +35,8 @@ void CEnteranceLevel::init()
 	m_BackGround = new CBackGround;
 	m_BackGround->SetPos(Vec2(800.f, 450.f));
 	m_BackGround->SetScale(Vec2(1990.f, 767.f));
+
+	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage0", L"texture\\Stage0.png"));
 	m_BackOn = true;
 	AddObject(BACKGROUND, m_BackGround);
 

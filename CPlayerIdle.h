@@ -1,19 +1,16 @@
 #pragma once
 #include "CState.h"
 
-class CPlayer;
 
-class CNormalMonIdle :
+class CPlayerIdle :
     public CState
 {
-
 public:
-    CNormalMonIdle();
-    ~CNormalMonIdle();
+    CPlayerIdle();
+    ~CPlayerIdle();
     virtual void finaltick(float _DT);
     virtual void Enter();
     virtual void Exit();
 
-    CLONE(CNormalMonIdle);
+    CLONE(CPlayerIdle);
 };
-

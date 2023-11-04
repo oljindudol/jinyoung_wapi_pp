@@ -36,8 +36,8 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 	//컬라이더
 	m_Collider =
 		AddComponent<CCollider>(GetName() + L"Collider");
-	m_Collider->SetScale(Vec2(400.f, 250.f));
-	m_Collider->m_vOffsetPos=(Vec2(-250.f, -110.f));
+	m_Collider->SetScale(Vec2(500.f, 300.f));
+	m_Collider->m_vOffsetPos=(Vec2(-170.f, -110.f));
 
 	//pNewSkill -> m_Collider->SetOffsetPos(Vec2(0.f, 0.f));
 
@@ -47,7 +47,7 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, m_s3,
-			Vec2(-150.f, 0.f), 1.f, -1, ORT_LEFT);
+			Vec2(-100.f, -100.f), 1.f, -1, ORT_LEFT);
 
 	m_skilllayer = LAYER::PLAYER_PJ;
 	duration = .6f;
