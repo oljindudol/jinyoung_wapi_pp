@@ -24,6 +24,7 @@ private:
 
 public:
 	ORIENTATION ort;
+	ORIENTATION& GetOrtOrigin() { return ort; }
 	Vec2 GetPos() { return m_Pos; }
 	Vec2 GetScale() { return m_Scale; }
 	Vec2 GetRenderPos() { return CCamera::GetInst()->GetRenderPos(m_Pos); }

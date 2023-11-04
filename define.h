@@ -212,6 +212,7 @@ enum class ENORMAL_MON_STATE
 enum class PLAYER_STATE
 {
 	IDLE	,
+	MOVE    ,
 	ON_AIR	,
 	DOWN	,
 	ATT_NM	,

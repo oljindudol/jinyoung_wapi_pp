@@ -10,6 +10,7 @@
 
 #include "CMonster.h"
 #include "CPlayer.h"
+#include "CSkillMgr.h"
 
 class CState :
     public CEntity
@@ -30,6 +31,9 @@ public:
     CStateMachine* GetOwnerSM() { return m_pSM; }
     CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }
     UINT GetStateID() { return m_StateID; }
+
+
+    void ChangeState(UINT _NextID) { GetOwnerSM()->ChangeState(_NextID); }
     class CAnimator* GetAnimator()
     {
         return GetOwnerSM()->GetAnimatorComponent();
