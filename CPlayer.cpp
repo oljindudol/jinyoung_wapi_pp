@@ -46,7 +46,6 @@ CPlayer::CPlayer()
 	, mp(100)
 	, att(5)
 	, def(1000)
-	, state(PLAYER_STATE::IDLE_1)
 	, m_acctime(0.f)
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
@@ -142,7 +141,6 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	, mp(_Origin.mp)
 	, att(_Origin.att)
 	, def(_Origin.def)
-	, state(PLAYER_STATE::IDLE_1)
 	, m_acctime(0.f)
 {
 	m_Collider = GetComponent<CCollider>();
@@ -182,10 +180,10 @@ void CPlayer::tick(float _DT)
 	else 
 	{
 
-	if (KEY_TAP(KEY::SEMICOL))
-	{
 
-	}
+	//if (KEY_TAP(KEY::F1)) {
+	//	int a = 0;
+	//}
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
@@ -404,7 +402,6 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(true);
-		state = PLAYER_STATE::IDLE_1;
 
 		if (L"commonpinkbeanstab" != m_Animator->GetCurAnimName())
 		{
@@ -419,7 +416,6 @@ void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(false);
-		state = PLAYER_STATE::ON_AIR;
 		m_Animator->Play(L"commonpinkbeanonair");
 	}
 }

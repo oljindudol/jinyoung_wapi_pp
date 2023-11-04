@@ -1,6 +1,7 @@
 #pragma once
 #include "CComponent.h"
 
+
 class CState;
 
 // FSM, Finite State Machine(유한 상태 기계)
@@ -24,7 +25,9 @@ public:
 
     void* GetDataFromBlackboard(const wstring _strKey);
 
+    class CAnimator* GetAnimaterComponent();
 
+    class CMovement* GetMoveMentComponent();
 
 
 public:

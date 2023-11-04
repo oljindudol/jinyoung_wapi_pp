@@ -18,7 +18,7 @@ ion::ion()
 
 
 	m_Animator = AddComponent<CAnimator>(GetName() + L"Animator");
-	m_Animator->CreateAnimation(L"first", L"ion", L"stand", Vec2(-0.f, -300.f), 1.f);
+	m_Animator->CreateAnimation(L"first", L"ion", L"stand", Vec2(-0.f, -250.f), 1.f);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack2", Vec2(-0.f, -300.f), 1.f);
 
 	m_Animator->Play(L"firstionstand");

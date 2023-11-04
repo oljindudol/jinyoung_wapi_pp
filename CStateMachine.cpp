@@ -115,3 +115,25 @@ void* CStateMachine::GetDataFromBlackboard(const wstring _strKey)
 	}
 	return iter->second;
 }
+
+CAnimator* CStateMachine::GetAnimaterComponent()
+{
+	CObj* pOwner = GetOwner();
+	if (nullptr != pOwner)
+	{
+		return pOwner->GetComponent<CAnimator>();
+	}
+	return nullptr;
+}
+
+CMovement* CStateMachine::GetMoveMentComponent()
+{
+	CObj* pOwner = GetOwner();
+	if (nullptr != pOwner)
+	{
+		return pOwner->GetComponent<CMovement>();
+	}
+	return nullptr;
+}
+
+

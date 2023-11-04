@@ -114,7 +114,19 @@ enum KEY
 	LBTN,
 	RBTN,
 
-	SEMICOL,
+	HOME,
+	F1,
+	F2,
+	F3,
+	F4,
+	F5,
+	F6,
+	F7,
+	F8,
+	F9,
+	F10,
+	F11,
+	F12,
 
 	KEY_END,
 };
@@ -197,33 +209,17 @@ enum class ENORMAL_MON_STATE
 	TRACE,
 };
 
-enum class PLAYER_STATE
-{
-	IDLE_1	,
-	IDLE_2	,
-	IDLE_3	,
-	ON_AIR	,
-	DOWN	,
-	ATT_NM	,
-	ATT_BT	,
-	ATT_KP	,
-	ATT_HX	,
-	DEAD	,
-
-	//IDLE_L,
-	//IDLE_R,
-	//ONAIR_L,
-	//ONAIR_R,
-	//ATT_NORM_L,
-	//ATT_NORM_R,
-	//ATT_BT_L,
-	//ATT_BT_R,
-	//ATT_KP_L,
-	//ATT_KP_R,
-
-	//DEAD_L,
-	//DEAD_R,
-};
+//enum class PLAYER_STATE
+//{
+//	IDLE	,
+//	ON_AIR	,
+//	DOWN	,
+//	ATT_NM	,
+//	ATT_SP	,
+//	ATT_HX	,
+//  ROPE    ,
+//	DEAD	,
+//};
 
 
 enum ORIENTATION

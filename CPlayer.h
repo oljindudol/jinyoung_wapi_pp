@@ -27,7 +27,6 @@ public:
     int mp;
     int att;
     int def;
-    PLAYER_STATE state;
 
 
 

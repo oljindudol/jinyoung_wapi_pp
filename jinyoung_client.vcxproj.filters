@@ -227,6 +227,7 @@
     <ClInclude Include="monsters.h">
       <Filter>Game\01.Header</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerOnAir.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -385,5 +386,6 @@
     <ClCompile Include="pinkbean_phantomblow.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="ion.cpp" />
+    <ClCompile Include="CPlayerOnAir.cpp" />
   </ItemGroup>
 </Project>
