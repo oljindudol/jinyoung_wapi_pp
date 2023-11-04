@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CPlayerAttNorm.h"
+#include "CKeyMgr.h"
 
 
 CPlayerAttNorm::CPlayerAttNorm()

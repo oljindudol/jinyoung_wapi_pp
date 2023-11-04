@@ -3,6 +3,7 @@
 class CPlayerOnAir :
     public CState
 {
+
 public:
     CPlayerOnAir();
     ~CPlayerOnAir();

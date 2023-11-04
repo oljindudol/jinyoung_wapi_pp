@@ -24,6 +24,8 @@ protected:
     CPlayer* m_pPlayer;
 
 
+
+
 public:
     CStateMachine* GetOwnerSM() { return m_pSM; }
     CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }

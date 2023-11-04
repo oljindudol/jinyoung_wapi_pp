@@ -209,17 +209,17 @@ enum class ENORMAL_MON_STATE
 	TRACE,
 };
 
-//enum class PLAYER_STATE
-//{
-//	IDLE	,
-//	ON_AIR	,
-//	DOWN	,
-//	ATT_NM	,
-//	ATT_SP	,
-//	ATT_HX	,
-//  ROPE    ,
-//	DEAD	,
-//};
+enum class PLAYER_STATE
+{
+	IDLE	,
+	ON_AIR	,
+	DOWN	,
+	ATT_NM	,
+	ATT_SP	,
+	ATT_HX	,
+	ROPE    ,
+	DEAD	,
+};
 
 
 enum ORIENTATION

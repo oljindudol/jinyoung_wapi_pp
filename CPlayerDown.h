@@ -3,6 +3,7 @@
 class CPlayerDown :
     public CState
 {
+
 public:
     CPlayerDown();
     ~CPlayerDown();

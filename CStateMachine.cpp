@@ -7,13 +7,18 @@
 CStateMachine::CStateMachine(CObj* _Owner)
 	: CComponent(_Owner)
 	, m_pCurState(nullptr)
+	, m_pAnimator(nullptr)
+	, m_pMovement(nullptr)
 {
+
 
 }
 
 CStateMachine::CStateMachine(const CStateMachine& _Origin)
 	: CComponent(_Origin)
 	, m_pCurState(nullptr)
+	, m_pAnimator(nullptr)
+	, m_pMovement(nullptr)
 {
 	for (const auto& pair : _Origin.m_mapState)
 	{
@@ -118,22 +123,42 @@ void* CStateMachine::GetDataFromBlackboard(const wstring _strKey)
 
 CAnimator* CStateMachine::GetAnimatorComponent()
 {
+	CAnimator* ret = nullptr;
+
+	ret = m_pAnimator;
+	if (nullptr != ret)
+	{
+		// 애니메이터컴포넌트가 설정되어있다면
+		return ret;
+	}
+
 	CObj* pOwner = GetOwner();
 	if (nullptr != pOwner)
 	{
-		return pOwner->GetComponent<CAnimator>();
+		ret = pOwner->GetComponent<CAnimator>();
 	}
-	return nullptr;
+
+	return ret;
 }
 
 CMovement* CStateMachine::GetMoveMentComponent()
 {
+	CMovement* ret = nullptr;
+
+	ret = m_pMovement;
+	if (nullptr != ret)
+	{
+		// 무브먼트컴포넌트가 설정되어있다면
+		return ret;
+	}
+
 	CObj* pOwner = GetOwner();
 	if (nullptr != pOwner)
 	{
-		return pOwner->GetComponent<CMovement>();
+		ret = pOwner->GetComponent<CMovement>();
 	}
-	return nullptr;
+
+	return ret;
 }
 
 

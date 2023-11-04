@@ -71,7 +71,7 @@ void CNormalMonTrace::finaltick(float _DT)
 
 	if (3.45f < m_acctime)
 	{
-		CAnimator* pAni = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
+		CAnimator* pAni = GetAnimator();
 		pAni->Play(L"firstionattack2");
 		m_acctime = 0.f;
 	}
@@ -90,7 +90,7 @@ void CNormalMonTrace::finaltick(float _DT)
 
 void CNormalMonTrace::Enter()
 {
-	CAnimator* pAni= GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
+	CAnimator* pAni= GetAnimator();
 	pAni->Play(L"firstionattack2");
 
 	// 레벨에 있는 플레이어를 알아낸다.

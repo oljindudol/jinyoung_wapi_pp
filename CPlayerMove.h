@@ -3,6 +3,7 @@
 class CPlayerMove :
     public CState
 {
+
 public:
     CPlayerMove();
     ~CPlayerMove();

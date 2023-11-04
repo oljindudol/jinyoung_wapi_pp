@@ -3,6 +3,9 @@
 
 
 class CState;
+class CAnimator;
+class CMovement;
+
 
 // FSM, Finite State Machine(유한 상태 기계)
 class CStateMachine :
@@ -11,9 +14,9 @@ class CStateMachine :
 private:
     map<UINT, CState*>  m_mapState;
     CState* m_pCurState;
-
     map<wstring, void*> m_mapBlackboard;
-
+    CAnimator* m_pAnimator;
+    CMovement* m_pMovement;
 
 public:
     void AddState(UINT _id, CState* _State);
@@ -25,9 +28,9 @@ public:
 
     void* GetDataFromBlackboard(const wstring _strKey);
 
-    class CAnimator* GetAnimatorComponent();
+    CAnimator* GetAnimatorComponent();
 
-    class CMovement* GetMoveMentComponent();
+    CMovement* GetMoveMentComponent();
 
 
 public:

@@ -41,7 +41,7 @@ void CNormalMonIdle::finaltick(float _DT)
 void CNormalMonIdle::Enter()
 {
 
-	CAnimator* pAni = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
+	CAnimator* pAni = GetAnimator();
 	pAni->Play(L"firstionstand");
 	//CAnimator* pAnimator = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
 	//pAnimator->Play(L"")

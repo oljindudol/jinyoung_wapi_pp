@@ -278,6 +278,35 @@ void CPlayer::tick(float _DT)
 		
 	}
 
+	if (KEY_TAP(LALT))
+	{
+
+		if (m_Movement->IsGround())
+		{
+			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -750.f));
+		}
+		else if (2 > m_Movement->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
+		{
+
+			CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeandoublejump", GetPos(), ort);
+
+			++(m_Movement->GetJmpCnt());
+			float xvel = 700.f;
+			if (ort == ORT_LEFT) xvel *= (-1);
+			m_Movement->SetVelocity(Vec2(xvel, m_Movement->GetVelocity().y - 300.f));
+		}
+		else if (2 > m_Movement->GetJmpCnt() && (KEY_PRESSED(KEY::UP)))
+		{
+			++(m_Movement->GetJmpCnt());
+			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, m_Movement->GetVelocity().y - 1000.f));
+		}
+		else
+		{
+
+		}
+
+	}
+
 
 	if (KEY_TAP(M))
 	{
@@ -300,34 +329,7 @@ void CPlayer::tick(float _DT)
 		}
 	}
 
-	if (KEY_TAP(LALT))
-	{
 
-		if (m_Movement->IsGround()) 
-		{
-			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, -750.f));
-		}
-		else if (2 > m_Movement->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
-		{
-
-			CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeandoublejump",  GetPos(), ort);
-
-			++(m_Movement->GetJmpCnt());
-			float xvel = 700.f;
-			if (ort == ORT_LEFT) xvel *= (-1);
-			m_Movement->SetVelocity(Vec2( xvel, m_Movement->GetVelocity().y-300.f));
-		}
-		else if (2 > m_Movement->GetJmpCnt() && (KEY_PRESSED(KEY::UP)))
-		{
-			++(m_Movement->GetJmpCnt());
-			m_Movement->SetVelocity(Vec2(m_Movement->GetVelocity().x, m_Movement->GetVelocity().y - 1000.f));
-		}
-		else
-		{
-
-		}
-		
-	}
 
 		//CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
@@ -403,6 +405,7 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	{
 		m_Movement->SetGround(true);
 
+		//플레이어스테이트머신
 		if (L"commonpinkbeanstab" != m_Animator->GetCurAnimName())
 		{
 			m_Animator->Play(L"commonpinkbeanidle");
@@ -416,6 +419,7 @@ void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(false);
+		//플레이어스테이트머신
 		m_Animator->Play(L"commonpinkbeanonair");
 	}
 }
