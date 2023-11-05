@@ -43,7 +43,7 @@ ion::ion()
 	m_Animator->CreateAnimation(L"first", L"ion", L"idle", Vec2(-0.f, -250.f), 1.f);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack2", Vec2(-0.f, -300.f), 1.f);
 
-	m_Animator->Play(L"firstionsidle");
+	m_Animator->Play(L"firstionidle");
 
 	// Movement 컴포넌트 추가
 	m_Movement = AddComponent<CMovement>(GetName() + L"Movement");
@@ -66,7 +66,7 @@ ion::ion()
 	m_AI->AddDataToBlackboard(L"Detect Range", 500.f);
 	m_AI->AddDataToBlackboard(L"Attack Range", 50.f);
 	m_AI->AddDataToBlackboard(L"Speed", 300.f);
-
+	
 
 }
 
@@ -84,6 +84,7 @@ ion::~ion()
 
 void ion::begin()
 {
+	m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 
 }
 

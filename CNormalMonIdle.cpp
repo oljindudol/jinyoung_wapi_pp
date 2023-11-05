@@ -42,7 +42,7 @@ void CNormalMonIdle::Enter()
 {
 
 	CAnimator* pAni = GetAnimator();
-	pAni->Play(L"firstionstand");
+	pAni->Play(L"firstionidle");
 	//CAnimator* pAnimator = GetOwnerSM()->GetOwner()->GetComponent<CAnimator>();
 	//pAnimator->Play(L"")
 

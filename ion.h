@@ -11,7 +11,6 @@ class ion :
     public:
         virtual void tick(float _DT) override;
         virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
-        virtual void Spawn(Vec2 _Spawnpos) override;
 
     public:
         CLONE(CMonster);
