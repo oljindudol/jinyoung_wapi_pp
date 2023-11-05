@@ -65,6 +65,16 @@ void CLayer::DeleteAllObjects()
 {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
+		LAYER idxlayer = getLayer();
+		//스킬매니저에 이관
+		if ((LAYER::MONSTER_PJ == idxlayer) ||
+			(LAYER::PLAYER_PJ == idxlayer) ||
+			(LAYER::PLAYER_SKILL == idxlayer))
+		{continue;}
+		//몬스터매니저에 이관
+		//if ((LAYER::MONSTER) == idxlayer)
+		//	continue;
+
 		if(m_vecObjects[i])
 		delete m_vecObjects[i];
 	}

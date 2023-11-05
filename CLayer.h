@@ -11,8 +11,11 @@ class CLayer
 private:
 	vector<CObj*> 		m_vecObjects;
 	vector<CCollider*>	m_vecCollider;
+	LAYER m_LayerIdx;
+
 
 public:
+
 	void begin();
 	void tick(float _DT);
 	void finaltick(float _DT);
@@ -28,6 +31,9 @@ public:
 	const vector<CCollider*>& GetColliders() { return m_vecCollider; }
 
 	void DeleteAllObjects();
+
+	void setLayer(LAYER _layer) { m_LayerIdx = _layer; }
+	LAYER getLayer() { return m_LayerIdx; }
 
 
 public:

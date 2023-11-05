@@ -19,9 +19,10 @@
 
 #include "CBackGround.h"
 
+
 CEnteranceLevel::~CEnteranceLevel()
 {
-	//디버그용
+	//디버그용 나중에 몬스터매니저에 이관
 	if(m_tmpmon->IsDead() )
 	delete m_tmpmon;
 
@@ -58,7 +59,7 @@ void CEnteranceLevel::init()
 	p_ion->SetScale(Vec2(100.f, 100.f));
 	AddObject(MONSTER, p_ion);
 
-	//디버그용
+	//디버그용 나중에 몬스터매니저에 이관
 	m_tmpmon = p_ion;
 
 	// 플랫폼 설치

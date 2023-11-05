@@ -21,6 +21,7 @@ private:
 
 protected:
     float m_acctime;
+    float m_stateduration;
     int m_skillortsign;
     CPlayer* m_pPlayer;
 

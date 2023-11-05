@@ -188,5 +188,6 @@ void CKeyMgr::tick()
 		GetCursorPos(&pt);
 		ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt);
 		m_vMousePos = pt;
+
 	}
 }

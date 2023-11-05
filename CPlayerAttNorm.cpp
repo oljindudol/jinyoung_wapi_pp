@@ -5,6 +5,7 @@
 
 CPlayerAttNorm::CPlayerAttNorm()
 {
+	m_stateduration = CSkillMgr::GetInst()->GetSkillDuration(L"commonpinkbeanphantomblow") + 0.05f;
 }
 
 CPlayerAttNorm::~CPlayerAttNorm()
@@ -19,7 +20,7 @@ void CPlayerAttNorm::finaltick(float _DT)
 
 	m_acctime += _DT;
 
-	if (0.6f < m_acctime)
+	if (m_stateduration < m_acctime)
 	{
 		pMov->IsGround() ?
 			ChangeState((UINT)PLAYER_STATE::IDLE) :

@@ -19,6 +19,7 @@ CLevel::CLevel()
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		m_Layer[i] = new CLayer;
+		m_Layer[i]->setLayer((LAYER)i);
 	}
 }
 
@@ -81,6 +82,15 @@ void CLevel::DeleteAllObjects()
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
+		// 스킬매니저에 이관
+		if ((LAYER::MONSTER_PJ == (LAYER)i) ||
+			(LAYER::PLAYER_PJ == (LAYER)i) ||
+			(LAYER::PLAYER_SKILL == (LAYER)i))
+		{continue;}
+		// 몬스터매니저에 이관
+		//if ((LAYER::MONSTER) == i)
+		//{continue;}
+
 		m_Layer[i]->DeleteAllObjects();
 	}
 }

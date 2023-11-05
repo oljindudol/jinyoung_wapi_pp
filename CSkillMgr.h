@@ -13,6 +13,8 @@ public:
 		Vec2 _pos,
 		ORIENTATION _ort);
 
+	float GetSkillDuration(wstring _skillname);
+
 	vector<CSkill*>* FindSkill(
 		wstring _skillname);
 

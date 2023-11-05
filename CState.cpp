@@ -6,6 +6,7 @@ CState::CState()
 	, m_acctime(0.f)
 	, m_skillortsign(-1)
 	, m_pPlayer(nullptr)
+	, m_stateduration(0.f)
 {
 }
 

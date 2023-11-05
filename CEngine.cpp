@@ -97,9 +97,9 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CKeyMgr::GetInst()->init();
 	CPathMgr::init();
 	CSoundMgr::GetInst()->init();
-	CSkillMgr::GetInst()->init();
 
 	CLevelMgr::GetInst()->init();
+	CSkillMgr::GetInst()->init();
 
 	//레벨매니저로 이관
 	//// Level 생성

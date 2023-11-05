@@ -19,7 +19,7 @@ pinkbean_doublejump::pinkbean_doublejump()
 	m_skillname = m_s1 + m_s2 + m_s3;
 
 	//몇번째 스킬인지
-	auto iter = CSkillMgr::GetInst()->m_skillmap.find(L"m_skillname");
+	auto iter = CSkillMgr::GetInst()->m_skillmap.find(m_skillname);
 	if(CSkillMgr::GetInst()->m_skillmap.end() == iter) 
 	{
 		m_skillnum = 0;

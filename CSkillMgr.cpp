@@ -4,6 +4,8 @@
 #include "CSkillMgr.h"
 #include "skills.h"
 
+#include "CLogMgr.h"
+
 CSkillMgr::CSkillMgr()
 {
 }
@@ -12,9 +14,6 @@ void CSkillMgr::init()
 {
 	AddSkill((CSkill*)new pinkbean_doublejump);
 	AddSkill((CSkill*)new pinkbean_doublejump);
-
-
-
 	AddSkill((CSkill*)new pinkbean_phantomblow);
 }
 
@@ -28,6 +27,7 @@ CSkillMgr::~CSkillMgr()
 			delete p;
 		}
 	}
+
 }
 
 void CSkillMgr::AddSkill(CSkill* _pSkill)
@@ -123,6 +123,19 @@ void CSkillMgr::ActivateSkill(wstring _skillname
 	}
 
 	pskill->activate(_pos, _ort);
+}
+
+float CSkillMgr::GetSkillDuration(wstring _skillname)
+{
+	vector<CSkill*>* pSkills = FindSkill(_skillname);
+	if (nullptr == pSkills)
+	{
+		//없는스킬 로그 띄우기
+		return 0.f;
+	}
+
+	LOG(LOG_LEVEL::LOG, (L"스킬duration을 찾았습니다"));//+_skillname+L"_"+ std::to_wstring((*pSkills)[0]->duration)))
+	return (*pSkills)[0]->duration;
 }
 
 
