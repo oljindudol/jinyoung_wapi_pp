@@ -33,6 +33,8 @@
 #include "CPlayerDown.h"
 #include "CPlayerAttNorm.h"
 
+#include "monsters.h"
+
 
 /*
 #include "CCollider.h"
@@ -412,6 +414,7 @@ void CPlayer::tick(float _DT)
 
 void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
+	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(true);
@@ -421,16 +424,28 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 		//{
 		//	m_Animator->Play(L"commonpinkbeanidle");
 		//}
+		return;
 	}
+
+
+
 }
+
 
 
 void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
+	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
 	if (dynamic_cast<CPlatform*>(_OtherObj))
 	{
 		m_Movement->SetGround(false);
 		//플레이어스테이트머신화
 		//m_Animator->Play(L"commonpinkbeanonair");
 	}
+}
+
+void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
+
 }

@@ -2,6 +2,7 @@
 #include "CObj.h"
 #include "CComponent.h"
 
+#include "CTimeManager.h"
 #include "CEngine.h"
 
 
@@ -18,6 +19,7 @@ CObj::CObj(const CObj& _Origin)
 	, m_Scale(_Origin.m_Scale)
 	, m_iLayerIdx(-1)
 	, ort(ORT_LEFT)
+	, m_collisiontimetoplayer(0.f)
 {
 	for (size_t i = 0; i < _Origin.m_vecComponent.size(); ++i)
 	{
@@ -86,6 +88,25 @@ void CObj::Destroy()
 
 	CTaskMgr::GetInst()->AddTask(task);
 }
+
+void CObj::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	//이거안됨?
+	//if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+}
+
+void CObj::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	//이거안됨?
+	//if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+}
+
+void CObj::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	//이거안됨?
+	//if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer += DT;
+}
+
 
 void CObj::SetDead()
 {

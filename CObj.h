@@ -21,8 +21,13 @@ private:
 	int					m_iLayerIdx;
 	bool				m_bDead;
 
+protected:
+	float m_collisiontimetoplayer;
+
 
 public:
+	float GetCollisionTime() { return m_collisiontimetoplayer; }
+	void SetCollisionTime(float _ftime) { m_collisiontimetoplayer = _ftime; }
 	ORIENTATION ort;
 	ORIENTATION& GetOrtOrigin() { return ort; }
 	Vec2 GetPos() { return m_Pos; }
@@ -90,11 +95,12 @@ public:
 
 
 	// 충돌 이벤트
-	virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol);
 
 	// 오버랩 발생 시 호출
-	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
-	virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol);
+	virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol);
+
 
 
 protected:

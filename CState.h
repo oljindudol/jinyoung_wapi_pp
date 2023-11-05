@@ -44,6 +44,10 @@ public:
     {
         return GetOwnerSM()->GetMoveMentComponent();
     }
+    class CCollider* GetCollider()
+    {
+        return GetOwnerSM()->GetColliderComponent();
+    }
 
 public:
     virtual void finaltick(float _DT) = 0;

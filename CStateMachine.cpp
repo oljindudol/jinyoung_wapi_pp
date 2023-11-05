@@ -9,6 +9,7 @@ CStateMachine::CStateMachine(CObj* _Owner)
 	, m_pCurState(nullptr)
 	, m_pAnimator(nullptr)
 	, m_pMovement(nullptr)
+	, m_pCollider(nullptr)
 {
 
 
@@ -19,6 +20,7 @@ CStateMachine::CStateMachine(const CStateMachine& _Origin)
 	, m_pCurState(nullptr)
 	, m_pAnimator(nullptr)
 	, m_pMovement(nullptr)
+	, m_pCollider(nullptr)
 {
 	for (const auto& pair : _Origin.m_mapState)
 	{
@@ -161,4 +163,24 @@ CMovement* CStateMachine::GetMoveMentComponent()
 	return ret;
 }
 
+
+CCollider* CStateMachine::GetColliderComponent()
+{
+	CCollider* ret = nullptr;
+
+	ret = m_pCollider;
+	if (nullptr != ret)
+	{
+		// 무브먼트컴포넌트가 설정되어있다면
+		return ret;
+	}
+
+	CObj* pOwner = GetOwner();
+	if (nullptr != pOwner)
+	{
+		ret = pOwner->GetComponent<CCollider>();
+	}
+
+	return ret;
+}
 

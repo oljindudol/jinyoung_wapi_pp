@@ -6,6 +6,8 @@
 
 #include "CMonsterMgr.h"
 
+#include "CTimeManager.h"
+
 
 ion::ion()
 {
@@ -31,6 +33,7 @@ ion::ion()
 
 	SetScale(Vec2(200.f, 600.f));
 
+	// Collider 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(GetName()+ L"Collider");
 	m_Info.MaxHp = 5.f;
 	m_Info.HP = m_Info.MaxHp;
@@ -38,7 +41,7 @@ ion::ion()
 	m_Collider->SetScale(GetScale());
 	m_Collider->SetOffsetPos(Vec2(-0.f, -300.f));
 
-
+	// Animator 컴포넌트 추가
 	m_Animator = AddComponent<CAnimator>(GetName() + L"Animator");
 	m_Animator->CreateAnimation(L"first", L"ion", L"idle", Vec2(-0.f, -250.f), 1.f);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack2", Vec2(-0.f, -300.f), 1.f);
@@ -120,6 +123,32 @@ void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol
 
 		return;
 	}
+
+
+	if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+}
+
+void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	if ((UINT)ENORMAL_MON_STATE::TRACE == m_AI->GetCurStateName())
+	{
+		m_collisiontimetoplayer += DT;
+
+		if (m_collisiontimetoplayer < 0.5f)
+		{
+			CPlayer* pPlayer = dynamic_cast<CPlayer*>(_OtherObj);
+			if (pPlayer)
+			{
+				float force = 10000.f;
+				pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, 0.f) * force);
+			}
+		}
+	}
 }
 
 
+
+void ion::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+}

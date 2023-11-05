@@ -5,6 +5,7 @@
 class CState;
 class CAnimator;
 class CMovement;
+class CCollider;
 
 
 // FSM, Finite State Machine(유한 상태 기계)
@@ -17,8 +18,18 @@ private:
     map<wstring, void*> m_mapBlackboard;
     CAnimator* m_pAnimator;
     CMovement* m_pMovement;
+    CCollider* m_pCollider;
 
 public:
+    UINT GetCurStateName()
+    {
+        for (auto p : m_mapState)
+        {
+            if (p.second == m_pCurState)
+                return p.first;
+        }
+        return 999;
+    }
     void AddState(UINT _id, CState* _State);
     CState* FindState(UINT _id);
     void ChangeState(UINT _NextID);
@@ -31,6 +42,7 @@ public:
     CAnimator* GetAnimatorComponent();
 
     CMovement* GetMoveMentComponent();
+    CCollider* GetColliderComponent();
 
 
 public:

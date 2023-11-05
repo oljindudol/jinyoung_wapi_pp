@@ -77,8 +77,23 @@ void CNormalMonTrace::finaltick(float _DT)
 	}
 	if (2.82f < m_acctime)
 	{
+		if (m_bigcollider) 
+		{
+			m_bigcollider = false;
+			GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
+			GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
+		}
 		return;
 	}
+
+	if (!m_bigcollider)
+	{
+		m_bigcollider = true;
+		GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-150.f, -300.f));
+		GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(500.f, 600.f));
+
+	}
+
 	// 2. 본인(몬스터) 의 이동속도를 알아낸다.
 	float* pSpeed = (float*)GetOwnerSM()->GetDataFromBlackboard(L"Speed");
 	float fSpeed = *pSpeed;
@@ -90,6 +105,11 @@ void CNormalMonTrace::finaltick(float _DT)
 
 void CNormalMonTrace::Enter()
 {
+	GetOwner()->SetCollisionTime(0.f);
+	m_bigcollider = false;
+	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
+	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
+	
 	CAnimator* pAni= GetAnimator();
 	pAni->Play(L"firstionattack2");
 
@@ -101,6 +121,10 @@ void CNormalMonTrace::Enter()
 
 void CNormalMonTrace::Exit()
 {
+	GetOwner()->SetCollisionTime(0.f);
+	m_bigcollider = false;
+	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
+	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
 }
 
 
