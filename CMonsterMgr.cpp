@@ -2,6 +2,7 @@
 #include "CMonsterMgr.h"
 
 #include "CMonster.h"
+#include "monsters.h"
 
 
 CMonsterMgr::CMonsterMgr()
@@ -10,6 +11,12 @@ CMonsterMgr::CMonsterMgr()
 
 void CMonsterMgr::init()
 {
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
 
 }
 

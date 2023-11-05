@@ -103,7 +103,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	//레벨매니저보다 나중에호출해야 먼저 소멸된다.
 	CSkillMgr::GetInst()->init();
-	//CMonsterMgr::GetInst()->init();
+	CMonsterMgr::GetInst()->init();
 
 	//레벨매니저로 이관
 	//// Level 생성

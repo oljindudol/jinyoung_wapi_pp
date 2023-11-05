@@ -15,16 +15,14 @@
 #include "CAssetMgr.h"
 #include "CSound.h"
 
-#include "monsters.h"
+#include "CMonsterMgr.h"
 
 #include "CBackGround.h"
 
 
 CEnteranceLevel::~CEnteranceLevel()
 {
-	//디버그용 나중에 몬스터매니저에 이관
-	if(m_tmpmon->IsDead() )
-	delete m_tmpmon;
+
 
 }
 
@@ -51,16 +49,15 @@ void CEnteranceLevel::init()
 
 	AddObject(PLAYER, pPlayer);
 
+	// 몬스터 매니저에 이관
 	// 몬스터 생성
-	ion* p_ion = nullptr;
+	//ion* p_ion = nullptr;
 
-	p_ion = new ion;
-	p_ion->SetPos(Vec2(900.f, 800.f));
-	p_ion->SetScale(Vec2(100.f, 100.f));
-	AddObject(MONSTER, p_ion);
+	//p_ion = new ion;
+	//p_ion->SetPos(Vec2(900.f, 800.f));
+	//p_ion->SetScale(Vec2(100.f, 100.f));
+	//AddObject(MONSTER, p_ion);
 
-	//디버그용 나중에 몬스터매니저에 이관
-	m_tmpmon = p_ion;
 
 	// 플랫폼 설치
 	CPlatform* pPlatform = new CPlatform;
@@ -114,6 +111,17 @@ void CEnteranceLevel::exit()
 void CEnteranceLevel::tick()
 {
 	CLevel::tick();
+
+	// Enter 키가 눌리면 StartLevel 로 변환
+	if (KEY_TAP(KEY::_1))
+	{
+		float perc = (float)rand() / (float)32767;
+
+
+		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f*perc), 200.f));
+	}
+
+
 
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))

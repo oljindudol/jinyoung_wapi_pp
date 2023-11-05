@@ -84,8 +84,8 @@ ion::~ion()
 
 void ion::begin()
 {
-	m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
-
+	//Monster::Spawn¿¡ ÀÌ°ü.
+	//m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 }
 
 

@@ -63,11 +63,11 @@ void CLayer::render(HDC _dc)
 				CSkill* pSkill = dynamic_cast<CSkill*>(*iter);
 				CSkillMgr::GetInst()->DeActivateSkill(pSkill);
 			}
-			//if ((LAYER::MONSTER == idxlayer) )
-			//{
-			//	CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
-			//	CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
-			//}
+			if ((LAYER::MONSTER == idxlayer) )
+			{
+				CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
+				CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
+			}
 			iter = m_vecObjects.erase(iter);
 		}
 		else
@@ -89,8 +89,8 @@ void CLayer::DeleteAllObjects()
 			(LAYER::PLAYER_SKILL == idxlayer))
 		{continue;}
 		//몬스터매니저에 이관
-		//if ((LAYER::MONSTER) == idxlayer)
-		//	continue;
+		if ((LAYER::MONSTER) == idxlayer)
+		{ continue;}
 
 		if(m_vecObjects[i])
 		delete m_vecObjects[i];
