@@ -5,6 +5,8 @@
 #include "CObj.h"
 #include "CTile.h"
 #include "CLayer.h"
+#include "CSkillMgr.h"
+#include "CMonsterMgr.h"
 
 class CEntity;
 class CLayer;
@@ -81,17 +83,9 @@ void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 //level->exit때만(게임실행중) 호출
 void CLevel::DeleteAllObjects()
 {
+	CSkillMgr::GetInst()->DeActivateAllSkills();
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
-		// 스킬매니저에 이관
-		//if ((LAYER::MONSTER_PJ == (LAYER)i) ||
-		//	(LAYER::PLAYER_PJ == (LAYER)i) ||
-		//	(LAYER::PLAYER_SKILL == (LAYER)i))
-		//{continue;}
-		// 몬스터매니저에 이관
-		//if ((LAYER::MONSTER) == i)
-		//{continue;}
-
 		m_Layer[i]->DeleteAllObjects();
 	}
 }
