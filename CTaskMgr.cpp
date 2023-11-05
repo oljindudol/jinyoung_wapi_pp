@@ -61,6 +61,7 @@ void CTaskMgr::tick()
 
 			pDeadObj->SetDead();
 		}
+
 			break;
 		case LEVEL_CHANGE:
 			{

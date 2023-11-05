@@ -15,7 +15,6 @@ void CSkill::tick(float _DT)
 	if (duration < m_activedtime)
 	{
 		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::DELETE_OBJECT, (UINT_PTR)this });
-		m_OnActivate = false;
 	}
 
 

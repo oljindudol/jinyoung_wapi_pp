@@ -15,6 +15,10 @@ public:
 		Vec2 _pos,
 		ORIENTATION _ort);
 
+	void DeActivateAllSkills();
+
+	void DeActivateSkill(CSkill* _skill); 
+
 	float GetSkillDuration(wstring _skillname);
 
 	vector<CSkill*>* FindSkill(

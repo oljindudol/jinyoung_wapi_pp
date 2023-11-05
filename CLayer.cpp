@@ -5,6 +5,11 @@
 
 #include "CGCMgr.h"
 
+#include "CSkillMgr.h"
+#include "CSkill.h"
+#include "CMonster.h"
+#include "CMonsterMgr.h"
+
 
 CLayer::CLayer()
 {
@@ -44,13 +49,25 @@ void CLayer::finaltick(float _DT)
 void CLayer::render(HDC _dc)
 {
 	vector<CObj*>::iterator iter = m_vecObjects.begin();
+	
+	LAYER idxlayer = getLayer();
 
 	for (; iter != m_vecObjects.end();)
 	{
 		if ((*iter)->IsDead())
 		{
-			
-			//CGCMgr::GetInst()->AddEntity((*iter));
+			if ((LAYER::MONSTER_PJ == idxlayer) ||
+				(LAYER::PLAYER_PJ == idxlayer) ||
+				(LAYER::PLAYER_SKILL == idxlayer))
+			{
+				CSkill* pSkill = dynamic_cast<CSkill*>(*iter);
+				CSkillMgr::GetInst()->DeActivateSkill(pSkill);
+			}
+			//if ((LAYER::MONSTER == idxlayer) )
+			//{
+			//	CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
+			//	CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
+			//}
 			iter = m_vecObjects.erase(iter);
 		}
 		else

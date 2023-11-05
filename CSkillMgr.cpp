@@ -27,7 +27,22 @@ CSkillMgr::~CSkillMgr()
 			delete p;
 		}
 	}
+}
 
+void CSkillMgr::DeActivateAllSkills()
+{
+	for (const auto& pair : m_skillmap)
+	{
+		for (const auto& p : pair.second)
+		{
+			p->m_OnActivate = false;
+		}
+	}
+}
+
+void CSkillMgr::DeActivateSkill(CSkill* _skill)
+{
+	if (nullptr != _skill) { _skill->m_OnActivate = false; }
 }
 
 void CSkillMgr::AddSkill(CSkill* _pSkill)
@@ -112,6 +127,8 @@ void CSkillMgr::ActivateSkill(wstring _skillname
 
 	pskill->activate(_pos, _ort);
 }
+
+
 
 float CSkillMgr::GetCoolTime(wstring _skillname)
 {

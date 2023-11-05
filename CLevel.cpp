@@ -78,15 +78,16 @@ void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 	_Object->m_iLayerIdx = _LayerType;
 }
 
+//level->exit때만(게임실행중) 호출
 void CLevel::DeleteAllObjects()
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		// 스킬매니저에 이관
-		if ((LAYER::MONSTER_PJ == (LAYER)i) ||
-			(LAYER::PLAYER_PJ == (LAYER)i) ||
-			(LAYER::PLAYER_SKILL == (LAYER)i))
-		{continue;}
+		//if ((LAYER::MONSTER_PJ == (LAYER)i) ||
+		//	(LAYER::PLAYER_PJ == (LAYER)i) ||
+		//	(LAYER::PLAYER_SKILL == (LAYER)i))
+		//{continue;}
 		// 몬스터매니저에 이관
 		//if ((LAYER::MONSTER) == i)
 		//{continue;}
