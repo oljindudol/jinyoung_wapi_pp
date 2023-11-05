@@ -325,6 +325,7 @@
     <ClInclude Include="CPlayerDown.h">
       <Filter>04.CurWork\Player\State</Filter>
     </ClInclude>
+    <ClInclude Include="CMonsterMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -514,5 +515,6 @@
     <ClCompile Include="CPlayerDown.cpp">
       <Filter>04.CurWork\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="CMonsterMgr.cpp" />
   </ItemGroup>
 </Project>

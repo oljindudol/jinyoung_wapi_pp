@@ -36,5 +36,8 @@ public:
     CMonster();
     CMonster(const CMonster& _Origin);
     ~CMonster();
+
+
+    friend class CMonsterMgr;
 };
 

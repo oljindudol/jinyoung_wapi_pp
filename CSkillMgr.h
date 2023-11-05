@@ -8,6 +8,8 @@ class CSkillMgr
 	SINGLETON(CSkillMgr);
 
 public:
+	unordered_map<wstring, vector<CSkill*>> m_skillmap;
+
 	void init();
 	void ActivateSkill(wstring _skillname,
 		Vec2 _pos,
@@ -29,7 +31,6 @@ public:
 	//	wstring _aname2,
 	//	wstring _aname3);
 
-	unordered_map<wstring, vector<CSkill*>> m_skillmap;
 		
 private: 
 	void AddSkill(CSkill* _pSkill);

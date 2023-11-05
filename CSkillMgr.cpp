@@ -35,7 +35,8 @@ void CSkillMgr::AddSkill(CSkill* _pSkill)
 	vector<CSkill*>* pSkills;
 	wstring skillname = _pSkill->m_skillname;
 	pSkills = FindSkill(skillname);
-
+	
+	//없는지 확인하는게 당연한처리기 때문에 못찾아도 로그를 내지않는다.
 	if (nullptr == pSkills)
 	{
 		vector<CSkill*> newskillvec;
@@ -48,30 +49,6 @@ void CSkillMgr::AddSkill(CSkill* _pSkill)
 	}
 }
 
-CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
-{
-	CSkill* pSkill = nullptr;
-	vector< CSkill* >* pSkills = FindSkill(_skillname);
-
-	if (nullptr == pSkills)
-	{
-		pSkill =  nullptr;
-	}
-	else
-	{
-		for (auto p : (*pSkills) )
-		{
-			if (false == (p->m_OnActivate))
-			{
-				pSkill = p;
-				break;
-			}
-		}
-	}
-	return pSkill;
-}
-
-
 
 vector<CSkill*>* CSkillMgr::FindSkill(wstring _skillname)
 {
@@ -82,20 +59,6 @@ vector<CSkill*>* CSkillMgr::FindSkill(wstring _skillname)
 		return nullptr;
 	}
 	return &(iter->second);
-}
-
-float CSkillMgr::GetCoolTime(wstring _skillname)
-{
-	vector<CSkill*>* pskills = FindSkill(_skillname);
-	if (nullptr == pskills)
-	{
-		//없는스킬 로그 띄우기
-		return 0.f;
-	}
-
-	auto iter = pskills->begin();
-
-	return (*iter)->cooltime;
 }
 
 
@@ -111,30 +74,70 @@ float CSkillMgr::GetCoolTime(wstring _skillname)
 //	return pskills->m_OnActivate;
 //}
 
+CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
+{
+	CSkill* pSkill = nullptr;
+	vector< CSkill* >* pSkills = FindSkill(_skillname);
+
+	if (nullptr == pSkills)
+	{
+		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
+		pSkill = nullptr;
+	}
+	else
+	{
+		for (auto p : (*pSkills))
+		{
+			if (false == (p->m_OnActivate))
+			{
+				pSkill = p;
+				break;
+			}
+		}
+	}
+	return pSkill;
+}
+
+
 void CSkillMgr::ActivateSkill(wstring _skillname
-	,Vec2 _pos
-	,ORIENTATION _ort)
+	, Vec2 _pos
+	, ORIENTATION _ort)
 {
 	CSkill* pskill = FindAvailableSkill(_skillname);
 	if (nullptr == pskill)
 	{
-		//없는스킬 로그 띄우기
+		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		return;
 	}
 
 	pskill->activate(_pos, _ort);
 }
 
+float CSkillMgr::GetCoolTime(wstring _skillname)
+{
+	vector<CSkill*>* pskills = FindSkill(_skillname);
+	if (nullptr == pskills)
+	{
+		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
+		return 0.f;
+	}
+
+	auto iter = pskills->begin();
+
+	return (*iter)->cooltime;
+}
+
+
+
 float CSkillMgr::GetSkillDuration(wstring _skillname)
 {
 	vector<CSkill*>* pSkills = FindSkill(_skillname);
 	if (nullptr == pSkills)
 	{
-		//없는스킬 로그 띄우기
+		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		return 0.f;
 	}
 
-	LOG(LOG_LEVEL::LOG, (L"스킬duration을 찾았습니다"));//+_skillname+L"_"+ std::to_wstring((*pSkills)[0]->duration)))
 	return (*pSkills)[0]->duration;
 }
 

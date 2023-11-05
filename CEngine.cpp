@@ -20,6 +20,7 @@
 #include "CSoundMgr.h"
 
 #include "CSkillMgr.h"
+#include "CMonsterMgr.h"
 
 #include "CTexture.h"
 
@@ -99,7 +100,10 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CSoundMgr::GetInst()->init();
 
 	CLevelMgr::GetInst()->init();
+
+	//레벨매니저보다 나중에호출해야 먼저 소멸된다.
 	CSkillMgr::GetInst()->init();
+	//CMonsterMgr::GetInst()->init();
 
 	//레벨매니저로 이관
 	//// Level 생성

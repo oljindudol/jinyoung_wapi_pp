@@ -5,7 +5,6 @@
 
 CPlayerAttNorm::CPlayerAttNorm()
 {
-	m_stateduration = CSkillMgr::GetInst()->GetSkillDuration(L"commonpinkbeanphantomblow") + 0.05f;
 }
 
 CPlayerAttNorm::~CPlayerAttNorm()
@@ -32,6 +31,11 @@ void CPlayerAttNorm::finaltick(float _DT)
 
 void CPlayerAttNorm::Enter()
 {
+	if (m_stateduration == 0.f)
+	{
+		m_stateduration = CSkillMgr::GetInst()->GetSkillDuration(L"commonpinkbeanphantomblow") + 0.05f;
+	}
+
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(L"commonpinkbeanstab");
 
