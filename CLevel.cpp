@@ -84,6 +84,7 @@ void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 void CLevel::DeleteAllObjects()
 {
 	CSkillMgr::GetInst()->DeActivateAllSkills();
+	//CSkillMgr::GetInst()->DeActivatedAllMonster();
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		m_Layer[i]->DeleteAllObjects();

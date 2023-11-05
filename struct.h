@@ -169,6 +169,7 @@ struct FMonInfo
 {
 	wchar_t szName[50];
 	float HP;
+	float MaxHp;
 	float MP;
 	float Att;
 	float Int;

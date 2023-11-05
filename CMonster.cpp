@@ -12,22 +12,31 @@
 
 
 CMonster::CMonster()
-	: m_Info{}
+	: m_s1(L"")
+	, m_s2(L"")
+	, m_monstername(L"")
+	, m_monsternum(0)
+	, m_Info{}
 	, m_Collider(nullptr)
 	, m_AI(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
+	, m_OnActivate(false)
 {
-;
 }
 
 CMonster::CMonster(const CMonster& _Origin)
 	: CObj(_Origin)
+	, m_s1(L"")
+	, m_s2(L"")
+	, m_monstername(L"")
+	, m_monsternum(0)
 	, m_Info(_Origin.m_Info)
 	, m_Collider(nullptr)
 	, m_AI(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
+	, m_OnActivate(false)
 {
 }
 
@@ -38,6 +47,25 @@ CMonster::~CMonster()
 
 void CMonster::begin()
 {
+
+}
+
+void CMonster::Spawn(Vec2 _Spawnpos)
+{
+	SetPos(_Spawnpos);
+
+	m_Info.HP = m_Info.MaxHp;
+
+	m_OnActivate = true;
+
+	SetLive();
+
+	// 애니메이션 play
+	m_Animator->Play(GetName() + L"idle");
+
+	// 레벨에참여
+	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)this });
+
 
 }
 
