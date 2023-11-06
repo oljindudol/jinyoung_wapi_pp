@@ -415,16 +415,27 @@ void CPlayer::tick(float _DT)
 void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
-	if (dynamic_cast<CPlatform*>(_OtherObj))
-	{
-		m_Movement->SetGround(true);
 
-		//플레이어스테이트머신화
-		//if (L"commonpinkbeanstab" != m_Animator->GetCurAnimName())
-		//{
-		//	m_Animator->Play(L"commonpinkbeanidle");
-		//}
-		return;
+	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx())
+	{
+		Vec2 playerprevpos = _OwnCol->GetPrevPos();
+		Vec2 platpos = _OtherCol->GetPos();
+		Vec2 platscale = _OtherCol->GetScale();
+
+		float playerbottom = (playerprevpos.y ) * -1;
+		float plattop = (platpos.y + platscale.y / 2.f) * -1;
+
+
+
+		bool above = platscale.x/2.f  >=
+			abs(playerprevpos.x- platpos.x);
+
+
+		if (playerbottom >= plattop && above)
+		{
+			m_Movement->SetGround(true);
+		}
+
 	}
 
 
@@ -436,12 +447,21 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
-	if (dynamic_cast<CPlatform*>(_OtherObj))
+
+	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx())
 	{
-		m_Movement->SetGround(false);
-		//플레이어스테이트머신화
-		//m_Animator->Play(L"commonpinkbeanonair");
+		float playerbottom = (_OwnCol->GetPrevPos().y ) * -1;
+		float plattop = (_OtherCol->GetPos().y + _OtherCol->GetScale().y / 2.f) * -1;
+
+
+		if (playerbottom >= plattop)
+		{
+			m_Movement->SetGround(false);
+		}
+
 	}
+
+
 }
 
 void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)

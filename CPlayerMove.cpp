@@ -17,6 +17,9 @@ void CPlayerMove::finaltick(float _DT)
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
+
+
+
 		ort = ORT_LEFT;
 		if (400.f > abs(pMov->GetVelocity().x)) {
 			pMov->AddForce(Vec2(-1000.f, 0.f));

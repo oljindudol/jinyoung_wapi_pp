@@ -13,14 +13,16 @@ CPlayerOnAir::~CPlayerOnAir()
 void CPlayerOnAir::finaltick(float _DT)
 {
 
+
+
 	CMovement* pMov = GetMovement();
 	ORIENTATION& ort = GetOwner()->GetOrtOrigin();
+
 	if (pMov->IsGround())
 	{
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::IDLE);
 		return;
 	}
-
 	if (KEY_PRESSED(KEY::LEFT))
 	{
 		ort = ORT_LEFT;
@@ -58,6 +60,8 @@ void CPlayerOnAir::finaltick(float _DT)
 			++(pMov->GetJmpCnt());
 			pMov->SetVelocity(Vec2(pMov->GetVelocity().x, pMov->GetVelocity().y - 1000.f));
 		}
+
+
 	}
 
 	

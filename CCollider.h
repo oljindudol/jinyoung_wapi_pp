@@ -10,6 +10,8 @@ private:
 
     Vec2    m_vFinalPos;   // 충돌체의 최종 위치
 
+    Vec2	m_PrevFinalPos; //충돌체 이전 최종위치 : 플랫폼충돌때 사용
+
     int     m_iCollisionCount;
 
 public:
@@ -20,6 +22,9 @@ public:
     void SetOffsetPos(Vec2 _vOffsetPos) { m_vOffsetPos = _vOffsetPos; }
     void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
     Vec2 GetPos() { return m_vFinalPos; }
+    Vec2 GetPrevPos() { return m_PrevFinalPos; }
+
+
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetScale() { return m_vScale; }
 

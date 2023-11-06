@@ -16,12 +16,12 @@ void CPlayerIdle::finaltick(float _DT)
 	CMovement* pMov = GetMovement();
 	ORIENTATION& ort = GetOwner()->GetOrtOrigin();
 
-
 	if (!pMov->IsGround())
 	{
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ON_AIR);
 		return;
 	}
+
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
@@ -52,6 +52,8 @@ void CPlayerIdle::finaltick(float _DT)
 		pMov->SetVelocity(Vec2(pMov->GetVelocity().x, -750.f));
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ON_AIR);
 	}
+
+
 
 }
 

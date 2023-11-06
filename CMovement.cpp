@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CMovement.h"
-
+#include "CLogMgr.h"
 #include "CObj.h"
 
 CMovement::CMovement(CObj* _Owner)
@@ -32,10 +32,15 @@ void CMovement::finaltick(float _DT)
 	}
 
 	// 정지에 가까운 상태일 경우
-	if (m_Velocity.Length() < 0.1f)
+	//if (m_Velocity.Length() < 100.f && m_Velocity.Length()!=0.f)
+	//	if (!m_Accel.IsZero())
+	//		LOG(LOG_LEVEL::LOG, std::to_wstring(m_Velocity.Length()).c_str());
+
+	if (m_Velocity.Length() < 150.f)
 	{
 		if (!m_Accel.IsZero())
 		{
+			//LOG(LOG_LEVEL::LOG, L"speedinit");
 			Vec2 vAccelDir = m_Accel;
 			vAccelDir.Normalize();
 			m_Velocity = vAccelDir * m_InitSpeed;

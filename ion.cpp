@@ -138,8 +138,8 @@ void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 	{
 		float acctime= m_AI->GetCurstateAcctime();
 
-		LOG(LOG_LEVEL::LOG, std::to_wstring(m_collisiontimetoplayer).c_str());
-		LOG(LOG_LEVEL::LOG, std::to_wstring(acctime).c_str());
+		//LOG(LOG_LEVEL::LOG, std::to_wstring(m_collisiontimetoplayer).c_str());
+		//LOG(LOG_LEVEL::LOG, std::to_wstring(acctime).c_str());
 		if (m_collisiontimetoplayer < 0.1f && 
 			acctime > 1.3f &&
 			acctime < 2.82f

@@ -59,10 +59,21 @@ void CEnteranceLevel::init()
 	//AddObject(MONSTER, p_ion);
 
 
+	
+
+
+	CPlatform* pPlatform2 = new CPlatform;
+	pPlatform2->SetPos(Vec2(800.f, 700.f));
+	AddObject(PLATFORM, pPlatform2);
+	CCollider* platforcol2 = pPlatform2->AddComponent<CCollider>(L"PlatformCollider2");
+	platforcol2->SetScale(Vec2(1000.f, 20.f));
+
 	// ÇÃ·§Æû ¼³Ä¡
 	CPlatform* pPlatform = new CPlatform;
 	pPlatform->SetPos(Vec2(800.f, 900.f));
 	AddObject(PLATFORM, pPlatform);
+	CCollider* platforcol1 = pPlatform->AddComponent<CCollider>(L"PlatformCollider1");
+	platforcol1->SetScale(Vec2(2000.f, 250.f));
 
 
 	// Ä«¸Þ¶ó ¼³Á¤

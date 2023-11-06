@@ -37,6 +37,8 @@ void CCollider::finaltick(float _DT)
 	//오너의 방향에따라 오프셋 수정
 	int sign = ORT_LEFT == GetOwner()->ort ?  1:-1;
 
+	m_PrevFinalPos = m_vFinalPos;
+
 	m_vFinalPos = vOwnerPos + Vec2(m_vOffsetPos.x* sign, m_vOffsetPos.y);
 	// 현재 속해있는 레이어에 충돌체(본인) 를 등록
 	int iLayerIdx = GetOwner()->GetLayerIdx();

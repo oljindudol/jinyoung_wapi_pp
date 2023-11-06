@@ -5,10 +5,7 @@
 
 CPlatform::CPlatform()
 {
-	m_Collider = AddComponent<CCollider>(L"Collider");
 
-	//m_Collider->SetOffsetPos();
-	m_Collider->SetScale(Vec2(2000.f, 250.f));
 }
 
 CPlatform::CPlatform(const CPlatform& _Origin)
@@ -31,8 +28,25 @@ void CPlatform::tick(float _DT)
 
 void CPlatform::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	float up = (_OwnCol->GetScale().y / 2.f + _OtherCol->GetScale().y / 2.f - abs(_OwnCol->GetPos().y - _OtherCol->GetPos().y)) / 2.f;
-	_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y - up));
+	if ((UINT)LAYER::PLAYER == _OtherObj->GetLayerIdx())
+	{
+		float plattop = _OwnCol->GetPos().y - _OwnCol->GetScale().y / 2.f;
+		float otherbottom = _OtherCol->GetPos().y + _OtherCol->GetScale().y / 2.f;
 
-	//ChangeLevel(LEVEL_TYPE::START_LEVEL);
+
+		if (plattop >= otherbottom)
+		{
+			float up = (_OwnCol->GetScale().y / 2.f +
+				_OtherCol->GetScale().y / 2.f -
+				abs(_OwnCol->GetPos().y
+					- _OtherCol->GetPos().y)
+				) / 2.f;
+
+			_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y - up));
+		}
+
+	}
+
+
+
 }
