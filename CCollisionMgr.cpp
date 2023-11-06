@@ -10,6 +10,7 @@
 CCollisionMgr::CCollisionMgr()
 	: m_LayerCheck{}
 {
+
 }
 
 CCollisionMgr::~CCollisionMgr()
@@ -73,6 +74,21 @@ void CCollisionMgr::UncheckCollision(LAYER _Left, LAYER _Right)
 	}
 
 	m_LayerCheck[row] &= ~(1 << col);
+}
+
+void CCollisionMgr::init()
+{
+	CheckCollision(PLATFORM, PLAYER);
+	CheckCollision(PLATFORM, MONSTER);
+	CheckCollision(PLATFORM, PLAYER_PJ);
+	CheckCollision(PLATFORM, MONSTER_PJ);
+
+	CheckCollision(PLATFORM_DEBUG, PLAYER);
+
+	CheckCollision(PLAYER, MONSTER);
+	CheckCollision(PLAYER, MONSTER_PJ);
+
+	CheckCollision(MONSTER, PLAYER_PJ);
 }
 
 

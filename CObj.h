@@ -7,8 +7,8 @@
 #include "components.h"
 
 
-class CComponent;
-class CCollider;
+//class CComponent;
+//class CCollider;
 
 
 class CObj
@@ -39,6 +39,8 @@ public:
 
 	int GetLayerIdx() { return m_iLayerIdx; }
 	bool IsDead() { return m_bDead; }
+
+	CMovement* GetMovement() { return GetComponent<CMovement>(); }
 
 public:
 	template<typename T>

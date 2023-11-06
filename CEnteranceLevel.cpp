@@ -59,12 +59,10 @@ void CEnteranceLevel::init()
 	//AddObject(MONSTER, p_ion);
 
 
-	
-
 
 	CPlatform* pPlatform2 = new CPlatform;
 	pPlatform2->SetPos(Vec2(800.f, 700.f));
-	AddObject(PLATFORM, pPlatform2);
+	AddObject(PLATFORM_DEBUG, pPlatform2);
 	CCollider* platforcol2 = pPlatform2->AddComponent<CCollider>(L"PlatformCollider2");
 	platforcol2->SetScale(Vec2(1000.f, 20.f));
 
@@ -82,10 +80,10 @@ void CEnteranceLevel::init()
 	CCamera::GetInst()->SetLookAt(vLookAt);
 
 	// 충돌 설정
-	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
-	CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
-	CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
-	CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLATFORM);
+	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
+	//CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
+	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
+	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLATFORM);
 
 
 	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");

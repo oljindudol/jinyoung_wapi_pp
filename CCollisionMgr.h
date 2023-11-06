@@ -52,6 +52,7 @@ public:
 	void tick();
 	void CheckCollision(LAYER _Left, LAYER _Right);
 	void UncheckCollision(LAYER _Left, LAYER _Right);
+	void init();
 
 private:
 	void CollisionBtwLayer(LAYER _Left, LAYER _Right);

@@ -416,20 +416,19 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 {
 	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
 
-	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx())
+	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx() ||
+		(UINT)LAYER::PLATFORM_DEBUG == _OtherObj->GetLayerIdx() )
 	{
 		Vec2 playerprevpos = _OwnCol->GetPrevPos();
+		Vec2 playerscale = _OwnCol->GetScale();
 		Vec2 platpos = _OtherCol->GetPos();
 		Vec2 platscale = _OtherCol->GetScale();
 
 		float playerbottom = (playerprevpos.y ) * -1;
 		float plattop = (platpos.y + platscale.y / 2.f) * -1;
 
-
-
-		bool above = platscale.x/2.f  >=
+		bool above = (platscale.x + playerscale.x) /2.f  >=
 			abs(playerprevpos.x- platpos.x);
-
 
 		if (playerbottom >= plattop && above)
 		{
@@ -437,8 +436,6 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 		}
 
 	}
-
-
 
 }
 
@@ -448,7 +445,8 @@ void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 {
 	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
 
-	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx())
+	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx() ||
+		(UINT)LAYER::PLATFORM_DEBUG == _OtherObj->GetLayerIdx())
 	{
 		float playerbottom = (_OwnCol->GetPrevPos().y ) * -1;
 		float plattop = (_OtherCol->GetPos().y + _OtherCol->GetScale().y / 2.f) * -1;

@@ -126,6 +126,9 @@ void CLevelMgr::init()
 	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 
 
+
+
+
 }
 
 void CLevelMgr::tick()

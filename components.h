@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CComponent.h"
+
 #include "CAnimator.h"
 #include "CAnim.h"
 
