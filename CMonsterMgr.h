@@ -11,6 +11,8 @@ public:
 
 	void init();
 
+	void tick();
+
 	CMonster* FindAvailableMonster(
 		wstring _monstername);
 

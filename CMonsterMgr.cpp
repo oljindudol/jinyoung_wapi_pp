@@ -3,6 +3,7 @@
 
 #include "CMonster.h"
 #include "monsters.h"
+#include "CKeyMgr.h"
 
 
 CMonsterMgr::CMonsterMgr()
@@ -25,6 +26,37 @@ void CMonsterMgr::init()
 	AddMonster(new ion);
 	AddMonster(new ion);
 	AddMonster(new ion);
+
+}
+
+void CMonsterMgr::tick()
+{
+
+	if (KEY_PRESSED(KEY::_2))
+	{
+		for (const auto& pair : m_MonsterMap)
+		{
+			for (const auto& p : pair.second)
+			{
+				if (nullptr != p->m_AI)
+					p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+				p->m_AI->m_forcedidle = true;
+			}
+		}
+	}
+
+	if (KEY_PRESSED(KEY::_3))
+	{
+		for (const auto& pair : m_MonsterMap)
+		{
+			for (const auto& p : pair.second)
+			{
+				if (nullptr != p->m_AI)
+					p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+				p->m_AI->m_forcedidle = false;
+			}
+		}
+	}
 
 }
 

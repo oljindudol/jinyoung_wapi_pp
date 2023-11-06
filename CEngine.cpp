@@ -144,13 +144,17 @@ void CEngine::tick()
 	//m_Level->render(m_dc);
 	//Rectangle(m_dc, 0, 0, m_ptResolution.x, m_ptResolution.y);
 
-	if (KEY_TAP(KEY::NUM8))
+	if (KEY_TAP(KEY::_8))
 	{
 		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
 	}
 
+
+	CMonsterMgr::GetInst()->tick();
+
 	// LevelMgr
 	CLevelMgr::GetInst()->tick();
+
 
 	CCollisionMgr::GetInst()->tick();
 	CUIMgr::GetInst()->tick();
@@ -166,6 +170,7 @@ void CEngine::tick()
 		, m_ptResolution.x, m_ptResolution.y
 		, m_SubTex->GetDC()
 		, 0, 0, SRCCOPY);
+
 
 
 	// Task Execute

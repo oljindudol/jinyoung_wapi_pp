@@ -13,6 +13,9 @@ CNormalMonIdle::~CNormalMonIdle()
 
 void CNormalMonIdle::finaltick(float _DT)
 {
+	if (GetOwnerSM()->GetForcedIdle())
+		return;
+
 	if (nullptr == m_pPlayer)
 		return;
 

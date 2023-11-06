@@ -10,6 +10,7 @@ CStateMachine::CStateMachine(CObj* _Owner)
 	, m_pAnimator(nullptr)
 	, m_pMovement(nullptr)
 	, m_pCollider(nullptr)
+	, m_forcedidle(false)
 {
 
 
@@ -21,6 +22,7 @@ CStateMachine::CStateMachine(const CStateMachine& _Origin)
 	, m_pAnimator(nullptr)
 	, m_pMovement(nullptr)
 	, m_pCollider(nullptr)
+	, m_forcedidle(false)
 {
 	for (const auto& pair : _Origin.m_mapState)
 	{

@@ -19,6 +19,7 @@ private:
     CAnimator* m_pAnimator;
     CMovement* m_pMovement;
     CCollider* m_pCollider;
+    bool m_forcedidle;
 
 public:
     float GetCurstateAcctime();
@@ -54,6 +55,7 @@ public:
 
     CMovement* GetMoveMentComponent();
     CCollider* GetColliderComponent();
+    bool GetForcedIdle(){ return m_forcedidle; }
 
 
 public:
@@ -66,6 +68,8 @@ public:
     CStateMachine(CObj* _Owner);
     CStateMachine(const CStateMachine& _Origin);
     ~CStateMachine();
+
+    friend class CMonsterMgr;
 };
 
 template<typename T>
@@ -81,4 +85,5 @@ inline void CStateMachine::AddDataToBlackboard(const wstring& _strKey, const T& 
     T* pData = new T;
     *pData = _Data;
     m_mapBlackboard.insert(make_pair(_strKey, pData));
+
 }
