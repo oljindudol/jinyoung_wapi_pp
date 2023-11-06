@@ -61,6 +61,11 @@ void CStateMachine::finaltick(float _DT)
 	}
 }
 
+float CStateMachine::GetCurstateAcctime()
+{
+	return m_pCurState->Getacctime();
+}
+
 void CStateMachine::AddState(UINT _id, CState* _State)
 {
 	CState* pFindState = FindState(_id);

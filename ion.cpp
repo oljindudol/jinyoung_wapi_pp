@@ -7,6 +7,7 @@
 #include "CMonsterMgr.h"
 
 #include "CTimeManager.h"
+#include "CLogMgr.h"
 
 
 ion::ion()
@@ -101,8 +102,10 @@ void ion::tick(float _DT)
 
 void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	CSkill* pSkill = dynamic_cast<CSkill*>(_OtherObj);
+	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
 
+
+	CSkill* pSkill = dynamic_cast<CSkill*>(_OtherObj);
 
 	if ( (nullptr!= pSkill) && (pSkill->GetLayerIdx()==LAYER::PLAYER_PJ) )
 	{
@@ -123,25 +126,27 @@ void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol
 
 		return;
 	}
-
-
-	if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
 }
 
 void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	if ((UINT)ENORMAL_MON_STATE::TRACE == m_AI->GetCurStateName())
-	{
-		m_collisiontimetoplayer += DT;
+	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
 
-		if (m_collisiontimetoplayer < 0.5f)
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_OtherObj);
+
+	if ((UINT)ENORMAL_MON_STATE::TRACE == m_AI->GetCurStateNum() && pPlayer)
+	{
+		float acctime= m_AI->GetCurstateAcctime();
+
+		LOG(LOG_LEVEL::LOG, std::to_wstring(m_collisiontimetoplayer).c_str());
+		LOG(LOG_LEVEL::LOG, std::to_wstring(acctime).c_str());
+		if (m_collisiontimetoplayer < 0.1f && 
+			acctime > 1.3f &&
+			acctime < 2.82f
+			)
 		{
-			CPlayer* pPlayer = dynamic_cast<CPlayer*>(_OtherObj);
-			if (pPlayer)
-			{
-				float force = 10000.f;
-				pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, 0.f) * force);
-			}
+			float force = 5000.f;
+			pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, -1.f) * force);
 		}
 	}
 }
@@ -150,5 +155,6 @@ void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 
 void ion::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+
+	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
 }

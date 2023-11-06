@@ -113,13 +113,16 @@ void CMonster::tick(float _DT)
 
 void CMonster::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	//if (dynamic_cast<CProjectile*>(_OtherObj))
-	//{
-	//	m_Info.HP -= 1.f;
+	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
+}
 
-	//	if (m_Info.HP <= 0.f)
-	//	{
-	//		Destroy();
-	//	}
-	//}
+void CMonster::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
+
+}
+
+void CMonster::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
 }

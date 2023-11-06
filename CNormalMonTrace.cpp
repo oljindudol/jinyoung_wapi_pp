@@ -79,6 +79,7 @@ void CNormalMonTrace::finaltick(float _DT)
 	{
 		if (m_bigcollider) 
 		{
+			
 			m_bigcollider = false;
 			GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 			GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
@@ -86,8 +87,9 @@ void CNormalMonTrace::finaltick(float _DT)
 		return;
 	}
 
-	if (!m_bigcollider)
+	if (!m_bigcollider && 0.f != m_acctime)
 	{
+		GetOwner()->SetCollisionTime(0.f);
 		m_bigcollider = true;
 		GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-150.f, -300.f));
 		GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(500.f, 600.f));
@@ -121,7 +123,6 @@ void CNormalMonTrace::Enter()
 
 void CNormalMonTrace::Exit()
 {
-	GetOwner()->SetCollisionTime(0.f);
 	m_bigcollider = false;
 	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));

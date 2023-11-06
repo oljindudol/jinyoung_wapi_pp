@@ -29,6 +29,7 @@ protected:
 
 
 public:
+    float Getacctime() { return m_acctime; }
     CStateMachine* GetOwnerSM() { return m_pSM; }
     CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }
     UINT GetStateID() { return m_StateID; }

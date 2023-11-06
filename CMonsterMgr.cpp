@@ -17,6 +17,14 @@ void CMonsterMgr::init()
 	AddMonster(new ion);
 	AddMonster(new ion);
 	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
+	AddMonster(new ion);
 
 }
 

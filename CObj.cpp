@@ -91,20 +91,20 @@ void CObj::Destroy()
 
 void CObj::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	//이거안됨?
-	//if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+	//if (_OtherObj->m_iLayerIdx==(UINT)LAYER::PLAYER ) 
+	//	m_collisiontimetoplayer = 0.f;
 }
 
 void CObj::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	//이거안됨?
-	//if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer = 0.f;
+	//if (_OtherObj->m_iLayerIdx == (UINT)LAYER::PLAYER) 
+	//	m_collisiontimetoplayer = 0.f;
 }
 
 void CObj::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-	//이거안됨?
-	//if (dynamic_cast<CPlayer*>(_OtherObj)) m_collisiontimetoplayer += DT;
+	if (_OtherObj->m_iLayerIdx == (UINT)LAYER::PLAYER)
+		m_collisiontimetoplayer += DT;
 }
 
 

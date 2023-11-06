@@ -21,7 +21,16 @@ private:
     CCollider* m_pCollider;
 
 public:
-    UINT GetCurStateName()
+    float GetCurstateAcctime();
+
+
+    CState* GetCurState()
+    {
+        return m_pCurState;
+    }
+
+
+    UINT GetCurStateNum()
     {
         for (auto p : m_mapState)
         {
@@ -30,6 +39,8 @@ public:
         }
         return 999;
     }
+
+
     void AddState(UINT _id, CState* _State);
     CState* FindState(UINT _id);
     void ChangeState(UINT _NextID);
