@@ -9,10 +9,14 @@ private:
 
 	float		m_LogMaxLife;
 
+	vector<pair<wstring,Vec2>> m_CustomLogList;
+
 public:
 	void SetLogMaxLife(float _Life) { m_LogMaxLife = _Life; }
 
 	void AddLog(const FLog& _log) { m_LogList.push_front(_log); }
+
+	void AddCustomLog(const wstring& _wstr, const Vec2& _pos) { m_CustomLogList.push_back( pair<wstring,Vec2>( _wstr, _pos ) ); }
 
 public:
 	void tick(HDC _dc);

@@ -65,11 +65,21 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 
 	// 컬라이더 초기화
 
+	// 그라운드설정 off
+	if (nullptr != m_AI)
+	{
+		m_Movement->SetGround(false);
+	}
+
+
 	// 상태 변화
 	if (nullptr != m_AI)
 	{
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 	}
+
+
+
 
 
 	// 레벨에참여

@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "pch.h"
 
-
+class CPlayer;
 
 class CLevelMgr
 {
@@ -11,6 +11,7 @@ private:
 	CLevel* m_arrLevels[(UINT)LEVEL_TYPE::END];
 
 public:
+	CPlayer* GetCurLevelPlayer();
 	CLevel* GetCurLevel() { return m_pCurLevel; }
 
 private:

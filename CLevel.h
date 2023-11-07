@@ -4,6 +4,9 @@
 
 #include "CLayer.h"
 
+class CPlayer;
+
+
 class CObj;
 
 class CLevel
@@ -13,8 +16,10 @@ private:
 	CLayer* m_Layer[LAYER::END];
 	UINT	m_TileRow;
 	UINT	m_TileCol;
+	CPlayer* pPlayer;
 
 public:
+	CPlayer* GetPlayer();
 	class CBackGround* m_BackGround;
 	bool m_BackOn;
 	virtual void init() = 0;
@@ -76,3 +81,4 @@ inline void CLevel::GetObjects(vector<T*>& _Out)
 		}
 	}
 }
+

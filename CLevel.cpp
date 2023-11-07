@@ -7,6 +7,7 @@
 #include "CLayer.h"
 #include "CSkillMgr.h"
 #include "CMonsterMgr.h"
+#include "CPlayer.h";
 
 class CEntity;
 class CLayer;
@@ -17,6 +18,7 @@ CLevel::CLevel()
 	, m_TileCol(0)
 	, m_BackGround(nullptr)
 	, m_BackOn(false)
+	, pPlayer(nullptr)
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
@@ -33,6 +35,17 @@ CLevel::~CLevel()
 			delete m_Layer[i];
 	}
 }
+
+CPlayer* CLevel::GetPlayer()
+{
+	if (nullptr == pPlayer)
+	{
+		pPlayer = dynamic_cast<CPlayer*>(GetObjects(LAYER::PLAYER)[0]);
+	}
+	return pPlayer;
+}
+
+
 
 void CLevel::begin()
 {

@@ -4,6 +4,7 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CPlatform.h"
+#include "CWall.h"
 
 #include "CEngine.h"
 #include "CCamera.h"
@@ -18,6 +19,7 @@
 #include "CMonsterMgr.h"
 
 #include "CBackGround.h"
+#include "CLogMgr.h"
 
 
 CEnteranceLevel::~CEnteranceLevel()
@@ -59,14 +61,29 @@ void CEnteranceLevel::init()
 	//AddObject(MONSTER, p_ion);
 
 
+	// Cwall
+	CWall* pWall1 = new CWall;
+	pWall1->SetPos(Vec2(20.f, 500.f));
+	AddObject(WALL, pWall1);
+	CCollider* wallcol1 = pWall1->AddComponent<CCollider>(L"WallCollider1");
+	wallcol1->SetScale(Vec2(200.f, 1000.f));
 
+
+	CWall* pWall2 = new CWall;
+	pWall2->SetPos(Vec2(1450.f, 500.f));
+	AddObject(WALL, pWall2);
+	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
+	wallcol2->SetScale(Vec2(200.f, 1000.f));
+
+
+	// 플랫폼 설치2
 	CPlatform* pPlatform2 = new CPlatform;
 	pPlatform2->SetPos(Vec2(800.f, 700.f));
 	AddObject(PLATFORM_DEBUG, pPlatform2);
 	CCollider* platforcol2 = pPlatform2->AddComponent<CCollider>(L"PlatformCollider2");
 	platforcol2->SetScale(Vec2(1000.f, 20.f));
 
-	// 플랫폼 설치
+	// 플랫폼 설치1
 	CPlatform* pPlatform = new CPlatform;
 	pPlatform->SetPos(Vec2(800.f, 900.f));
 	AddObject(PLATFORM, pPlatform);
@@ -120,6 +137,26 @@ void CEnteranceLevel::exit()
 void CEnteranceLevel::tick()
 {
 	CLevel::tick();
+	
+	// 마우스 포지션
+	int x = CKeyMgr::GetInst()->GetMousePos().x;
+	int y = CKeyMgr::GetInst()->GetMousePos().y;
+
+	wstring tmousepos = L"x:" + std::to_wstring(x)
+		+ L"y:" + std::to_wstring(y);
+
+	CLogMgr::GetInst()->AddCustomLog(tmousepos, CKeyMgr::GetInst()->GetMousePos() + Vec2(0.f,-20.f));
+
+
+	// 플레이어 포지션 
+	x = GetPlayer()->GetPos().x;
+	y = GetPlayer()->GetPos().y;
+
+	wstring tplayerpos = L"player x:" + std::to_wstring(x)
+		+ L"y:" + std::to_wstring(y);
+
+	CLogMgr::GetInst()->AddCustomLog(tplayerpos, Vec2(1600.f,0.f));
+
 
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::_1))

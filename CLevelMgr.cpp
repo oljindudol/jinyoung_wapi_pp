@@ -161,6 +161,10 @@ void CLevelMgr::render(HDC _dc)
 }
 
 
+CPlayer* CLevelMgr::GetCurLevelPlayer()
+{
+	return m_pCurLevel->GetPlayer();
+}
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {
 	if (m_pCurLevel == m_arrLevels[(UINT)_Type])

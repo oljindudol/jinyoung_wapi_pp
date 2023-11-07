@@ -68,7 +68,8 @@ void CPlatform::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Ot
 
 		float yfix = ((UINT)LAYER::PLAYER == _OtherObj->GetLayerIdx()) ? 0.99f : 0.97f;
 
-		if (plattop >= otherprevbottom * yfix)
+		//위에서 올라왔으면, y스피드를 0으로 고정
+		if (plattop > otherprevbottom)// *yfix)
 		{
 
 			CMovement* mov = _OtherObj->GetMovement();

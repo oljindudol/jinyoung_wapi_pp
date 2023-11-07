@@ -2,6 +2,7 @@
 #include "CLogMgr.h"
 
 #include "CTimeManager.h"
+#include "CKeyMgr.h"
 
 CLogMgr::CLogMgr()
 	: m_LogMaxLife(5.f)
@@ -50,5 +51,34 @@ void CLogMgr::tick(HDC _dc)
 		}
 
 		TextOut(_dc, LT.x, LT.y + i * int(10.f * 1.5f), (*iter).Message.c_str(), (int)(*iter).Message.length());
+	}
+
+
+
+
+
+	// 마우스 포지션
+	//int x = (int)CKeyMgr::GetInst()->GetMousePos().x;
+	//int y = (int)CKeyMgr::GetInst()->GetMousePos().y;// -20;
+
+	//wstring tmousepos = L"x:" + std::to_wstring(x)
+	//	+ L"y:" +  std::to_wstring(y);
+
+	//TextOut(_dc, x, y , tmousepos.c_str(), (int)tmousepos.length());
+
+
+	auto iter2 = m_CustomLogList.begin();
+	while (m_CustomLogList.end() != iter2)
+	{
+		//좌표
+		int x = (*iter2).second.x;
+		int y = (*iter2).second.y; 
+
+		//메세지
+		wstring msg= (*iter2).first;
+
+		TextOut(_dc, x - (int)msg.length()*7 , y, msg.c_str(), (int)msg.length());
+
+		iter2 = m_CustomLogList.erase(iter2);
 	}
 }
