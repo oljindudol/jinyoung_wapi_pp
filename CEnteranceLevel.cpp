@@ -33,8 +33,10 @@ void CEnteranceLevel::init()
 	// 배경생성
 	//CBackGround* pBackGround = nullptr;
 
+	m_LevelMiddle = Vec2(995.f,373.f);
+
 	m_BackGround = new CBackGround;
-	m_BackGround->SetPos(Vec2(800.f, 450.f));
+	m_BackGround->SetPos(m_LevelMiddle);
 	m_BackGround->SetScale(Vec2(1990.f, 767.f));
 
 	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage0", L"texture\\Stage0.png"));
@@ -42,11 +44,18 @@ void CEnteranceLevel::init()
 	AddObject(BACKGROUND, m_BackGround);
 
 
+	// 카메라 range설정
+	m_CameraRangex = Vec2(685.f, m_LevelMiddle.x +(m_LevelMiddle.x - 685.f) );
+	m_CameraRangey = Vec2(670.f, 670.f);
+
+	// 카메라 lookat 설정
+	CCamera::GetInst()->SetInitialLookAt(m_CameraRangex, m_CameraRangey);
+
 
 	// 플레이어 생성
 	CPlayer* pPlayer = new CPlayer;
 
-	pPlayer->SetPos(Vec2(500.f, 200.f));
+	pPlayer->SetPos(Vec2(250.f, 200.f));
 	pPlayer->SetScale(Vec2(50.f, 50.f));
 
 	AddObject(PLAYER, pPlayer);
@@ -63,14 +72,14 @@ void CEnteranceLevel::init()
 
 	// Cwall
 	CWall* pWall1 = new CWall;
-	pWall1->SetPos(Vec2(20.f, 500.f));
+	pWall1->SetPos(Vec2(-100.f, 500.f));
 	AddObject(WALL, pWall1);
 	CCollider* wallcol1 = pWall1->AddComponent<CCollider>(L"WallCollider1");
 	wallcol1->SetScale(Vec2(200.f, 1000.f));
 
 
 	CWall* pWall2 = new CWall;
-	pWall2->SetPos(Vec2(1450.f, 500.f));
+	pWall2->SetPos(Vec2(2080.f, 500.f));
 	AddObject(WALL, pWall2);
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
@@ -78,17 +87,17 @@ void CEnteranceLevel::init()
 
 	// 플랫폼 설치2
 	CPlatform* pPlatform2 = new CPlatform;
-	pPlatform2->SetPos(Vec2(800.f, 700.f));
+	pPlatform2->SetPos(Vec2(m_LevelMiddle.x, 620.f - 80.f));
 	AddObject(PLATFORM_DEBUG, pPlatform2);
 	CCollider* platforcol2 = pPlatform2->AddComponent<CCollider>(L"PlatformCollider2");
-	platforcol2->SetScale(Vec2(1000.f, 20.f));
+	platforcol2->SetScale(Vec2(550.f, 1.f));
 
 	// 플랫폼 설치1
 	CPlatform* pPlatform = new CPlatform;
-	pPlatform->SetPos(Vec2(800.f, 900.f));
+	pPlatform->SetPos(Vec2(m_LevelMiddle.x , 795.f -85.f));
 	AddObject(PLATFORM, pPlatform);
 	CCollider* platforcol1 = pPlatform->AddComponent<CCollider>(L"PlatformCollider1");
-	platforcol1->SetScale(Vec2(2000.f, 250.f));
+	platforcol1->SetScale(Vec2(3000.f, 250.f));
 
 
 	// 카메라 설정
@@ -138,14 +147,18 @@ void CEnteranceLevel::tick()
 {
 	CLevel::tick();
 	
+
 	// 마우스 포지션
-	int x = CKeyMgr::GetInst()->GetMousePos().x;
-	int y = CKeyMgr::GetInst()->GetMousePos().y;
+	Vec2 mouspos = CKeyMgr::GetInst()->GetMousePos();
+	Vec2 realmous = CCamera::GetInst()->GetRealPos(mouspos);
+	int x = realmous.x;
+	int y = realmous.y;
 
 	wstring tmousepos = L"x:" + std::to_wstring(x)
 		+ L"y:" + std::to_wstring(y);
 
-	CLogMgr::GetInst()->AddCustomLog(tmousepos, CKeyMgr::GetInst()->GetMousePos() + Vec2(0.f,-20.f));
+
+	CLogMgr::GetInst()->AddCustomLog(tmousepos, mouspos + Vec2(0.f,-20.f));
 
 
 	// 플레이어 포지션 
@@ -155,7 +168,7 @@ void CEnteranceLevel::tick()
 	wstring tplayerpos = L"player x:" + std::to_wstring(x)
 		+ L"y:" + std::to_wstring(y);
 
-	CLogMgr::GetInst()->AddCustomLog(tplayerpos, Vec2(1600.f,0.f));
+	CLogMgr::GetInst()->AddCustomLog(tplayerpos, Vec2(1366.f,0.f));
 
 
 	// Enter 키가 눌리면 StartLevel 로 변환

@@ -31,6 +31,9 @@ public:
 	void render(HDC _dc);
 	void SetLookAt(Vec2 _vLookAt) { m_vLookAt = _vLookAt; }
 
+
+	void SetInitialLookAt(Vec2 _RangeX, Vec2 _RangeY );
+
 	void FadeIn(float _time)
 	{
 		FCamEvent evnt = {};
@@ -55,4 +58,6 @@ public:
 	Vec2 GetRenderPos(Vec2 _vRealPos) { return _vRealPos - m_vDiff; }
 
 	Vec2 GetRealPos(Vec2 _vRenderPos) { return m_vDiff + _vRenderPos; }
+
+
 };

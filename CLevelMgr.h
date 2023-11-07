@@ -11,7 +11,10 @@ private:
 	CLevel* m_arrLevels[(UINT)LEVEL_TYPE::END];
 
 public:
-	CPlayer* GetCurLevelPlayer();
+	class CPlayer* GetCurLevelPlayer();
+	Vec2 GetCurLevelCameraRangeX();
+	Vec2 GetCurLevelCameraRangeY();
+	Vec2 GetCurLevelMiddle();
 	CLevel* GetCurLevel() { return m_pCurLevel; }
 
 private:

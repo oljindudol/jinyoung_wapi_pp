@@ -18,6 +18,11 @@ private:
 	UINT	m_TileCol;
 	CPlayer* pPlayer;
 
+protected:
+	Vec2 m_CameraRangex;
+	Vec2 m_CameraRangey;
+	Vec2 m_LevelMiddle;
+
 public:
 	CPlayer* GetPlayer();
 	class CBackGround* m_BackGround;

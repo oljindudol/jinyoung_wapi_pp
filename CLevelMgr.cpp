@@ -5,6 +5,7 @@
 
 #include "CLevel.h"
 #include "CPlayer.h"
+
 #include "CMonster.h"
 #include "CPal.h"
 #include "CCamera.h"
@@ -145,8 +146,8 @@ void CLevelMgr::render(HDC _dc)
 	// Level Render
 	// 화면 Clear
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
-	SelectObject(_dc, CPal::GetInst()->getHPen(WHITE));
-	SelectObject(_dc, CPal::GetInst()->getHBrush(WHITE));
+	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
+	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
 	// 레벨 render
@@ -165,6 +166,23 @@ CPlayer* CLevelMgr::GetCurLevelPlayer()
 {
 	return m_pCurLevel->GetPlayer();
 }
+
+Vec2 CLevelMgr::GetCurLevelCameraRangeX()
+{
+	return m_pCurLevel->m_CameraRangex;
+}
+
+Vec2 CLevelMgr::GetCurLevelCameraRangeY()
+{
+	return m_pCurLevel->m_CameraRangey;
+}
+
+Vec2 CLevelMgr::GetCurLevelMiddle()
+{
+	return m_pCurLevel->m_LevelMiddle;
+}
+
+
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {
 	if (m_pCurLevel == m_arrLevels[(UINT)_Type])

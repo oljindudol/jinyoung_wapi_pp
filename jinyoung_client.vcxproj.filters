@@ -22,9 +22,6 @@
     <Filter Include="03.Game\04.Object\proj">
       <UniqueIdentifier>{26bd8e5c-6508-47ae-96f2-33a540126cf1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\04.Object\background">
-      <UniqueIdentifier>{2308563e-6c6a-4bf4-9bf5-c22f1ff551ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\05.Level">
       <UniqueIdentifier>{2958640a-12be-40d0-b4ca-c6ac39152108}</UniqueIdentifier>
     </Filter>
@@ -124,6 +121,9 @@
     </Filter>
     <Filter Include="04.CurWork\state">
       <UniqueIdentifier>{c3ecff51-eb2e-4bce-af67-7f8afa97d316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\10.StageZero\background">
+      <UniqueIdentifier>{2308563e-6c6a-4bf4-9bf5-c22f1ff551ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -269,7 +269,7 @@
       <Filter>03.Game\06.Component\StateMachine\state</Filter>
     </ClInclude>
     <ClInclude Include="CBackGround.h">
-      <Filter>03.Game\04.Object\background</Filter>
+      <Filter>03.Game\10.StageZero\background</Filter>
     </ClInclude>
     <ClInclude Include="CStartLevel.h">
       <Filter>03.Game\05.Level</Filter>
@@ -463,7 +463,7 @@
       <Filter>03.Game\06.Component\StateMachine\state</Filter>
     </ClCompile>
     <ClCompile Include="CBackGround.cpp">
-      <Filter>03.Game\04.Object\background</Filter>
+      <Filter>03.Game\10.StageZero\background</Filter>
     </ClCompile>
     <ClCompile Include="CEnteranceLevel.cpp">
       <Filter>03.Game\10.StageZero</Filter>

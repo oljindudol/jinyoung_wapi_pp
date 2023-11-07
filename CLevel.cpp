@@ -38,11 +38,20 @@ CLevel::~CLevel()
 
 CPlayer* CLevel::GetPlayer()
 {
+	if (nullptr != pPlayer)
+	{
+		return pPlayer;
+	}
+
+
 	if (nullptr == pPlayer)
 	{
-		pPlayer = dynamic_cast<CPlayer*>(GetObjects(LAYER::PLAYER)[0]);
+		if(pPlayer = dynamic_cast<CPlayer*>(GetObjects(LAYER::PLAYER)[0]))
+			return pPlayer;
+
 	}
-	return pPlayer;
+
+	return nullptr;
 }
 
 

@@ -72,15 +72,14 @@ CPlayer::CPlayer()
 
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(0.f, -50.f));
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(20.f, -45.f));
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(20.f, -45.f), 3.f);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -45.f),2.f);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -45.f), 1.f,-1);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -55.f), 1.f, -1);
 
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -50.f),2.f);
-
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(0.f, -50.f),3.f);
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -50.f), 1.f,-1);
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"down", Vec2(-30.f, -20.f), 1.f, -1);
 
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -50.f), 1.f,-1);
 
 	m_Animator->Play(L"commonpinkbeanidle");
 
@@ -115,7 +114,7 @@ CPlayer::CPlayer()
 	// 충돌체 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(L"PlayerCollider");
 	//m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
-	m_Collider->SetScale(Vec2(40.f, 80.f));
+	m_Collider->SetScale(Vec2(80.f, 80.f));
 	m_Collider->SetOffsetPos(Vec2(0.f, -40.f));
 	//AddComponent<CAnimator>();
 	//AddComponent<CMovement>();
