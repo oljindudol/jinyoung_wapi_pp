@@ -28,6 +28,7 @@ void CPanelUI::tick(float _DT)
 
 void CPanelUI::render(HDC _dc)
 {
+	//(*this);
 	Vec2 vPos = GetFinalPos();
 	Vec2 vScale = GetScale();
 	SELECT_PEN(_dc, RED_PEN);

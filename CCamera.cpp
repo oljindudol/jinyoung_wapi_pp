@@ -27,25 +27,25 @@ CCamera::~CCamera()
 void CCamera::tick()
 {
 	// 방향키로 카메라가 바라보고 있는 위치를 변경
-	//if (KEY_PRESSED(KEY::J))
-	//{
-	//	m_vLookAt.x -= 200.f * DT;
-	//}
+	if (KEY_PRESSED(KEY::J))
+	{
+		m_vLookAt.x -= 200.f * DT;
+	}
 
-	//if (KEY_PRESSED(KEY::L))
-	//{
-	//	m_vLookAt.x += 200.f * DT;
-	//}
+	if (KEY_PRESSED(KEY::L))
+	{
+		m_vLookAt.x += 200.f * DT;
+	}
 
-	//if (KEY_PRESSED(KEY::I))
-	//{
-	//	m_vLookAt.y -= 200.f * DT;
-	//}
+	if (KEY_PRESSED(KEY::I))
+	{
+		m_vLookAt.y -= 200.f * DT;
+	}
 
-	//if (KEY_PRESSED(KEY::K))
-	//{
-	//	m_vLookAt.y += 200.f * DT;
-	//}
+	if (KEY_PRESSED(KEY::K))
+	{
+		m_vLookAt.y += 200.f * DT;
+	}
 
 	// 플레이어 쪽으로 카메라 보정
 	CPlayer* player = CLevelMgr::GetInst()->GetCurLevelPlayer();

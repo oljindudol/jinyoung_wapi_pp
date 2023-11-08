@@ -322,8 +322,13 @@
     <ClInclude Include="CPlayerDown.h">
       <Filter>04.CurWork\Player\State</Filter>
     </ClInclude>
-    <ClInclude Include="CMonsterMgr.h" />
-    <ClInclude Include="CWall.h" />
+    <ClInclude Include="CWall.h">
+      <Filter>03.Game\04.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterMgr.h">
+      <Filter>03.Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CStatusUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -510,7 +515,12 @@
     <ClCompile Include="CPlayerDown.cpp">
       <Filter>04.CurWork\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="CMonsterMgr.cpp" />
-    <ClCompile Include="CWall.cpp" />
+    <ClCompile Include="CWall.cpp">
+      <Filter>03.Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterMgr.cpp">
+      <Filter>03.Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CStatusUI.cpp" />
   </ItemGroup>
 </Project>

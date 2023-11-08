@@ -21,6 +21,9 @@
 #include "CBackGround.h"
 #include "CLogMgr.h"
 
+#include "CStatusUI.h"
+#include "CPanelUI.h"
+
 
 CEnteranceLevel::~CEnteranceLevel()
 {
@@ -111,6 +114,14 @@ void CEnteranceLevel::init()
 	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLATFORM);
 
+	// 스테이터스바 생성
+	CStatusUI* pStatusUI = new CStatusUI;
+
+	//CPanelUI* pStatusUI = new CPanelUI;
+	//pStatusUI->SetScale(Vec2(204.f, 70.f));
+	//pStatusUI->SetPos(Vec2(600.f, 690.f));
+
+	AddObject(LAYER::UI, pStatusUI);
 
 	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");
 	pSound->SetVolume(20);

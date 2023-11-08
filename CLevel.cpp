@@ -46,8 +46,9 @@ CPlayer* CLevel::GetPlayer()
 
 	if (nullptr == pPlayer)
 	{
-		if(pPlayer = dynamic_cast<CPlayer*>(GetObjects(LAYER::PLAYER)[0]))
-			return pPlayer;
+		vector<CObj*> objvec= GetObjects(LAYER::PLAYER);
+		if(0 != objvec.size())
+			return dynamic_cast<CPlayer*>(objvec[0]);
 
 	}
 

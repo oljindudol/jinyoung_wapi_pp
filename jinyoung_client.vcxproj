@@ -224,6 +224,7 @@
     <ClInclude Include="CStartLevel.h" />
     <ClInclude Include="CState.h" />
     <ClInclude Include="CStateMachine.h" />
+    <ClInclude Include="CStatusUI.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTile.h" />
@@ -326,6 +327,7 @@
     <ClCompile Include="CStartLevel.cpp" />
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CStateMachine.cpp" />
+    <ClCompile Include="CStatusUI.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTile.cpp" />
