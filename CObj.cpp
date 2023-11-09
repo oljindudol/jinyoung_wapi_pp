@@ -63,6 +63,10 @@ void CObj::render(HDC _dc)
 	if (!DEBUG_RENDER)
 		return;
 
+	if (LAYER::UI == (UINT)m_iLayerIdx)
+		return;
+
+
 	SELECT_PEN(_dc, RED_PEN);
 
 	Vec2 vRenderPos = GetRenderPos();

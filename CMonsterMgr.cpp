@@ -57,7 +57,6 @@ void CMonsterMgr::tick()
 			}
 		}
 	}
-
 }
 
 CMonsterMgr::~CMonsterMgr()

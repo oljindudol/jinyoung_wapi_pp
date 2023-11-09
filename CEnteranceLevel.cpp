@@ -22,7 +22,7 @@
 #include "CLogMgr.h"
 
 #include "CStatusUI.h"
-#include "CPanelUI.h"
+#include "CTexture.h"
 
 
 CEnteranceLevel::~CEnteranceLevel()
@@ -35,32 +35,30 @@ void CEnteranceLevel::init()
 {
 	// 배경생성
 	//CBackGround* pBackGround = nullptr;
-
-	m_LevelMiddle = Vec2(995.f,373.f);
-
 	m_BackGround = new CBackGround;
-	m_BackGround->SetPos(m_LevelMiddle);
-	m_BackGround->SetScale(Vec2(1990.f, 767.f));
-
 	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage0", L"texture\\Stage0.png"));
 	m_BackOn = true;
+
+	Vec2 mapsize =
+		Vec2(m_BackGround->GetTextre()->GetWidth(), m_BackGround->GetTextre()->GetHeight());
+
+	m_LevelMiddle = Vec2(mapsize.x/2.f, mapsize.y / 2.f);
+	m_BackGround->SetPos(m_LevelMiddle);
+	m_BackGround->SetScale(mapsize);
 	AddObject(BACKGROUND, m_BackGround);
 
 
 	// 카메라 range설정
-	m_CameraRangex = Vec2(685.f, m_LevelMiddle.x +(m_LevelMiddle.x - 685.f) );
-	m_CameraRangey = Vec2(673.f, 673.f);
+	m_CameraRangex = Vec2(m_LevelMiddle.x-310.f, m_LevelMiddle.x + 310.f);
+	m_CameraRangey = Vec2(683.f, 683.f + (mapsize.y - 767));
 
 	// 카메라 lookat 설정
 	CCamera::GetInst()->SetInitialLookAt(m_CameraRangex, m_CameraRangey);
 
 
-	// 플레이어 생성
-	CPlayer* pPlayer = new CPlayer;
-
+	// 플레이어 가져와서 레벨에 합류
+	CPlayer* pPlayer = CLevelMgr::GetInst()->GetPlayer();
 	pPlayer->SetPos(Vec2(250.f, 200.f));
-	pPlayer->SetScale(Vec2(50.f, 50.f));
-
 	AddObject(PLAYER, pPlayer);
 
 	// 몬스터 매니저에 이관
@@ -82,7 +80,7 @@ void CEnteranceLevel::init()
 
 
 	CWall* pWall2 = new CWall;
-	pWall2->SetPos(Vec2(2080.f, 500.f));
+	pWall2->SetPos(Vec2(2090.f, 500.f));
 	AddObject(WALL, pWall2);
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
@@ -158,41 +156,6 @@ void CEnteranceLevel::tick()
 {
 	CLevel::tick();
 	
-
-	// 마우스 포지션
-	Vec2 mouspos = CKeyMgr::GetInst()->GetMousePos();
-	Vec2 realmous = CCamera::GetInst()->GetRealPos(mouspos);
-	int x = realmous.x;
-	int y = realmous.y;
-
-	wstring tmousepos = L"x:" + std::to_wstring(x)
-		+ L"y:" + std::to_wstring(y);
-
-
-	CLogMgr::GetInst()->AddCustomLog(tmousepos, mouspos + Vec2(0.f,-20.f));
-
-
-	// 플레이어 포지션 
-	x = GetPlayer()->GetPos().x;
-	y = GetPlayer()->GetPos().y;
-
-	wstring tplayerpos = L"player x:" + std::to_wstring(x)
-		+ L"y:" + std::to_wstring(y);
-
-	CLogMgr::GetInst()->AddCustomLog(tplayerpos, Vec2(1366.f,0.f));
-
-
-	// Enter 키가 눌리면 StartLevel 로 변환
-	if (KEY_TAP(KEY::_1))
-	{
-		float perc = (float)rand() / (float)32767;
-
-
-		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f*perc), 200.f));
-	}
-
-
-
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{

@@ -48,7 +48,7 @@ void CCamera::tick()
 	}
 
 	// 플레이어 쪽으로 카메라 보정
-	CPlayer* player = CLevelMgr::GetInst()->GetCurLevelPlayer();
+	CPlayer* player = CLevelMgr::GetInst()->GetPlayer();
 	if (nullptr != player)
 	{
 		Vec2 rangeX = CLevelMgr::GetInst()->GetCurLevelCameraRangeX();

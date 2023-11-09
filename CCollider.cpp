@@ -60,10 +60,6 @@ void CCollider::render(HDC _dc)
 	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
 
 	// render
-	/*Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
-		, int(vRenderPos.y - m_vScale.y / 2.f)
-		, int(vRenderPos.x + m_vScale.x / 2.f)
-		, int(vRenderPos.y + m_vScale.y / 2.f));*/
 	if (0 < m_iCollisionCount)
 	{
 		SELECT_PEN(_dc, RED_PEN);
@@ -84,6 +80,13 @@ void CCollider::render(HDC _dc)
 			, int(vRenderPos.x + m_vScale.x / 2.f)
 			, int(vRenderPos.y + m_vScale.y / 2.f));
 	}
+
+	//name
+	SetBkMode(_dc, OPAQUE);
+	SELECT_FONT(_dc, FONT_TYPE::STATUS_BAR_POINT);
+	SetTextColor(_dc, RGB(0, 0, 0));
+	TextOut(_dc, (int)(vRenderPos.x - m_vScale.x / 2.f), (int)(vRenderPos.y - m_vScale.y / 2.f -10.f), GetName().c_str(), GetName().length());
+
 }
 
 

@@ -44,6 +44,11 @@ CLevelMgr::~CLevelMgr()
 
 void CLevelMgr::init()
 {
+	//플레이어 생성
+	m_Player = new CPlayer;
+	m_Player->SetScale(Vec2(50.f, 50.f));
+
+
 	// 모든 레벨 생성
 	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new CEnteranceLevel;
@@ -127,9 +132,6 @@ void CLevelMgr::init()
 	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 
 
-
-
-
 }
 
 void CLevelMgr::tick()
@@ -161,11 +163,6 @@ void CLevelMgr::render(HDC _dc)
 
 }
 
-
-CPlayer* CLevelMgr::GetCurLevelPlayer()
-{
-	return m_pCurLevel->GetPlayer();
-}
 
 Vec2 CLevelMgr::GetCurLevelCameraRangeX()
 {

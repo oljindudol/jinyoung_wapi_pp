@@ -7,7 +7,10 @@
 #include "CLayer.h"
 #include "CSkillMgr.h"
 #include "CMonsterMgr.h"
-#include "CPlayer.h";
+#include "CPlayer.h"
+#include "CKeyMgr.h"
+#include "CLogMgr.h"
+#include "CEngine.h"
 
 class CEntity;
 class CLayer;
@@ -83,6 +86,45 @@ void CLevel::tick()
 	{
 		m_Layer[i]->finaltick(DT);
 	}
+
+	// Enter 키가 눌리면 StartLevel 로 변환
+	if (KEY_TAP(KEY::_1))
+	{
+		float perc = (float)rand() / (float)32767;
+
+
+		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f * perc), 200.f));
+	}
+
+
+	//디버그 로그
+	if (!DEBUG_RENDER)
+		return;
+
+	// 마우스 포지션
+	Vec2 mouspos = CKeyMgr::GetInst()->GetMousePos();
+	Vec2 realmous = CCamera::GetInst()->GetRealPos(mouspos);
+	int x = (int)realmous.x;
+	int y = (int)realmous.y;
+
+	wstring tmousepos = L"x:" + std::to_wstring(x)
+		+ L"y:" + std::to_wstring(y);
+
+
+	CLogMgr::GetInst()->AddCustomLog(tmousepos, mouspos + Vec2(0.f, -20.f));
+
+
+	// 플레이어 포지션 
+	x = (int)GetPlayer()->GetPos().x;
+	y = (int)GetPlayer()->GetPos().y;
+
+	wstring tplayerpos = L"player x:" + std::to_wstring(x)
+		+ L"y:" + std::to_wstring(y);
+
+	CLogMgr::GetInst()->AddCustomLog(tplayerpos, Vec2(1366.f, 0.f));
+
+
+
 }
 
 void CLevel::render(HDC _dc)

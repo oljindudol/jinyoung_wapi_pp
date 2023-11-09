@@ -121,7 +121,7 @@ void CSkillMgr::ActivateSkill(wstring _skillname
 	CSkill* pskill = FindAvailableSkill(_skillname);
 	if (nullptr == pskill)
 	{
-		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
+		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다" + _skillname).c_str());
 		return;
 	}
 

@@ -160,8 +160,9 @@ enum LAYER
 	PORTAL,
 	WORLD_STATIC,
 
-	UI = 30,
-	CUT_SCENE =31,
+	UI = 29,
+	CUT_SCENE =30,
+	SUPER_UI = 31,
 	END = 32,
 };
 

@@ -87,4 +87,5 @@ void CLogMgr::tick(HDC _dc)
 
 		iter2 = m_CustomLogList.erase(iter2);
 	}
+
 }
