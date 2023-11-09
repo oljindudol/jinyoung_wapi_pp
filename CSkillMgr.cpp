@@ -45,6 +45,18 @@ void CSkillMgr::DeActivateSkill(CSkill* _skill)
 	if (nullptr != _skill) { _skill->m_OnActivate = false; }
 }
 
+int CSkillMgr::FindNextSkillNumber(wstring _skillname)
+{
+	auto iter = m_skillmap.find(_skillname);
+	if (m_skillmap.end() == iter)
+	{
+		return 0;
+	}
+
+	return (int)iter->second.size();
+
+}
+
 void CSkillMgr::AddSkill(CSkill* _pSkill)
 {
 	vector<CSkill*>* pSkills;

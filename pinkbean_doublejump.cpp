@@ -19,22 +19,14 @@ pinkbean_doublejump::pinkbean_doublejump()
 	m_skillname = m_s1 + m_s2 + m_s3;
 
 	//몇번째 스킬인지
-	auto iter = CSkillMgr::GetInst()->m_skillmap.find(m_skillname);
-	if(CSkillMgr::GetInst()->m_skillmap.end() == iter) 
-	{
-		m_skillnum = 0;
-	}
-	else
-	{
-		m_skillnum = iter->second.size();
-	}
+	m_skillnum = CSkillMgr::GetInst()->FindNextSkillNumber(m_skillname);
 
 	SetName(m_skillname + L"_" + std::to_wstring(m_skillnum));
 
 	//컬라이더
-	m_Collider =
-		AddComponent<CCollider>(GetName() + L"Collider");
-	m_Collider->SetScale(Vec2(0.f,0.f));
+	//m_Collider =
+	//	AddComponent<CCollider>(GetName() + L"Collider");
+	//m_Collider->SetScale(Vec2(0.f,0.f));
 	//pNewSkill -> m_Collider->SetOffsetPos(Vec2(0.f, 0.f));
 
 	//애니메이션

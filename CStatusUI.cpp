@@ -12,7 +12,9 @@ CStatusUI::CStatusUI()
 	,desc(true)
 	,slash(L"/")
 	,charname(L"듀블")
+	,nametex(nullptr)
 {
+	m_uiname = L"StatusUI";
 	SetScale(Vec2(204.f, 70.f));
 	SetPos(Vec2(600.f, 690.f));
 
@@ -104,14 +106,14 @@ void CStatusUI::render(HDC _dc)
 	SetLettertoDc(_dc, 290, veclvtex, (vRenderPos + Vec2(42.f, 9.f)));
 
 
-	int xoffset = 0.f;
+	int xoffset = 0;
 	if (0 != vecgaugetex.size())
 	{
 		xoffset = vecgaugetex[0]->GetWidth();
 	}
 
-	int lakeofhpdigit = 5 - std::to_wstring(testhp).size();
-	int lakeofmpdigit = 5 - std::to_wstring(testhp).size();
+	int lakeofhpdigit = 5 - (int)std::to_wstring(testhp).size();
+	int lakeofmpdigit = 5 - (int)std::to_wstring(testhp).size();
 
 	//체력 
 	SetLettertoDc(_dc, testhp, vecgaugetex, (vRenderPos + Vec2(65.f+ xoffset* lakeofhpdigit, 30.f)));
@@ -119,21 +121,21 @@ void CStatusUI::render(HDC _dc)
 	SetBkMode(_dc, TRANSPARENT);
 	SELECT_FONT(_dc, FONT_TYPE::STATUS_BAR_POINT);
 	SetTextColor(_dc, RGB(255, 255, 255));
-	TextOut(_dc, (int)(vRenderPos.x + 104.f), (int)(vRenderPos.y+29.f), slash.c_str(), slash.length());
+	TextOut(_dc, (int)(vRenderPos.x + 104.f), (int)(vRenderPos.y+29.f), slash.c_str(), (int)slash.length());
 
 	SetLettertoDc(_dc, 50000, vecgaugetex, (vRenderPos + Vec2(110.f, 30.f)));
 
 
 	//MP
 	SetLettertoDc(_dc, testhp, vecgaugetex, (vRenderPos + Vec2(65.f + xoffset* lakeofmpdigit, 46.f)));
-	TextOut(_dc, (int)(vRenderPos.x + 104.f), (int)(vRenderPos.y + 45.f), slash.c_str(), slash.length());
+	TextOut(_dc, (int)(vRenderPos.x + 104.f), (int)(vRenderPos.y + 45.f), slash.c_str(), (int)slash.length());
 	SetLettertoDc(_dc, 50000, vecgaugetex, (vRenderPos + Vec2(110.f , 46.f)));
 
 
 
 	//캐릭터이름
 	SELECT_FONT2(_dc, FONT_TYPE::STATUS_BAR_NAME);
-	TextOut(_dc, (int)(vRenderPos.x + 98.f), (int)(vRenderPos.y + 8.f), charname.c_str(), charname.length());
+	TextOut(_dc, (int)(vRenderPos.x + 98.f), (int)(vRenderPos.y + 8.f), charname.c_str(), (int)charname.length());
 
 
 	SettexturetoDc(_dc, exptex, (Vec2(0.f, 758.f)));

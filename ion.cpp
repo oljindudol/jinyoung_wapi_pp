@@ -19,15 +19,7 @@ ion::ion()
 	m_monstername = m_s1 + m_s2 ;
 
 	//몇번째 몬스터 인지
-	auto iter = CMonsterMgr::GetInst()->m_MonsterMap.find(m_monstername);
-	if (CMonsterMgr::GetInst()->m_MonsterMap.end() == iter)
-	{
-		m_monsternum = 0;
-	}
-	else
-	{
-		m_monsternum = iter->second.size();
-	}
+	m_monsternum = CMonsterMgr::GetInst()->FindNextMonsterNumber(m_monstername);
 
 	SetName(m_monstername + L"_" + std::to_wstring(m_monsternum));
 

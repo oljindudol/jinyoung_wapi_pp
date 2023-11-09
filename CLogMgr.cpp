@@ -77,8 +77,8 @@ void CLogMgr::tick(HDC _dc)
 	while (m_CustomLogList.end() != iter2)
 	{
 		//좌표
-		int x = (*iter2).second.x;
-		int y = (*iter2).second.y; 
+		int x = (int)(*iter2).second.x;
+		int y = (int)(*iter2).second.y;
 
 		//메세지
 		wstring msg= (*iter2).first;

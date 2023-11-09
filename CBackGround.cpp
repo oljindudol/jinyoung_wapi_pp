@@ -30,13 +30,12 @@ void CBackGround::render(HDC _dc)
 
 	blend.SourceConstantAlpha = 255; // 0 ~ 255
 	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	float mag = 1.f;
 
 	AlphaBlend(_dc
-		, int(vRenderPos.x - m_Texture->GetWidth() * mag / 2.f)
-		, int(vRenderPos.y - m_Texture->GetHeight() * mag / 2.f)
-		, m_Texture->GetWidth() * mag
-		, m_Texture->GetHeight() * mag
+		, int(vRenderPos.x - m_Texture->GetWidth() / 2.f)
+		, int(vRenderPos.y - m_Texture->GetHeight()  / 2.f)
+		, m_Texture->GetWidth() 
+		, m_Texture->GetHeight() 
 		, m_Texture->GetDC()
 		, 0, 0
 		, m_Texture->GetWidth() 

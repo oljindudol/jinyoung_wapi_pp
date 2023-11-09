@@ -8,6 +8,8 @@ CUI::CUI()
 	, m_bMouseOn(false)
 	, m_bMouseOn_Prev(false)
 	, m_bMouseLBtnDown(false)
+	, m_visible(false)
+	, m_uiname(L"")
 {
 
 }
@@ -32,6 +34,17 @@ CUI::~CUI()
 	{
 		delete m_vecChildUI[i];
 	}
+}
+
+void CUI::SetUIVisible()
+{
+
+	m_visible = true;
+	SetLive();
+
+	// 레벨에참여
+	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::UI, (UINT_PTR)this });
+
 }
 
 void CUI::tick(float _DT)

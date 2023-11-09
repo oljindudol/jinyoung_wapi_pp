@@ -32,31 +32,6 @@ void CMonsterMgr::init()
 void CMonsterMgr::tick()
 {
 
-	if (KEY_PRESSED(KEY::_2))
-	{
-		for (const auto& pair : m_MonsterMap)
-		{
-			for (const auto& p : pair.second)
-			{
-				if (nullptr != p->m_AI)
-					p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
-				p->m_AI->m_forcedidle = true;
-			}
-		}
-	}
-
-	if (KEY_PRESSED(KEY::_3))
-	{
-		for (const auto& pair : m_MonsterMap)
-		{
-			for (const auto& p : pair.second)
-			{
-				if (nullptr != p->m_AI)
-					p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
-				p->m_AI->m_forcedidle = false;
-			}
-		}
-	}
 }
 
 CMonsterMgr::~CMonsterMgr()
@@ -70,6 +45,12 @@ CMonsterMgr::~CMonsterMgr()
 	}
 }
 
+
+void CMonsterMgr::DeActivateMonster(CMonster* _pMonster)
+{
+	if (nullptr != _pMonster) { _pMonster->m_OnActivate = false; }
+}
+
 void CMonsterMgr::DeActivateAllMonsters()
 {
 	for (const auto& pair : m_MonsterMap)
@@ -81,9 +62,49 @@ void CMonsterMgr::DeActivateAllMonsters()
 	}
 }
 
-void CMonsterMgr::DeActivateMonster(CMonster* _pMonster)
+int CMonsterMgr::FindNextMonsterNumber(wstring _mostername)
 {
-	if (nullptr != _pMonster) { _pMonster->m_OnActivate = false; }
+	auto iter = m_MonsterMap.find(_mostername);
+
+	if (m_MonsterMap.end() == iter)
+	{
+		return 0;
+	}
+
+	return (int)iter->second.size();
+	
+}
+
+void CMonsterMgr::ChangeAllMonsterForcedIdle()
+{
+	for (const auto& pair : m_MonsterMap)
+	{
+		for (const auto& p : pair.second)
+		{
+			if (nullptr != p->m_AI)
+			{
+				p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+				p->m_AI->m_forcedidle = true;
+			}
+				
+		}
+	}
+}
+
+void CMonsterMgr::ChangeAllMonsterIdle()
+{
+	for (const auto& pair : m_MonsterMap)
+	{
+		for (const auto& p : pair.second)
+		{
+			if (nullptr != p->m_AI)
+			{
+				p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+				p->m_AI->m_forcedidle = false;
+			}
+				
+		}
+	}
 }
 
 
@@ -92,7 +113,7 @@ void CMonsterMgr::AddMonster(CMonster* _pMonster)
 	vector<CMonster*>* pMonsters;
 	wstring monstername = _pMonster->m_monstername;
 
-	pMonsters = FindMonster(_pMonster->m_monstername);
+	pMonsters = FindMonster(monstername);
 
 	//없어도 괜찮기 때문에 로그를 내지않는다.
 	if (nullptr == pMonsters)
@@ -151,9 +172,7 @@ void CMonsterMgr::SpwanMonster(wstring _monstername, Vec2 _pos)
 		LOG(LOG_LEVEL::LOG, (L"몬스터를 찾을수 없습니다"));
 		return;
 	}
-
 	pMonster->Spawn(_pos);
-
 }
 
 

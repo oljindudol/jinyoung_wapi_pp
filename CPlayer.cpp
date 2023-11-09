@@ -154,6 +154,7 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	, att(_Origin.att)
 	, def(_Origin.def)
 	, m_acctime(0.f)
+	, m_PlayerState(nullptr)
 {
 	m_Collider = GetComponent<CCollider>();
 	m_Animator = GetComponent<CAnimator>();

@@ -11,6 +11,17 @@ struct FFrame
     Vec2 vCutSize;  // 잘라낼 크기
     Vec2 vOffset;   // 오브젝트 중심에서 이동 값
     float Duration; // 해당 프레임 노출 시간
+
+    FFrame()
+        :m_Atlas(nullptr)
+        , m_Atlas_r(nullptr)
+        , vLeftTop(Vec2(0.f,0.f))
+        , vCutSize(Vec2(0.f, 0.f))
+        , vOffset(Vec2(0.f, 0.f))
+        , Duration(0.f)
+    {
+
+    }
 };
 
 

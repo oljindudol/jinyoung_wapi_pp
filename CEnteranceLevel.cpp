@@ -24,6 +24,8 @@
 #include "CStatusUI.h"
 #include "CTexture.h"
 
+#include "CUIMgr.h"
+
 
 CEnteranceLevel::~CEnteranceLevel()
 {
@@ -57,9 +59,15 @@ void CEnteranceLevel::init()
 
 
 	// 플레이어 가져와서 레벨에 합류
-	CPlayer* pPlayer = CLevelMgr::GetInst()->GetPlayer();
+	pPlayer = CLevelMgr::GetInst()->GetPlayer();
 	pPlayer->SetPos(Vec2(250.f, 200.f));
+	pPlayer->getMovement()->SetGround(false);
 	AddObject(PLAYER, pPlayer);
+
+	// 스테이터스바 생성
+	//CStatusUI* pStatusUI = new CStatusUI;
+	//AddObject(LAYER::UI, pStatusUI);
+	CUIMgr::GetInst()->SetUIVisible(L"StatusUI");
 
 	// 몬스터 매니저에 이관
 	// 몬스터 생성
@@ -112,14 +120,12 @@ void CEnteranceLevel::init()
 	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
 	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLATFORM);
 
-	// 스테이터스바 생성
-	CStatusUI* pStatusUI = new CStatusUI;
+
 
 	//CPanelUI* pStatusUI = new CPanelUI;
 	//pStatusUI->SetScale(Vec2(204.f, 70.f));
 	//pStatusUI->SetPos(Vec2(600.f, 690.f));
 
-	AddObject(LAYER::UI, pStatusUI);
 
 	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");
 	pSound->SetVolume(20);

@@ -6,13 +6,16 @@ class CMonsterMgr
 {
 	SINGLETON(CMonsterMgr);
 
-public:
+private:
 	unordered_map<wstring, vector<CMonster*>> m_MonsterMap;
 
+
+public:
 	void init();
+	void SpwanMonster(wstring _monstername,
+		Vec2 _pos);
 
-	void tick();
-
+private:
 	CMonster* FindAvailableMonster(
 		wstring _monstername);
 
@@ -21,11 +24,15 @@ public:
 
 	void AddMonster(CMonster* _pMonster);
 
+public:
+	void DeActivateMonster(CMonster* _pMonster);
 	void DeActivateAllMonsters();
 
-	void DeActivateMonster(CMonster* _pMonster);
+	int FindNextMonsterNumber(wstring _monstername);
 
-	void SpwanMonster(wstring _monstername,
-		Vec2 _pos);
+	void ChangeAllMonsterForcedIdle();
+	void ChangeAllMonsterIdle();
 
+public:
+	void tick();
 };

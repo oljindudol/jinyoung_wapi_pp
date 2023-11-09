@@ -69,13 +69,13 @@ void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _per
 	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
 
 	AlphaBlend(_dc
-		, _pos.x
-		, _pos.y
-		, _tex->GetWidth() * _perc
+		, (int)_pos.x
+		, (int)_pos.y
+		, (int) (_tex->GetWidth() * _perc)
 		, _tex->GetHeight()
 		, _tex->GetDC()
 		, 0, 0
-		, _tex->GetWidth() * _perc
+		, (int)(_tex->GetWidth() * _perc)
 		, _tex->GetHeight()
 		, blend);
 }
@@ -90,14 +90,14 @@ void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc
 	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
 
 	AlphaBlend(_dc
-		, _pos.x
-		, _pos.y
+		, (int)_pos.x
+		, (int)_pos.y
 		, _tex->GetWidth()
-		, _tex->GetHeight() * _perc
+		, (int)(_tex->GetHeight() * _perc)
 		, _tex->GetDC()
 		, 0, 0
 		, _tex->GetWidth()
-		, _tex->GetHeight() * _perc
+		, (int)(_tex->GetHeight() * _perc)
 		, blend);
 }
 
@@ -118,7 +118,7 @@ void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _
 	for (int i = 0; i < strnums.size(); i++)
 	{
 		int num = strnums[i] - '0';
-		SettexturetoDc(_dc, _vecnumtex[num], _pos + (offset * i));
+		SettexturetoDc(_dc, _vecnumtex[num], _pos + (offset * (float)i));
 	}
 
 }

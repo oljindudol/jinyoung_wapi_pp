@@ -14,6 +14,12 @@ private:
     bool                m_bMouseOn_Prev;
 
     bool                m_bMouseLBtnDown;
+    bool m_visible;
+    void SetUIVisible();
+
+protected:
+    wstring m_uiname;
+
 
 public:
     void AddChildUI(CUI* _ChildUI)

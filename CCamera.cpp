@@ -8,15 +8,15 @@
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
-#include "CLevelMgr.h";
+#include "CLevelMgr.h"
 #include "CPlayer.h"
 
 
 CCamera::CCamera()
 	: m_Veil(nullptr)
-	, m_Alpha(0.f)
+	, m_Alpha(0)
 {
-	Vec2 vResol = CEngine::GetInst()->GetResolution();
+	POINT vResol = CEngine::GetInst()->GetResolution();
 	m_Veil = CAssetMgr::GetInst()->CreateTexture(L"VeilTex", vResol.x, vResol.y);
 }
 

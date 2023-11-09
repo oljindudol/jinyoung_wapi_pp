@@ -258,6 +258,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="skills.h" />
     <ClInclude Include="monsters.h" />
+    <ClInclude Include="uis.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAnim.cpp" />

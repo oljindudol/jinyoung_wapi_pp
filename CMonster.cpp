@@ -80,8 +80,6 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 
 
 
-
-
 	// 레벨에참여
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)this });
 

@@ -16,9 +16,9 @@ private:
 	CLayer* m_Layer[LAYER::END];
 	UINT	m_TileRow;
 	UINT	m_TileCol;
-	CPlayer* pPlayer;
 
 protected:
+	CPlayer* pPlayer;
 	Vec2 m_CameraRangex;
 	Vec2 m_CameraRangey;
 	Vec2 m_LevelMiddle;

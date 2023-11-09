@@ -150,7 +150,7 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 	{
 
 		t = p.path().filename();
-		int idxu = t.find(L"_");
+		int idxu = (int)t.find(L"_");
 		tmpvec.push_back(
 			pair<wstring, wstring>
 			(t.substr(0,idxu), t.substr(idxu+1,t.find(L".png")- idxu-1))
@@ -160,7 +160,7 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 
 	sort(tmpvec.begin(), tmpvec.end(),comparefirst);
 
-	int maxfrm = tmpvec.size();
+	int maxfrm = (int)tmpvec.size();
 	m_vecFrm.reserve(maxfrm);
 
 	wstring tmpname;

@@ -7,8 +7,10 @@
 #include "CLevel.h"
 #include "CLayer.h"
 #include "CUI.h"
-
 #include "CLogMgr.h"
+
+#include "uis.h"
+
 
 CUIMgr::CUIMgr()
 	: m_FocuedUI(nullptr)
@@ -18,7 +20,13 @@ CUIMgr::CUIMgr()
 
 CUIMgr::~CUIMgr()
 {
-
+	for (const auto& pair : m_UIMap)
+	{
+		for (const auto& p : pair.second)
+		{
+			delete p;
+		}
+	}
 }
 
 void CUIMgr::tick()
@@ -131,4 +139,103 @@ CUI* CUIMgr::GetPriorityCheck(CUI* _ParentUI)
 	}
 
 	return pPriorityUI;
+}
+
+void CUIMgr::init()
+{
+	AddUI(new CStatusUI);
+}
+
+void CUIMgr::SetUIVisible(wstring _uiname)
+{
+	CUI* pUI = FindAvailableUI(_uiname);
+	if (nullptr == pUI)
+	{
+		LOG(LOG_LEVEL::LOG, (L"UI를 찾을수 없습니다"));
+		return;
+	}
+	pUI->SetUIVisible();
+}
+
+CUI* CUIMgr::FindAvailableUI(wstring _uiname)
+{
+	CUI* pui = nullptr;
+	vector< CUI* >* puis = FindUI(_uiname);
+
+	if (nullptr == puis)
+	{
+		LOG(LOG_LEVEL::LOG, (L"UI를 찾을수 없습니다"));
+		pui = nullptr;
+	}
+	else
+	{
+		for (auto p : (*puis))
+		{
+			if (false == (p->m_visible))
+			{
+				pui = p;
+				break;
+			}
+		}
+	}
+	return pui;
+}
+
+vector<CUI*>* CUIMgr::FindUI(wstring _uiname)
+{
+	auto iter = m_UIMap.find(_uiname);
+
+	if (iter == m_UIMap.end())
+	{
+		return nullptr;
+	}
+	return &(iter->second);
+}
+
+void CUIMgr::AddUI(CUI* _pui)
+{
+	vector<CUI*>* puis;
+	wstring uiname = _pui->m_uiname;
+
+	puis = FindUI(uiname);
+
+	//없어도 괜찮기 때문에 로그를 내지않는다.
+	if (nullptr == puis)
+	{
+		vector<CUI*> newmonsvec;
+		newmonsvec.push_back(_pui);
+		m_UIMap.insert(pair<wstring, vector<CUI*>>(uiname, newmonsvec));
+	}
+	else
+	{
+		puis->push_back(_pui);
+	}
+}
+
+void CUIMgr::SetUIInvisible(CUI* _pui)
+{
+	if (nullptr != _pui) { _pui->m_visible = false; }
+}
+
+void CUIMgr::SetInvisibleAllUI()
+{
+	for (const auto& pair : m_UIMap)
+	{
+		for (const auto& p : pair.second)
+		{
+			p->m_visible = false;
+		}
+	}
+}
+
+int CUIMgr::FindNextUINumber(wstring _uiname)
+{
+	auto iter = m_UIMap.find(_uiname);
+
+	if (m_UIMap.end() == iter)
+	{
+		return 0;
+	}
+
+	return (int)iter->second.size();
 }

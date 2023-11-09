@@ -1,5 +1,6 @@
 #pragma once
 #include "CComponent.h"
+#include "CLogMgr.h"
 
 
 class CState;

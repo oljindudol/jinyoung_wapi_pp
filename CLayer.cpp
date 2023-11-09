@@ -9,9 +9,12 @@
 #include "CSkill.h"
 #include "CMonster.h"
 #include "CMonsterMgr.h"
+#include "CUIMgr.h"
+#include "CUI.h"
 
 
 CLayer::CLayer()
+	:m_LayerIdx(LAYER::DEFAULT)
 {
 }
 
@@ -68,6 +71,11 @@ void CLayer::render(HDC _dc)
 				CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
 				CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
 			}
+			if ((LAYER::UI == idxlayer))
+			{
+				CUI* pUI = dynamic_cast<CUI*>(*iter);
+				CUIMgr::GetInst()->SetUIInvisible(pUI);
+			}
 			iter = m_vecObjects.erase(iter);
 		}
 		else
@@ -83,6 +91,13 @@ void CLayer::DeleteAllObjects()
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
 		LAYER idxlayer = getLayer();
+		if ((LAYER::UI) == idxlayer ||
+			(LAYER::CUT_SCENE == idxlayer) ||
+			(LAYER::SUPER_UI == idxlayer))
+		{continue;}
+		//레벨매니저에 이관
+		if ((LAYER::PLAYER) == idxlayer)
+		{continue;}
 		//스킬매니저에 이관
 		if ((LAYER::MONSTER_PJ == idxlayer) ||
 			(LAYER::PLAYER_PJ == idxlayer) ||

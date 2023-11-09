@@ -24,6 +24,8 @@
 
 CLevelMgr::CLevelMgr()
 	: m_pCurLevel(nullptr)
+	, m_Player(nullptr)
+	, m_arrLevels{}
 {
 
 }

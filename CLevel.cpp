@@ -11,6 +11,7 @@
 #include "CKeyMgr.h"
 #include "CLogMgr.h"
 #include "CEngine.h"
+#include "CUIMgr.h"
 
 class CEntity;
 class CLayer;
@@ -32,6 +33,11 @@ CLevel::CLevel()
 
 CLevel::~CLevel()
 {
+	if (nullptr != pPlayer)
+	{
+		delete pPlayer;
+		pPlayer = nullptr;
+	}
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		if (nullptr != m_Layer[i])
@@ -87,10 +93,12 @@ void CLevel::tick()
 		m_Layer[i]->finaltick(DT);
 	}
 
-	// Enter 키가 눌리면 StartLevel 로 변환
+	// 
 	if (KEY_TAP(KEY::_1))
 	{
-		float perc = (float)rand() / (float)32767;
+		srand((unsigned int)time(NULL));
+		int a = rand();
+		float perc = ((float)(a%100))/100.f;
 
 
 		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f * perc), 200.f));
@@ -123,8 +131,6 @@ void CLevel::tick()
 
 	CLogMgr::GetInst()->AddCustomLog(tplayerpos, Vec2(1366.f, 0.f));
 
-
-
 }
 
 void CLevel::render(HDC _dc)
@@ -148,6 +154,8 @@ void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 //level->exit때만(게임실행중) 호출
 void CLevel::DeleteAllObjects()
 {
+	CMonsterMgr::GetInst()->DeActivateAllMonsters();
+	CUIMgr::GetInst()->SetInvisibleAllUI();
 	CSkillMgr::GetInst()->DeActivateAllSkills();
 	//CSkillMgr::GetInst()->DeActivatedAllMonster();
 	for (UINT i = 0; i < LAYER::END; ++i)

@@ -85,7 +85,7 @@ void CCollider::render(HDC _dc)
 	SetBkMode(_dc, OPAQUE);
 	SELECT_FONT(_dc, FONT_TYPE::STATUS_BAR_POINT);
 	SetTextColor(_dc, RGB(0, 0, 0));
-	TextOut(_dc, (int)(vRenderPos.x - m_vScale.x / 2.f), (int)(vRenderPos.y - m_vScale.y / 2.f -10.f), GetName().c_str(), GetName().length());
+	TextOut(_dc, (int)(vRenderPos.x - m_vScale.x / 2.f), (int)(vRenderPos.y - m_vScale.y / 2.f -10.f), GetName().c_str(), (int)GetName().length());
 
 }
 

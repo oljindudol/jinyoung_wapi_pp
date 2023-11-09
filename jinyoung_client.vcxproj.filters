@@ -125,6 +125,9 @@
     <Filter Include="03.Game\10.StageZero\background">
       <UniqueIdentifier>{2308563e-6c6a-4bf4-9bf5-c22f1ff551ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Game\01.Header\pool">
+      <UniqueIdentifier>{4c7ae206-a906-4321-8c21-c6094841c2f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -253,9 +256,6 @@
     <ClInclude Include="CUI.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="CUIMgr.h">
-      <Filter>03.Game\03.Manager</Filter>
-    </ClInclude>
     <ClInclude Include="CSound.h">
       <Filter>03.Game\07.Asset</Filter>
     </ClInclude>
@@ -273,12 +273,6 @@
     </ClInclude>
     <ClInclude Include="CStartLevel.h">
       <Filter>03.Game\05.Level</Filter>
-    </ClInclude>
-    <ClInclude Include="skills.h">
-      <Filter>03.Game\01.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="monsters.h">
-      <Filter>03.Game\01.Header</Filter>
     </ClInclude>
     <ClInclude Include="CEnteranceLevel.h">
       <Filter>03.Game\10.StageZero</Filter>
@@ -329,6 +323,18 @@
       <Filter>03.Game\03.Manager</Filter>
     </ClInclude>
     <ClInclude Include="CStatusUI.h" />
+    <ClInclude Include="CUIMgr.h">
+      <Filter>04.CurWork</Filter>
+    </ClInclude>
+    <ClInclude Include="monsters.h">
+      <Filter>03.Game\01.Header\pool</Filter>
+    </ClInclude>
+    <ClInclude Include="skills.h">
+      <Filter>03.Game\01.Header\pool</Filter>
+    </ClInclude>
+    <ClInclude Include="uis.h">
+      <Filter>03.Game\01.Header\pool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -452,9 +458,6 @@
     <ClCompile Include="CUI.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="CUIMgr.cpp">
-      <Filter>03.Game\03.Manager</Filter>
-    </ClCompile>
     <ClCompile Include="CSound.cpp">
       <Filter>03.Game\07.Asset</Filter>
     </ClCompile>
@@ -522,5 +525,8 @@
       <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CStatusUI.cpp" />
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
