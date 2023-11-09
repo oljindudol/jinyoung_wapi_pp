@@ -24,6 +24,9 @@ CStatusUI::CStatusUI()
 	covertex = asmgr->LoadTexture(L"StatusUICover", L"texture\\status\\status.layer.cover.png");
 	lvtex= asmgr->LoadTexture(L"StatusUILv", L"texture\\status\\layer.Lv.png");
 
+	exptex = asmgr->LoadTexture(L"StatusUIExp", L"texture\\status\\1366.layer.back.png");
+	expcovertex = asmgr->LoadTexture(L"StatusUIExpCover", L"texture\\status\\1366.layer.cover.png");
+
 	for (int i = 0; i < 10; i++)
 	{
 		vecgaugetex.push_back(
@@ -131,6 +134,11 @@ void CStatusUI::render(HDC _dc)
 	//캐릭터이름
 	SELECT_FONT2(_dc, FONT_TYPE::STATUS_BAR_NAME);
 	TextOut(_dc, (int)(vRenderPos.x + 98.f), (int)(vRenderPos.y + 8.f), charname.c_str(), charname.length());
+
+
+	SettexturetoDc(_dc, exptex, (Vec2(0.f, 758.f)));
+	SettexturetoDc(_dc, expcovertex, (Vec2(142.f, 759.f)));
+
 
 	Super::render(_dc);
 

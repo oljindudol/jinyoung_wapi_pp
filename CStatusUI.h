@@ -19,6 +19,8 @@ private:
     vector<CTexture*> vecgaugetex;
     wstring slash;
     wstring charname;
+    CTexture* exptex;
+    CTexture* expcovertex;
 
     //void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos,float _offset=0.f);
     //void SettexturetoDc(HDC _dc, CTexture* _ptexture,Vec2 _pos);
