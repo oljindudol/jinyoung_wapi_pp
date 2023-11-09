@@ -4,6 +4,7 @@
 #include "CEntity.h"
 #include "CTaskMgr.h"
 #include "define.h"
+#include "CTexture.h"
 
 Vec2 Rotate(Vec2 _vDir, float _angle)
 {
@@ -54,4 +55,91 @@ void LoadWString(wstring& _str, FILE* _File)
 	fread(szBuff, sizeof(wchar_t), iLen, _File);
 
 	_str = szBuff;
+}
+
+
+void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc)
+{
+
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
+
+	AlphaBlend(_dc
+		, _pos.x
+		, _pos.y
+		, _tex->GetWidth() * _perc
+		, _tex->GetHeight()
+		, _tex->GetDC()
+		, 0, 0
+		, _tex->GetWidth() * _perc
+		, _tex->GetHeight()
+		, blend);
+}
+
+void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc)
+{
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
+
+	AlphaBlend(_dc
+		, _pos.x
+		, _pos.y
+		, _tex->GetWidth()
+		, _tex->GetHeight() * _perc
+		, _tex->GetDC()
+		, 0, 0
+		, _tex->GetWidth()
+		, _tex->GetHeight() * _perc
+		, blend);
+}
+
+void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
+{
+	wstring strnums = std::to_wstring(_num);
+
+	Vec2 offset = Vec2(_offset, 0.f);
+
+	if (0 != _vecnumtex.size())
+	{
+		offset += Vec2(
+			(int)_vecnumtex[0]->GetWidth()
+			, 0
+		);
+	}
+
+	for (int i = 0; i < strnums.size(); i++)
+	{
+		int num = strnums[i] - '0';
+		SettexturetoDc(_dc, _vecnumtex[num], _pos + (offset * i));
+	}
+
+}
+
+void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
+{
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
+
+	AlphaBlend(_dc
+		, int(_pos.x)
+		, int(_pos.y)
+		, _ptexture->GetWidth()
+		, _ptexture->GetHeight()
+		, _ptexture->GetDC()
+		, 0, 0
+		, _ptexture->GetWidth()
+		, _ptexture->GetHeight()
+		, blend);
 }

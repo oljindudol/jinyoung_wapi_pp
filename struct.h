@@ -196,6 +196,16 @@ public:
 	~FSelectPen();
 };
 
+struct FSelectFont
+{
+private:
+	HFONT hPrevFont;
+	HDC  hCurDC;
+
+public:
+	FSelectFont(HDC _dc, FONT_TYPE _type);
+	~FSelectFont();
+};
 
 struct FSelectBrush
 {

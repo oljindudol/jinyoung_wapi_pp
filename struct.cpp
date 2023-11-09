@@ -16,6 +16,7 @@ FSelectPen::~FSelectPen()
 }
 
 
+
 FSelectBrush::FSelectBrush(HDC _dc, HBRUSH _brush)
 	: hCurDC(_dc)
 	, hPrevBrush(nullptr)
@@ -26,4 +27,16 @@ FSelectBrush::FSelectBrush(HDC _dc, HBRUSH _brush)
 FSelectBrush::~FSelectBrush()
 {
 	SelectObject(hCurDC, hPrevBrush);
+}
+
+FSelectFont::FSelectFont(HDC _dc, FONT_TYPE _type)
+	: hCurDC(_dc)
+	, hPrevFont(nullptr)
+{
+	hPrevFont = (HFONT)SelectObject(hCurDC, CEngine::GetInst()->GetFont(_type));
+}
+
+FSelectFont::~FSelectFont()
+{
+	SelectObject(hCurDC, hPrevFont);
 }

@@ -34,6 +34,10 @@
 #define DEBUG_RENDER CEngine::GetInst()->DebugRender()
 #define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
 #define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
+#define SELECT_FONT(DC, TYPE) FSelectFont tempFontSelect(DC, TYPE)
+#define SELECT_FONT2(DC, TYPE) FSelectFont tempFontSelect2(DC, TYPE)
+#define SELECT_FONT3(DC, TYPE) FSelectFont tempFontSelect3(DC, TYPE)
+
 
 
 #define TILE_SIZE 64
@@ -175,6 +179,20 @@ enum TASK_TYPE
 
 	// Param1 : LEVEL_TYPE
 	LEVEL_CHANGE,
+};
+
+enum FONT_TYPE
+{
+	LOG_TEXT,
+	STATUS_BAR_NAME,
+	STATUS_BAR_POINT,
+	CHARATER_NAMETAG,
+	LEVEL_ALERT,
+	ACHIVEMENT,
+	DEBUG_TAB,
+	END_ROLL,
+
+	FONT_END,
 };
 
 

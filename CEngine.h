@@ -31,16 +31,16 @@ private:
 
 	bool	m_bDebugRender;
 	HPEN	m_arrPen[PEN_END];
-
-
+	HFONT	m_arrFont[FONT_END];
 
 public:
 	HWND GetMainWind() { return m_hWnd; }
 	HDC GetMainDC() { return m_dc; }
 	POINT GetResolution() { return m_ptResolution; }
 
-
 	HPEN GetPen(PEN_TYPE _type) { return m_arrPen[_type]; }
+	HFONT GetFont(FONT_TYPE _type) { return m_arrFont[_type]; }
+
 	bool DebugRender() { return m_bDebugRender; }
 	void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
 

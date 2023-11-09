@@ -62,6 +62,15 @@ void CEngine::CreateDefaultGDI()
 	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
 	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
 	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
+
+
+	SetBkMode(m_SubTex->GetDC(), TRANSPARENT);
+
+	m_arrFont[STATUS_BAR_POINT] = CreateFont(10, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("궁서"));
+	m_arrFont[LOG_TEXT] = (HFONT)SelectObject(m_SubTex->GetDC(), m_arrFont[STATUS_BAR_POINT]);
+	m_arrFont[STATUS_BAR_NAME] = CreateFont(11, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
+
+
 }
 
 void CEngine::init(HWND _hWnd, POINT _ptResolution)
@@ -85,6 +94,9 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 	// 추가 비트맵 버퍼
 	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
+
+
+
 
 	//m_subbitmap= CreateCompatibleBitmap(m_dc, m_ptResolution.x, m_ptResolution.y);
 	//m_subdc = CreateCompatibleDC(m_dc);

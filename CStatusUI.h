@@ -17,11 +17,15 @@ private:
     CTexture* nametex;
     vector<CTexture*> veclvtex;
     vector<CTexture*> vecgaugetex;
-    void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos,float _offset=0.f);
-    void SettexturetoDc(HDC _dc, CTexture* _ptexture,Vec2 _pos);
+    wstring slash;
+    wstring charname;
+
+    //void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos,float _offset=0.f);
+    //void SettexturetoDc(HDC _dc, CTexture* _ptexture,Vec2 _pos);
 
 
     int testhp;
+    float hpbuffer;
     float acctime;
     bool desc;
 

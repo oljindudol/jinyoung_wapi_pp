@@ -49,7 +49,7 @@ void CEnteranceLevel::init()
 
 	// 카메라 range설정
 	m_CameraRangex = Vec2(685.f, m_LevelMiddle.x +(m_LevelMiddle.x - 685.f) );
-	m_CameraRangey = Vec2(670.f, 670.f);
+	m_CameraRangey = Vec2(673.f, 673.f);
 
 	// 카메라 lookat 설정
 	CCamera::GetInst()->SetInitialLookAt(m_CameraRangex, m_CameraRangey);

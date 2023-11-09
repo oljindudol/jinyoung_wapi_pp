@@ -15,6 +15,9 @@ CLogMgr::~CLogMgr()
 
 void CLogMgr::tick(HDC _dc)
 {
+
+	SELECT_FONT(_dc, FONT_TYPE::LOG_TEXT);
+
 	list<FLog>::iterator iter = m_LogList.begin();
 
 	for (; iter != m_LogList.end(); )
@@ -32,6 +35,8 @@ void CLogMgr::tick(HDC _dc)
 
 	iter = m_LogList.begin();
 	POINT LT = { 10, 10 };
+
+	SetBkMode(_dc, OPAQUE);
 
 	int i = 0;
 	for (; iter != m_LogList.end(); ++iter, ++i)
@@ -67,6 +72,7 @@ void CLogMgr::tick(HDC _dc)
 	//TextOut(_dc, x, y , tmousepos.c_str(), (int)tmousepos.length());
 
 
+	SetBkMode(_dc, TRANSPARENT);
 	auto iter2 = m_CustomLogList.begin();
 	while (m_CustomLogList.end() != iter2)
 	{
