@@ -37,26 +37,26 @@ void CEditorLevel::enter()
 	//CEngine::GetInst()->ChangeWindowSize(ptResSol, true);
 
 	// 墨皋扼 汲沥
-	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
-	vLookAt /= 2.f;
-	CCamera::GetInst()->SetLookAt(vLookAt);
+	//Vec2 vLookAt = CEngine::GetInst()->GetResolution();
+	//vLookAt /= 2.f;
+	//CCamera::GetInst()->SetLookAt(vLookAt);
 
-	// 鸥老 积己
-	CreateTile(10, 10);
+	//// 鸥老 积己
+	//CreateTile(10, 10);
 
-	// UI 积己
-	CPanelUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetScale(Vec2(500.f, 400.f));
-	pPanelUI->SetPos(Vec2(800.f, 200.f));
+	//// UI 积己
+	//CPanelUI* pPanelUI = new CPanelUI;
+	//pPanelUI->SetScale(Vec2(500.f, 400.f));
+	//pPanelUI->SetPos(Vec2(800.f, 200.f));
 
-	CBtnUI* pBtnUI = new CBtnUI;
-	pBtnUI->SetScale(Vec2(200.f, 80.f));
-	pBtnUI->SetPos(Vec2(10.f, 10.f));
-	//pBtnUI->SetCallBack(TestFunc);
-	pBtnUI->SetDeletage(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
+	//CBtnUI* pBtnUI = new CBtnUI;
+	//pBtnUI->SetScale(Vec2(200.f, 80.f));
+	//pBtnUI->SetPos(Vec2(10.f, 10.f));
+	////pBtnUI->SetCallBack(TestFunc);
+	//pBtnUI->SetDeletage(this, (DelegateFunc)&CEditorLevel::OpenTileCreateWindow);
 
-	pPanelUI->AddChildUI(pBtnUI);
-	AddObject(LAYER::UI, pPanelUI);
+	//pPanelUI->AddChildUI(pBtnUI);
+	//AddObject(LAYER::UI, pPanelUI);
 
 
 	/*pPanelUI = pPanelUI->Clone();

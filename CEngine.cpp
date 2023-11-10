@@ -31,8 +31,10 @@ CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_dc(nullptr)
-	, m_bDebugRender(true)
+	, m_bDebugRender(false)
 	, m_arrPen{}
+	, m_SubTex(nullptr)
+	, m_arrFont{}
 {
 }
 
@@ -114,11 +116,11 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CCollisionMgr::GetInst()->init();
 
 	CUIMgr::GetInst()->init();
-	CLevelMgr::GetInst()->init();
-
-	//레벨매니저보다 나중에호출해야 먼저 소멸된다.
 	CSkillMgr::GetInst()->init();
 	CMonsterMgr::GetInst()->init();
+
+	CLevelMgr::GetInst()->init();
+
 
 	//레벨매니저로 이관
 	//// Level 생성
@@ -158,7 +160,7 @@ void CEngine::tick()
 	//m_Level->render(m_dc);
 	//Rectangle(m_dc, 0, 0, m_ptResolution.x, m_ptResolution.y);
 
-	if (KEY_TAP(KEY::_8))
+	if (KEY_TAP(KEY::L))
 	{
 		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
 	}

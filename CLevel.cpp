@@ -94,14 +94,24 @@ void CLevel::tick()
 	}
 
 	// 
+	srand((unsigned int)time(NULL));
 	if (KEY_TAP(KEY::_1))
 	{
-		srand((unsigned int)time(NULL));
 		int a = rand();
 		float perc = ((float)(a%100))/100.f;
 
 
 		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f * perc), 200.f));
+	}
+
+	if (KEY_TAP(KEY::_2))
+	{
+		CMonsterMgr::GetInst()->ChangeAllMonsterForcedIdle();
+	}
+
+	if (KEY_TAP(KEY::_3))
+	{
+		CMonsterMgr::GetInst()->ChangeAllMonsterIdle();
 	}
 
 
