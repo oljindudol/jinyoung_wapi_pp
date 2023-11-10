@@ -112,6 +112,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CSoundMgr::GetInst()->init();
 
 	CCollisionMgr::GetInst()->init();
+
 	CUIMgr::GetInst()->init();
 	CLevelMgr::GetInst()->init();
 
@@ -170,8 +171,8 @@ void CEngine::tick()
 
 
 	CCollisionMgr::GetInst()->tick();
-	CUIMgr::GetInst()->tick();
 
+	CUIMgr::GetInst()->tick();
 	CLevelMgr::GetInst()->render(m_SubTex->GetDC());
 
 	// Camera render
