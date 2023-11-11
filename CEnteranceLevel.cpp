@@ -136,6 +136,9 @@ void CEnteranceLevel::init()
 	pSound->SetVolume(20);
 	pSound->SetPosition(45.f);
 	pSound->Play(true);
+
+
+
 }
 
 void CEnteranceLevel::enter()

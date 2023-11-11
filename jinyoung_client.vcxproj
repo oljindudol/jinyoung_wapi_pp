@@ -182,7 +182,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CMovement.h" />
+    <ClInclude Include="CNormalMonAtt1.h" />
+    <ClInclude Include="CNormalMonAtt3.h" />
+    <ClInclude Include="CNormalMonDie.h" />
     <ClInclude Include="CNormalMonIdle.h" />
+    <ClInclude Include="CNormalMonRegen.h" />
     <ClInclude Include="CNormalMonTrace.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="components.h" />
@@ -261,6 +265,7 @@
     <ClInclude Include="skills.h" />
     <ClInclude Include="monsters.h" />
     <ClInclude Include="uis.h" />
+    <ClInclude Include="yalda.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAnim.cpp" />
@@ -290,7 +295,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="CMovement.cpp" />
+    <ClCompile Include="CNormalMonAtt1.cpp" />
+    <ClCompile Include="CNormalMonAtt3.cpp" />
+    <ClCompile Include="CNormalMonDie.cpp" />
     <ClCompile Include="CNormalMonIdle.cpp" />
+    <ClCompile Include="CNormalMonRegen.cpp" />
     <ClCompile Include="CNormalMonTrace.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPal.cpp" />
@@ -365,6 +374,7 @@
     </ClCompile>
     <ClCompile Include="pinkbean_phantomblow.cpp" />
     <ClCompile Include="struct.cpp" />
+    <ClCompile Include="yalda.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc" />

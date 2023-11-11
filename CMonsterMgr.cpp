@@ -13,20 +13,7 @@ CMonsterMgr::CMonsterMgr()
 void CMonsterMgr::init()
 {
 	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-	AddMonster(new ion);
-
+	AddMonster(new yalda);
 }
 
 void CMonsterMgr::tick()

@@ -44,6 +44,8 @@ private:
     bool            m_bFinish;
     // -1 루프안함, 루프할 프레임
     int            m_iRoop;
+    //배속
+    float m_multi;
     ORIENTATION m_ort;
 
 

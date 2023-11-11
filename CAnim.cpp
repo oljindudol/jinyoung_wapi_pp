@@ -24,6 +24,7 @@ CAnim::CAnim()
 	, m_iRoop(0)
 	, m_AccTime(0.f)
 	, m_ort(ORT_LEFT)
+	, m_multi(0.f)
 {
 }
 
@@ -132,7 +133,6 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 	SetName(_strphase+ _strobj+_stranimname);
 
 
-
 	wstring filePath = CPathMgr::GetContentPath();
 	wstring addipath = 
 		_strphase + L"\\"
@@ -182,6 +182,7 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 		m_vecFrm.push_back(frm);
 	}
 
+	m_multi = _playmul;
 
 	//for (size_t i = 0; i < _MaxFrm; ++i)
 	//{

@@ -23,6 +23,11 @@ public:
     void Stop();
     wstring GetCurAnimName() { return m_CurAnim->GetName(); }
 
+    float GetCurAnimmulti() 
+    {
+        return m_CurAnim->m_multi;
+    }
+
 
     // Animation Ã£±â
     CAnim* FindAnim(const wstring& _strName);

@@ -92,11 +92,12 @@ void CLevel::tick()
 	srand((unsigned int)time(NULL));
 	if (KEY_TAP(KEY::_1))
 	{
-		int a = rand();
-		float perc = ((float)(a % 100)) / 100.f;
+		//int a = rand();
+		//float perc = ((float)(a % 100)) / 100.f;
 
 
-		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f * perc), 200.f));
+		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
+		CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
 	}
 
 	if (KEY_TAP(KEY::_2))

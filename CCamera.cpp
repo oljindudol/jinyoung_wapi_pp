@@ -127,11 +127,10 @@ void CCamera::tick()
 		}
 
 		
-
 		Vec2 posdiff = Vec2(diffX, diffY);
 
 
-		m_vLookAt = m_vLookAt + posdiff * DT * 1.3f;
+		m_vLookAt = m_vLookAt + posdiff * DT * 1.5f;
 
 	}
 

@@ -2,6 +2,7 @@
 #include "CNormalMonTrace.h"
 
 CNormalMonTrace::CNormalMonTrace()
+	:m_bigcollider(false)
 {
 }
 
@@ -71,15 +72,13 @@ void CNormalMonTrace::finaltick(float _DT)
 
 	if (3.45f < m_acctime)
 	{
-		CAnimator* pAni = GetAnimator();
-		pAni->Play(L"firstionattack2");
-		m_acctime = 0.f;
+		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+		return;
 	}
 	if (2.82f < m_acctime)
 	{
 		if (m_bigcollider) 
 		{
-			
 			m_bigcollider = false;
 			GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 			GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
@@ -113,7 +112,7 @@ void CNormalMonTrace::Enter()
 	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
 	
 	CAnimator* pAni= GetAnimator();
-	pAni->Play(L"firstionattack2");
+	pAni->Play(GetOwner()->GetName() + L"attack2");
 
 	// 레벨에 있는 플레이어를 알아낸다.
 	m_pPlayer = dynamic_cast<CPlayer*>(CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
@@ -123,9 +122,9 @@ void CNormalMonTrace::Enter()
 
 void CNormalMonTrace::Exit()
 {
-	m_bigcollider = false;
-	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
-	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
+	//m_bigcollider = false;
+	//GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
+	//GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
 }
 
 

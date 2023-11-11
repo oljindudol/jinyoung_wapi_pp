@@ -38,6 +38,7 @@
 #define SELECT_FONT2(DC, TYPE) FSelectFont tempFontSelect2(DC, TYPE)
 #define SELECT_FONT3(DC, TYPE) FSelectFont tempFontSelect3(DC, TYPE)
 
+#define firstmon_attack2_dist 600.f
 
 
 #define TILE_SIZE 64
@@ -232,8 +233,13 @@ enum class LEVEL_TYPE
 
 enum class ENORMAL_MON_STATE
 {
+	REGEN,
 	IDLE,
-	TRACE,
+	ATTACK1,
+	ATTACK2,
+	ATTACK3,
+	BIND,
+	DIE,
 };
 
 enum class PLAYER_STATE

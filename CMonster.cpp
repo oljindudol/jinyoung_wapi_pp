@@ -75,9 +75,8 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 	// 상태 변화
 	if (nullptr != m_AI)
 	{
-		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::REGEN);
 	}
-
 
 
 	// 레벨에참여
