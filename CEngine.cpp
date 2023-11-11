@@ -31,7 +31,7 @@ CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_dc(nullptr)
-	, m_bDebugRender(false)
+	, m_bDebugRender(true)
 	, m_arrPen{}
 	, m_SubTex(nullptr)
 	, m_arrFont{}

@@ -101,7 +101,7 @@ void CCamera::tick()
 
 		if (beneath)
 		{
-			float limitY = rangeY.x + cameraoffset.y;
+			float limitY = rangeY.x;//+ cameraoffset.y;
 			if (limitY > playercamerapos.y)
 			{
 				diffY = playercamerapos.y - m_vLookAt.y;
@@ -114,15 +114,15 @@ void CCamera::tick()
 		}
 		else
 		{
-			float limitY = rangeY.y + cameraoffset.y;
-			if (limitY < playercamerapos.y)
+			float limitY = rangeY.y +cameraoffset.y;
+			if ((limitY) < (playercamerapos.y))
 			{
 				diffY = playercamerapos.y - m_vLookAt.y;
 			}
 			else
 			{
 				//범위를 벗어났을 경우 범위를 기준으로 차이를 구한다.
-				diffY = limitY - m_vLookAt.y;
+				diffY = (limitY - m_vLookAt.y);
 			}
 		}
 

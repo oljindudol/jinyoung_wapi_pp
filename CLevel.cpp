@@ -93,7 +93,7 @@ void CLevel::tick()
 	if (KEY_TAP(KEY::_1))
 	{
 		int a = rand();
-		float perc = ((float)(a%100))/100.f;
+		float perc = ((float)(a % 100)) / 100.f;
 
 
 		CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((1600.f * perc), 200.f));
@@ -108,6 +108,29 @@ void CLevel::tick()
 	{
 		CMonsterMgr::GetInst()->ChangeAllMonsterIdle();
 	}
+
+	if (KEY_TAP(M))
+	{
+		CBackGround* pBack = m_BackGround;
+		bool bBack = m_BackOn;
+
+		// pback 이 설정되어있고 백그라운드off이라면
+		// 켜준다
+		if (nullptr != pBack && !bBack)
+		{
+			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT,(UINT_PTR)LAYER::BACKGROUND ,(UINT_PTR)pBack });
+			m_BackOn = true;
+		}
+		// pback 이 설정되어있고 백그라운드on이라면
+		// 꺼준다
+		else if (nullptr != pBack && bBack)
+		{
+			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)pBack });
+			m_BackOn = false;
+		}
+	}
+
+
 
 
 	//디버그 로그

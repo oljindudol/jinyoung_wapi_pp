@@ -69,7 +69,7 @@ void CLevelMgr::init()
 	//}
 
 	// Level
-	ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
+	ChangeLevel(LEVEL_TYPE::PHASE_FIRST);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
@@ -186,13 +186,13 @@ void CLevelMgr::render(HDC _dc)
 
 		StretchBlt(
 			_dc,
-			(int)(ptResolution.x * ((mag - 1.f) / (-2.f))),
+			0,//(int)(ptResolution.x * ((mag - 1.f) / (-2.f))),
 			(int)(ptResolution.y * ((mag - 1.f) / (-2.f))),
-			(int)(ptResolution.x * mag),
-			(int)(ptResolution.y * mag),
+			(int)(ptResolution.x ),
+			(int)(ptResolution.y ),
 			tmpdc,
-			(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
-			(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
+			0,//(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
+			0,//(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
 			(int)(ptResolution.x / mag),
 			(int)(ptResolution.y / mag),
 			SRCCOPY
@@ -209,6 +209,29 @@ void CLevelMgr::render(HDC _dc)
 
 }
 
+
+void CLevelMgr::imagUp()
+{
+	imag++;
+	float mag = 1.f + (((float)imag - 1.f) / 10.f);
+	
+	if (!DEBUG_RENDER)
+	{
+		wstring msg = L"확대배율:" + std::to_wstring(mag).substr(0, 3);
+		LOG(LOG_LEVEL::LOG, (msg.c_str()));
+	}
+}
+
+void CLevelMgr::imagDown()
+{
+	imag--;
+	float mag = 1.f + (((float)imag - 1.f) / 10.f);
+	if (!DEBUG_RENDER)
+	{
+		wstring msg = L"확대배율:" + std::to_wstring(mag).substr(0, 3);
+		LOG(LOG_LEVEL::LOG, (msg.c_str()));
+	}
+}
 
 Vec2 CLevelMgr::GetCurLevelCameraRangeX()
 {

@@ -338,6 +338,7 @@
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
     <ClInclude Include="CPhaseFirst.h" />
+    <ClInclude Include="CPortal.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -534,5 +535,6 @@
     <ClCompile Include="main.cpp">
       <Filter>03.Game\02.Engine</Filter>
     </ClCompile>
+    <ClCompile Include="CPortal.cpp" />
   </ItemGroup>
 </Project>

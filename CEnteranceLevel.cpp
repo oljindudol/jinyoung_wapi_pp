@@ -25,7 +25,7 @@
 #include "CTexture.h"
 
 #include "CUIMgr.h"
-
+#include "CPortal.h"
 
 CEnteranceLevel::~CEnteranceLevel()
 {
@@ -52,7 +52,7 @@ void CEnteranceLevel::init()
 
 	// 카메라 range설정
 	m_CameraRangex = Vec2(685.f, mapsize.x - 685.f);
-	m_CameraRangey = Vec2(683.f, 683.f + (mapsize.y - 767));
+	m_CameraRangey = Vec2(683.f + (mapsize.y - 767),683.f);
 
 	// 카메라 lookat 설정
 	CCamera::GetInst()->SetLookAt(Vec2(m_CameraRangex.x, m_CameraRangey.x -300.f));
@@ -93,6 +93,11 @@ void CEnteranceLevel::init()
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
 
+
+	//포탈설치
+	CPortal* pPortal = new CPortal;
+	pPortal->SetPos(Vec2(m_LevelMiddle.x, 620.f - 80.f));
+	AddObject(PORTAL, pPortal);
 
 	// 플랫폼 설치2
 	CPlatform* pPlatform2 = new CPlatform;

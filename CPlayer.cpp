@@ -322,25 +322,25 @@ void CPlayer::tick(float _DT)
 
 	//}
 
-	if (KEY_TAP(M))
-	{
-		CBackGround* pBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackGround;
-		bool bBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackOn;
+	//if (KEY_TAP(M))
+	//{
+	//	CBackGround* pBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackGround;
+	//	bool bBack = CLevelMgr::GetInst()->GetCurLevel()->m_BackOn;
 
-		// pback 이 설정되어있고 백그라운드off이라면
-		// 켜준다
-		if (nullptr != pBack && !bBack)
-		{
-			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT,(UINT_PTR)LAYER::BACKGROUND ,(UINT_PTR)pBack});
-			CLevelMgr::GetInst()->GetCurLevel()->m_BackOn = true;
-		}
-		// pback 이 설정되어있고 백그라운드on이라면
-		// 꺼준다
-		else if (nullptr != pBack && bBack) 
-		{
-			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)pBack });
-			CLevelMgr::GetInst()->GetCurLevel()->m_BackOn = false;
-		}
+	//	// pback 이 설정되어있고 백그라운드off이라면
+	//	// 켜준다
+	//	if (nullptr != pBack && !bBack)
+	//	{
+	//		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT,(UINT_PTR)LAYER::BACKGROUND ,(UINT_PTR)pBack});
+	//		CLevelMgr::GetInst()->GetCurLevel()->m_BackOn = true;
+	//	}
+	//	// pback 이 설정되어있고 백그라운드on이라면
+	//	// 꺼준다
+	//	else if (nullptr != pBack && bBack) 
+	//	{
+	//		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)pBack });
+	//		CLevelMgr::GetInst()->GetCurLevel()->m_BackOn = false;
+	//	}
 
 
 
@@ -361,7 +361,7 @@ void CPlayer::tick(float _DT)
 
 		//		
 		//LOG(WARNING, L"경고");		
-	}
+	//}
 	//SetPos(vPos);
 }
 

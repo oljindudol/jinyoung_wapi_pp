@@ -13,8 +13,8 @@ private:
 	int imag;
 
 public:
-	void imagUp() { imag++; }
-	void imagDown() { imag--; }
+	void imagUp(); //{ imag++; }
+	void imagDown();// { imag--; }
 
 	CPlayer* GetPlayer() {return m_Player;}
 	Vec2 GetCurLevelCameraRangeX();
