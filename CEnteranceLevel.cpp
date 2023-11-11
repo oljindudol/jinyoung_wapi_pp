@@ -51,11 +51,11 @@ void CEnteranceLevel::init()
 
 
 	// 카메라 range설정
-	m_CameraRangex = Vec2(m_LevelMiddle.x-310.f, m_LevelMiddle.x + 310.f);
+	m_CameraRangex = Vec2(685.f, mapsize.x - 685.f);
 	m_CameraRangey = Vec2(683.f, 683.f + (mapsize.y - 767));
 
 	// 카메라 lookat 설정
-	CCamera::GetInst()->SetInitialLookAt(m_CameraRangex, m_CameraRangey);
+	CCamera::GetInst()->SetLookAt(Vec2(m_CameraRangex.x, m_CameraRangey.x -300.f));
 
 
 	// 플레이어 가져와서 레벨에 합류
@@ -88,7 +88,7 @@ void CEnteranceLevel::init()
 
 
 	CWall* pWall2 = new CWall;
-	pWall2->SetPos(Vec2(2090.f, 500.f));
+	pWall2->SetPos(Vec2(mapsize.x+100.f, 500.f));
 	AddObject(WALL, pWall2);
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
@@ -110,9 +110,9 @@ void CEnteranceLevel::init()
 
 
 	// 카메라 설정
-	Vec2 vLookAt = CEngine::GetInst()->GetResolution();
-	vLookAt /= 2.f;
-	CCamera::GetInst()->SetLookAt(vLookAt);
+	//Vec2 vLookAt = CEngine::GetInst()->GetResolution();
+	//vLookAt /= 2.f;
+	//CCamera::GetInst()->SetLookAt(vLookAt);
 
 	// 충돌 설정
 	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
@@ -127,7 +127,7 @@ void CEnteranceLevel::init()
 	//pStatusUI->SetPos(Vec2(600.f, 690.f));
 
 
-	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TheWorld’sEnd.wav");
+	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_00", L"sound\\TheWorld’sEnd.wav");
 	pSound->SetVolume(20);
 	pSound->SetPosition(45.f);
 	pSound->Play(true);
@@ -137,7 +137,7 @@ void CEnteranceLevel::enter()
 {
 	init();
 	//CCamera::GetInst()->FadeOut(3.f);
-	//CCamera::GetInst()->FadeIn(0.3f);
+	CCamera::GetInst()->FadeIn(0.3f);
 
 	//CCamera::GetInst()->FadeOut(0.3f);
 	//CCamera::GetInst()->FadeIn(0.3f);
@@ -155,6 +155,9 @@ void CEnteranceLevel::enter()
 
 void CEnteranceLevel::exit()
 {
+	CAssetMgr::GetInst()
+		->FindSound(L"BGM_00")
+		->Stop(true);
 	DeleteAllObjects();
 }
 
@@ -165,7 +168,7 @@ void CEnteranceLevel::tick()
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+		ChangeLevel(LEVEL_TYPE::PHASE_FIRST);
 	}
 
 	//if (KEY_TAP(KEY::M))

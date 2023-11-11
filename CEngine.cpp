@@ -95,8 +95,10 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 
 	// 추가 비트맵 버퍼
-	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
+	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x *4, m_ptResolution.y *2 );
 
+	// 추가 비트맵 버퍼
+	m_TmpTex = CAssetMgr::GetInst()->CreateTexture(L"TmpTex", m_ptResolution.x *4 , m_ptResolution.y *2 );
 
 
 
@@ -189,6 +191,8 @@ void CEngine::tick()
 
 
 
+
+
 	// Task Execute
 	CTaskMgr::GetInst()->tick();
 	// CG
@@ -209,6 +213,11 @@ void CEngine::tick()
 		PrevCount = CurCount;
 	}*/
 
+}
+
+HDC CEngine::GetTmpDc()
+{
+	return m_TmpTex->GetDC();
 }
 
 void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)

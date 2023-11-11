@@ -32,8 +32,6 @@ public:
 	void SetLookAt(Vec2 _vLookAt) { m_vLookAt = _vLookAt; }
 
 
-	void SetInitialLookAt(Vec2 _RangeX, Vec2 _RangeY );
-
 	void FadeIn(float _time)
 	{
 		FCamEvent evnt = {};

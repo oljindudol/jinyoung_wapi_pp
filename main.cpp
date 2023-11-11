@@ -6,6 +6,7 @@
 #include "jinyoung_client.h"
 #include "CEngine.h"
 #include "CKeyMgr.h"
+#include "CLevelMgr.h"
 
 #define MAX_LOADSTRING 100
 
@@ -210,6 +211,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+    case WM_MOUSEWHEEL:
+        if ((SHORT)HIWORD(wParam) > 0)
+            CLevelMgr::GetInst()->imagUp();
+        if ((SHORT)HIWORD(wParam) < 0)
+            CLevelMgr::GetInst()->imagDown();
+
+    break;
 
     case WM_SYSKEYDOWN:
     case WM_KEYDOWN://alt키막기

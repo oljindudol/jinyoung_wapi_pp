@@ -214,8 +214,4 @@ void CCamera::render(HDC _dc)
 		, blend);
 }
 
-void CCamera::SetInitialLookAt(Vec2 _RangeX, Vec2 _RangeY)
-{
-	m_vLookAt = Vec2(_RangeX.x, _RangeY.y);
 
-}

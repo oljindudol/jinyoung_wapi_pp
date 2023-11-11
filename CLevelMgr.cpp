@@ -20,18 +20,23 @@
 #include "CEnteranceLevel.h"
 #include "CStartLevel.h"
 #include "CEditorLevel.h"
+#include "CPhaseFirst.h"
+#include "CTexture.h"
 
 
 CLevelMgr::CLevelMgr()
 	: m_pCurLevel(nullptr)
 	, m_Player(nullptr)
 	, m_arrLevels{}
+	, imag(1)
 {
 
 }
 
 CLevelMgr::~CLevelMgr()
 {
+	delete m_Player;
+
 	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
 	{
 		if (nullptr != m_arrLevels[i])
@@ -53,17 +58,18 @@ void CLevelMgr::init()
 
 	// 모든 레벨 생성
 	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
-	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new CEnteranceLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIRST] = new CPhaseFirst;
+	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_ZERO] = new CEnteranceLevel;
 
 	// 레벨 초기화
-	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
-	{
-		m_arrLevels[i]->init();
-	}
+	//for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	//{
+	//	m_arrLevels[i]->init();
+	//}
 
 	// Level
-	GoStartLevel(LEVEL_TYPE::PLAY_LEVEL);
+	ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
@@ -152,10 +158,48 @@ void CLevelMgr::render(HDC _dc)
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
 	SelectObject(_dc, CPal::GetInst()->getHPen(BLACK));
 	SelectObject(_dc, CPal::GetInst()->getHBrush(BLACK));
-	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
+
+
+	HDC tmpdc = CEngine::GetInst()->GetTmpDc();
+	CTexture* tmptex = CEngine::GetInst()->GetTmpTex();
+
+
+	Rectangle(_dc, -1, -1, tmptex->GetWidth() + 1, tmptex->GetHeight() + 1);
 
 	// 레벨 render
 	m_pCurLevel->render(_dc);
+
+
+
+	float mag = 1.f + (((float)imag - 1.f) / 10.f);
+
+
+	if (imag != 1)
+	{
+		BitBlt(tmpdc
+			, 0, 0
+			, tmptex->GetWidth(), tmptex->GetHeight()
+			, _dc
+			, 0, 0, SRCCOPY);
+
+		Rectangle(_dc, -1, -1, tmptex->GetWidth() + 1, tmptex->GetHeight() + 1);
+
+		StretchBlt(
+			_dc,
+			(int)(ptResolution.x * ((mag - 1.f) / (-2.f))),
+			(int)(ptResolution.y * ((mag - 1.f) / (-2.f))),
+			(int)(ptResolution.x * mag),
+			(int)(ptResolution.y * mag),
+			tmpdc,
+			(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
+			(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
+			(int)(ptResolution.x / mag),
+			(int)(ptResolution.y / mag),
+			SRCCOPY
+		);
+	}
+
+
 
 	// Log
 	CLogMgr::GetInst()->tick(_dc);
@@ -197,15 +241,15 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 	m_pCurLevel->begin();
 }
 
-void CLevelMgr::GoStartLevel(LEVEL_TYPE _Type)
-{
-	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
-		return;
-
-	if (nullptr != m_pCurLevel)
-		m_pCurLevel->exit();
-
-	m_pCurLevel = m_arrLevels[(UINT)_Type];
-
-	m_pCurLevel->begin();
-}
+//void CLevelMgr::GoStartLevel(LEVEL_TYPE _Type)
+//{
+//	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
+//		return;
+//
+//	if (nullptr != m_pCurLevel)
+//		m_pCurLevel->exit();
+//
+//	m_pCurLevel = m_arrLevels[(UINT)_Type];
+//
+//	m_pCurLevel->begin();
+//}

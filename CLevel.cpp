@@ -33,11 +33,6 @@ CLevel::CLevel()
 
 CLevel::~CLevel()
 {
-	if (nullptr != pPlayer)
-	{
-		delete pPlayer;
-		pPlayer = nullptr;
-	}
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		if (nullptr != m_Layer[i])

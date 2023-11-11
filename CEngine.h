@@ -28,12 +28,15 @@ private:
 	//HDC			m_subdc;
 	//HBITMAP		m_subbitmap;
 	CTexture* m_SubTex;
+	CTexture* m_TmpTex;
 
 	bool	m_bDebugRender;
 	HPEN	m_arrPen[PEN_END];
 	HFONT	m_arrFont[FONT_END];
 
 public:
+	HDC GetTmpDc();
+	CTexture* GetTmpTex() { return m_TmpTex; }
 	HWND GetMainWind() { return m_hWnd; }
 	HDC GetMainDC() { return m_dc; }
 	POINT GetResolution() { return m_ptResolution; }
