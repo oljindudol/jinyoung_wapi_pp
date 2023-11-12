@@ -12,7 +12,7 @@ public:
     virtual void tick(float _DT) override;
     virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
-
+    virtual void begin();
 
 public:
     CLONE(CPlatform);

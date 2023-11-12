@@ -30,7 +30,8 @@ public:
     float GetAtt() { return m_att; }
     virtual void tick(float _DT) override;
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
-    void activate(Vec2 _beginpos,ORIENTATION _ort);
+    virtual void activate(Vec2 _beginpos,ORIENTATION _ort);
+    virtual void begin();
 
 
     CLONE_DISABLE(CSkill);

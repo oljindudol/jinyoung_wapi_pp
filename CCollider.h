@@ -24,6 +24,8 @@ public:
     Vec2 GetPos() { return m_vFinalPos; }
     Vec2 GetPrevPos() { return m_PrevFinalPos; }
 
+    void InitColCnt() { m_iCollisionCount = 0; }
+
 
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetScale() { return m_vScale; }

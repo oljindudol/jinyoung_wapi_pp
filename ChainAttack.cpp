@@ -53,8 +53,21 @@ ChainAttack::ChainAttack()
 
 ChainAttack::ChainAttack(const ChainAttack& _Origin)
 {
+	//m_Animator->get
+}
+
+void ChainAttack::activate(Vec2 _beginpos, ORIENTATION _ort)
+{
+	Super::activate(_beginpos, _ort);
 
 }
+
+void ChainAttack::begin()
+{
+	m_Collider->InitColCnt();
+
+}
+
 
 
 
@@ -67,3 +80,4 @@ void ChainAttack::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 ChainAttack::~ChainAttack()
 {
 }
+

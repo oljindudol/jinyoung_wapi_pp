@@ -21,6 +21,7 @@ void CSkillMgr::init()
 	AddSkill((CSkill*)new ChainAttack);
 	AddSkill((CSkill*)new ChainAttack);
 	AddSkill((CSkill*)new ChainAttack);
+	AddSkill((CSkill*)new ChainAttack);
 }
 
 
@@ -50,6 +51,8 @@ void CSkillMgr::DeActivateSkill(CSkill* _skill)
 {
 	if (nullptr != _skill) { _skill->m_OnActivate = false; }
 }
+
+
 
 int CSkillMgr::FindNextSkillNumber(wstring _skillname)
 {

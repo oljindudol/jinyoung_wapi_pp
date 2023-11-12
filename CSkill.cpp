@@ -49,6 +49,10 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 
 }
 
+void CSkill::begin()
+{
+}
+
 
 
 

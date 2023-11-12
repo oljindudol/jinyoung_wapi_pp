@@ -110,7 +110,7 @@ void CLevel::tick()
 		CMonsterMgr::GetInst()->ChangeAllMonsterIdle();
 	}
 
-	if (KEY_TAP(KEY::_4))
+	if (KEY_TAP(KEY::LBTN))
 	{
 		CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 	}

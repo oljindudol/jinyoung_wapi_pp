@@ -83,3 +83,7 @@ void CPlatform::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Ot
 	}
 
 }
+
+void CPlatform::begin()
+{
+}

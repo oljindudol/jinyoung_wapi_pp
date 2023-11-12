@@ -17,4 +17,6 @@ public:
     pinkbean_phantomblow(const pinkbean_phantomblow& _Origin);
     ~pinkbean_phantomblow();
 
+    virtual void begin() override;
+
 };

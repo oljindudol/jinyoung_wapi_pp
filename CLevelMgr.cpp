@@ -259,6 +259,7 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 
 	m_pCurLevel = m_arrLevels[(UINT)_Type];
 
+	//init
 	m_pCurLevel->enter();
 
 	m_pCurLevel->begin();

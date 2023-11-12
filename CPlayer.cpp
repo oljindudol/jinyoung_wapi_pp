@@ -471,3 +471,8 @@ void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
 
 }
+
+void CPlayer::begin()
+{
+	m_Collider->InitColCnt();
+}

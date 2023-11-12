@@ -62,6 +62,7 @@ void CEnteranceLevel::init()
 	pPlayer = CLevelMgr::GetInst()->GetPlayer();
 	pPlayer->SetPos(Vec2(250.f, 200.f));
 	pPlayer->getMovement()->SetGround(false);
+	//pPlayer->getCollider()->InitColCnt();
 	AddObject(PLAYER, pPlayer);
 
 	// 스테이터스바 생성

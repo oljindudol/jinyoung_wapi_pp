@@ -59,3 +59,8 @@ void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCo
 pinkbean_phantomblow::~pinkbean_phantomblow()
 {
 }
+
+void pinkbean_phantomblow::begin()
+{
+	m_Collider->InitColCnt();
+}

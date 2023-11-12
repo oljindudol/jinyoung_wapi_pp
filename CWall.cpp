@@ -71,3 +71,7 @@ void CWall::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 	}
 }
 
+void CWall::begin()
+{
+}
+

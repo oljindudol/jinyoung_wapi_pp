@@ -47,7 +47,7 @@ CMonster::~CMonster()
 
 void CMonster::begin()
 {
-
+	m_Collider->InitColCnt();
 }
 
 void CMonster::Spawn(Vec2 _Spawnpos)
