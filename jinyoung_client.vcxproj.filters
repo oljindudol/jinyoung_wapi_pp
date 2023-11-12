@@ -319,9 +319,6 @@
     <ClInclude Include="CMonsterMgr.h">
       <Filter>03.Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CUIMgr.h">
-      <Filter>04.CurWork</Filter>
-    </ClInclude>
     <ClInclude Include="monsters.h">
       <Filter>03.Game\01.Header\pool</Filter>
     </ClInclude>
@@ -355,6 +352,10 @@
     <ClInclude Include="yalda.h">
       <Filter>03.Game\11.StageFirst\01.ion</Filter>
     </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>03.Game\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaneAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -541,9 +542,6 @@
     <ClCompile Include="CMonsterMgr.cpp">
       <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CUIMgr.cpp">
-      <Filter>04.CurWork</Filter>
-    </ClCompile>
     <ClCompile Include="CStatusUI.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
@@ -571,5 +569,9 @@
     <ClCompile Include="yalda.cpp">
       <Filter>03.Game\11.StageFirst\01.ion</Filter>
     </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>03.Game\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaneAttack.cpp" />
   </ItemGroup>
 </Project>

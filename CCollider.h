@@ -13,6 +13,7 @@ private:
     Vec2	m_PrevFinalPos; //충돌체 이전 최종위치 : 플랫폼충돌때 사용
 
     int     m_iCollisionCount;
+    float   m_rotatedrad;
 
 public:
     virtual void finaltick(float _DT) override;
@@ -40,7 +41,6 @@ public:
     CCollider(CObj* _Owner);
     CCollider(const CCollider& _Origin);
     ~CCollider();
-
 
 };
 

@@ -60,26 +60,70 @@ void CCollider::render(HDC _dc)
 	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
 
 	// render
-	if (0 < m_iCollisionCount)
+	if (0.f == m_rotatedrad)
 	{
-		SELECT_PEN(_dc, RED_PEN);
+		if (0 < m_iCollisionCount)
+		{
+			SELECT_PEN(_dc, RED_PEN);
 
-		// render
-		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
-			, int(vRenderPos.y - m_vScale.y / 2.f)
-			, int(vRenderPos.x + m_vScale.x / 2.f)
-			, int(vRenderPos.y + m_vScale.y / 2.f));
+			// render
+			Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
+				, int(vRenderPos.y - m_vScale.y / 2.f)
+				, int(vRenderPos.x + m_vScale.x / 2.f)
+				, int(vRenderPos.y + m_vScale.y / 2.f));
+		}
+		else
+		{
+			SELECT_PEN(_dc, GREEN_PEN);
+
+			// render
+			Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
+				, int(vRenderPos.y - m_vScale.y / 2.f)
+				, int(vRenderPos.x + m_vScale.x / 2.f)
+				, int(vRenderPos.y + m_vScale.y / 2.f));
+		}
 	}
 	else
 	{
-		SELECT_PEN(_dc, GREEN_PEN);
+		Vec2 UpLeft((vRenderPos.x - m_vScale.x / 2.f), (vRenderPos.y - m_vScale.y / 2.f));
+		Vec2 UpRight((vRenderPos.x + m_vScale.x / 2.f), (vRenderPos.y - m_vScale.y / 2.f)) ;
+		Vec2 DownRight((vRenderPos.x + m_vScale.x / 2.f), (vRenderPos.y + m_vScale.y / 2.f));
+		Vec2 DownLeft((vRenderPos.x - m_vScale.x / 2.f), (vRenderPos.y + m_vScale.y / 2.f)) ;
 
-		// render
-		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
-			, int(vRenderPos.y - m_vScale.y / 2.f)
-			, int(vRenderPos.x + m_vScale.x / 2.f)
-			, int(vRenderPos.y + m_vScale.y / 2.f));
+		UpLeft = RotateDot(UpLeft,m_rotatedrad);
+		UpRight = RotateDot(UpRight, m_rotatedrad);
+		DownRight = RotateDot(DownRight, m_rotatedrad);
+		DownLeft = RotateDot(DownLeft, m_rotatedrad);
+
+
+		if (0 < m_iCollisionCount)
+		{
+			SELECT_PEN(_dc, RED_PEN);
+			// render
+			MoveToEx(_dc, int(UpLeft.x), int(UpLeft.y), nullptr);
+			LineTo(_dc, int(UpRight.x), int(UpRight.y));
+			LineTo(_dc, int(DownRight.x), int(DownRight.y));
+			LineTo(_dc, int(DownLeft.x), int(DownLeft.y));
+			LineTo(_dc, int(UpLeft.x), int(UpLeft.y));
+
+		}
+		else
+		{
+			SELECT_PEN(_dc, GREEN_PEN);
+
+			// render
+			MoveToEx(_dc, int(UpLeft.x), int(UpLeft.y), nullptr);
+			LineTo(_dc, int(UpRight.x), int(UpRight.y));
+			LineTo(_dc, int(DownRight.x), int(DownRight.y));
+			LineTo(_dc, int(DownLeft.x), int(DownLeft.y));
+			LineTo(_dc, int(UpLeft.x), int(UpLeft.y));
+		}
 	}
+
+
+
+
+
 
 	//name
 	SetBkMode(_dc, OPAQUE);

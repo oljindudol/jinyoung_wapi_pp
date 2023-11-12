@@ -31,3 +31,10 @@ void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _per
 void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
 void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset = 0.f);
 void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos);
+Vec2 RotateDot(const Vec2& _Dot, float _rad);
+
+void DrawRectToDc(HDC _dc
+	, const Vec2& _UpRight
+	, const Vec2& _UpLeft
+	, const Vec2& _DownLeft
+	, const Vec2& _DownRight);

@@ -143,3 +143,19 @@ void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
 		, _ptexture->GetHeight()
 		, blend);
 }
+
+Vec2 RotateDot(const Vec2& _Dot, float _rad)
+{
+	Vec2 vRotateDir = Vec2(cosf(_rad) * _Dot.x - sinf(_rad) * _Dot.y
+		, sinf(_rad) * _Dot.x + cosf(_rad) * _Dot.y);
+
+	return vRotateDir;
+}
+
+void DrawRectToDc(HDC _dc, const Vec2& _UpRight, const Vec2& _UpLeft, const Vec2& _DownLeft, const Vec2& _DownRight)
+{
+
+
+}
+
+

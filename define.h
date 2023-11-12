@@ -265,7 +265,28 @@ enum ORIENTATION
 
 enum class DEBUFF
 {
-	STUN,
+	//버프:낙하물무시
+	DARKSITE,
+	//버프:무적
+	INVINCIBLE,
 
+	//창조의 저주
+	CREATION,
+	//파괴의 저주
+	DESTUCTION,
+	//암흑
+	BLIND,
+	//봉인
+	INABILITY,
+	//슬로우
+	SLOW,
+	//스턴
+	STUN,
+	//혼란
+	CHAOS,
+	//빗나감
+	RICOCHET,
+	//스킬 디버프 속성없음
 	NONE,
+	END,
 };
