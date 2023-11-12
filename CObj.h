@@ -20,12 +20,17 @@ private:
 	vector<CComponent*>	m_vecComponent;
 	int					m_iLayerIdx;
 	bool				m_bDead;
+	float   m_RotatedRad;
 
 protected:
 	float m_collisiontimetoplayer;
 
 
 public:
+
+	float GetRotation() { return m_RotatedRad; }
+	void SetRotation(float _rad) { m_RotatedRad = _rad; }
+
 	float GetCollisionTime() { return m_collisiontimetoplayer; }
 	void SetCollisionTime(float _ftime) { m_collisiontimetoplayer = _ftime; }
 	ORIENTATION ort;

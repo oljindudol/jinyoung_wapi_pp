@@ -155,6 +155,8 @@ public:
 		: x((float)_pt.x)
 		, y((float)_pt.y)
 	{}
+
+
 };
 
 struct FKeyData

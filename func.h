@@ -38,3 +38,6 @@ void DrawRectToDc(HDC _dc
 	, const Vec2& _UpLeft
 	, const Vec2& _DownLeft
 	, const Vec2& _DownRight);
+
+
+float VecDot(const Vec2& _A, const Vec2& _B);

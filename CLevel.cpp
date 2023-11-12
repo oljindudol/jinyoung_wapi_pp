@@ -110,6 +110,11 @@ void CLevel::tick()
 		CMonsterMgr::GetInst()->ChangeAllMonsterIdle();
 	}
 
+	if (KEY_TAP(KEY::_4))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+	}
+
 	if (KEY_TAP(M))
 	{
 		CBackGround* pBack = m_BackGround;

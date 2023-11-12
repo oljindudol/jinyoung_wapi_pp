@@ -146,8 +146,11 @@ void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
 
 Vec2 RotateDot(const Vec2& _Dot, float _rad)
 {
-	Vec2 vRotateDir = Vec2(cosf(_rad) * _Dot.x - sinf(_rad) * _Dot.y
-		, sinf(_rad) * _Dot.x + cosf(_rad) * _Dot.y);
+	Vec2 vRotateDir = 
+		Vec2(cosf(_rad) * _Dot.x 
+			- sinf(_rad) * _Dot.y, 
+			sinf(_rad) * _Dot.x 
+			+ cosf(_rad) * _Dot.y);
 
 	return vRotateDir;
 }
@@ -158,4 +161,8 @@ void DrawRectToDc(HDC _dc, const Vec2& _UpRight, const Vec2& _UpLeft, const Vec2
 
 }
 
+float VecDot(const Vec2& _A, const Vec2& _B)
+{
+	return _A.x * _B.x + _A.y * _B.y;
+}
 

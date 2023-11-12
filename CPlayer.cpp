@@ -58,9 +58,6 @@ CPlayer::CPlayer()
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {
-
-
-
 	SetName(L"Player");
 	//이미지가 존재하는 상대경로 (contents 폴더로 부터)
 	//힙메모리에할당
@@ -176,6 +173,13 @@ void CPlayer::tick(float _DT)
 
 	Vec2 vPos = GetPos();
 
+	//m_acctime += _DT;
+
+	//if (m_acctime > .1f)
+	//{
+	//	SetRotation(GetRotation() + .1f);
+	//	m_acctime = 0.f;
+	//}
 
 	//if (L"commonpinkbeanstab" == m_Animator->GetCurAnimName())
 	//{

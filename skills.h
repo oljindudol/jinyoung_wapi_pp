@@ -2,3 +2,6 @@
 
 #include "pinkbean_doublejump.h"
 #include "pinkbean_phantomblow.h"
+
+
+#include "ChainAttack.h"

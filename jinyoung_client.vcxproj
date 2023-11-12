@@ -169,7 +169,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGuided.h" />
-    <ClInclude Include="ChaneAttack.h" />
+    <ClInclude Include="ChainAttack.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
@@ -283,7 +283,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGuided.cpp" />
-    <ClCompile Include="ChaneAttack.cpp" />
+    <ClCompile Include="ChainAttack.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />

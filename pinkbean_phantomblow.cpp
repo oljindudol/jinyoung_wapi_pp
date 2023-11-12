@@ -7,9 +7,7 @@ void pinkbean_phantomblow::tick(float _DT)
 	Super::tick(_DT);
 }
 
-void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
-{
-}
+
 
 pinkbean_phantomblow::pinkbean_phantomblow()
 {
@@ -51,6 +49,11 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 
 pinkbean_phantomblow::pinkbean_phantomblow(const pinkbean_phantomblow& _Origin)
 {
+}
+
+void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+
 }
 
 pinkbean_phantomblow::~pinkbean_phantomblow()

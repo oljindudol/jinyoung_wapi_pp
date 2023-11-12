@@ -59,8 +59,10 @@ void CCollider::render(HDC _dc)
 
 	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
 
+	float rad = GetOwner()->GetRotation();
+
 	// render
-	if (0.f == m_rotatedrad)
+	if (0.f == rad)
 	{
 		if (0 < m_iCollisionCount)
 		{
@@ -85,26 +87,26 @@ void CCollider::render(HDC _dc)
 	}
 	else
 	{
-		Vec2 UpLeft((vRenderPos.x - m_vScale.x / 2.f), (vRenderPos.y - m_vScale.y / 2.f));
-		Vec2 UpRight((vRenderPos.x + m_vScale.x / 2.f), (vRenderPos.y - m_vScale.y / 2.f)) ;
-		Vec2 DownRight((vRenderPos.x + m_vScale.x / 2.f), (vRenderPos.y + m_vScale.y / 2.f));
-		Vec2 DownLeft((vRenderPos.x - m_vScale.x / 2.f), (vRenderPos.y + m_vScale.y / 2.f)) ;
+		Vec2 UpLeft(( m_vScale.x / -2.f), (m_vScale.y / -2.f));
+		Vec2 UpRight((m_vScale.x / 2.f), (m_vScale.y / -2.f)) ;
+		Vec2 DownRight((m_vScale.x / 2.f), (m_vScale.y / 2.f));
+		Vec2 DownLeft((m_vScale.x / -2.f), (m_vScale.y / 2.f)) ;
 
-		UpLeft = RotateDot(UpLeft,m_rotatedrad);
-		UpRight = RotateDot(UpRight, m_rotatedrad);
-		DownRight = RotateDot(DownRight, m_rotatedrad);
-		DownLeft = RotateDot(DownLeft, m_rotatedrad);
+		UpLeft = RotateDot(UpLeft, rad);
+		UpRight = RotateDot(UpRight, rad);
+		DownRight = RotateDot(DownRight, rad);
+		DownLeft = RotateDot(DownLeft, rad);
 
 
 		if (0 < m_iCollisionCount)
 		{
 			SELECT_PEN(_dc, RED_PEN);
 			// render
-			MoveToEx(_dc, int(UpLeft.x), int(UpLeft.y), nullptr);
-			LineTo(_dc, int(UpRight.x), int(UpRight.y));
-			LineTo(_dc, int(DownRight.x), int(DownRight.y));
-			LineTo(_dc, int(DownLeft.x), int(DownLeft.y));
-			LineTo(_dc, int(UpLeft.x), int(UpLeft.y));
+			MoveToEx(_dc, int(vRenderPos.x +UpLeft.x), int(vRenderPos.y+UpLeft.y), nullptr);
+			LineTo(_dc, int(vRenderPos.x+UpRight.x), int(vRenderPos.y+UpRight.y));
+			LineTo(_dc, int(vRenderPos.x+DownRight.x), int(vRenderPos.y + DownRight.y));
+			LineTo(_dc, int(vRenderPos.x+DownLeft.x), int(vRenderPos.y + DownLeft.y));
+			LineTo(_dc, int(vRenderPos.x+UpLeft.x), int(vRenderPos.y + UpLeft.y));
 
 		}
 		else
@@ -112,11 +114,11 @@ void CCollider::render(HDC _dc)
 			SELECT_PEN(_dc, GREEN_PEN);
 
 			// render
-			MoveToEx(_dc, int(UpLeft.x), int(UpLeft.y), nullptr);
-			LineTo(_dc, int(UpRight.x), int(UpRight.y));
-			LineTo(_dc, int(DownRight.x), int(DownRight.y));
-			LineTo(_dc, int(DownLeft.x), int(DownLeft.y));
-			LineTo(_dc, int(UpLeft.x), int(UpLeft.y));
+			MoveToEx(_dc, int(vRenderPos.x + UpLeft.x), int(vRenderPos.y + UpLeft.y), nullptr);
+			LineTo(_dc, int(vRenderPos.x + UpRight.x), int(vRenderPos.y + UpRight.y));
+			LineTo(_dc, int(vRenderPos.x + DownRight.x), int(vRenderPos.y + DownRight.y));
+			LineTo(_dc, int(vRenderPos.x + DownLeft.x), int(vRenderPos.y + DownLeft.y));
+			LineTo(_dc, int(vRenderPos.x + UpLeft.x), int(vRenderPos.y + UpLeft.y));
 		}
 	}
 
