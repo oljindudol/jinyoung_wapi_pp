@@ -263,6 +263,9 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 	m_pCurLevel->enter();
 
 	m_pCurLevel->begin();
+
+	//컬리전 기록 초기화
+	CCollisionMgr::GetInst()->DelAllColRec();
 }
 
 //void CLevelMgr::GoStartLevel(LEVEL_TYPE _Type)

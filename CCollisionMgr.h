@@ -49,6 +49,11 @@ private:
 
 
 public:
+	void DelAllColRec()
+	{
+		m_mapID.clear();
+	}
+
 	void tick();
 	void CheckCollision(LAYER _Left, LAYER _Right);
 	void UncheckCollision(LAYER _Left, LAYER _Right);
