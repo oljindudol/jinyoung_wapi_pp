@@ -138,7 +138,8 @@ void CAnim::render(HDC _dc)
 
 		SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
 
-		//PatBlt(destDC, 0, 0, dest_width, dest_height, PATCOPY);                           // 선택된 브러시로, 회전할 비트맵을 출력받을 DC에, 미리 색상을 채워 지움   
+		//
+		// (destDC, 0, 0, dest_width, dest_height, PATCOPY);                           // 선택된 브러시로, 회전할 비트맵을 출력받을 DC에, 미리 색상을 채워 지움   
 
 		float cosine = (float)cos(rot);                                              // 회전이동변환 행렬에 들어갈 cos세타 값을 구함          
 		float sine = (float)sin(rot);                                              // 회전이동변환 행렬에 들어갈 sin세타 값을 구함   
