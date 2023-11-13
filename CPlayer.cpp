@@ -69,7 +69,7 @@ CPlayer::CPlayer()
 
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(20.f, -45.f));
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(13.f, -41.f));
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(20.f, -45.f), 3.f);
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -45.f),2.f);
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -45.f), 1.f,-1);
@@ -171,10 +171,8 @@ void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
 
-	Vec2 vPos = GetPos();
-
+	//Vec2 vPos = GetPos();
 	//m_acctime += _DT;
-
 	//if (m_acctime > .1f)
 	//{
 	//	SetRotation(GetRotation() + .1f);

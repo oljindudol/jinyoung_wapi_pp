@@ -11,8 +11,10 @@ class CAssetMgr
 private:
 	map<wstring, CTexture*>	m_mapTex;
 	map<wstring, CSound*>	m_mapSound;
+	CTexture* m_transtex;
 
 public:
+	HBITMAP GetTransHBITMAP();
 	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);
 	CTexture* LoadTexture_r(const wstring& _strKey, const wstring& _strRelativePath);
 	CTexture* CreateTexture(const wstring& _strKey, UINT _width, UINT _height);

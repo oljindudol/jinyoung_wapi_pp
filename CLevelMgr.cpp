@@ -30,6 +30,7 @@ CLevelMgr::CLevelMgr()
 	, m_arrLevels{}
 	, imag(1)
 {
+	srand((unsigned int)time(NULL));
 
 }
 
@@ -69,7 +70,7 @@ void CLevelMgr::init()
 	//}
 
 	// Level
-	ChangeLevel(LEVEL_TYPE::PHASE_FIRST);
+	ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];

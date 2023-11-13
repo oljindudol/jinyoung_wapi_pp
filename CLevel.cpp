@@ -89,7 +89,6 @@ void CLevel::tick()
 	}
 
 	// 
-	srand((unsigned int)time(NULL));
 	if (KEY_TAP(KEY::_1))
 	{
 		//int a = rand();

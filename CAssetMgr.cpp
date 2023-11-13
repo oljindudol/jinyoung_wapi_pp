@@ -3,12 +3,23 @@
 
 #include "CPathMgr.h"
 #include "CTexture.h"
-
+#include "CEngine.h"
 #include "CSound.h"
 
 
 CAssetMgr::CAssetMgr()
+	:m_transtex(nullptr)
 {
+	POINT vResol = CEngine::GetInst()->GetResolution();
+	m_transtex = CreateTexture(L"TransTex", vResol.x, vResol.y);
+
+	HDC transdc = m_transtex->GetDC();
+
+	SetBkMode(transdc, TRANSPARENT);
+
+	SELECT_BRUSH(transdc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+	
+	Rectangle(transdc, -1, -1, vResol.x+1, vResol.y+1);
 
 }
 
@@ -58,6 +69,11 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 	return pTexture;
 }
 
+
+HBITMAP CAssetMgr::GetTransHBITMAP()
+{
+	return m_transtex->GetBitmap();
+}
 
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {

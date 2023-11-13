@@ -59,10 +59,20 @@ void CAnim::finaltick()
 
 void CAnim::render(HDC _dc)
 {
+
+
 	const FFrame& frm = m_vecFrm[m_iCurFrm];
 
 	CObj* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2 vRenderPos = pOwnerObject->GetRenderPos();
+	float offsetx = frm.vOffset.x;
+
+	HDC tmpdc = frm.m_Atlas->GetDC();
+	if (ORT_RIGHT == m_pAnimator->GetOwner()->ort) {
+		tmpdc = frm.m_Atlas_r->GetDC();
+		offsetx *= -1;
+	}
+	
 
 	/*TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 					  , int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
@@ -72,22 +82,16 @@ void CAnim::render(HDC _dc)
 					  , int(frm.vCutSize.x), int(frm.vCutSize.y)
 					  , RGB(255, 0, 255));*/
 
+	float rot = pOwnerObject->GetRotation();
+	//회전 0일때,
+	if (0.f == rot)
+	{
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
 
 	blend.SourceConstantAlpha = 255; // 0 ~ 255
 	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-
-	HDC tmpdc = frm.m_Atlas->GetDC();;
-
-	float offsetx = frm.vOffset.x;
-
-	if(ORT_RIGHT==m_pAnimator->GetOwner()->ort){
-		tmpdc = frm.m_Atlas_r->GetDC();
-		offsetx *= -1;
-	}
-
 	
 	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + offsetx)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
@@ -96,6 +100,96 @@ void CAnim::render(HDC _dc)
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, blend);
+	}
+	//회전이 0이아닐때
+	else
+	{
+
+		Vec2 offset((float)offsetx, frm.vOffset.y);
+		Vec2 finalrednerpos = vRenderPos  + offset;
+
+		//POINT threepoints[3];
+		////좌상단점
+		//Vec2 LeftUp	   = RotateDot(Vec2(frm.vCutSize.x / -2.f, frm.vCutSize.y / -2.f), rot);
+		////우상단점
+		//Vec2 RightUp = RotateDot(Vec2(frm.vCutSize.x / 2.f, frm.vCutSize.y / -2.f), rot);
+		////좌하단점 
+		//Vec2 LeftDown  = RotateDot(Vec2(frm.vCutSize.x / -2.f, frm.vCutSize.y / 2.f), rot);
+		// 
+		//LeftUp += finalrednerpos;
+		//RightUp += finalrednerpos;
+		//LeftDown += finalrednerpos;
+
+		//threepoints[0] = POINT((int)LeftUp.x, (int)LeftUp.y);
+		//threepoints[1] = POINT((int)RightUp.x, (int)RightUp.y);
+		//threepoints[2] = POINT((int)LeftDown.x, (int)LeftDown.y);
+
+
+		//SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+
+		//PlgBlt(_dc, threepoints
+		//	, tmpdc, 0, 0, (int)frm.vCutSize.x, (int)frm.vCutSize.y,
+		//	NULL, 0, 0);
+		//CAssetMgr::GetInst()->GetTransHBITMAP(), 0, 0);
+
+
+
+
+
+		SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+
+		//PatBlt(destDC, 0, 0, dest_width, dest_height, PATCOPY);                           // 선택된 브러시로, 회전할 비트맵을 출력받을 DC에, 미리 색상을 채워 지움   
+
+		float cosine = (float)cos(rot);                                              // 회전이동변환 행렬에 들어갈 cos세타 값을 구함          
+		float sine = (float)sin(rot);                                              // 회전이동변환 행렬에 들어갈 sin세타 값을 구함   
+
+		SetGraphicsMode(_dc, GM_ADVANCED);                                               // 윈도우 좌표계의 회전을 위하여, 그래픽모드를 확장모드로 변경합니다.(요구사항:윈98,NT이상)   
+
+		// 회전이동변환 행렬을 정의.   
+		// (윈도우즈 API정복 개정판 2권 Page(1279) 참조.)   
+		// (게임 프로그래머를 위한 기초수학과 물리 Page(196) 참조.)   
+
+		XFORM xform;                                                                        // 방정식을 표현하는 3행3열의 행렬 선언   
+		xform.eM11 = cosine;                                                                // 1행 1열 성분 설정 (회전성분)   
+		xform.eM12 = sine;                                                                  // 1행 2열 성분 설정 (회전성분)   
+		xform.eM21 = -sine;                                                                 // 2행 1열 성분 설정 (회전성분)   
+		xform.eM22 = cosine;                                                                // 2행 2열 성분 설정 (회전성분)   
+		xform.eDx = finalrednerpos.x;                                               // 3행 1열 성분 설정 (X축 이동 성분)   
+		xform.eDy = finalrednerpos.y;                                              // 3행 2열 성분 설정 (Y축 이동 성분)   
+
+		// 설정한 행렬로, 인수DC의 윈도우즈 좌표계를 변환.   
+		// 인수DC는 출력대상으로 메모리비트맵을 가지므로,   
+		// 선택하고 있는 메모리비트맵의 좌표체계가 회전된다.   
+
+		SetWorldTransform(_dc, &xform);
+
+		BLENDFUNCTION blend = {};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+
+		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+		AlphaBlend(_dc
+			, int(frm.vCutSize.x/-2.f)
+			, int(frm.vCutSize.y /- 2.f)
+			, int(frm.vCutSize.x), int(frm.vCutSize.y)
+			, tmpdc
+			, 0, 0
+			, int(frm.vCutSize.x), int(frm.vCutSize.y)
+			, blend);
+
+
+		xform.eM11 = 1.f;
+		xform.eM12 = 0.f;
+		xform.eM21 = 0.f;
+		xform.eM22 = 1.f;
+		xform.eDx = 0.f;
+		xform.eDy = 0.f;
+		SetWorldTransform(_dc, &xform);
+
+	}
+
 
 }
 

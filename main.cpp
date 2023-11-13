@@ -126,6 +126,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_JINYOUNGCLIENT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
+    //wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH+1);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     //메뉴바
     wcex.lpszMenuName = nullptr; //MAKEINTRESOURCEW(IDC_JINYOUNGCLIENT); 

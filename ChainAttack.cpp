@@ -6,13 +6,7 @@ void ChainAttack::tick(float _DT)
 {
 	Super::tick(_DT);
 
-	m_activedtime += _DT;
 
-	if (m_activedtime > 0.1f)
-	{
-		SetRotation(GetRotation() + .1f);
-		m_activedtime = 0.f;
-	}
 }
 
 ChainAttack::ChainAttack()
@@ -45,7 +39,7 @@ ChainAttack::ChainAttack()
 			Vec2(-100.f, -100.f), 1.f, -1, ORT_LEFT);
 
 	m_skilllayer = LAYER::MONSTER_PJ;
-	duration = 3.f;
+	duration = 1.5f;
 	cooltime = 0.f;
 	m_att = 5.f;
 	m_debuff = DEBUFF::NONE;
@@ -59,7 +53,9 @@ ChainAttack::ChainAttack(const ChainAttack& _Origin)
 void ChainAttack::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
 	Super::activate(_beginpos, _ort);
+	float perc = (float)rand()/ (float)32767;
 
+	SetRotation((0.69813f)* perc - 0.349066f);
 }
 
 void ChainAttack::begin()

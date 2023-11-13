@@ -48,7 +48,6 @@ private:
     float m_multi;
     ORIENTATION m_ort;
 
-
 public:
     void finaltick();
     void render(HDC _dc);
