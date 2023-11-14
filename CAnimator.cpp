@@ -86,21 +86,24 @@ CAnim* CAnimator::FindAnim(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
-	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
-{
-	CAnim* pAnim = FindAnim(_strName);
-	if (IsValid(pAnim))
-	{
-		return;
-	}
+//일반 애니메이션 생성
+//void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
+//	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
+//{
+//	CAnim* pAnim = FindAnim(_strName);
+//	if (IsValid(pAnim))
+//	{
+//		return;
+//	}
+//
+//	pAnim = new CAnim;
+//	pAnim->m_pAnimator = this;
+//	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _vOffset, _Duration, _MaxFrm);
+//	m_mapAnim.insert(make_pair(_strName, pAnim));
+//}
 
-	pAnim = new CAnim;
-	pAnim->m_pAnimator = this;
-	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _vOffset, _Duration, _MaxFrm);
-	m_mapAnim.insert(make_pair(_strName, pAnim));
-}
 
+//아틀라스 x 일반애니메이션 
 void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,int _roop, ORIENTATION _ort)
 {
 	CAnim* pAnim = FindAnim(_strphase+ _strobj+ _stranimname);
@@ -115,9 +118,25 @@ void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj
 	pAnim->m_ort = _ort;
 	pAnim->Create(_strphase, _strobj, _stranimname,_vOffset,_playmul);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
-
 }
 
+
+
+void CAnimator::CreateRotatedAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul, int _roop, ORIENTATION _ort)
+{
+	CAnim* pAnim = FindAnim(_strphase + _strobj + _stranimname +L"_"+std::to_wstring(_rot));
+	if (IsValid(pAnim))
+	{
+		return;
+	}
+
+	pAnim = new CAnim;
+	pAnim->m_pAnimator = this;
+	pAnim->m_iRoop = _roop;
+	pAnim->m_ort = _ort;
+	pAnim->CreateRotated(_strphase, _strobj, _stranimname , _rot, _vOffset, _playmul);
+	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname + L"_" + std::to_wstring(_rot), pAnim));
+}
 
 void CAnimator::SaveAnimations(const wstring& _strRelativePath)
 {

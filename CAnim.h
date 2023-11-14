@@ -53,11 +53,17 @@ public:
     void render(HDC _dc);
 
 public:
-    void Create(const wstring& _strName, CTexture* _Atlas
-        , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm);
+    // 老馆 局丛积己
+    //void Create(const wstring& _strName, CTexture* _Atlas
+    //    , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm);
 
     // 酒撇扼胶x 局丛 积己
     void Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul );
+
+    void CreateRotated(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul);
+
+
+
 
     bool IsFinish() { return m_bFinish; }
 

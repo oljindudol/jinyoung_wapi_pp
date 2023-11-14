@@ -31,6 +31,20 @@ ion::ion()
 
 	SetScale(Vec2(200.f, 600.f));
 
+
+	// Movement 컴포넌트 추가
+	m_Movement = AddComponent<CMovement>(GetName() + L"Movement");
+	m_Movement->SetMass(1.f);
+	m_Movement->SetInitSpeed(500.f);
+	m_Movement->SetMaxSpeed(500.f);
+	m_Movement->SetFrictionScale(2200.f);
+
+	m_Movement->UseGravity(true);
+	m_Movement->SetGravity(Vec2(0.f, 2500.f));
+	m_Movement->SetGround(false);
+
+
+
 	// Collider 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(GetName()+ L"Collider");
 	m_Info.MaxHp = 5.f;
@@ -50,16 +64,6 @@ ion::ion()
 
 	m_Animator->Play(GetName()+L"idle");
 
-	// Movement 컴포넌트 추가
-	m_Movement = AddComponent<CMovement>(GetName() + L"Movement");
-	m_Movement->SetMass(1.f);
-	m_Movement->SetInitSpeed(500.f);
-	m_Movement->SetMaxSpeed(500.f);
-	m_Movement->SetFrictionScale(2200.f);
-
-	m_Movement->UseGravity(true);
-	m_Movement->SetGravity(Vec2(0.f, 2500.f));
-	m_Movement->SetGround(false);
 
 
 	// 상태머신 컴포넌트 추가 및 설정

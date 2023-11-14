@@ -64,9 +64,24 @@ CPlayer::CPlayer()
 	//wstring strPath = CPathMgr::GetContentDir();
 	//strPath+= L"texture\\Fighter.bmp";
 
-	// 애니메이터 컴포넌트 추가
-	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
+
+
+	// Movement 컴포넌트 추가
+	m_Movement = AddComponent<CMovement>(L"PlayerMovement");
+	m_Movement->SetMass(1.f);
+	m_Movement->SetInitSpeed(200.f);
+	m_Movement->SetMaxSpeed(200.f);
+	m_Movement->SetFrictionScale(2200.f);
+
+	m_Movement->UseGravity(true);
+	m_Movement->SetGravity(Vec2(0.f, 2500.f));
+	m_Movement->SetGround(false);
+
+
+
+	// 애니메이터 컴포넌트 추가
+	//CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(13.f, -41.f));
@@ -76,7 +91,6 @@ CPlayer::CPlayer()
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -55.f), 1.f, -1);
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"down", Vec2(-30.f, -20.f), 1.f, -1);
-
 
 	m_Animator->Play(L"commonpinkbeanidle");
 
@@ -95,14 +109,14 @@ CPlayer::CPlayer()
 	//m_Animator->SaveAnimations(L"animdata");
 
 
-	m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
-	m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
-	m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
-	m_Animator->LoadAnimation(L"animdata\\IdleUp.txt");
-	m_Animator->LoadAnimation(L"animdata\\WalkDown.txt");
-	m_Animator->LoadAnimation(L"animdata\\WalkLeft.txt");
-	m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
-	m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
+	//m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
+	//m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
+	//m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
+	//m_Animator->LoadAnimation(L"animdata\\IdleUp.txt");
+	//m_Animator->LoadAnimation(L"animdata\\WalkDown.txt");
+	//m_Animator->LoadAnimation(L"animdata\\WalkLeft.txt");
+	//m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
+	//m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
 
 
 
@@ -119,16 +133,7 @@ CPlayer::CPlayer()
 	//m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
 
 
-	// Movement 컴포넌트 추가
-	m_Movement = AddComponent<CMovement>(L"PlayerMovement");
-	m_Movement->SetMass(1.f);
-	m_Movement->SetInitSpeed(200.f);
-	m_Movement->SetMaxSpeed(200.f);
-	m_Movement->SetFrictionScale(2200.f);
 
-	m_Movement->UseGravity(true);
-	m_Movement->SetGravity(Vec2(0.f, 2500.f));
-	m_Movement->SetGround(false);
 
 
 	m_PlayerState = AddComponent<CStateMachine>(L"PlayerState");

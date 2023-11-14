@@ -33,13 +33,17 @@ public:
     CAnim* FindAnim(const wstring& _strName);
 
     // 애니메이션 생성
-    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
-        , Vec2 _vOffset, float _duration, int _MaxFrm);
+    //void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
+    //    , Vec2 _vOffset, float _duration, int _MaxFrm);
 
     // 아틀라스x 애니메이션 생성
     void CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname
-        , Vec2 _vOffset = Vec2(), float _playmul = 1.f ,int _roop = 0 ,ORIENTATION _ort = ORT_LEFT);
+        , Vec2 _vOffset = Vec2(),float _playmul = 1.f ,int _roop = 0 ,ORIENTATION _ort = ORT_LEFT);
 
+    // 회전된 애니메이션 생성
+    void CreateRotatedAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname
+        , int _rot
+        , Vec2 _vOffset = Vec2(),float _playmul = 1.f, int _roop = 0, ORIENTATION _ort = ORT_LEFT);
 
     void SaveAnimations(const wstring& _strRelativePath);
     void LoadAnimation(const wstring& _strRelativePath);
