@@ -72,8 +72,8 @@ void CAnim::render(HDC _dc)
 		tmpdc = frm.m_Atlas_r->GetDC();
 		offsetx *= -1;
 	}
-	
 
+	
 	/*TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 					  , int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 					  , int(frm.vCutSize.x), int(frm.vCutSize.y)
@@ -301,7 +301,7 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 	CAnim* pOriginAnim = m_pAnimator->FindAnim(_strphase + _strobj + _stranimname );
 
 
-	//wstring filePath = CPathMgr::GetContentPath();
+	wstring filePath = CPathMgr::GetContentPath();
 	wstring addipath =
 		_strphase + L"\\"
 		+ _strobj + L"\\"
@@ -339,7 +339,7 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 		FFrame tmpf = pOriginAnim->m_vecFrm[i];
 
 		CTexture* pOriginAtlas = tmpf.m_Atlas;
-		CTexture* pAtlas_rotated = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname ,  _rot ,pOriginAtlas);
+		CTexture* pAtlas_rotated = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname+ L"_" + std::to_wstring(_rot), L"texture\\anim\\" + tmpname + L".png", _rot);
 
 
 		frm.m_Atlas = pAtlas_rotated;

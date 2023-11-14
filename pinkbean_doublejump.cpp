@@ -37,6 +37,8 @@ pinkbean_doublejump::pinkbean_doublejump()
 		CreateAnimation(m_s1, m_s2, m_s3,
 			Vec2(50.f, 0.f), 1.f, -1, ORT_LEFT);
 
+	m_Animator->Play(m_s1+ m_s2+ m_s3);
+
 	m_skilllayer = LAYER::PLAYER_SKILL;
 	duration = .6f;
 	cooltime = 0.f;

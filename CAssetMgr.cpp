@@ -69,6 +69,38 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 	return pTexture;
 }
 
+CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _strRelativePath, int _rot )
+{
+	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
+	CTexture* pTexture = FindTexture( _strKey);
+	if (nullptr != pTexture)
+	{
+		// 이미 있는 텍스쳐면 찾은걸 반환해준다.
+		return pTexture;
+	}
+
+	// 입력된 키에 해당하는 텍스쳐가 없으면 로딩해서 반환해준다.
+	wstring strContentPath = CPathMgr::GetContentPath();
+	wstring strFilePath = strContentPath + _strRelativePath;
+
+	pTexture = new CTexture;
+	//pTexture->Load(strFilePath);
+	if (!pTexture->Load_rotated(strFilePath, (float)_rot * 0.0174533f ))
+	{
+		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
+		delete pTexture;
+		return nullptr;
+	}
+
+	// Asset 에 키값과 경로값을 알려준다.
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = L"";
+
+	m_mapTex.insert(make_pair(_strKey, pTexture));
+
+	return pTexture;
+}
+
 
 HBITMAP CAssetMgr::GetTransHBITMAP()
 {

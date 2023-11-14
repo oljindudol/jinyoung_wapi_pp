@@ -5,7 +5,23 @@
 void ChainAttack::tick(float _DT)
 {
 	Super::tick(_DT);
+	if (m_activedtime > 1.86f)
+	{
+		m_Collider->SetOffsetPos(Vec2(0.f, 2000.f));
+			return;
+	}
+	if (m_activedtime < 0.78f)
+	{
+		m_Collider->SetOffsetPos(Vec2(0.f, 2000.f));
+			return;
+	}
 
+	if (m_activedtime > 0.78f)
+	{
+		m_Collider->SetOffsetPos(Vec2(0.f, -100.f));
+		return;
+	}
+	
 
 }
 
@@ -25,8 +41,8 @@ ChainAttack::ChainAttack()
 	//컬라이더
 	m_Collider =
 		AddComponent<CCollider>(GetName() + L"Collider");
-	m_Collider->SetScale(Vec2(300.f, 300.f));
-	m_Collider->m_vOffsetPos = (Vec2(-170.f, -110.f));
+	m_Collider->SetScale(Vec2(70.f, 1000.f));
+	m_Collider->m_vOffsetPos = (Vec2(0.f, -100.f));
 
 	//pNewSkill -> m_Collider->SetOffsetPos(Vec2(0.f, 0.f));
 
@@ -36,7 +52,17 @@ ChainAttack::ChainAttack()
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, m_s3,
-			Vec2(-100.f, -100.f), 1.f, -1, ORT_LEFT);
+			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT);
+
+	for (int i = 20; i > -20; i-=2)
+	{
+		m_Animator->
+			CreateRotatedAnimation(m_s1, m_s2, m_s3,
+				i, Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT);
+	}
+
+
+	//m_Animator->Play(m_s1 + m_s2 + m_s3 + L"_20");
 
 	m_skilllayer = LAYER::MONSTER_PJ;
 	duration = 1.5f;
@@ -52,10 +78,15 @@ ChainAttack::ChainAttack(const ChainAttack& _Origin)
 
 void ChainAttack::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
-	Super::activate(_beginpos, _ort);
-	float perc = (float)rand()/ (float)32767;
 
-	SetRotation((0.69813f)* perc - 0.349066f);
+	float perc = (float)rand()/ (float)32767;
+	int rot = 20 - 2*((int)(20 * perc));
+
+	m_Animator->Play(m_s1 + m_s2 + m_s3 + L"_" + std::to_wstring(rot));
+
+	SetRotation((float)rot* -0.0174533f);
+
+	Super::activate(_beginpos, _ort);
 }
 
 void ChainAttack::begin()

@@ -19,6 +19,7 @@ public:
 private:
     virtual bool Load(const wstring& _strFilePath) override;
     virtual bool Load_r(const wstring& _strFilePath);
+    virtual bool Load_rotated(const wstring& _strFilePath, float _rad);
 
     void Create(UINT _Width, UINT Height);
 

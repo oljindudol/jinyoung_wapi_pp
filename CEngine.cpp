@@ -95,10 +95,10 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 
 	// 추가 비트맵 버퍼
-	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x *4, m_ptResolution.y *2 );
+	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x , m_ptResolution.y );
 
 	// 추가 비트맵 버퍼
-	m_TmpTex = CAssetMgr::GetInst()->CreateTexture(L"TmpTex", m_ptResolution.x *4 , m_ptResolution.y *2 );
+	m_TmpTex = CAssetMgr::GetInst()->CreateTexture(L"TmpTex", m_ptResolution.x  , m_ptResolution.y );
 
 
 

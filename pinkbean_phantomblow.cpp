@@ -39,6 +39,8 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 		CreateAnimation(m_s1, m_s2, m_s3,
 			Vec2(-100.f, -100.f), 1.f, -1, ORT_LEFT);
 
+	m_Animator->Play(m_s1 + m_s2 + m_s3);
+
 	m_skilllayer = LAYER::PLAYER_PJ;
 	duration = .6f;
 	cooltime = 0.f;
