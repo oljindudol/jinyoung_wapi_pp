@@ -70,7 +70,7 @@ void CLevelMgr::init()
 	//}
 
 	// Level
-	ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
+	ChangeLevel(LEVEL_TYPE::PHASE_FIRST);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];

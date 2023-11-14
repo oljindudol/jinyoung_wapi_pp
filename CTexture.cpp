@@ -34,8 +34,8 @@ HBITMAP GetRotatedBitmap(HDC hdc, HBITMAP hBitmap, float radians)// COLORREF clr
 	HBITMAP hbmResult;
 	HBITMAP hbmOldSource;
 	HBITMAP hbmOldDest;
-	HBRUSH hbrBack;
-	HBRUSH hbrOld;
+	//HBRUSH hbrBack;
+	//HBRUSH hbrOld;
 
 	XFORM xform;
 

@@ -16,12 +16,11 @@ void CSkillMgr::init()
 	AddSkill((CSkill*)new pinkbean_doublejump);
 	AddSkill((CSkill*)new pinkbean_phantomblow);
 
+	for (int i = 0; i < 5; i++)
+	{
+		AddSkill((CSkill*)new ChainAttack);
+	}
 
-	AddSkill((CSkill*)new ChainAttack);
-	AddSkill((CSkill*)new ChainAttack);
-	AddSkill((CSkill*)new ChainAttack);
-	AddSkill((CSkill*)new ChainAttack);
-	AddSkill((CSkill*)new ChainAttack);
 }
 
 

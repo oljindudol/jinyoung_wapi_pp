@@ -344,7 +344,7 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 
 		frm.m_Atlas = pAtlas_rotated;
 		frm.m_Atlas_r = nullptr;
-		frm.vOffset = tmpf.vOffset;
+		frm.vOffset = _vOffset;
 		frm.Duration = tmpf.Duration;
 		frm.vCutSize = Vec2(pAtlas_rotated->GetWidth(), pAtlas_rotated->GetHeight());
 		m_vecFrm.push_back(frm);

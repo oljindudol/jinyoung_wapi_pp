@@ -16,7 +16,6 @@
 
 ion::ion()
 {
-
 	ort = ORT_RIGHT;
 	m_s1 = L"first";
 	m_s2 = L"ion";

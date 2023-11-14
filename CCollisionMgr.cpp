@@ -93,7 +93,6 @@ void CCollisionMgr::init()
 	CheckCollision(PLAYER, PORTAL);
 
 	CheckCollision(MONSTER, PLAYER_PJ);
-	CheckCollision(MONSTER_PJ, MONSTER_PJ);
 }
 
 

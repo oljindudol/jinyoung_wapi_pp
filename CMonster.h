@@ -30,6 +30,9 @@ protected:
 public:
     virtual void begin() override;
     virtual void Spawn(Vec2 _Spawnpos);
+    virtual void SpawnRuleMon();
+
+
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
     wstring GetMonName() { return m_monstername; }
     //virtual void render(HDC _dc) override;

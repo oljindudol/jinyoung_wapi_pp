@@ -7,6 +7,7 @@ CState::CState()
 	, m_skillortsign(-1)
 	, m_pPlayer(nullptr)
 	, m_stateduration(0.f)
+	, m_StateID(0)
 {
 }
 

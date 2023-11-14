@@ -40,7 +40,6 @@ void CNormalMonAtt1::finaltick(float _DT)
 		GetOwner()->ort =
 			((vMonsterPos - vPlayerPos).x > 0.f) ?
 			ORT_LEFT : ORT_RIGHT;
-
 	}
 
 	m_acctime += _DT;

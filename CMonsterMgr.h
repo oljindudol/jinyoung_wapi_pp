@@ -14,6 +14,7 @@ public:
 	void init();
 	void SpwanMonster(wstring _monstername,
 		Vec2 _pos);
+	void SpwanRuleMonster(wstring _monstername);
 
 private:
 	CMonster* FindAvailableMonster(

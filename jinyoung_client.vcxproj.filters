@@ -55,12 +55,6 @@
     <Filter Include="03.Game\11.StageFirst">
       <UniqueIdentifier>{2a230ab3-e496-415e-89ae-b31aa49d560c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\11.StageFirst\01.ion">
-      <UniqueIdentifier>{7a917847-2f99-4ba2-a6c4-026324cbd2b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Game\11.StageFirst\03.rulemon">
-      <UniqueIdentifier>{cc3345d9-230f-4ca0-ac45-eb0c5547abcf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\12.StageSecond">
       <UniqueIdentifier>{cc1d701e-7c0e-4b96-8c40-1e19dc3363dd}</UniqueIdentifier>
     </Filter>
@@ -110,9 +104,6 @@
     <Filter Include="03.Game\01.Header\pool">
       <UniqueIdentifier>{4c7ae206-a906-4321-8c21-c6094841c2f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\11.StageFirst\03.rulemon\skill">
-      <UniqueIdentifier>{5e09eb89-3585-4060-a268-39ddb628bb2c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\10.StageZero\Player">
       <UniqueIdentifier>{fa1ca386-36c9-41f7-bcd0-0330efad2dfd}</UniqueIdentifier>
     </Filter>
@@ -122,8 +113,20 @@
     <Filter Include="03.Game\10.StageZero\Player\State">
       <UniqueIdentifier>{5f170ad8-cdce-4797-a868-4aa533480d6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\11.StageFirst\monstate">
-      <UniqueIdentifier>{c3ecff51-eb2e-4bce-af67-7f8afa97d316}</UniqueIdentifier>
+    <Filter Include="03.Game\11.StageFirst\01.ion+yalda">
+      <UniqueIdentifier>{7a917847-2f99-4ba2-a6c4-026324cbd2b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\11.StageFirst\01.ion+yalda\state">
+      <UniqueIdentifier>{2618435f-e399-444d-88f1-71dd21a722b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\11.StageFirst\02.rulemon1">
+      <UniqueIdentifier>{cc3345d9-230f-4ca0-ac45-eb0c5547abcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\11.StageFirst\02.rulemon1\state">
+      <UniqueIdentifier>{b789efcb-9d8d-4cb9-b101-86c2c4c2f2ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\11.StageFirst\03.rulemon2">
+      <UniqueIdentifier>{8b422c15-d965-42f8-ac54-28a8b6f127d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -301,14 +304,8 @@
     <ClInclude Include="CPlayerOnAir.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClInclude>
-    <ClInclude Include="CNormalMonIdle.h">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClInclude>
-    <ClInclude Include="CNormalMonTrace.h">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClInclude>
     <ClInclude Include="ion.h">
-      <Filter>03.Game\11.StageFirst\01.ion</Filter>
+      <Filter>03.Game\11.StageFirst\01.ion+yalda</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerDown.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
@@ -319,12 +316,6 @@
     <ClInclude Include="CMonsterMgr.h">
       <Filter>03.Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="monsters.h">
-      <Filter>03.Game\01.Header\pool</Filter>
-    </ClInclude>
-    <ClInclude Include="skills.h">
-      <Filter>03.Game\01.Header\pool</Filter>
-    </ClInclude>
     <ClInclude Include="uis.h">
       <Filter>03.Game\01.Header\pool</Filter>
     </ClInclude>
@@ -334,28 +325,66 @@
     <ClInclude Include="CPortal.h">
       <Filter>03.Game\10.StageZero</Filter>
     </ClInclude>
-    <ClInclude Include="CNormalMonDie.h">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClInclude>
-    <ClInclude Include="CNormalMonRegen.h">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClInclude>
     <ClInclude Include="CPhaseFirst.h">
       <Filter>03.Game\11.StageFirst</Filter>
     </ClInclude>
-    <ClInclude Include="CNormalMonAtt1.h">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClInclude>
-    <ClInclude Include="CNormalMonAtt3.h">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClInclude>
     <ClInclude Include="yalda.h">
-      <Filter>03.Game\11.StageFirst\01.ion</Filter>
+      <Filter>03.Game\11.StageFirst\01.ion+yalda</Filter>
     </ClInclude>
     <ClInclude Include="CUIMgr.h">
       <Filter>03.Game\03.Manager</Filter>
     </ClInclude>
-    <ClInclude Include="ChainAttack.h" />
+    <ClInclude Include="CNormalMonAtt1.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonAtt3.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonDie.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonIdle.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonRegen.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonTrace.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="ChainAttack.h">
+      <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
+    </ClInclude>
+    <ClInclude Include="rulemon11.h">
+      <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
+    </ClInclude>
+    <ClInclude Include="CRuleMon11Idle.h">
+      <Filter>03.Game\11.StageFirst\02.rulemon1\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CRuleMon11Attack.h">
+      <Filter>03.Game\11.StageFirst\02.rulemon1\state</Filter>
+    </ClInclude>
+    <ClInclude Include="monsters.h">
+      <Filter>04.CurWork</Filter>
+    </ClInclude>
+    <ClInclude Include="skills.h">
+      <Filter>04.CurWork</Filter>
+    </ClInclude>
+    <ClInclude Include="rulemon12.h" />
+    <ClInclude Include="CRuleMon12Attack.h" />
+    <ClInclude Include="CRuleMon12Idle.h" />
+    <ClInclude Include="CDarkFalling.h">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClInclude>
+    <ClInclude Include="CDarkFallingDie.h">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClInclude>
+    <ClInclude Include="CDarkFallingIdle.h">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClInclude>
+    <ClInclude Include="CDarkFallingRegen.h">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -377,9 +406,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>01.Default</Filter>
     </ClCompile>
-    <ClCompile Include="CLevel.cpp">
-      <Filter>03.Game\05.Level</Filter>
-    </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
       <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
@@ -390,9 +416,6 @@
       <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
-      <Filter>03.Game\03.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CLevelMgr.cpp">
       <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
@@ -500,9 +523,6 @@
     <ClCompile Include="CSkill.cpp">
       <Filter>03.Game\09.Skill</Filter>
     </ClCompile>
-    <ClCompile Include="CSkillMgr.cpp">
-      <Filter>03.Game\09.Skill</Filter>
-    </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>03.Game\10.StageZero\Player</Filter>
     </ClCompile>
@@ -524,23 +544,14 @@
     <ClCompile Include="CPlayerOnAir.cpp">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="CNormalMonIdle.cpp">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClCompile>
-    <ClCompile Include="CNormalMonTrace.cpp">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClCompile>
     <ClCompile Include="ion.cpp">
-      <Filter>03.Game\11.StageFirst\01.ion</Filter>
+      <Filter>03.Game\11.StageFirst\01.ion+yalda</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerDown.cpp">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
     <ClCompile Include="CWall.cpp">
       <Filter>03.Game\04.Object</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonsterMgr.cpp">
-      <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CStatusUI.cpp">
       <Filter>03.Game\08.UI</Filter>
@@ -551,27 +562,71 @@
     <ClCompile Include="CPortal.cpp">
       <Filter>03.Game\10.StageZero</Filter>
     </ClCompile>
-    <ClCompile Include="CNormalMonDie.cpp">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClCompile>
-    <ClCompile Include="CNormalMonRegen.cpp">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClCompile>
     <ClCompile Include="CPhaseFirst.cpp">
       <Filter>03.Game\11.StageFirst</Filter>
     </ClCompile>
-    <ClCompile Include="CNormalMonAtt1.cpp">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClCompile>
-    <ClCompile Include="CNormalMonAtt3.cpp">
-      <Filter>03.Game\11.StageFirst\monstate</Filter>
-    </ClCompile>
     <ClCompile Include="yalda.cpp">
-      <Filter>03.Game\11.StageFirst\01.ion</Filter>
+      <Filter>03.Game\11.StageFirst\01.ion+yalda</Filter>
     </ClCompile>
     <ClCompile Include="CUIMgr.cpp">
       <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
-    <ClCompile Include="ChainAttack.cpp" />
+    <ClCompile Include="CMonsterMgr.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkillMgr.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelMgr.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonAtt1.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonAtt3.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonDie.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonIdle.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonRegen.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonTrace.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="ChainAttack.cpp">
+      <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
+    </ClCompile>
+    <ClCompile Include="rulemon11.cpp">
+      <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
+    </ClCompile>
+    <ClCompile Include="CRuleMon11Attack.cpp">
+      <Filter>03.Game\11.StageFirst\02.rulemon1\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CRuleMon11Idle.cpp">
+      <Filter>03.Game\11.StageFirst\02.rulemon1\state</Filter>
+    </ClCompile>
+    <ClCompile Include="rulemon12.cpp" />
+    <ClCompile Include="CRuleMon12Attack.cpp" />
+    <ClCompile Include="CRuleMon12Idle.cpp" />
+    <ClCompile Include="CDarkFalling.cpp">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClCompile>
+    <ClCompile Include="CDarkFallingDie.cpp">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClCompile>
+    <ClCompile Include="CDarkFallingIdle.cpp">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClCompile>
+    <ClCompile Include="CDarkFallingRegen.cpp">
+      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,6 +14,13 @@ void CMonsterMgr::init()
 {
 	AddMonster(new ion);
 	AddMonster(new yalda);
+	AddMonster(new rulemon11);
+	for (int i = 0; i < 30; i++)
+	{
+		AddMonster(new CDarkFalling);
+	}
+	AddMonster(new rulemon12);
+
 }
 
 void CMonsterMgr::tick()
@@ -162,6 +169,16 @@ void CMonsterMgr::SpwanMonster(wstring _monstername, Vec2 _pos)
 	pMonster->Spawn(_pos);
 }
 
+void CMonsterMgr::SpwanRuleMonster(wstring _monstername)
+{
+	CMonster* pMonster = FindAvailableMonster(_monstername);
+	if (nullptr == pMonster)
+	{
+		LOG(LOG_LEVEL::LOG, (L"몬스터를 찾을수 없습니다"));
+		return;
+	}
+	pMonster->SpawnRuleMon();
+}
 
 
 

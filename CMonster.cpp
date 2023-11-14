@@ -61,12 +61,15 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 	SetLive();
 
 	// 애니메이션 play
-	m_Animator->Play(m_monstername + L"idle");
+	if (nullptr != m_Animator)
+	{
+		m_Animator->Play(m_monstername + L"idle");
+	}
 
 	// 컬라이더 초기화
 
 	// 그라운드설정 off
-	if (nullptr != m_AI)
+	if (nullptr != m_Movement)
 	{
 		m_Movement->SetGround(false);
 	}
@@ -78,10 +81,26 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::REGEN);
 	}
 
-
 	// 레벨에참여
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)this });
 
+}
+
+void CMonster::SpawnRuleMon()
+{
+	SetPos(Vec2(0,0));
+
+	m_OnActivate = true;
+
+	SetLive();
+
+	if (nullptr != m_AI)
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+	}
+
+	// 레벨에참여
+	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)this });
 }
 
 
