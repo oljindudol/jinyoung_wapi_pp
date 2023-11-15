@@ -26,10 +26,9 @@ private:
     //void SettexturetoDc(HDC _dc, CTexture* _ptexture,Vec2 _pos);
 
 
-    int testhp;
-    float hpbuffer;
-    float acctime;
-    bool desc;
+    float m_hpbuffer;
+    float m_mpbuffer;
+    float m_acctime;
 
 
 public:

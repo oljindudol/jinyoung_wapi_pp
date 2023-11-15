@@ -116,8 +116,8 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CSoundMgr::GetInst()->init();
 
 	CCollisionMgr::GetInst()->init();
-
 	CUIMgr::GetInst()->init();
+
 	CSkillMgr::GetInst()->init();
 	CMonsterMgr::GetInst()->init();
 

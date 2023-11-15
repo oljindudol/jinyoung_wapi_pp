@@ -29,14 +29,17 @@ CLevelMgr::CLevelMgr()
 	, m_Player(nullptr)
 	, m_arrLevels{}
 	, imag(1)
+	, m_iCurLevelNum(0)
+	, m_pRule(nullptr)
 {
-	srand((unsigned int)time(NULL));
+
 
 }
 
 CLevelMgr::~CLevelMgr()
 {
 	delete m_Player;
+	delete m_pRule;
 
 	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
 	{
@@ -52,6 +55,12 @@ CLevelMgr::~CLevelMgr()
 
 void CLevelMgr::init()
 {
+	//랜덤 함수용
+	srand((unsigned int)time(NULL));
+
+	//룰 객체 생성
+	m_pRule = new FRule;
+
 	//플레이어 생성
 	m_Player = new CPlayer;
 	m_Player->SetScale(Vec2(50.f, 50.f));
@@ -258,7 +267,8 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 	if (nullptr != m_pCurLevel)
 		m_pCurLevel->exit();
 
-	m_pCurLevel = m_arrLevels[(UINT)_Type];
+	m_iCurLevelNum = (UINT)_Type;
+	m_pCurLevel = m_arrLevels[m_iCurLevelNum];
 
 	//init
 	m_pCurLevel->enter();

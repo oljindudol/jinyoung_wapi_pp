@@ -3,6 +3,7 @@
 class CNormalMonAtt3 :
     public CState
 {
+    GENERATED_OBJECT(CState);
 public:
     CNormalMonAtt3();
     ~CNormalMonAtt3();

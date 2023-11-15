@@ -3,7 +3,7 @@
 class CDarkFallingRegen :
     public CState
 {
-
+    GENERATED_OBJECT(CState);
 public:
     CDarkFallingRegen();
     ~CDarkFallingRegen();

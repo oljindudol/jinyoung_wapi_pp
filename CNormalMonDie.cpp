@@ -21,7 +21,8 @@ void CNormalMonDie::finaltick(float _DT)
 
 void CNormalMonDie::Enter()
 {
-	m_acctime = 0.f;
+
+	Super::Enter();
 
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(GetOwner()->GetName() + L"die");

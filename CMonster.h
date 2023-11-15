@@ -26,11 +26,14 @@ protected:
     CAnimator* m_Animator;
     CMovement* m_Movement ;
     bool m_OnActivate;
+    bool m_attacked;
 
 public:
     virtual void begin() override;
     virtual void Spawn(Vec2 _Spawnpos);
     virtual void SpawnRuleMon();
+
+    void SetAttackedFalse() { m_attacked = false; }
 
 
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }

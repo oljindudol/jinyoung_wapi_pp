@@ -91,8 +91,8 @@ void CPhaseFirst::init()
 	pSound->Play(true);
 
 
-	//CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
-	//CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
+	CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
+	CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon11");
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon12");
 }

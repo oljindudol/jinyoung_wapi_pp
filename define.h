@@ -152,8 +152,8 @@ enum LAYER
 	PLATFORM,
 	PLATFORM_DEBUG,
 	WALL,
-	PLAYER,
 	MONSTER,
+	PLAYER,
 	PLAYER_SKILL,
 	PLAYER_PJ,
 	MONSTER_PJ,
@@ -270,6 +270,8 @@ enum class DEBUFF
 	//버프:무적
 	INVINCIBLE,
 
+	//피격 깜빡임
+	ON_DAMAGED,
 	//창조의 저주
 	CREATION,
 	//파괴의 저주
@@ -281,11 +283,11 @@ enum class DEBUFF
 	//슬로우
 	SLOW,
 	//스턴
-	STUN,
+	//STUN,
 	//혼란
-	CHAOS,
+	//CHAOS,
 	//빗나감
-	RICOCHET,
+	//RICOCHET,
 	//스킬 디버프 속성없음
 	NONE,
 	END,

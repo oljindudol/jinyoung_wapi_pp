@@ -22,6 +22,7 @@ CMonster::CMonster()
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
 	, m_OnActivate(false)
+	, m_attacked(false)
 {
 }
 

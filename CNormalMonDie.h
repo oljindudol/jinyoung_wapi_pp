@@ -5,7 +5,7 @@
 class CNormalMonDie :
     public CState
 {
-
+    GENERATED_OBJECT(CState);
 public:
     CNormalMonDie();
     ~CNormalMonDie();

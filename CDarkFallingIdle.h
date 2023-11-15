@@ -3,7 +3,7 @@
 class CDarkFallingIdle :
     public CState
 {
-
+    GENERATED_OBJECT(CState);
 public:
     CDarkFallingIdle();
     ~CDarkFallingIdle();

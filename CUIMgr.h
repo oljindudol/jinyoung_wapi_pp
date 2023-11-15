@@ -18,6 +18,7 @@ public:
 	unordered_map<wstring, vector<CUI*>> m_UIMap;
 	void init();
 	void SetUIVisible(wstring _uiname);
+	void DestroyUI(wstring _uiname);
 
 private:
 	CUI* FindAvailableUI(wstring _uiname);

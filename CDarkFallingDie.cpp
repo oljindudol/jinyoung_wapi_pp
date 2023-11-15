@@ -21,7 +21,8 @@ void CDarkFallingDie::finaltick(float _DT)
 
 void CDarkFallingDie::Enter()
 {
-	m_acctime = 0.f;
+	Super::Enter();
+
 	CMovement* pMov = GetMovement();
 	pMov->SetVelocity(Vec2(0.f, 0.f));
 

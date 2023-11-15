@@ -128,6 +128,15 @@
     <Filter Include="03.Game\11.StageFirst\03.rulemon2">
       <UniqueIdentifier>{8b422c15-d965-42f8-ac54-28a8b6f127d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Game\11.StageFirst\03.rulemon2\state">
+      <UniqueIdentifier>{9527d5cb-cb45-4939-9ee0-c2a862ca7544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\11.StageFirst\dakfalling">
+      <UniqueIdentifier>{9b4d8077-f20b-4068-ae3f-faa4b33d7cc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\11.StageFirst\dakfalling\state">
+      <UniqueIdentifier>{f9e458c9-fed2-43c0-b770-9437b479a628}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -212,9 +221,6 @@
       <Filter>03.Game\03.Manager</Filter>
     </ClInclude>
     <ClInclude Include="func.h">
-      <Filter>03.Game\01.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
       <Filter>03.Game\01.Header</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
@@ -370,20 +376,32 @@
     <ClInclude Include="skills.h">
       <Filter>04.CurWork</Filter>
     </ClInclude>
-    <ClInclude Include="rulemon12.h" />
-    <ClInclude Include="CRuleMon12Attack.h" />
-    <ClInclude Include="CRuleMon12Idle.h" />
-    <ClInclude Include="CDarkFalling.h">
+    <ClInclude Include="rulemon12.h">
       <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClInclude>
+    <ClInclude Include="CDarkFalling.h">
+      <Filter>03.Game\11.StageFirst\dakfalling</Filter>
+    </ClInclude>
+    <ClInclude Include="CRuleMon12Idle.h">
+      <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CRuleMon12Attack.h">
+      <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>04.CurWork</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFallingDie.h">
-      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFallingIdle.h">
-      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFallingRegen.h">
-      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerDead.h">
+      <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -523,9 +541,6 @@
     <ClCompile Include="CSkill.cpp">
       <Filter>03.Game\09.Skill</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>03.Game\10.StageZero\Player</Filter>
-    </ClCompile>
     <ClCompile Include="pinkbean_doublejump.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClCompile>
@@ -567,9 +582,6 @@
     </ClCompile>
     <ClCompile Include="yalda.cpp">
       <Filter>03.Game\11.StageFirst\01.ion+yalda</Filter>
-    </ClCompile>
-    <ClCompile Include="CUIMgr.cpp">
-      <Filter>03.Game\03.Manager</Filter>
     </ClCompile>
     <ClCompile Include="CMonsterMgr.cpp">
       <Filter>04.CurWork</Filter>
@@ -613,20 +625,35 @@
     <ClCompile Include="CRuleMon11Idle.cpp">
       <Filter>03.Game\11.StageFirst\02.rulemon1\state</Filter>
     </ClCompile>
-    <ClCompile Include="rulemon12.cpp" />
-    <ClCompile Include="CRuleMon12Attack.cpp" />
-    <ClCompile Include="CRuleMon12Idle.cpp" />
-    <ClCompile Include="CDarkFalling.cpp">
+    <ClCompile Include="rulemon12.cpp">
       <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+    </ClCompile>
+    <ClCompile Include="CDarkFalling.cpp">
+      <Filter>03.Game\11.StageFirst\dakfalling</Filter>
+    </ClCompile>
+    <ClCompile Include="CRuleMon12Attack.cpp">
+      <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CRuleMon12Idle.cpp">
+      <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFallingDie.cpp">
-      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFallingIdle.cpp">
-      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFallingRegen.cpp">
-      <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
+      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>04.CurWork</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerDead.cpp">
+      <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

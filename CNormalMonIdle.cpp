@@ -13,6 +13,12 @@ CNormalMonIdle::~CNormalMonIdle()
 
 void CNormalMonIdle::finaltick(float _DT)
 {
+	m_acctime += _DT;
+
+	if (m_acctime < 1.5f)
+		return;
+
+
 	if (GetOwnerSM()->GetForcedIdle())
 		return;
 
@@ -64,6 +70,7 @@ void CNormalMonIdle::finaltick(float _DT)
 
 void CNormalMonIdle::Enter()
 {
+	Super::Enter();
 
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(GetOwner()->GetName() + L"idle");

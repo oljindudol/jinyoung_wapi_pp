@@ -52,7 +52,7 @@ public:
 
 public:
     virtual void finaltick(float _DT) = 0;
-    virtual void Enter() = 0;
+    virtual void Enter();
     virtual void Exit() = 0;
 
 public:

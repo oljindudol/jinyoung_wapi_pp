@@ -36,9 +36,9 @@ CUI::~CUI()
 	}
 }
 
+
 void CUI::SetUIVisible()
 {
-
 	m_visible = true;
 	SetLive();
 

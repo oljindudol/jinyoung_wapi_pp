@@ -48,10 +48,11 @@ void CNormalMonAtt3::finaltick(float _DT)
 
 void CNormalMonAtt3::Enter()
 {
+
+	Super::Enter();
+
 	chased = false;
 	stomped = false;
-	m_acctime = 0;
-	GetOwner()->SetCollisionTime(0.f);
 
 	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));

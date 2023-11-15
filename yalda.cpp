@@ -128,53 +128,88 @@ void yalda::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 
 		return;
 	}
+
+
 }
 
 void yalda::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
 
+	//몬->플레이어 충돌처리
+
+	// 플레이어가 아니면 return 
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_OtherObj);
-
-	if ((UINT)ENORMAL_MON_STATE::ATTACK2 == m_AI->GetCurStateNum() && pPlayer)
+	if (nullptr == pPlayer)
 	{
-		float acctime = m_AI->GetCurstateAcctime();
+		return;
+	}
+
+	// 플레이어 이고, dead이면 충돌처리안함
+	if (nullptr != pPlayer)
+	{
+		if ((UINT)PLAYER_STATE::DEAD == pPlayer->getStateMachine()->GetCurStateNum())
+			return;
+	}
+
+	if ((UINT)ENORMAL_MON_STATE::ATTACK2 == m_AI->GetCurStateNum())
+	{
+		float m_acctime = m_AI->GetCurstateAcctime();
 
 		if (m_collisiontimetoplayer < 0.1f &&
-			acctime > 1.3f &&
-			acctime < 2.82f
+			m_acctime > 1.3f &&
+			m_acctime < 2.82f
 			)
 		{
 			float force = 5000.f;
 			pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, -1.f) * force);
+
+
+			if (false == m_attacked)
+			{
+				m_attacked = true;
+				pPlayer->GetDamaged(0.33, DEBUFF::DESTUCTION);
+			}
 		}
 	}
 
-	if ((UINT)ENORMAL_MON_STATE::ATTACK1 == m_AI->GetCurStateNum() && pPlayer)
+	if ((UINT)ENORMAL_MON_STATE::ATTACK1 == m_AI->GetCurStateNum())
 	{
-		float acctime = m_AI->GetCurstateAcctime();
+		float m_acctime = m_AI->GetCurstateAcctime();
 
 		if (m_collisiontimetoplayer < 0.1f &&
-			acctime > 0.6f &&
-			acctime < 1.4f
+			m_acctime > 0.6f &&
+			m_acctime < 1.4f
 			)
 		{
 			float force = 5000.f;
 			pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, -1.f) * force);
+
+			if (false == m_attacked)
+			{
+				m_attacked = true;
+				pPlayer->GetDamaged(0.25, DEBUFF::DESTUCTION);
+			}
 		}
 	}
 
-	if ((UINT)ENORMAL_MON_STATE::ATTACK3 == m_AI->GetCurStateNum() && pPlayer)
+	if ((UINT)ENORMAL_MON_STATE::ATTACK3 == m_AI->GetCurStateNum())
 	{
-		float acctime = m_AI->GetCurstateAcctime();
+		float m_acctime = m_AI->GetCurstateAcctime();
 
 		if (m_collisiontimetoplayer < 0.1f &&
-			acctime > 2.95f &&
-			acctime < 3.8f
+			m_acctime > 2.95f &&
+			m_acctime < 3.8f
 			)
 		{
 			float force = 5000.f;
 			pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, -1.f) * force);
+
+			if (false == m_attacked)
+			{
+				m_attacked = true;
+				pPlayer->GetDamaged(0.4, DEBUFF::DESTUCTION);
+			}
 		}
 	}
 }

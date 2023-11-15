@@ -22,7 +22,3 @@
 // 각10개초반씩?
 //#include "WhitePower.h"
 //#include "BlackPower.h"
-
-
-//5페이즈 몬스터
-//#include "CGenesisEgg"

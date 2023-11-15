@@ -111,8 +111,10 @@ void CLevel::tick()
 
 	if (KEY_TAP(KEY::LBTN))
 	{
-		CMonsterMgr::GetInst()->SpwanMonster(L"firstdarkfalling",
-			CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
+		//
+		//CMonsterMgr::GetInst()->SpwanMonster(L"firstdarkfalling",
+		//	CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
+		// 
 		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 	}
 

@@ -5,7 +5,7 @@ class CPlayer;
 class CNormalMonRegen :
     public CState
 {
-
+    GENERATED_OBJECT(CState);
 public:
     CNormalMonRegen();
     ~CNormalMonRegen();

@@ -6,7 +6,7 @@ class CPlayer;
 class CNormalMonIdle :
     public CState
 {
-
+    GENERATED_OBJECT(CState);
 public:
     CNormalMonIdle();
     ~CNormalMonIdle();

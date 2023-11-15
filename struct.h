@@ -227,3 +227,15 @@ struct FLog
 	float	  AccTime;
 };
 
+struct FRule
+{
+	int DeathCount;
+	int leftsecond;
+
+	FRule()
+		:DeathCount(12)
+		, leftsecond(1800)
+	{
+
+	}
+};

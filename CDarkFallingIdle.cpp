@@ -16,6 +16,8 @@ void CDarkFallingIdle::finaltick(float _DT)
 
 void CDarkFallingIdle::Enter()
 {
+	Super::Enter();
+
 	CMovement* pMov = GetMovement();
 	pMov->SetVelocity(Vec2(0.f, 150.f));
 

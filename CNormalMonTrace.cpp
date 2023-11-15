@@ -106,7 +106,9 @@ void CNormalMonTrace::finaltick(float _DT)
 
 void CNormalMonTrace::Enter()
 {
-	GetOwner()->SetCollisionTime(0.f);
+	Super::Enter();
+
+
 	m_bigcollider = false;
 	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
@@ -117,7 +119,6 @@ void CNormalMonTrace::Enter()
 	// 레벨에 있는 플레이어를 알아낸다.
 	m_pPlayer = dynamic_cast<CPlayer*>(CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 
-	// Animator 에 Move Animation 재생
 }
 
 void CNormalMonTrace::Exit()

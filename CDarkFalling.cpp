@@ -5,6 +5,7 @@
 #include "CDarkFallingRegen.h"
 #include "CDarkFallingIdle.h"
 #include "CDarkFallingDie.h"
+#include "CLevelMgr.h"
 
 
 CDarkFalling::CDarkFalling()
@@ -83,6 +84,13 @@ void CDarkFalling::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* 
 {
 	if (LAYER::PLATFORM == (UINT)_OtherObj->GetLayerIdx())
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+
+	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx()
+		||  (UINT)ENORMAL_MON_STATE::DIE != m_AI->GetCurStateNum())
+	{
+		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.1f, DEBUFF::CREATION);
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+	}
 }
 
 void CDarkFalling::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)

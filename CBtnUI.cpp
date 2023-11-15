@@ -3,6 +3,7 @@
 
 #include "CEngine.h"
 #include "Resource.h"
+#include "CTexture.h"
 
 #include "CKeyMgr.h"
 
@@ -41,8 +42,26 @@ void CBtnUI::render(HDC _dc)
 	Vec2 vScale = GetScale();
 	//Rectangle(_dc, vPos.x, vPos.y, vPos.x + vScale.x, vPos.y + vScale.y);
 
-	if (nullptr != m_CurImg)
+	if (nullptr != m_NormalImg)
 	{
+		//SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(HOLLOW_BRUSH));
+
+
+		BLENDFUNCTION blend = {};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+
+		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+		AlphaBlend(_dc
+			, (int)vPos.x, (int)vPos.y
+			, m_NormalImg->GetWidth(), m_NormalImg->GetHeight()
+			, m_NormalImg->GetDC()
+			, 0, 0
+			, m_NormalImg->GetWidth(), m_NormalImg->GetHeight()
+			, blend);
+
 
 	}
 	else

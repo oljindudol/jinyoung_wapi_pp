@@ -22,7 +22,7 @@ void CDarkFallingRegen::finaltick(float _DT)
 
 void CDarkFallingRegen::Enter()
 {
-	m_acctime = 0.f;
+	Super::Enter();
 
 	CAnimator* pAni = GetAnimator();
 	CMonster* pCMon = dynamic_cast<CMonster*>(GetOwner());

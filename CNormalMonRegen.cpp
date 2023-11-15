@@ -24,7 +24,7 @@ void CNormalMonRegen::finaltick(float _DT)
 
 void CNormalMonRegen::Enter()
 {
-	m_acctime = 0.f;
+	Super::Enter();
 
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(GetOwner()->GetName() + L"regen");

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ChainAttack.h"
 #include "CSkillMgr.h"
+#include "CLevelMgr.h"
+#include "CPlayer.h"
 
 void ChainAttack::tick(float _DT)
 {
@@ -101,6 +103,10 @@ void ChainAttack::begin()
 
 void ChainAttack::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
+	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
+	{
+		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::DESTUCTION);
+	}
 }
 
 

@@ -32,6 +32,7 @@
 #include "CPlayerOnAir.h"
 #include "CPlayerDown.h"
 #include "CPlayerAttNorm.h"
+#include "CPlayerDead.h"
 
 #include "monsters.h"
 
@@ -50,8 +51,11 @@ CPlayer::CPlayer()
 	: m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
-	, hp(100)
-	, mp(100)
+	, level(290)
+	, maxhp(50000)
+	, hp(50000)
+	, maxmp(20000)
+	, mp(20000)
 	, att(5)
 	, def(1000)
 	, m_acctime(0.f)
@@ -91,6 +95,9 @@ CPlayer::CPlayer()
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -55.f), 1.f, -1);
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"down", Vec2(-30.f, -20.f), 1.f, -1);
+
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(20.f, -45.f), 3.f);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"dead", Vec2(20.f, -45.f), 1.f,18);
 
 	m_Animator->Play(L"commonpinkbeanidle");
 
@@ -142,6 +149,7 @@ CPlayer::CPlayer()
 	m_PlayerState->AddState((UINT)PLAYER_STATE::ON_AIR, new CPlayerOnAir);
 	m_PlayerState->AddState((UINT)PLAYER_STATE::DOWN, new CPlayerDown);
 	m_PlayerState->AddState((UINT)PLAYER_STATE::ATT_NM, new CPlayerAttNorm);
+	m_PlayerState->AddState((UINT)PLAYER_STATE::DEAD, new CPlayerDead);
 	m_PlayerState->ChangeState((UINT)PLAYER_STATE::IDLE);
 
 }
@@ -151,7 +159,10 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	, m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
+	, level(_Origin.level)
+	, maxhp(_Origin.maxhp)
 	, hp(_Origin.hp)
+	, maxmp(_Origin.maxmp)
 	, mp(_Origin.mp)
 	, att(_Origin.att)
 	, def(_Origin.def)
@@ -478,4 +489,38 @@ void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 void CPlayer::begin()
 {
 	m_Collider->InitColCnt();
+}
+
+void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
+{
+	//dead일 경우 무시
+	if ((UINT)PLAYER_STATE::DEAD == m_PlayerState->GetCurStateNum())
+	{
+		return;
+	}
+	//TODO : DEBUFF::무적일 경우 무시
+
+	//DEBUFF::다크사이트 일 경우는 호출부에서 처리
+
+	//TODO:*파괴디버프 보정 추가
+	int damage = maxhp * _percentdmg; 
+
+	int resthp = hp - damage;
+
+	//TODO:피격 데미지스킨을 출력한다
+	
+	//TODO:디버프 갱신
+
+	if (resthp > 0.f)
+	{
+		hp = resthp;
+	}
+	else
+	{
+		hp = 0;
+		m_PlayerState->ChangeState((UINT)PLAYER_STATE::DEAD);
+	}
+	
+	return;
+
 }

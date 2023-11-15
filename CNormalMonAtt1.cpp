@@ -73,8 +73,8 @@ void CNormalMonAtt1::finaltick(float _DT)
 
 void CNormalMonAtt1::Enter()
 {
-	m_acctime = 0;
-	GetOwner()->SetCollisionTime(0.f);
+	Super::Enter();
+
 	m_bigcollider = false;
 	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));

@@ -3,7 +3,9 @@
 class CNormalMonAtt1 :
     public CState
 {
+    GENERATED_OBJECT(CState);
 public:
+
     CNormalMonAtt1();
     ~CNormalMonAtt1();
     virtual void finaltick(float _DT);

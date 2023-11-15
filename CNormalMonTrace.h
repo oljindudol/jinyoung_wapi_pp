@@ -6,7 +6,7 @@ class CPlayer;
 class CNormalMonTrace :
     public CState
 {
-
+    GENERATED_OBJECT(CState);
 public:
     CNormalMonTrace();
     ~CNormalMonTrace();

@@ -2,8 +2,10 @@
 #include "CPanelUI.h"
 
 #include "CKeyMgr.h"
+#include "CTexture.h"
 
 CPanelUI::CPanelUI()
+	:m_PanmalImg(nullptr)
 {
 }
 
@@ -31,12 +33,34 @@ void CPanelUI::render(HDC _dc)
 	//(*this);
 	Vec2 vPos = GetFinalPos();
 	Vec2 vScale = GetScale();
-	SELECT_PEN(_dc, RED_PEN);
-	Rectangle(_dc
-		, (int)(vPos.x)
-		, (int)(vPos.y)
-		, (int)(vPos.x + vScale.x)
-		, (int)(vPos.y + vScale.y));
+
+	if (nullptr != m_PanmalImg)
+	{
+		BLENDFUNCTION blend = {};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+
+		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+		AlphaBlend(_dc
+			, (int)vPos.x, (int)vPos.y
+			, m_PanmalImg->GetWidth(), m_PanmalImg->GetHeight()
+			, m_PanmalImg->GetDC()
+			, 0, 0
+			, m_PanmalImg->GetWidth(), m_PanmalImg->GetHeight()
+			, blend);
+	}
+	else
+	{
+		SELECT_PEN(_dc, RED_PEN);
+		Rectangle(_dc
+			, (int)(vPos.x)
+			, (int)(vPos.y)
+			, (int)(vPos.x + vScale.x)
+			, (int)(vPos.y + vScale.y));
+	}
+
 
 	Super::render(_dc);
 }

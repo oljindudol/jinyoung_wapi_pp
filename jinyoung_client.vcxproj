@@ -202,6 +202,7 @@
     <ClInclude Include="CPlatform.h" />
     <ClInclude Include="CEnteranceLevel.h" />
     <ClInclude Include="CPlayerAttNorm.h" />
+    <ClInclude Include="CPlayerDead.h" />
     <ClInclude Include="CPlayerDown.h" />
     <ClInclude Include="CPlayerIdle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -325,6 +326,7 @@
     <ClCompile Include="CPlatform.cpp" />
     <ClCompile Include="CEnteranceLevel.cpp" />
     <ClCompile Include="CPlayerAttNorm.cpp" />
+    <ClCompile Include="CPlayerDead.cpp" />
     <ClCompile Include="CPlayerDown.cpp" />
     <ClCompile Include="CPlayerIdle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

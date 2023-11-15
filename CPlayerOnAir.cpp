@@ -71,7 +71,7 @@ void CPlayerOnAir::finaltick(float _DT)
 void CPlayerOnAir::Enter()
 {
 	CAnimator* pAni = GetAnimator();
-	pAni->Play(L"commonpinkbeanmove");
+	pAni->Play(L"commonpinkbeanonair");
 }
 
 void CPlayerOnAir::Exit()
