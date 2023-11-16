@@ -21,6 +21,16 @@ void CSkillMgr::init()
 		AddSkill((CSkill*)new ChainAttack);
 	}
 
+	for (int i = 0; i < 10; i++)
+	{
+		AddSkill((CSkill*)new CDamageSkin);
+	}
+
+	for (int i = 0; i < 150; i++)
+	{
+		AddSkill((CSkill*)new CDamageSkinRed);
+	}
+
 }
 
 
@@ -64,6 +74,8 @@ int CSkillMgr::FindNextSkillNumber(wstring _skillname)
 	return (int)iter->second.size();
 
 }
+
+
 
 void CSkillMgr::AddSkill(CSkill* _pSkill)
 {
@@ -133,6 +145,35 @@ CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
 	return pSkill;
 }
 
+
+void CSkillMgr::PrintDamageVioletSkin(Vec2 _pos, int _num)
+{
+	CSkill* pskill = FindAvailableSkill(L"commonpinkbeandamageskin_violet");
+	if (nullptr == pskill)
+	{
+		LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_violet" );
+		return;
+	}
+
+	CDamageSkin* pDs = dynamic_cast<CDamageSkin*>(pskill);
+	if (nullptr != pDs)
+		pDs->PrintDamage(_pos, _num);
+
+}
+
+void CSkillMgr::PrintDamageRedSkin(Vec2 _pos, long long _num ,int _th)
+{
+	CSkill* pskill = FindAvailableSkill(L"commonpinkbeandamageskin_red");
+	if (nullptr == pskill)
+	{
+		LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_red");
+		return;
+	}
+
+	CDamageSkinRed* pDs = dynamic_cast<CDamageSkinRed*>(pskill);
+	if (nullptr != pDs)
+		pDs->PrintDamage(_pos, _num ,_th);
+}
 
 void CSkillMgr::ActivateSkill(wstring _skillname
 	, Vec2 _pos

@@ -186,6 +186,8 @@ CPlayer::~CPlayer()
 void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
+	
+	hp = maxhp;
 
 	//Vec2 vPos = GetPos();
 	//m_acctime += _DT;
@@ -503,11 +505,12 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	//DEBUFF::다크사이트 일 경우는 호출부에서 처리
 
 	//TODO:*파괴디버프 보정 추가
-	int damage = maxhp * _percentdmg; 
+	int damage = (int)(maxhp * _percentdmg * (1.f + RandomPercentHtH()*0.025));
 
 	int resthp = hp - damage;
 
-	//TODO:피격 데미지스킨을 출력한다
+	//피격 데미지스킨을 출력한다
+	CSkillMgr::GetInst()->PrintDamageVioletSkin(GetRenderPos() - Vec2( GetScale().x/.7f, GetScale().y /.4f), damage);
 	
 	//TODO:디버프 갱신
 
@@ -522,5 +525,4 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	}
 	
 	return;
-
 }

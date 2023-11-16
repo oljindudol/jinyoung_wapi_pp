@@ -403,6 +403,8 @@
     <ClInclude Include="CPlayerDead.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClInclude>
+    <ClInclude Include="CDamageSkin.h" />
+    <ClInclude Include="CDamageSkinRed.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -655,5 +657,7 @@
     <ClCompile Include="CPlayerDead.cpp">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="CDamageSkin.cpp" />
+    <ClCompile Include="CDamageSkinRed.cpp" />
   </ItemGroup>
 </Project>

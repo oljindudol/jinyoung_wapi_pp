@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "pinkbean_phantomblow.h"
 #include "CSkillMgr.h"
+#include "CMonster.h"
 
 void pinkbean_phantomblow::tick(float _DT)
 {
@@ -51,10 +52,18 @@ pinkbean_phantomblow::pinkbean_phantomblow()
 
 pinkbean_phantomblow::pinkbean_phantomblow(const pinkbean_phantomblow& _Origin)
 {
+
 }
 
 void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
+
+	CMonster* pMon = dynamic_cast<CMonster*>(_OtherObj);
+	if (nullptr != pMon)
+	{
+		pMon->GetDamaged(0.001f, 12);
+	}
+
 
 }
 

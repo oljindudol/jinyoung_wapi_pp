@@ -90,6 +90,7 @@ void ChainAttack::activate(Vec2 _beginpos, ORIENTATION _ort)
 	SetRotation((float)rot* -0.0174533f);
 	m_Collider->SetOffsetPos(Vec2(  -15.f -500.f * tanf(0.0174533f * rot), -2000.f));
 	Super::activate(_beginpos, _ort);
+
 }
 
 void ChainAttack::begin()

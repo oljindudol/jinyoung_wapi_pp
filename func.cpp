@@ -101,7 +101,7 @@ void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc
 		, blend);
 }
 
-void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
+void SetNumberTextureToDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
 {
 	wstring strnums = std::to_wstring(_num);
 
@@ -120,8 +120,77 @@ void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _
 		int num = strnums[i] - '0';
 		SettexturetoDc(_dc, _vecnumtex[num], _pos + (offset * (float)i));
 	}
-
 }
+
+//void SetNumberTextureToDcWithRandomOffset(HDC _dc, const wstring& _nums
+//	,const vector<CTexture*> _vecnumtex 
+//	,const vector<Vec2> _randomoffsetpercent, Vec2 _pos, int _alpha)
+//{
+//
+//	Vec2 offset = Vec2(_offset, 0.f);
+//	
+//	int width = 0;
+//	int height= 0;
+//
+//	if (0 != _vecnumtex.size())
+//	{
+//		width = (int)_vecnumtex[0]->GetWidth();
+//		height = (int)_vecnumtex[0]->GetHeight();
+//	}
+//
+//	offset += Vec2(
+//		(int)width
+//		, 0
+//	);
+//	float maxf = 32767.f;
+//	float randoffpercent = 0.3f;
+//
+//	int numssize = _nums.size();
+//
+//
+//	for (int i = 0; i < numssize; i++)
+//	{
+//		int num = _nums[i] - '0';
+//		SettexturetoDcWithAlpha(_dc,
+//			_vecnumtex[num], _pos 
+//			+ (offset * (float)i) 
+//			+ Vec2(_randomoffsetpercent[i].x * width * randoffpercent,
+//				_randomoffsetpercent[i].y * height * randoffpercent ) , _alpha);
+//	}
+//}
+
+//void SetNumberTextureToDcWithRandomOffsetAndUnits(HDC _dc, int _num, const vector<CTexture*> _vecnumtex
+//	, const vector<CTexture*> _vecunitstex, Vec2 _pos, int _alpha, float _offset = 0.f)
+//{
+//
+//
+//
+//}
+
+
+
+void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha)
+{
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
+
+	blend.SourceConstantAlpha = _alpha; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
+
+	AlphaBlend(_dc
+		, int(_pos.x)
+		, int(_pos.y)
+		, _ptexture->GetWidth()
+		, _ptexture->GetHeight()
+		, _ptexture->GetDC()
+		, 0, 0
+		, _ptexture->GetWidth()
+		, _ptexture->GetHeight()
+		, blend);
+}
+
+
 
 void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
 {
@@ -143,6 +212,11 @@ void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
 		, _ptexture->GetHeight()
 		, blend);
 }
+
+
+
+
+
 
 Vec2 RotateDot(const Vec2& _Dot, float _rad)
 {
@@ -166,3 +240,12 @@ float VecDot(const Vec2& _A, const Vec2& _B)
 	return _A.x * _B.x + _A.y * _B.y;
 }
 
+float RandomPercentZtoO()
+{
+	return ((float)rand()) / 32767.f;
+}
+
+float RandomPercentHtH()
+{
+	return ((float)rand()) / 32767.f - 0.5f;
+}

@@ -97,7 +97,7 @@ void CStatusUI::render(HDC _dc)
 
 	//레벨 표시
 	SettexturetoDc(_dc, lvtex, (vRenderPos + Vec2(25.f, 9.f)));
-	SetLettertoDc(_dc, 290, veclvtex, (vRenderPos + Vec2(42.f, 9.f)));
+	SetNumberTextureToDc(_dc, 290, veclvtex, (vRenderPos + Vec2(42.f, 9.f)));
 
 
 	int xoffset = 0;
@@ -110,20 +110,20 @@ void CStatusUI::render(HDC _dc)
 	int lakeofmpdigit = 5 - (int)std::to_wstring(cPlayer->mp).size();
 
 	//체력 
-	SetLettertoDc(_dc, cPlayer->hp , vecgaugetex, (vRenderPos + Vec2(65.f+ xoffset* lakeofhpdigit, 30.f)));
+	SetNumberTextureToDc(_dc, cPlayer->hp , vecgaugetex, (vRenderPos + Vec2(65.f+ xoffset* lakeofhpdigit, 30.f)));
 
 	SetBkMode(_dc, TRANSPARENT);
 	SELECT_FONT(_dc, FONT_TYPE::STATUS_BAR_POINT);
 	SetTextColor(_dc, RGB(255, 255, 255));
 	TextOut(_dc, (int)(vRenderPos.x + 104.f), (int)(vRenderPos.y+29.f), slash.c_str(), (int)slash.length());
 
-	SetLettertoDc(_dc, cPlayer->maxhp, vecgaugetex, (vRenderPos + Vec2(110.f, 30.f)));
+	SetNumberTextureToDc(_dc, cPlayer->maxhp, vecgaugetex, (vRenderPos + Vec2(110.f, 30.f)));
 
 
 	//MP
-	SetLettertoDc(_dc, cPlayer->mp, vecgaugetex, (vRenderPos + Vec2(65.f + xoffset* lakeofmpdigit, 46.f)));
+	SetNumberTextureToDc(_dc, cPlayer->mp, vecgaugetex, (vRenderPos + Vec2(65.f + xoffset* lakeofmpdigit, 46.f)));
 	TextOut(_dc, (int)(vRenderPos.x + 104.f), (int)(vRenderPos.y + 45.f), slash.c_str(), (int)slash.length());
-	SetLettertoDc(_dc, cPlayer->maxmp, vecgaugetex, (vRenderPos + Vec2(110.f , 46.f)));
+	SetNumberTextureToDc(_dc, cPlayer->maxmp, vecgaugetex, (vRenderPos + Vec2(110.f , 46.f)));
 
 
 

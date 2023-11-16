@@ -2,6 +2,9 @@
 
 #include "pinkbean_doublejump.h"
 #include "pinkbean_phantomblow.h"
+#include "CDamageSkin.h"
+#include "CDamageSkinRed.h"
+
 
 //1페이즈 스킬
 #include "ChainAttack.h"

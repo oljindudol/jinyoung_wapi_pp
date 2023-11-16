@@ -30,6 +30,8 @@ public:
 	void DeActivateAllSkills();
 	void DeActivateSkill(CSkill* _skill);
 	int FindNextSkillNumber(wstring _skillname);
+	void PrintDamageVioletSkin(Vec2 _pos, int _num);
+	void PrintDamageRedSkin(Vec2 _pos, long long _num , int _th);
 
 public:
 	float GetSkillDuration(wstring _skillname);

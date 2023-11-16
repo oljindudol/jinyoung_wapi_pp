@@ -29,8 +29,9 @@ void LoadWString(wstring& _str, FILE* _File);
 
 void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
 void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
-void SetLettertoDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset = 0.f);
+void SetNumberTextureToDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset = 0.f);
 void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos);
+void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos,int _alpha);
 Vec2 RotateDot(const Vec2& _Dot, float _rad);
 
 void DrawRectToDc(HDC _dc
@@ -41,3 +42,10 @@ void DrawRectToDc(HDC _dc
 
 
 float VecDot(const Vec2& _A, const Vec2& _B);
+
+//ret : 0.000...f ~ 0.99f
+float RandomPercentZtoO();
+
+
+//ret : -0.49..f ~ +0.49...f
+float RandomPercentHtH();

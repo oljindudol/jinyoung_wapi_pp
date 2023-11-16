@@ -46,8 +46,7 @@ ion::ion()
 
 	// Collider 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(GetName()+ L"Collider");
-	m_Info.MaxHp = 5.f;
-	m_Info.HP = m_Info.MaxHp;
+
 
 	m_Collider->SetScale(GetScale());
 	m_Collider->SetOffsetPos(Vec2(-0.f, -300.f));
@@ -113,20 +112,20 @@ void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol
 	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
 
 
-	CSkill* pSkill = dynamic_cast<CSkill*>(_OtherObj);
-
-	if (LAYER::PLAYER_PJ == _OtherObj->GetLayerIdx() &&
-		!( (UINT)ENORMAL_MON_STATE::DIE == m_AI->GetCurStateNum() ||
-			(UINT)ENORMAL_MON_STATE::REGEN == m_AI->GetCurStateNum()))
-	{
-		m_Info.HP -= (pSkill->GetAtt()/5.f);
-
-		if (m_Info.HP <= 0.f)
-		{
-			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
-		}
-		return;
-	}
+	//CSkill* pSkill = dynamic_cast<CSkill*>(_OtherObj);
+	//
+	//if (LAYER::PLAYER_PJ == _OtherObj->GetLayerIdx() &&
+	//	!( (UINT)ENORMAL_MON_STATE::DIE == m_AI->GetCurStateNum() ||
+	//		(UINT)ENORMAL_MON_STATE::REGEN == m_AI->GetCurStateNum()))
+	//{
+	//	m_Info.HP -= (pSkill->GetAtt()/5.f);
+	//
+	//	if (m_Info.HP <= 0.f)
+	//	{
+	//		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+	//	}
+	//	return;
+	//}
 	
 	CPlatform* pPlatform = dynamic_cast<CPlatform*>(_OtherObj);
 
@@ -177,7 +176,7 @@ void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 			if (false == m_attacked)
 			{
 				m_attacked = true;
-				pPlayer->GetDamaged(0.33, DEBUFF::CREATION);
+				pPlayer->GetDamaged(0.33f, DEBUFF::CREATION);
 			}
 		}
 	}
@@ -217,7 +216,7 @@ void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 			if (false == m_attacked)
 			{
 				m_attacked = true;
-				pPlayer->GetDamaged(0.4, DEBUFF::CREATION);
+				pPlayer->GetDamaged(0.4f, DEBUFF::CREATION);
 			}
 		}
 	}

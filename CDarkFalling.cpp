@@ -40,8 +40,6 @@ CDarkFalling::CDarkFalling()
 
 	// Collider 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(GetName() + L"Collider");
-	m_Info.MaxHp = 5.f;
-	m_Info.HP = m_Info.MaxHp;
 
 	m_Collider->SetScale(GetScale());
 	m_Collider->SetOffsetPos(Vec2(-10.f, 0.f));

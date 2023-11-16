@@ -24,6 +24,9 @@ CMonster::CMonster()
 	, m_OnActivate(false)
 	, m_attacked(false)
 {
+	m_Info.MaxHp = 50000;
+	m_Info.HP = m_Info.MaxHp;
+
 }
 
 CMonster::CMonster(const CMonster& _Origin)
@@ -38,6 +41,7 @@ CMonster::CMonster(const CMonster& _Origin)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
 	, m_OnActivate(false)
+	, m_attacked(false)
 {
 }
 
@@ -152,4 +156,44 @@ void CMonster::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol
 void CMonster::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
+}
+
+void CMonster::GetDamaged(float _damagepercent, int damagecnt)
+{
+	//dead이거나 regen일경우 무시
+	if ((UINT)ENORMAL_MON_STATE::REGEN == m_AI->GetCurStateNum()
+		|| (UINT)ENORMAL_MON_STATE::DIE == m_AI->GetCurStateNum())
+	{
+		return;
+	}
+
+
+	float linedamage = m_Info.MaxHp * _damagepercent;
+
+	//데미지 출력 배율
+	int multi = 283472323;
+	float yoffset = 30.f;
+
+	for (int i = 0; i < damagecnt; i++)
+	{
+		long long damage = (long long) (linedamage  * (1.f + RandomPercentHtH() * 0.025) *multi);
+		//타격 데미지스킨을 출력한다
+		CSkillMgr::GetInst()->PrintDamageRedSkin(GetRenderPos()
+			- Vec2(GetScale().x, GetScale().y + yoffset*i)
+			, damage , i);
+	}
+
+
+	float resthp = m_Info.HP - linedamage* damagecnt;
+	if (resthp > 0.f)
+	{
+		m_Info.HP = resthp;
+	}
+	else
+	{
+		m_Info.HP = 0.f;
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+	}
+
+	return;
 }
