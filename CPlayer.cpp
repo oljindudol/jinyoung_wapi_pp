@@ -187,7 +187,7 @@ void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
 	
-	hp = maxhp;
+	//hp = maxhp;
 
 	//Vec2 vPos = GetPos();
 	//m_acctime += _DT;
@@ -510,7 +510,7 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	int resthp = hp - damage;
 
 	//피격 데미지스킨을 출력한다
-	CSkillMgr::GetInst()->PrintDamageVioletSkin(GetRenderPos() - Vec2( GetScale().x/.7f, GetScale().y /.4f), damage);
+	CSkillMgr::GetInst()->PrintDamageVioletSkin(GetPos() - Vec2(GetScale().x / .7f, GetScale().y / .4f), damage);
 	
 	//TODO:디버프 갱신
 
@@ -521,6 +521,7 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	else
 	{
 		hp = 0;
+		
 		m_PlayerState->ChangeState((UINT)PLAYER_STATE::DEAD);
 	}
 	

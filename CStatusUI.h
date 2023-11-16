@@ -1,5 +1,12 @@
 #pragma once
 #include "CUI.h"
+#include "CStatusUI.h"
+#include "CAssetMgr.h"
+#include "CTexture.h"
+#include "CLogMgr.h"
+#include "CLevelMgr.h"
+#include "CPlayer.h"
+
 
 class CTexture;
 
@@ -8,7 +15,6 @@ class CStatusUI:
 {
     GENERATED_OBJECT(CUI);
 private:
-    HDC RenderDc;
     CTexture* backtex;
     CTexture* hptex;
     CTexture* mptex;

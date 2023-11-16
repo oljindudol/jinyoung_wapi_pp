@@ -36,4 +36,6 @@ public:
 
 public:
 	void tick();
+
+	friend class CLevelMgr;
 };

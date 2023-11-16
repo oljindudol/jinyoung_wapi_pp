@@ -2,3 +2,4 @@
 
 
 #include "CStatusUI.h"
+#include "CUpperBar.h"

@@ -61,6 +61,7 @@ void CPhaseFirst::init()
 	AddObject(PLAYER, pPlayer);
 
 	CUIMgr::GetInst()->SetUIVisible(L"StatusUI");
+	CUIMgr::GetInst()->SetUIVisible(L"UpperBarUI");
 
 	// Cwall
 	CWall* pWall1 = new CWall;
@@ -95,6 +96,10 @@ void CPhaseFirst::init()
 	//CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon11");
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon12");
+
+
+	CLevelMgr::GetInst()->GetpRule()->DeathCount = 12;
+	CLevelMgr::GetInst()->GetpRule()->leftsecond = 610;
 }
 
 void CPhaseFirst::enter()

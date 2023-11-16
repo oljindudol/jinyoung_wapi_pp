@@ -194,7 +194,6 @@ void CLevel::DeleteAllObjects()
 	CMonsterMgr::GetInst()->DeActivateAllMonsters();
 	CUIMgr::GetInst()->SetInvisibleAllUI();
 	CSkillMgr::GetInst()->DeActivateAllSkills();
-	//CSkillMgr::GetInst()->DeActivatedAllMonster();
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		m_Layer[i]->DeleteAllObjects();

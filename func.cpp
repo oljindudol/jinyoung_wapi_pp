@@ -122,6 +122,32 @@ void SetNumberTextureToDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex,
 	}
 }
 
+void SetNumberTextureToDcWithTwoDigitZeroPadding(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
+{
+	wstring strnums = std::to_wstring(_num);
+	
+	if (1 == strnums.size())
+	{
+		strnums = L'0' + strnums;
+	}
+
+	Vec2 offset = Vec2(_offset, 0.f);
+
+	if (0 != _vecnumtex.size())
+	{
+		offset += Vec2(
+			(int)_vecnumtex[0]->GetWidth()
+			, 0
+		);
+	}
+
+	for (int i = 0; i < strnums.size(); i++)
+	{
+		int num = strnums[i] - '0';
+		SettexturetoDc(_dc, _vecnumtex[num], _pos + (offset * (float)i));
+	}
+}
+
 //void SetNumberTextureToDcWithRandomOffset(HDC _dc, const wstring& _nums
 //	,const vector<CTexture*> _vecnumtex 
 //	,const vector<Vec2> _randomoffsetpercent, Vec2 _pos, int _alpha)

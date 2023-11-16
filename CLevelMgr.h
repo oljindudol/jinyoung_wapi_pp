@@ -2,6 +2,7 @@
 #include "pch.h"
 
 class CPlayer;
+class CMonster;
 
 class CLevelMgr
 {
@@ -12,6 +13,7 @@ private:
 	CLevel* m_arrLevels[(UINT)LEVEL_TYPE::END];
 	CPlayer* m_Player;
 	FRule* m_pRule;
+	float m_acctime;
 	int imag;
 
 public:
@@ -19,6 +21,8 @@ public:
 	void imagDown();// { imag--; }
 
 	FRule* GetpRule() { return m_pRule; }
+	CMonster* GetCurLevelMon();
+
 	CPlayer* GetPlayer() {return m_Player;}
 	Vec2 GetCurLevelCameraRangeX();
 	Vec2 GetCurLevelCameraRangeY();

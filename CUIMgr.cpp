@@ -36,10 +36,10 @@ CUIMgr::~CUIMgr()
 	}
 }
 
-
 void CUIMgr::init()
 {
 	AddUI(new CStatusUI);
+	AddUI(new CUpperBar);
 
 	// UI »ý¼º
 	CPanelUI* pResurr1Pan = new CPanelUI;
@@ -60,7 +60,6 @@ void CUIMgr::init()
 	vector<CUI*> newresurr1vec;
 	newresurr1vec.push_back(pResurr1Pan);
 	m_UIMap.insert(pair<wstring, vector<CUI*>>(L"ResurrUI1", newresurr1vec));
-
 
 }
 

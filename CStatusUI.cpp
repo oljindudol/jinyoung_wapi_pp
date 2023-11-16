@@ -7,8 +7,7 @@
 #include "CPlayer.h"
 
 CStatusUI::CStatusUI()
-	:RenderDc(nullptr)
-	, m_hpbuffer(0.f)
+	: m_hpbuffer(0.f)
 	, m_mpbuffer(0.f)
 	,m_acctime(0.f)
 	,slash(L"/")
@@ -73,13 +72,6 @@ void CStatusUI::render(HDC _dc)
 
 	Vec2 vRenderPos = GetPos();
 	Vec2 vScale = GetScale();
-
-	//BLENDFUNCTION blend = {};
-	//blend.BlendOp = AC_SRC_OVER;
-	//blend.BlendFlags = 0; // 0이여야합니다
-
-	//blend.SourceConstantAlpha = 255; // 0 ~ 255
-	//blend.AlphaFormat = AC_SRC_ALPHA; // 고정
 
 
 	//스테이터스 배경

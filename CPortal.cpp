@@ -19,6 +19,7 @@ CPortal::CPortal()
 	m_collider = AddComponent<CCollider>(GetName() + L"collider");
 	m_collider->SetOffsetPos(Vec2(0.f, -40.f));
 	m_collider->SetScale(Vec2(20.f, 80.f));
+	m_togo = LEVEL_TYPE::PHASE_FIRST;
 
 }
 

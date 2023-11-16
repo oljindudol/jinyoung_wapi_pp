@@ -4,6 +4,7 @@
 #include "CTexture.h"
 #include "CAssetMgr.h"
 #include "CEngine.h"
+#include "CCamera.h"
 
 
 
@@ -119,7 +120,7 @@ void CDamageSkin::render(HDC _dc)
 
 	int numssize = (int)m_temp_printdamage.size();
 
-
+	Vec2 renderpos = CCamera::GetInst()->GetRenderPos(m_temp_pos);
 
 	for (int i = 0; i < numssize; i++)
 	{
@@ -127,7 +128,7 @@ void CDamageSkin::render(HDC _dc)
 		//숫자일때,
 		int num = m_temp_printdamage[i] - '0';
 		SettexturetoDcWithAlpha(_dc,
-			m_DamageSkinNumbers[num], m_temp_pos
+			m_DamageSkinNumbers[num], renderpos
 			+ m_temp_randomoffset[i] + yoffset
 			, alpha);
 

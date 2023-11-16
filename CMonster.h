@@ -35,6 +35,8 @@ public:
 
     void SetAttackedFalse() { m_attacked = false; }
 
+    float GetMonsterHp() { return m_Info.HP; }
+    float GetMonsterMaxHp() { return m_Info.MaxHp; }
 
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
     wstring GetMonName() { return m_monstername; }

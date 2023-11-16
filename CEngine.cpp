@@ -70,6 +70,7 @@ void CEngine::CreateDefaultGDI()
 
 	m_arrFont[STATUS_BAR_POINT] = CreateFont(10, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("궁서"));
 	m_arrFont[LOG_TEXT] = (HFONT)SelectObject(m_SubTex->GetDC(), m_arrFont[STATUS_BAR_POINT]);
+	m_arrFont[UPPER_BAR_PERCENT] = CreateFont(8, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("궁서"));
 	m_arrFont[STATUS_BAR_NAME] = CreateFont(11, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 
 

@@ -22,6 +22,8 @@
 #include "CEditorLevel.h"
 #include "CPhaseFirst.h"
 #include "CTexture.h"
+#include "CMonsterMgr.h"
+#include "CTimeManager.h"
 
 
 CLevelMgr::CLevelMgr()
@@ -67,8 +69,8 @@ void CLevelMgr::init()
 
 
 	// 모든 레벨 생성
-	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
-	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
+	//m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
+	//m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIRST] = new CPhaseFirst;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_ZERO] = new CEnteranceLevel;
 
@@ -154,9 +156,18 @@ void CLevelMgr::init()
 
 void CLevelMgr::tick()
 {
+
 	//m_pCurLevel->tick();
 	if (nullptr != m_pCurLevel)
 		m_pCurLevel->tick();
+
+	m_acctime += DT;
+	if (0.1f < m_acctime)
+	{
+		--m_pRule->leftsecond;
+		m_acctime = 0;
+	}
+
 }
 
 void CLevelMgr::render(HDC _dc)
@@ -241,6 +252,29 @@ void CLevelMgr::imagDown()
 		wstring msg = L"확대배율:" + std::to_wstring(mag).substr(0, 3);
 		LOG(LOG_LEVEL::LOG, (msg.c_str()));
 	}
+}
+
+CMonster* CLevelMgr::GetCurLevelMon()
+{
+	UINT lvnum = GetCurLevelNum();
+
+	if ((UINT)LEVEL_TYPE::PHASE_FIRST)
+		return (*(CMonsterMgr::GetInst()->FindMonster(L"firstion")))[0];
+
+	//if ((UINT)LEVEL_TYPE::PHASE_SECOND)
+	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"secondbm")))[0];
+
+	//if ((UINT)LEVEL_TYPE::PHASE_THIRD)
+	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"thirdbm")))[0];
+
+	//if ((UINT)LEVEL_TYPE::PHASE_FOURTH)
+	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fourthbm")))[0];
+
+	//if ((UINT)LEVEL_TYPE::PHASE_FIFTH)
+	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fifthegg")))[0];
+
+
+	return nullptr;
 }
 
 Vec2 CLevelMgr::GetCurLevelCameraRangeX()

@@ -178,7 +178,7 @@ void CMonster::GetDamaged(float _damagepercent, int damagecnt)
 	{
 		long long damage = (long long) (linedamage  * (1.f + RandomPercentHtH() * 0.025) *multi);
 		//타격 데미지스킨을 출력한다
-		CSkillMgr::GetInst()->PrintDamageRedSkin(GetRenderPos()
+		CSkillMgr::GetInst()->PrintDamageRedSkin(GetPos()
 			- Vec2(GetScale().x, GetScale().y + yoffset*i)
 			, damage , i);
 	}

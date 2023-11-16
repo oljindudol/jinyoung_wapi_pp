@@ -137,6 +137,9 @@
     <Filter Include="03.Game\11.StageFirst\dakfalling\state">
       <UniqueIdentifier>{f9e458c9-fed2-43c0-b770-9437b479a628}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Game\10.StageZero\Player\Skill\DS">
+      <UniqueIdentifier>{234b98fc-5c21-4b18-8c5c-ff9dd7cea803}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -403,8 +406,13 @@
     <ClInclude Include="CPlayerDead.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClInclude>
-    <ClInclude Include="CDamageSkin.h" />
-    <ClInclude Include="CDamageSkinRed.h" />
+    <ClInclude Include="CDamageSkin.h">
+      <Filter>03.Game\10.StageZero\Player\Skill\DS</Filter>
+    </ClInclude>
+    <ClInclude Include="CDamageSkinRed.h">
+      <Filter>03.Game\10.StageZero\Player\Skill\DS</Filter>
+    </ClInclude>
+    <ClInclude Include="CUpperBar.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -657,7 +665,12 @@
     <ClCompile Include="CPlayerDead.cpp">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="CDamageSkin.cpp" />
-    <ClCompile Include="CDamageSkinRed.cpp" />
+    <ClCompile Include="CDamageSkin.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="CDamageSkinRed.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="CUpperBar.cpp" />
   </ItemGroup>
 </Project>
