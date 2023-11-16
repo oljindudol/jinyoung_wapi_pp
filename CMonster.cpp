@@ -23,6 +23,7 @@ CMonster::CMonster()
 	, m_Movement(nullptr)
 	, m_OnActivate(false)
 	, m_attacked(false)
+	, m_MonsterLayer((UINT)LAYER::MONSTER)
 {
 	m_Info.MaxHp = 50000;
 	m_Info.HP = m_Info.MaxHp;
@@ -42,6 +43,7 @@ CMonster::CMonster(const CMonster& _Origin)
 	, m_Movement(nullptr)
 	, m_OnActivate(false)
 	, m_attacked(false)
+	, m_MonsterLayer(_Origin.m_MonsterLayer)
 {
 }
 
@@ -105,7 +107,7 @@ void CMonster::SpawnRuleMon()
 	}
 
 	// 레벨에참여
-	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)this });
+	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)m_MonsterLayer, (UINT_PTR)this });
 }
 
 

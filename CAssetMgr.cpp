@@ -202,6 +202,7 @@ CSound* CAssetMgr::LoadSound(const wstring& _strKey, const wstring& _strRelative
 	m_mapSound.insert(make_pair(_strKey, pSound));
 
 	return pSound;
+
 }
 
 CSound* CAssetMgr::FindSound(const wstring& _strKey)

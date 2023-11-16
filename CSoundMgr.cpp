@@ -3,6 +3,8 @@
 
 #include "CEngine.h"
 #include "CSound.h"
+#include "CAssetMgr.h"
+#include "CTimeManager.h"
 
 CSoundMgr::CSoundMgr()
 	: m_pSound(nullptr)
@@ -30,7 +32,39 @@ int CSoundMgr::init(void)
 		return false;
 	}
 
+	CAssetMgr::GetInst()->LoadSound(L"팬블use", L"sound\\팬블Use.wav");
+	CAssetMgr::GetInst()->LoadSound(L"팬블hit", L"sound\\팬블Hit.wav");
+
+
+
+
 	return true;
+
+
+
+}
+
+void CSoundMgr::tick()
+{
+	// 사운드 이벤트가 없으면 리턴
+	if (m_EventList.empty())
+		return;
+
+	// 사운드 이벤트가 존재한다면
+	FSoundEvent& evnt = m_EventList.front();
+	if (false == evnt.played)
+	{
+		evnt.pSound->Play(false);
+		evnt.played = true;
+	}
+	evnt.AccTime += DT;
+	if (evnt.Duration <= evnt.AccTime)
+	{
+		if (evnt.stop)
+			evnt.pSound->Stop(true);
+		m_EventList.pop_front();
+	}
+
 }
 
 void CSoundMgr::RegisterToBGM(CSound* _pSound)
@@ -39,4 +73,26 @@ void CSoundMgr::RegisterToBGM(CSound* _pSound)
 		m_pBGM->Stop(true);
 
 	m_pBGM = _pSound;
+}
+
+void CSoundMgr::SetShortSound(wstring _strsound, float _time)
+{
+	FSoundEvent evnt = {};
+	evnt.pSound = CAssetMgr::GetInst()->LoadSound(_strsound, L"");
+	evnt.stop = true;
+	evnt.AccTime = 0.f;
+	evnt.Duration = _time;
+	evnt.played = false;
+	m_EventList.push_back(evnt);
+}
+
+void CSoundMgr::SetLongSound(wstring _strsound, float _time)
+{
+	FSoundEvent evnt = {};
+	evnt.pSound = CAssetMgr::GetInst()->LoadSound(_strsound, L"");
+	evnt.stop = false;
+	evnt.AccTime = 0.f;
+	evnt.Duration = _time;
+	evnt.played = false;
+	m_EventList.push_back(evnt);
 }

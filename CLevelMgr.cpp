@@ -164,7 +164,8 @@ void CLevelMgr::tick()
 	m_acctime += DT;
 	if (0.1f < m_acctime)
 	{
-		--m_pRule->leftsecond;
+		if(0 < m_pRule->leftsecond)
+			--m_pRule->leftsecond;
 		m_acctime = 0;
 	}
 

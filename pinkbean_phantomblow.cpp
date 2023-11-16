@@ -2,6 +2,7 @@
 #include "pinkbean_phantomblow.h"
 #include "CSkillMgr.h"
 #include "CMonster.h"
+#include "CSoundMgr.h"
 
 void pinkbean_phantomblow::tick(float _DT)
 {
@@ -61,7 +62,12 @@ void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCo
 	CMonster* pMon = dynamic_cast<CMonster*>(_OtherObj);
 	if (nullptr != pMon)
 	{
-		pMon->GetDamaged(0.001f, 12);
+		pMon->GetDamaged(0.01f, 12);
+
+		for (int i = 0; i < 8; ++i)
+		{
+			CSoundMgr::GetInst()->SetLongSound(L"ÆÒºíhit",0.125f );
+		}
 	}
 
 
@@ -74,4 +80,5 @@ pinkbean_phantomblow::~pinkbean_phantomblow()
 void pinkbean_phantomblow::begin()
 {
 	m_Collider->InitColCnt();
+	CSoundMgr::GetInst()->SetLongSound(L"ÆÒºíuse", 0.f);
 }

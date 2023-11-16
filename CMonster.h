@@ -27,6 +27,7 @@ protected:
     CMovement* m_Movement ;
     bool m_OnActivate;
     bool m_attacked;
+    UINT m_MonsterLayer;
 
 public:
     virtual void begin() override;

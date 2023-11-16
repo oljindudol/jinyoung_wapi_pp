@@ -24,6 +24,7 @@ CDarkFalling::CDarkFalling()
 
 	SetScale(Vec2(100.f, 100.f));
 
+	m_MonsterLayer = (UINT)LAYER::FALL_OBJ;
 
 	// Movement 컴포넌트 추가
 	m_Movement = AddComponent<CMovement>(GetName() + L"Movement");
