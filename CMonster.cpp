@@ -89,7 +89,7 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 	}
 
 	// 레벨에참여
-	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)this });
+	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)m_MonsterLayer, (UINT_PTR)this });
 
 }
 
@@ -108,6 +108,14 @@ void CMonster::SpawnRuleMon()
 
 	// 레벨에참여
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)m_MonsterLayer, (UINT_PTR)this });
+}
+
+UINT CMonster::GetCurstateNum()
+{
+	if (nullptr != m_AI)
+	{
+		return m_AI->GetCurStateNum();
+	}
 }
 
 

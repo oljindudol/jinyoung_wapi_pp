@@ -133,10 +133,10 @@ void CEnteranceLevel::init()
 	//pStatusUI->SetPos(Vec2(600.f, 690.f));
 
 
-	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_00", L"sound\\TheWorld¡¯sEnd.wav");
-	pSound->SetVolume(20);
-	pSound->SetPosition(45.f);
-	pSound->Play(true);
+	pBgm = CAssetMgr::GetInst()->LoadSound(L"BGM_00", L"sound\\TheWorld¡¯sEnd.wav");
+	pBgm->SetVolume(20);
+	pBgm->SetPosition(45.f);
+	pBgm->Play(true);
 
 
 
@@ -164,9 +164,7 @@ void CEnteranceLevel::enter()
 
 void CEnteranceLevel::exit()
 {
-	CAssetMgr::GetInst()
-		->FindSound(L"BGM_00")
-		->Stop(true);
+	pBgm->Stop(true);
 	DeleteAllObjects();
 }
 

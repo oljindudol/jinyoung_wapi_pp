@@ -12,6 +12,7 @@
 #include "CLogMgr.h"
 #include "CEngine.h"
 #include "CUIMgr.h"
+#include "CAssetMgr.h"
 
 class CEntity;
 class CLayer;
@@ -116,6 +117,12 @@ void CLevel::tick()
 		//	CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 		// 
 		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+	}
+
+	if (KEY_TAP(KEY::LCTRL))
+	{
+		CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\포션.wav")->Play();
+		pPlayer->hp = pPlayer->maxhp;
 	}
 
 	if (KEY_TAP(M))

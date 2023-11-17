@@ -1,11 +1,10 @@
 ﻿#pragma once
 
 #include "CEntity.h"
-
 #include "CLayer.h"
 
 class CPlayer;
-
+class CSound;
 
 class CObj;
 
@@ -18,6 +17,7 @@ private:
 	UINT	m_TileCol;
 
 protected:
+	CSound* pBgm;
 	CPlayer* pPlayer;
 	Vec2 m_CameraRangex;
 	Vec2 m_CameraRangey;

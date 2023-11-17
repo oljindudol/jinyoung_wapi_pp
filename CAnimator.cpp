@@ -61,6 +61,15 @@ void CAnimator::render(HDC _dc)
 	}
 }
 
+Vec2 CAnimator::GetScale()
+{
+	if (nullptr != m_CurAnim)
+	{
+		return m_CurAnim->m_vecFrm[0].vCutSize;
+	}
+	return Vec2();
+}
+
 void CAnimator::Play(const wstring& _strName)
 {
 	//m_bRepeat = _bRepeat;

@@ -81,6 +81,7 @@ void CCollisionMgr::init()
 	CheckCollision(PLATFORM, PLAYER);
 	CheckCollision(PLATFORM, MONSTER);
 	CheckCollision(PLATFORM, MONSTER_PJ);
+	CheckCollision(PLATFORM, FALL_OBJ);
 
 	CheckCollision(PLATFORM_DEBUG, PLAYER);
 
@@ -93,6 +94,7 @@ void CCollisionMgr::init()
 
 	CheckCollision(PLAYER, MONSTER_PJ);
 	CheckCollision(PLAYER, PORTAL);
+	CheckCollision(PLAYER, FALL_OBJ);
 
 }
 

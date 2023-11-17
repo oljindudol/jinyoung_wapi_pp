@@ -66,7 +66,8 @@ void CLayer::render(HDC _dc)
 				CSkill* pSkill = dynamic_cast<CSkill*>(*iter);
 				CSkillMgr::GetInst()->DeActivateSkill(pSkill);
 			}
-			if ((LAYER::MONSTER == idxlayer) )
+			if ((LAYER::MONSTER == idxlayer) ||
+				(LAYER::FALL_OBJ == idxlayer))
 			{
 				CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
 				CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
@@ -106,7 +107,8 @@ void CLayer::DeleteAllObjects()
 		//몬스터매니저에 이관
 		if ((LAYER::MONSTER) == idxlayer)
 		{ continue;}
-
+		if ((LAYER::FALL_OBJ) == idxlayer)
+		{continue;}
 		if(m_vecObjects[i])
 		delete m_vecObjects[i];
 	}

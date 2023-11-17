@@ -2,6 +2,7 @@
 #include "CPortal.h"
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
+#include "CAssetMgr.h"
 
 CPortal::CPortal()
 	:m_animator(nullptr)
@@ -40,6 +41,7 @@ void CPortal::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	if (KEY_TAP(KEY::UP))
 	{
+		CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\portal.wav")->Play();
 		ChangeLevel(m_togo);
 	}
 }

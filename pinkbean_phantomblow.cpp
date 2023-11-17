@@ -3,6 +3,8 @@
 #include "CSkillMgr.h"
 #include "CMonster.h"
 #include "CSoundMgr.h"
+#include "CAssetMgr.h"
+#include "CSound.h"
 
 void pinkbean_phantomblow::tick(float _DT)
 {
@@ -62,15 +64,14 @@ void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCo
 	CMonster* pMon = dynamic_cast<CMonster*>(_OtherObj);
 	if (nullptr != pMon)
 	{
-		pMon->GetDamaged(0.01f, 12);
-
-		for (int i = 0; i < 8; ++i)
+		if (!((UINT)ENORMAL_MON_STATE::REGEN == pMon->GetCurstateNum()
+			|| (UINT)ENORMAL_MON_STATE::DIE == pMon->GetCurstateNum()))
 		{
-			CSoundMgr::GetInst()->SetLongSound(L"ÆÒºíhit",0.125f );
+			pMon->GetDamaged(0.001f, 12);
+			CSoundMgr::GetInst()->PlayMultipleSound(L"ÆÒºíhit", 12, 0.09f);
+			CSkillMgr::GetInst()->PlayMultipleEff(L"commonpinkbeanphantomblow_hit", 12, 0.09f, Vec2(_OtherCol->GetPos().x, _OwnCol->GetPos().y), ort);// - _OwnCol->GetScale().y / 2.f), ort);
 		}
 	}
-
-
 }
 
 pinkbean_phantomblow::~pinkbean_phantomblow()
@@ -80,5 +81,5 @@ pinkbean_phantomblow::~pinkbean_phantomblow()
 void pinkbean_phantomblow::begin()
 {
 	m_Collider->InitColCnt();
-	CSoundMgr::GetInst()->SetLongSound(L"ÆÒºíuse", 0.f);
+	CAssetMgr::GetInst()->LoadSound(L"ÆÒºíuse", L"sound\\ÆÒºíUse.wav")->Play(false);
 }

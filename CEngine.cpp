@@ -178,6 +178,7 @@ void CEngine::tick()
 	CCollisionMgr::GetInst()->tick();
 
 	CUIMgr::GetInst()->tick();
+	CSkillMgr::GetInst()->tick();
 	CSoundMgr::GetInst()->tick();
 	CLevelMgr::GetInst()->render(m_SubTex->GetDC());
 

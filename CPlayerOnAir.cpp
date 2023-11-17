@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CPlayerOnAir.h"
 #include "CKeyMgr.h"
+#include "CAssetMgr.h"
 
 CPlayerOnAir::CPlayerOnAir()
 {
@@ -72,6 +73,7 @@ void CPlayerOnAir::Enter()
 {
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(L"commonpinkbeanonair");
+	CAssetMgr::GetInst()->LoadSound(L"JUMP", L"sound\\Jump.wav")->Play();
 }
 
 void CPlayerOnAir::Exit()

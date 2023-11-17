@@ -86,14 +86,14 @@ void CPhaseFirst::init()
 
 	
 	// 
-	CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TempleOfDarkness.wav");
-	pSound->SetVolume(20);
-	pSound->SetPosition(45.f);
-	pSound->Play(true);
+	pBgm  = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TempleOfDarkness.wav");
+	pBgm ->SetVolume(20);
+	pBgm ->SetPosition(45.f);
+	//pBgm ->Play(true);
 
 
-	//CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
-	//CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
+	CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
+	CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon11");
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon12");
 
@@ -110,9 +110,7 @@ void CPhaseFirst::enter()
 
 void CPhaseFirst::exit()
 {
-	CAssetMgr::GetInst()
-		->FindSound(L"BGM_01")
-		->Stop(true);
+	pBgm->Stop(true);
 	DeleteAllObjects();
 }
 

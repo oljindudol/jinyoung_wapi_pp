@@ -39,6 +39,8 @@ public:
     float GetMonsterHp() { return m_Info.HP; }
     float GetMonsterMaxHp() { return m_Info.MaxHp; }
 
+    UINT GetCurstateNum();
+
     void SetMonsterInfo(const FMonInfo& _Info) { m_Info = _Info; }
     wstring GetMonName() { return m_monstername; }
     //virtual void render(HDC _dc) override;

@@ -19,6 +19,7 @@ private:
     bool                 m_bRepeat;
 
 public:
+    Vec2 GetScale();
     void Play(const wstring& _strName);//, bool _bRepeat);
     void Stop();
     wstring GetCurAnimName() { return m_CurAnim->GetName(); }
