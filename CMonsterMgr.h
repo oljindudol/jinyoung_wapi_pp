@@ -38,4 +38,5 @@ public:
 	void tick();
 
 	friend class CLevelMgr;
+	friend class CMonster;
 };

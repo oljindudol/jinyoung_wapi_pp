@@ -52,6 +52,7 @@ void CNormalMonAtt3::finaltick(float _DT)
 	if (stomped == false && 2.95 < m_acctime)
 	{
 		Vec2 vPlayerPos = m_pPlayer->GetPos();
+		GetOwner()->GetMovement()->SetGround(false);
 		GetOwner()->SetCollisionTime(0.f);
 		GetOwner()->SetPos(Vec2(vPlayerPos.x, vPlayerPos.y));
 		stomped = true;

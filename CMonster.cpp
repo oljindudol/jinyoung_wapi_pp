@@ -9,6 +9,7 @@
 
 #include "CNormalMonIdle.h"
 #include "CNormalMonTrace.h"
+#include "CMonsterMgr.h"
 
 
 CMonster::CMonster()
@@ -193,17 +194,62 @@ void CMonster::GetDamaged(float _damagepercent, int damagecnt)
 			, damage , i);
 	}
 
-
-	float resthp = m_Info.HP - linedamage* damagecnt;
-	if (resthp > 0.f)
+	//아이온 일때
+	if (L"firstion" == m_monstername)
 	{
-		m_Info.HP = resthp;
+
+		float resthp = m_Info.HP - linedamage * damagecnt;
+		if (resthp > 0.f)
+		{
+			m_Info.HP = resthp;
+		}
+		else
+		{
+			auto yaldavec = CMonsterMgr::GetInst()->FindMonster(L"firstyalda");
+			CMonster* yalda = nullptr;
+			if (nullptr != yaldavec)
+				yalda = (*yaldavec)[0];
+
+			m_Info.HP = 0.f;
+			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+			if(nullptr != yalda)
+				yalda->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+		}
 	}
+	//얄다바오트 일때
+	else if (L"firstyalda" == m_monstername)
+	{
+		auto ion =CLevelMgr::GetInst()->GetCurLevelMon();
+		if (nullptr == ion)
+			return;
+
+		float resthp = ion->m_Info.HP - linedamage * damagecnt;
+		if (resthp > 0.f)
+		{
+			ion->m_Info.HP = resthp;
+		}
+		else
+		{
+			ion->m_Info.HP = 0.f;
+			ion->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+		}
+	}
+	//일반 몬스터일때
 	else
 	{
-		m_Info.HP = 0.f;
-		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+		float resthp = m_Info.HP - linedamage * damagecnt;
+		if (resthp > 0.f)
+		{
+			m_Info.HP = resthp;
+		}
+		else
+		{
+			m_Info.HP = 0.f;
+			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+		}
 	}
+
 
 	return;
 }

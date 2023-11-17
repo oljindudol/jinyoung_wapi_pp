@@ -43,6 +43,14 @@ void CSkillMgr::init()
 	{
 		m_VecEffPlayer.push_back(new CEffPlayer);
 	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		AddSkillEff(new CSkill
+			, L"common", L"pinkbean", L"upperjump"
+			, .72f, Vec2(0.f, -250.f));
+	}
+
 }
 
 

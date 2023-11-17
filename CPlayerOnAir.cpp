@@ -50,6 +50,7 @@ void CPlayerOnAir::finaltick(float _DT)
 		if (2 > pMov->GetJmpCnt() && !(KEY_PRESSED(KEY::UP)))
 		{
 			CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeandoublejump", GetOwner()->GetPos(), ort);
+			CAssetMgr::GetInst()->LoadSound(L"doublejump", L"sound\\´þÁ¡3.wav")->Play();
 
 				++(pMov->GetJmpCnt());
 				float xvel = 700.f;
@@ -58,6 +59,8 @@ void CPlayerOnAir::finaltick(float _DT)
 		}
 		else if (2 > pMov->GetJmpCnt() && (KEY_PRESSED(KEY::UP)))
 		{
+			CSkillMgr::GetInst()->ActivateSkill(L"commonpinkbeanupperjump", GetOwner()->GetPos(), ort);
+			CAssetMgr::GetInst()->LoadSound(L"doublejump", L"sound\\´þÁ¡3.wav")->Play();
 			++(pMov->GetJmpCnt());
 			pMov->SetVelocity(Vec2(pMov->GetVelocity().x, pMov->GetVelocity().y - 1000.f));
 		}
