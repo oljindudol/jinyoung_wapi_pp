@@ -12,6 +12,7 @@ public:
     virtual void Exit();
     bool chased;
     bool stomped;
+    bool up;
 
     CLONE(CNormalMonAtt3);
 };

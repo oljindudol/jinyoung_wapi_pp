@@ -21,6 +21,17 @@ void CNormalMonAtt3::finaltick(float _DT)
 
 	m_acctime += _DT;
 
+	if (0.54f > m_acctime)
+	{
+		return;
+	}
+
+	if (up == false && 0.f != m_acctime)
+	{
+		up = true;
+		GetOwner()->SetPos(Vec2(GetOwner()->GetPos().x, 0.f));
+	}
+
 	if (1.3f > m_acctime)
 	{
 		return;
@@ -30,16 +41,19 @@ void CNormalMonAtt3::finaltick(float _DT)
 	{
 		chased = true;
 		Vec2 vPlayerPos = m_pPlayer->GetPos();
-		GetOwner()->SetPos(Vec2 (vPlayerPos.x, GetOwner()->GetPos().y));
+		GetOwner()->SetPos(Vec2 (vPlayerPos.x, 0.f ));
 	}
 
 	if (1.3f > m_acctime)
 	{
 		return;
 	}
+
 	if (stomped == false && 2.95 < m_acctime)
 	{
+		Vec2 vPlayerPos = m_pPlayer->GetPos();
 		GetOwner()->SetCollisionTime(0.f);
+		GetOwner()->SetPos(Vec2(vPlayerPos.x, vPlayerPos.y));
 		stomped = true;
 	}
 
@@ -53,6 +67,7 @@ void CNormalMonAtt3::Enter()
 
 	chased = false;
 	stomped = false;
+	up = false;
 
 	GetOwnerSM()->GetColliderComponent()->SetOffsetPos(Vec2(-0.f, -300.f));
 	GetOwnerSM()->GetColliderComponent()->SetScale(Vec2(200.f, 600.f));
