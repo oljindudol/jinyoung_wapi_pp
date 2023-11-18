@@ -1,5 +1,6 @@
 #include "pch.h"
-#include "CPhaseFirst.h"
+#include "CPhaseSecond.h"
+
 
 #include "CPlayer.h"
 #include "CMonster.h"
@@ -26,17 +27,17 @@
 
 #include "CUIMgr.h"
 
-CPhaseFirst::~CPhaseFirst()
+CPhaseSecond::~CPhaseSecond()
 {
 }
 
-void CPhaseFirst::init()
+void CPhaseSecond::init()
 {
 
 	// 배경생성
 	//CBackGround* pBackGround = nullptr;
 	m_BackGround = new CBackGround;
-	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage1", L"texture\\Stage1.png"));
+	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage2", L"texture\\Stage2.png"));
 	m_BackOn = true;
 
 	Vec2 mapsize =
@@ -49,10 +50,10 @@ void CPhaseFirst::init()
 
 	// 카메라 range설정
 	m_CameraRangex = Vec2(685.f, mapsize.x - 685.f);
-	m_CameraRangey = Vec2( 683.f, 683.f);// + (mapsize.y - 767), 683.f);
+	m_CameraRangey = Vec2(683.f, 683.f);// + (mapsize.y - 767), 683.f);
 
 	// 카메라 lookat 설정
-	CCamera::GetInst()->SetLookAt(Vec2(m_LevelMiddle.x, m_CameraRangey.x-250.f));
+	CCamera::GetInst()->SetLookAt(Vec2(m_LevelMiddle.x, m_CameraRangey.x - 250.f));
 
 	// 플레이어 가져와서 레벨에 합류
 	pPlayer = CLevelMgr::GetInst()->GetPlayer();
@@ -76,51 +77,49 @@ void CPhaseFirst::init()
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
 
-	
+
 	// 플랫폼 설치1
 	CPlatform* pPlatform = new CPlatform;
 	pPlatform->SetPos(Vec2(m_LevelMiddle.x, 850.f));
 	AddObject(PLATFORM, pPlatform);
 	CCollider* platforcol1 = pPlatform->AddComponent<CCollider>(L"PlatformCollider1");
-	platforcol1->SetScale(Vec2(5000.f, 250.f-65.f));
+	platforcol1->SetScale(Vec2(5000.f, 250.f - 65.f));
 
-	
+
 	// 
-	pBgm  = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\TempleOfDarkness.wav");
-	pBgm ->SetVolume(20);
-	pBgm ->SetPosition(45.f);
+	pBgm = CAssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\ThroneOfDarkness.wav");
+	pBgm->SetVolume(20);
+	pBgm->SetPosition(45.f);
 	pBgm ->Play(true);
 
 
-	CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
-	CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
+	//CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
+	//CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon11");
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon12");
 
 
-	CLevelMgr::GetInst()->GetpRule()->DeathCount = 12;
-	CLevelMgr::GetInst()->GetpRule()->leftsecond = 1800;
 }
 
-void CPhaseFirst::enter()
+void CPhaseSecond::enter()
 {
 	init();
 	CCamera::GetInst()->FadeIn(0.3f);
 }
 
-void CPhaseFirst::exit()
+void CPhaseSecond::exit()
 {
 	pBgm->Stop(true);
 	DeleteAllObjects();
 }
 
-void CPhaseFirst::tick()
+void CPhaseSecond::tick()
 {
 	CLevel::tick();
 
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::PHASE_SECOND);
+		ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
 	}
 }

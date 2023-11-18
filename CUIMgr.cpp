@@ -44,7 +44,7 @@ void CUIMgr::init()
 	// UI »ý¼º
 	CPanelUI* pResurr1Pan = new CPanelUI;
 	pResurr1Pan->SetScale(Vec2(300.f, 131.f));
-	pResurr1Pan->SetPos(Vec2((1366.f - pResurr1Pan->GetScale().x)/2.f, (768.f - pResurr1Pan->GetScale().y) / 2.f));
+	pResurr1Pan->SetPos(Vec2((1366.f - pResurr1Pan->GetScale().x)/2.f, (868.f - pResurr1Pan->GetScale().y) / 2.f));
 	pResurr1Pan->SetPannelImg(CAssetMgr::GetInst()->LoadTexture(L"ResurrPan1",L"texture\\resurrectmsg\\Notice.9.png"));
 	
 	CBtnUI* pResurr1Btn = new CBtnUI;
@@ -61,6 +61,24 @@ void CUIMgr::init()
 	newresurr1vec.push_back(pResurr1Pan);
 	m_UIMap.insert(pair<wstring, vector<CUI*>>(L"ResurrUI1", newresurr1vec));
 
+
+	AddUI(new CFloatingNotice);
+
+}
+
+void CUIMgr::FloatNotice(wstring _msg, float _duration)
+{
+	auto pui=FindAvailableUI(L"FloatingNoticeUI");
+
+	if (nullptr == pui)
+		return;
+	
+	auto fui = dynamic_cast<CFloatingNotice*>(pui);
+
+	if (nullptr == fui)
+		return;
+
+	fui->FloatNotice(_msg, _duration);
 }
 
 void CUIMgr::SetUIVisible(wstring _uiname)
@@ -88,6 +106,8 @@ void CUIMgr::DestroyUI(wstring _uiname)
 	pUI->m_visible = false;
 	pUI->Destroy();
 }
+
+
 
 CUI* CUIMgr::FindAvailableUI(wstring _uiname)
 {

@@ -19,6 +19,7 @@ public:
 	void init();
 	void SetUIVisible(wstring _uiname);
 	void DestroyUI(wstring _uiname);
+	void FloatNotice(wstring _msg, float _duration);
 
 private:
 	CUI* FindAvailableUI(wstring _uiname);

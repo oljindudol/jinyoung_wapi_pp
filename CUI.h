@@ -15,9 +15,9 @@ private:
 
     bool                m_bMouseLBtnDown;
     bool m_visible;
-    void SetUIVisible();
 
 protected:
+    void SetUIVisible();
     wstring m_uiname;
 
 

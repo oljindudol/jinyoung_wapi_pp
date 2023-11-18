@@ -21,6 +21,7 @@
 #include "CStartLevel.h"
 #include "CEditorLevel.h"
 #include "CPhaseFirst.h"
+#include "CPhaseSecond.h"
 #include "CTexture.h"
 #include "CMonsterMgr.h"
 #include "CTimeManager.h"
@@ -71,6 +72,7 @@ void CLevelMgr::init()
 	// 모든 레벨 생성
 	//m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
 	//m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_SECOND] = new CPhaseSecond;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIRST] = new CPhaseFirst;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_ZERO] = new CEnteranceLevel;
 

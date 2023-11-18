@@ -24,6 +24,7 @@ CLevel::CLevel()
 	, m_BackGround(nullptr)
 	, m_BackOn(false)
 	, pPlayer(nullptr)
+	, pBgm(nullptr)
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
@@ -117,6 +118,13 @@ void CLevel::tick()
 		//	CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 		// 
 		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+	}
+
+	if (KEY_TAP(KEY::T))
+	{
+		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
+		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
+		CUIMgr::GetInst()->FloatNotice(L"어.어.어.어.어.어.어.어.어.어.어.", 5.f);
 	}
 
 	if (KEY_TAP(KEY::LCTRL))

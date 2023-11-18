@@ -15,8 +15,11 @@ void CNormalMonDie::finaltick(float _DT)
 	m_acctime += _DT;
 	if (m_acctime > (1.5f/ GetAnimator()->GetCurAnimmulti()) )
 	{
+		if (L"firstion" == GetOwner()->GetName())
+			ChangeLevel(LEVEL_TYPE::PHASE_SECOND);
 		GetOwner()->Destroy();
 	}
+
 }
 
 void CNormalMonDie::Enter()

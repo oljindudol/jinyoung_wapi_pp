@@ -412,7 +412,11 @@
     <ClInclude Include="CDamageSkinRed.h">
       <Filter>03.Game\10.StageZero\Player\Skill\DS</Filter>
     </ClInclude>
-    <ClInclude Include="CUpperBar.h" />
+    <ClInclude Include="CUpperBar.h">
+      <Filter>03.Game\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPhaseSecond.h" />
+    <ClInclude Include="CFloatingNotice.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -671,6 +675,10 @@
     <ClCompile Include="CDamageSkinRed.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill\DS</Filter>
     </ClCompile>
-    <ClCompile Include="CUpperBar.cpp" />
+    <ClCompile Include="CUpperBar.cpp">
+      <Filter>03.Game\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhaseSecond.cpp" />
+    <ClCompile Include="CFloatingNotice.cpp" />
   </ItemGroup>
 </Project>

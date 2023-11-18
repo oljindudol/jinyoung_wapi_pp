@@ -48,7 +48,7 @@ void CSkillMgr::init()
 	{
 		AddSkillEff(new CSkill
 			, L"common", L"pinkbean", L"upperjump"
-			, .72f, Vec2(0.f, -250.f));
+			, .72f, Vec2(0.f, 0.f));
 	}
 
 }
