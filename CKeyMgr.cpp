@@ -75,6 +75,8 @@ int g_KeySync[KEY::KEY_END] =
 	VK_LBUTTON,
 	VK_RBUTTON,
 
+	VK_PRIOR,
+	VK_NEXT,
 	VK_HOME,
 	VK_F1,           
 	VK_F2,           

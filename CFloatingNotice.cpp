@@ -85,7 +85,7 @@ void CFloatingNotice::FloatNotice(wstring _str, float _duration)
 	}
 
 
-	m_tmp_midcnt = (int)_str.size() * 2 - (int)((float)space_dot_cnt * 1.4f);
+	m_tmp_midcnt = (int)_str.size() * 2 - (int)((float)space_dot_cnt * 1.333333f);
 
 
 	SetPos(

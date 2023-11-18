@@ -47,11 +47,16 @@ pinkbean_doublejump::pinkbean_doublejump()
 
 }
 
+
+
 void pinkbean_doublejump::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 }
 
 
+pinkbean_doublejump::pinkbean_doublejump(const pinkbean_doublejump& _Origin)
+{
+}
 
 pinkbean_doublejump::~pinkbean_doublejump()
 {

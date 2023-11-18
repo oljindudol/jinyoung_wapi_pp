@@ -4,6 +4,7 @@
 #include "pinkbean_phantomblow.h"
 #include "CDamageSkin.h"
 #include "CDamageSkinRed.h"
+#include "CRestraintRing.h"
 
 
 //1페이즈 스킬

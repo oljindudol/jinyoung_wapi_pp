@@ -416,7 +416,10 @@
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
     <ClInclude Include="CPhaseSecond.h" />
-    <ClInclude Include="CFloatingNotice.h" />
+    <ClInclude Include="CFloatingNotice.h">
+      <Filter>03.Game\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CRestraintRing.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -679,6 +682,9 @@
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
     <ClCompile Include="CPhaseSecond.cpp" />
-    <ClCompile Include="CFloatingNotice.cpp" />
+    <ClCompile Include="CFloatingNotice.cpp">
+      <Filter>03.Game\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CRestraintRing.cpp" />
   </ItemGroup>
 </Project>

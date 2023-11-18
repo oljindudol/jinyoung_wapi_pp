@@ -51,6 +51,13 @@ void CSkillMgr::init()
 			, .72f, Vec2(0.f, 0.f));
 	}
 
+	AddSkill(new CRestraintRing);
+
+	AddSkillEff(new CSkill
+		, L"common", L"restraintring", L"eff"
+		, .9f, Vec2(0.f, -40.f));
+
+
 }
 
 

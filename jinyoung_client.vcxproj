@@ -223,6 +223,7 @@
     </ClInclude>
     <ClInclude Include="CPortal.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CRestraintRing.h" />
     <ClInclude Include="CRuleMon11Idle.h" />
     <ClInclude Include="CRuleMon11Attack.h" />
     <ClInclude Include="CRuleMon12Attack.h" />
@@ -351,6 +352,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="CPortal.cpp" />
+    <ClCompile Include="CRestraintRing.cpp" />
     <ClCompile Include="CRuleMon11Idle.cpp" />
     <ClCompile Include="CRuleMon11Attack.cpp" />
     <ClCompile Include="CRuleMon12Attack.cpp" />

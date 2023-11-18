@@ -119,6 +119,9 @@ enum KEY
 	LBTN,
 	RBTN,
 
+	PAGE_UP,
+	PAGE_DOWN,
+
 	HOME,
 	F1,
 	F2,

@@ -64,8 +64,6 @@ ChainAttack::ChainAttack()
 	//}
 
 
-	//m_Animator->Play(m_s1 + m_s2 + m_s3 + L"_20");
-
 	m_skilllayer = LAYER::MONSTER_PJ;
 	duration = 1.5f;
 	cooltime = 0.f;

@@ -113,6 +113,9 @@ CAnim* CAnimator::FindAnim(const wstring& _strName)
 
 
 //아틀라스 x 일반애니메이션 
+// roop == 0 은 일반루프
+// roop == -1 은 루프안함
+// roop == 그외숫자는 루프할때 돌아갈 프레임
 void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,int _roop, ORIENTATION _ort)
 {
 	CAnim* pAnim = FindAnim(_strphase+ _strobj+ _stranimname);
