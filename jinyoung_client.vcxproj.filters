@@ -419,7 +419,13 @@
     <ClInclude Include="CFloatingNotice.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="CRestraintRing.h" />
+    <ClInclude Include="CNormalMonBind.h" />
+    <ClInclude Include="CRestraintRing.h">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CErdaNova.h">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -685,6 +691,12 @@
     <ClCompile Include="CFloatingNotice.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="CRestraintRing.cpp" />
+    <ClCompile Include="CNormalMonBind.cpp" />
+    <ClCompile Include="CRestraintRing.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CErdaNova.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

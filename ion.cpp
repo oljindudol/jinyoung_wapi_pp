@@ -7,6 +7,7 @@
 #include "CNormalMonDie.h"
 #include "CNormalMonAtt1.h"
 #include "CNormalMonAtt3.h"
+#include "CNormalMonBind.h"
 
 #include "CMonsterMgr.h"
 
@@ -59,6 +60,7 @@ ion::ion()
 	m_Animator->CreateAnimation(L"first", L"ion", L"die", Vec2(-0.f, -260.f), .5f, -1);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack1", Vec2(-0.f, -260.f), 1, -1);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack3", Vec2(-0.f, -540.f), 1, -1);
+	m_Animator->CreateAnimation(L"first", L"ion", L"bind", Vec2(-0.f, -260.f), 1.f);
 
 	m_Animator->Play(GetName()+L"idle");
 
@@ -72,6 +74,7 @@ ion::ion()
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK1, new CNormalMonAtt1);
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK3, new CNormalMonAtt3);
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::DIE, new CNormalMonDie);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::BIND, new CNormalMonBind);
 
 	m_AI->AddDataToBlackboard(L"Att1 Range", 400.f);
 	m_AI->AddDataToBlackboard(L"Detect Range", firstmon_attack2_dist);

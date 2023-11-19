@@ -19,8 +19,10 @@ private:
 	CSound* m_pBGM;		// 사운드 중에서 BGM Sound 를 가리키는 포인터
 
 	//사운드풀 관련
-	unordered_map<wstring ,vector<CSound*>> m_SoundMap;
+public:
 	void LoadMultipleSound(wstring _key,wstring _relpath,int _cnt);
+private:
+	unordered_map<wstring ,vector<CSound*>> m_SoundMap;
 	CSound* GetPlayableSound(wstring _key);
 
 	//사운드 플레이어 관련

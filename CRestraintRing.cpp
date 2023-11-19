@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CRestraintRing.h"
-#include "pinkbean_doublejump.h"
+
 #include "CSkillMgr.h"
 #include "CAssetMgr.h"
 #include "CSound.h"

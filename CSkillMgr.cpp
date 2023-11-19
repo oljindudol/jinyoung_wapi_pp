@@ -58,12 +58,13 @@ void CSkillMgr::init()
 		, .9f, Vec2(0.f, -40.f));
 
 
+	AddSkill(new CErdaNova);
 }
 
 
 void CSkillMgr::AddSkillEff(CSkill* _pSkill
 	, wstring _s1, wstring _s2, wstring _s3
-	, float _duration, Vec2 _offset)
+	, float _duration, Vec2 _offset , int _roop)
 {
 	_pSkill->m_s1 = _s1;
 	_pSkill->m_s2 = _s2;
@@ -85,7 +86,7 @@ void CSkillMgr::AddSkillEff(CSkill* _pSkill
 
 	_pSkill->m_Animator->
 		CreateAnimation(_pSkill->m_s1, _pSkill->m_s2, _pSkill->m_s3,
-			_offset, 1.f, -1, ORT_LEFT);
+			_offset, 1.f, _roop, ORT_LEFT);
 
 	_pSkill->m_Animator->Play(_pSkill->m_s1 + _pSkill->m_s2 + _pSkill->m_s3);
 

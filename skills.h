@@ -5,6 +5,7 @@
 #include "CDamageSkin.h"
 #include "CDamageSkinRed.h"
 #include "CRestraintRing.h"
+#include "CErdaNova.h"
 
 
 //1페이즈 스킬

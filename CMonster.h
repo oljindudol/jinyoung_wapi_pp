@@ -38,6 +38,7 @@ public:
 
     float GetMonsterHp() { return m_Info.HP; }
     float GetMonsterMaxHp() { return m_Info.MaxHp; }
+    CStateMachine* GetAI() { return m_AI; }
 
     UINT GetCurstateNum();
 

@@ -120,7 +120,7 @@ void CLevel::tick()
 		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 	}
 
-	if (KEY_TAP(KEY::Q))
+	if (KEY_TAP(KEY::F1))
 	{
 		CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 1.f);
 		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
@@ -128,7 +128,7 @@ void CLevel::tick()
 		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
 	}
 
-	if (KEY_TAP(KEY::W))
+	if (KEY_TAP(KEY::F2))
 	{
 		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
 		CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 1.f);
@@ -136,7 +136,7 @@ void CLevel::tick()
 		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
 	}
 
-	if (KEY_TAP(KEY::E))
+	if (KEY_TAP(KEY::F3))
 	{
 		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
 		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
@@ -144,7 +144,7 @@ void CLevel::tick()
 		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
 	}
 
-	if (KEY_TAP(KEY::R))
+	if (KEY_TAP(KEY::F4))
 	{
 		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
 		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
@@ -152,7 +152,12 @@ void CLevel::tick()
 		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
 	}
 
-	if (KEY_TAP(KEY::T))
+	if (KEY_TAP(KEY::F5))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"commonerdanovause", GetPlayer()->GetPos(), ORT_LEFT);
+	}
+
+	if (KEY_TAP(KEY::F6))
 	{
 		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
 		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);

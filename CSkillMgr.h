@@ -35,9 +35,10 @@ private:
 		wstring _skillname);
 
 	void AddSkill(CSkill* _pSkill);
+public:
 	void AddSkillEff(CSkill* _pSkill
 		, wstring _s1, wstring _s2, wstring _s3
-		, float _duration , Vec2 _offset = Vec2());
+		, float _duration , Vec2 _offset = Vec2() ,int _roop=-1);
 
 public:
 	void DeActivateAllSkills();
