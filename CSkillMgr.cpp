@@ -6,6 +6,8 @@
 #include "CTimeManager.h"
 #include "CEngine.h"
 #include "CLogMgr.h"
+#include "CUIMgr.h"
+#include "QuickSlotUI.h"
 
 CSkillMgr::CSkillMgr()
 {
@@ -68,9 +70,14 @@ void CSkillMgr::init()
 		, L"common", L"readytodie", L"use"
 		, .9f, Vec2(0.f, -150.f));
 
+	FindAvailableSkill(L"commonreadytodieuse")->cooltime = 60.f;
+
 	AddSkillEff(new CSkill
 		, L"common", L"soulcontract", L"use"
 		, .9f, Vec2(0.f, -40.f));
+
+	FindAvailableSkill(L"commonsoulcontractuse")->cooltime = 50.f;
+
 }
 
 
@@ -286,19 +293,9 @@ CSkill* CSkillMgr::ActivateSkill(wstring _skillname
 
 
 
-float CSkillMgr::GetCoolTime(wstring _skillname)
+bool CSkillMgr::IsCoolTime(wstring _skillname)
 {
-	vector<CSkill*>* pskills = FindSkill(_skillname);
-	if (nullptr == pskills)
-	{
-		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
-		return 0.f;
-	}
-
-	auto iter = pskills->begin();
-
-	return (*iter)->cooltime;
+	return dynamic_cast<QuickSlotUI*>((*CUIMgr::GetInst()->FindUI(L"QuickSlotUI"))[0])->IsCoolTime(_skillname);
 }
 
 

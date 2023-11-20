@@ -31,6 +31,7 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 	// activatedtime 초기화
 	m_activedtime = 0.f;
 	
+	m_leftcool = cooltime;
 
 	//스킬 위치설정
 	SetPos(_beginpos);

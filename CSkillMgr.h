@@ -50,7 +50,9 @@ public:
 
 public:
 	float GetSkillDuration(wstring _skillname);
-	float GetCoolTime(wstring _skillname);
+	bool IsCoolTime(wstring _skillname);
+
+	
 
 private: 
 
@@ -73,6 +75,6 @@ public:
 	//사운드플레이어에 사운드 이벤트를 등록하는 함수
 	void PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos ,ORIENTATION _ort);
 
-
+	friend class QuickSlotUI;
 };
 

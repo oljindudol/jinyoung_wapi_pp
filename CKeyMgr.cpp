@@ -89,7 +89,9 @@ int g_KeySync[KEY::KEY_END] =
 	VK_F9,           
 	VK_F10,           
 	VK_F11,           
-	VK_F12,           
+	VK_F12,     
+	VK_OEM_3,
+
 };
 
 

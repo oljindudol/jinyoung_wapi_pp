@@ -28,14 +28,19 @@ void SaveWString(const wstring& _str, FILE* _File);
 void LoadWString(wstring& _str, FILE* _File);
 
 void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
-void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
+void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc );
+void SettexturetoDcPartiallyDownWithMagnification(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc , float _mag);
+
+
 void SetNumberTextureToDc(HDC _dc, int _num
 	, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset = 0.f);
 void SetNumberTextureToDcWithTwoDigitZeroPadding(HDC _dc, int _num
 	, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset = 0.f);
 
 void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos);
+void SettexturetoDcWithMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos ,float _mag);
 void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos,int _alpha);
+void SettexturetoDcWithAlphaAndMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha, float _mag);
 Vec2 RotateDot(const Vec2& _Dot, float _rad);
 
 void DrawRectToDc(HDC _dc

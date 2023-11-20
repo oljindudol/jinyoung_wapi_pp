@@ -282,6 +282,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="pinkbean_phantomblow.h" />
+    <ClInclude Include="QuickSlotUI.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="rulemon11.h" />
     <ClInclude Include="rulemon12.h" />
@@ -421,6 +422,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="pinkbean_phantomblow.cpp" />
+    <ClCompile Include="QuickSlotUI.cpp" />
     <ClCompile Include="rulemon11.cpp" />
     <ClCompile Include="rulemon12.cpp" />
     <ClCompile Include="struct.cpp" />

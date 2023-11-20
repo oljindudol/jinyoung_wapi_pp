@@ -175,31 +175,72 @@ void CLevel::tick()
 
 	if (KEY_TAP(KEY::F3))
 	{
-		CAssetMgr::GetInst()->LoadSound(L"레투다use", L"sound\\레투다use.wav")->Play();
-		CSkillMgr::GetInst()->ActivateSkill(L"commonreadytodieuse", GetPlayer()->GetPos(), ORT_LEFT);
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonreadytodieuse"))
+		{
+
+		}
+		else 
+		{
+			CAssetMgr::GetInst()->LoadSound(L"레투다use", L"sound\\레투다use.wav")->Play();
+			CSkillMgr::GetInst()->ActivateSkill(L"commonreadytodieuse", GetPlayer()->GetPos(), ORT_LEFT);
+		}
 	}	
 	if (KEY_TAP(KEY::F4))
 	{
-		CAssetMgr::GetInst()->LoadSound(L"엔버use", L"sound\\엔버use.wav")->Play();
-		CSkillMgr::GetInst()->ActivateSkill(L"commonsoulcontractuse", GetPlayer()->GetPos(), ORT_LEFT);
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonsoulcontractuse"))
+		{
+
+		}
+		else
+		{
+			CAssetMgr::GetInst()->LoadSound(L"엔버use", L"sound\\엔버use.wav")->Play();
+			CSkillMgr::GetInst()->ActivateSkill(L"commonsoulcontractuse", GetPlayer()->GetPos(), ORT_LEFT);
+		}
 	}	
 	if (KEY_TAP(KEY::F5))
 	{
-		CSkillMgr::GetInst()->ActivateSkill(L"commonerdanovause", GetPlayer()->GetPos(), ORT_LEFT);
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonerdanovause"))
+		{
+
+		}
+		else
+		{
+			CSkillMgr::GetInst()->ActivateSkill(L"commonerdanovause", GetPlayer()->GetPos(), ORT_LEFT);
+		}
 	}
 
 	if (KEY_TAP(KEY::E))
 	{
-		CSkillMgr::GetInst()->ActivateSkill(L"commonkarmafuryuse", GetPlayer()->GetPos(), ORT_LEFT);
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonkarmafuryuse"))
+		{
+
+		}
+		else
+		{
+			CSkillMgr::GetInst()->ActivateSkill(L"commonkarmafuryuse", GetPlayer()->GetPos(), ORT_LEFT);
+		}
 	}
 	if (KEY_TAP(KEY::G))
 	{
-		CSkillMgr::GetInst()->ActivateSkill(L"commonbladetornadouse", GetPlayer()->GetPos(), pPlayer->ort);
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonbladetornadouse"))
+		{
+
+		}
+		else
+		{
+			CSkillMgr::GetInst()->ActivateSkill(L"commonbladetornadouse", GetPlayer()->GetPos(), pPlayer->ort);
+		}
 	}
 	if (KEY_TAP(KEY::F))
 	{
-		GetPlayer()->getStateMachine()->ChangeState((UINT)PLAYER_STATE::ATT_SP);
-		//ptmpskill = CSkillMgr::GetInst()->ActivateSkill(L"commonbladestormuse", GetPlayer()->GetPos(), pPlayer->ort);
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonbladestormuse"))
+		{
+
+		}
+		else
+		{
+			GetPlayer()->getStateMachine()->ChangeState((UINT)PLAYER_STATE::ATT_SP);
+		}
 	}
 	//if (KEY_RELEASED(KEY::F))
 	//{
@@ -220,7 +261,14 @@ void CLevel::tick()
 
 	if (KEY_TAP(KEY::PAGE_DOWN))
 	{
-		CSkillMgr::GetInst()->ActivateSkill(L"commonrestraintringroop" ,GetPlayer()->GetPos(), ORT_LEFT );
+		if (CSkillMgr::GetInst()->IsCoolTime(L"commonrestraintringroop"))
+		{
+
+		}
+		else
+		{
+			CSkillMgr::GetInst()->ActivateSkill(L"commonrestraintringroop", GetPlayer()->GetPos(), ORT_LEFT);
+		}
 
 	}
 
@@ -250,8 +298,6 @@ void CLevel::tick()
 			m_BackOn = false;
 		}
 	}
-
-
 
 
 	//디버그 로그

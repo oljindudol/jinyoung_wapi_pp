@@ -63,6 +63,7 @@ void CUIMgr::init()
 
 
 	AddUI(new CFloatingNotice);
+	AddUI(new QuickSlotUI);
 
 }
 

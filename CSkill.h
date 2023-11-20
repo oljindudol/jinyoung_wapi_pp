@@ -39,6 +39,7 @@ public:
     CSkill(const CSkill& _Origin);
     ~CSkill();
 
+    friend class QuickSlotUI;
     friend class CSkillMgr;
 };
 

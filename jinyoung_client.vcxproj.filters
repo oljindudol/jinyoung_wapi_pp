@@ -428,8 +428,6 @@
     <ClInclude Include="CNormalMonBind.h">
       <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
     </ClInclude>
-    <ClInclude Include="CBladeStorm.h" />
-    <ClInclude Include="CPlayerAttSp.h" />
     <ClInclude Include="CNormalMonDebug.h">
       <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
     </ClInclude>
@@ -438,6 +436,13 @@
     </ClInclude>
     <ClInclude Include="CKarmaFury.h">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="QuickSlotUI.h" />
+    <ClInclude Include="CBladeStorm.h">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerAttSp.h">
+      <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -713,8 +718,6 @@
     <ClCompile Include="CNormalMonBind.cpp">
       <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
     </ClCompile>
-    <ClCompile Include="CBladeStorm.cpp" />
-    <ClCompile Include="CPlayerAttSp.cpp" />
     <ClCompile Include="CNormalMonDebug.cpp">
       <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
     </ClCompile>
@@ -723,6 +726,13 @@
     </ClCompile>
     <ClCompile Include="CKarmaFury.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSlotUI.cpp" />
+    <ClCompile Include="CBladeStorm.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerAttSp.cpp">
+      <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

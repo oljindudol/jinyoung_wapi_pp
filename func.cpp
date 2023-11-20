@@ -101,6 +101,27 @@ void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc
 		, blend);
 }
 
+void SettexturetoDcPartiallyDownWithMagnification(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc, float _mag)
+{
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
+
+	AlphaBlend(_dc
+		, (int)_pos.x
+		, (int)_pos.y
+		, (int)(_tex->GetWidth() * _mag)
+		, (int)(_tex->GetHeight() * _perc * _mag)
+		, _tex->GetDC()
+		, 0, 0
+		, _tex->GetWidth()
+		, (int)(_tex->GetHeight() * _perc)
+		, blend);
+}
+
 void SetNumberTextureToDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
 {
 	wstring strnums = std::to_wstring(_num);
@@ -216,6 +237,28 @@ void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha
 		, blend);
 }
 
+void SettexturetoDcWithAlphaAndMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha, float _mag)
+{
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
+
+	blend.SourceConstantAlpha = _alpha; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
+
+	AlphaBlend(_dc
+		, int(_pos.x)
+		, int(_pos.y)
+		, (int)(_ptexture->GetWidth() * _mag)
+		, (int)(_ptexture->GetHeight() * _mag)
+		, _ptexture->GetDC()
+		, 0, 0
+		, _ptexture->GetWidth()
+		, _ptexture->GetHeight()
+		, blend);
+}
+
+
 
 
 void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
@@ -239,8 +282,26 @@ void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos)
 		, blend);
 }
 
+void SettexturetoDcWithMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, float _mag)
+{
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0; // 0이여야합니다
 
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 고정
 
+	AlphaBlend(_dc
+		, int(_pos.x)
+		, int(_pos.y)
+		, (int)(_ptexture->GetWidth() * _mag)
+		, (int)(_ptexture->GetHeight() * _mag)
+		, _ptexture->GetDC()
+		, 0, 0
+		, _ptexture->GetWidth()
+		, _ptexture->GetHeight()
+		, blend);
+}
 
 
 

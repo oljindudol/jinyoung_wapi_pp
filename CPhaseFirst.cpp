@@ -60,8 +60,10 @@ void CPhaseFirst::init()
 	pPlayer->getMovement()->SetGround(false);
 	AddObject(PLAYER, pPlayer);
 
+	//UIÇÕ·ù
 	CUIMgr::GetInst()->SetUIVisible(L"StatusUI");
 	CUIMgr::GetInst()->SetUIVisible(L"UpperBarUI");
+	CUIMgr::GetInst()->SetUIVisible(L"QuickSlotUI");
 
 	// Cwall
 	CWall* pWall1 = new CWall;

@@ -135,6 +135,7 @@ enum KEY
 	F10,
 	F11,
 	F12,
+	GRAVE,
 
 	KEY_END,
 };

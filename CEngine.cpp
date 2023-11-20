@@ -119,11 +119,13 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CSoundMgr::GetInst()->init();
 
 	CCollisionMgr::GetInst()->init();
+	CSkillMgr::GetInst()->init();
+	//UI매니저가 스킬매니저를 참조한다.
 	CUIMgr::GetInst()->init();
 
-	CSkillMgr::GetInst()->init();
 	CMonsterMgr::GetInst()->init();
 
+	//레벨매니저가 위에있는 것을 참조한다.(UI 등)
 	CLevelMgr::GetInst()->init();
 
 

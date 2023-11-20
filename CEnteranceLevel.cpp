@@ -68,7 +68,10 @@ void CEnteranceLevel::init()
 	// 스테이터스바 생성
 	//CStatusUI* pStatusUI = new CStatusUI;
 	//AddObject(LAYER::UI, pStatusUI);
+	//UI합류
 	CUIMgr::GetInst()->SetUIVisible(L"StatusUI");
+	CUIMgr::GetInst()->SetUIVisible(L"QuickSlotUI");
+
 
 	// 몬스터 매니저에 이관
 	// 몬스터 생성

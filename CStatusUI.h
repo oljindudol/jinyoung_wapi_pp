@@ -1,11 +1,11 @@
 #pragma once
 #include "CUI.h"
 #include "CStatusUI.h"
-#include "CAssetMgr.h"
-#include "CTexture.h"
-#include "CLogMgr.h"
-#include "CLevelMgr.h"
-#include "CPlayer.h"
+//#include "CAssetMgr.h"
+//#include "CTexture.h"
+//#include "CLogMgr.h"
+//#include "CLevelMgr.h"
+//#include "CPlayer.h"
 
 
 class CTexture;

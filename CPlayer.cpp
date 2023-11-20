@@ -190,12 +190,12 @@ void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
 	
-	//if (hp < 25000.f)
-	//{
-	//	CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\포션.wav")->Play();
-	//	hp = maxhp;
-	//	m_acctime = 0.f;
-	//}
+	if (hp < 25000.f)
+	{
+		CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\포션.wav")->Play();
+		hp = maxhp;
+		m_acctime = 0.f;
+	}
 	
 
 	//Vec2 vPos = GetPos();

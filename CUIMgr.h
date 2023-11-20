@@ -23,7 +23,6 @@ public:
 
 private:
 	CUI* FindAvailableUI(wstring _uiname);
-
 	vector<CUI*>* FindUI(wstring _uiname);
 
 	void AddUI(CUI* _pui);
@@ -34,7 +33,6 @@ public:
 
 	int FindNextUINumber(wstring _uiname);
 
-
-
+	friend class CSkillMgr;
 };
 
