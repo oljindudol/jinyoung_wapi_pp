@@ -23,7 +23,7 @@ private:
 
 public:
 	void init();
-	void ActivateSkill(wstring _skillname,
+	CSkill* ActivateSkill(wstring _skillname,
 		Vec2 _pos,
 		ORIENTATION _ort);
 

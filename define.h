@@ -239,11 +239,20 @@ enum class ENORMAL_MON_STATE
 {
 	REGEN,
 	IDLE,
+
 	ATTACK1,
 	ATTACK2,
 	ATTACK3,
+	ATTACK4,
+
+	POWER1,
+	POWER2,
+	POWER3,
+
 	BIND,
 	DIE,
+
+	DEBUG,
 };
 
 enum class PLAYER_STATE

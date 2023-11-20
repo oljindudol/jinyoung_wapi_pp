@@ -39,4 +39,6 @@ public:
 
 	friend class CLevelMgr;
 	friend class CMonster;
+	friend class CNormalMonDebug;
+
 };

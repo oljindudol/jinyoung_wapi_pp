@@ -160,6 +160,8 @@
     <ClInclude Include="CAsset.h" />
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CBackGround.h" />
+    <ClInclude Include="CBladeStorm.h" />
+    <ClInclude Include="CBladeTornado.h" />
     <ClInclude Include="CBtnUI.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
@@ -178,6 +180,7 @@
     <ClInclude Include="CFloatingNotice.h" />
     <ClInclude Include="CGuided.h" />
     <ClInclude Include="ChainAttack.h" />
+    <ClInclude Include="CKarmaFury.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
@@ -194,6 +197,7 @@
     <ClInclude Include="CNormalMonAtt1.h" />
     <ClInclude Include="CNormalMonAtt3.h" />
     <ClInclude Include="CNormalMonBind.h" />
+    <ClInclude Include="CNormalMonDebug.h" />
     <ClInclude Include="CNormalMonDie.h" />
     <ClInclude Include="CNormalMonIdle.h" />
     <ClInclude Include="CNormalMonRegen.h" />
@@ -208,6 +212,7 @@
     <ClInclude Include="CPlatform.h" />
     <ClInclude Include="CEnteranceLevel.h" />
     <ClInclude Include="CPlayerAttNorm.h" />
+    <ClInclude Include="CPlayerAttSp.h" />
     <ClInclude Include="CPlayerDead.h" />
     <ClInclude Include="CPlayerDown.h" />
     <ClInclude Include="CPlayerIdle.h">
@@ -293,6 +298,8 @@
     <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CBackGround.cpp" />
+    <ClCompile Include="CBladeStorm.cpp" />
+    <ClCompile Include="CBladeTornado.cpp" />
     <ClCompile Include="CBtnUI.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
@@ -311,6 +318,7 @@
     <ClCompile Include="CFloatingNotice.cpp" />
     <ClCompile Include="CGuided.cpp" />
     <ClCompile Include="ChainAttack.cpp" />
+    <ClCompile Include="CKarmaFury.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
@@ -327,6 +335,7 @@
     <ClCompile Include="CNormalMonAtt1.cpp" />
     <ClCompile Include="CNormalMonAtt3.cpp" />
     <ClCompile Include="CNormalMonBind.cpp" />
+    <ClCompile Include="CNormalMonDebug.cpp" />
     <ClCompile Include="CNormalMonDie.cpp" />
     <ClCompile Include="CNormalMonIdle.cpp" />
     <ClCompile Include="CNormalMonRegen.cpp" />
@@ -340,6 +349,7 @@
     <ClCompile Include="CPlatform.cpp" />
     <ClCompile Include="CEnteranceLevel.cpp" />
     <ClCompile Include="CPlayerAttNorm.cpp" />
+    <ClCompile Include="CPlayerAttSp.cpp" />
     <ClCompile Include="CPlayerDead.cpp" />
     <ClCompile Include="CPlayerDown.cpp" />
     <ClCompile Include="CPlayerIdle.cpp">

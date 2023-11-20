@@ -3,7 +3,8 @@
 
 CNormalMonAtt3::CNormalMonAtt3()
 	:chased(false)
-	,stomped(false)
+	, stomped(false)
+	, up(false)
 {
 }
 

@@ -164,7 +164,7 @@ void CLevelMgr::tick()
 		m_pCurLevel->tick();
 
 	m_acctime += DT;
-	if (0.1f < m_acctime)
+	if (1.f < m_acctime)
 	{
 		if(0 < m_pRule->leftsecond)
 			--m_pRule->leftsecond;

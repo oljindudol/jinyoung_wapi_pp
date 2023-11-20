@@ -41,7 +41,7 @@ void CPlayerOnAir::finaltick(float _DT)
 		}
 	}
 
-	if (KEY_PRESSED(C))
+	if (KEY_PRESSED(X))
 	{
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ATT_NM);
 	}

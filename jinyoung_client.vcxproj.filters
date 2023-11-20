@@ -419,11 +419,24 @@
     <ClInclude Include="CFloatingNotice.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="CNormalMonBind.h" />
     <ClInclude Include="CRestraintRing.h">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClInclude>
     <ClInclude Include="CErdaNova.h">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalMonBind.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CBladeStorm.h" />
+    <ClInclude Include="CPlayerAttSp.h" />
+    <ClInclude Include="CNormalMonDebug.h">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CBladeTornado.h">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CKarmaFury.h">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
@@ -691,11 +704,24 @@
     <ClCompile Include="CFloatingNotice.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="CNormalMonBind.cpp" />
     <ClCompile Include="CRestraintRing.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClCompile>
     <ClCompile Include="CErdaNova.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalMonBind.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CBladeStorm.cpp" />
+    <ClCompile Include="CPlayerAttSp.cpp" />
+    <ClCompile Include="CNormalMonDebug.cpp">
+      <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CBladeTornado.cpp">
+      <Filter>03.Game\10.StageZero\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CKarmaFury.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClCompile>
   </ItemGroup>

@@ -42,7 +42,7 @@ void CPlayerDown::finaltick(float _DT)
 		ChangeState((UINT)PLAYER_STATE::IDLE);
 		return;
 	}
-	if (KEY_PRESSED(C))
+	if (KEY_PRESSED(X))
 	{
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ATT_NM);
 		return;

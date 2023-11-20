@@ -71,6 +71,7 @@ public:
     ~CStateMachine();
 
     friend class CMonsterMgr;
+    friend class CNormalMonDebug;
 };
 
 template<typename T>

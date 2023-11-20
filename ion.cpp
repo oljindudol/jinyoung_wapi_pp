@@ -8,6 +8,7 @@
 #include "CNormalMonAtt1.h"
 #include "CNormalMonAtt3.h"
 #include "CNormalMonBind.h"
+#include "CNormalMonDebug.h"
 
 #include "CMonsterMgr.h"
 
@@ -75,6 +76,9 @@ ion::ion()
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK3, new CNormalMonAtt3);
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::DIE, new CNormalMonDie);
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::BIND, new CNormalMonBind);
+
+
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::DEBUG, new CNormalMonDebug);
 
 	m_AI->AddDataToBlackboard(L"Att1 Range", 400.f);
 	m_AI->AddDataToBlackboard(L"Detect Range", firstmon_attack2_dist);

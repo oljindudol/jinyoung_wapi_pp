@@ -13,9 +13,14 @@
 #include "CEngine.h"
 #include "CUIMgr.h"
 #include "CAssetMgr.h"
+#include "CSkill.h"
+#include "CLevelMgr.h"
+#include "CMonster.h"
+
 
 class CEntity;
 class CLayer;
+
 
 
 CLevel::CLevel()
@@ -111,6 +116,12 @@ void CLevel::tick()
 		CMonsterMgr::GetInst()->ChangeAllMonsterIdle();
 	}
 
+	if (KEY_TAP(KEY::_4))
+	{
+		CMonsterMgr::GetInst()->ChangeAllMonsterForcedIdle();
+		CLevelMgr::GetInst()->GetCurLevelMon()->GetAI()->ChangeState((UINT)ENORMAL_MON_STATE::DEBUG);
+	}
+
 	if (KEY_TAP(KEY::LBTN))
 	{
 		//
@@ -120,42 +131,83 @@ void CLevel::tick()
 		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 	}
 
-	if (KEY_TAP(KEY::F1))
+	if (KEY_TAP(KEY::_5))
 	{
-		CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 1.f);
+		CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 2.f);
 		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
 		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 5.f);
 		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
 	}
 
-	if (KEY_TAP(KEY::F2))
+	if (KEY_TAP(KEY::_6))
 	{
 		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 1.f);
+		CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 2.f);
 		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 5.f);
 		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
 	}
+
+	if (KEY_TAP(KEY::_7))
+	{
+		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
+		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
+		CUIMgr::GetInst()->FloatNotice(L"어.어.어.어.어.어.어.어.어.어.어.", 2.f);
+		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
+	}
+
+	if (KEY_TAP(KEY::_8))
+	{
+		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
+		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
+		CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 2.f);
+		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
+	}
+
+	if (KEY_TAP(KEY::_9))
+	{
+		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
+		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
+		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 1.f);
+		CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 2.f);
+	}
+
+
 
 	if (KEY_TAP(KEY::F3))
 	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"어.어.어.어.어.어.어.어.어.어.어.", 1.f);
-		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
-	}
-
+		CAssetMgr::GetInst()->LoadSound(L"레투다use", L"sound\\레투다use.wav")->Play();
+		CSkillMgr::GetInst()->ActivateSkill(L"commonreadytodieuse", GetPlayer()->GetPos(), ORT_LEFT);
+	}	
 	if (KEY_TAP(KEY::F4))
 	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 1.f);
-		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
-	}
-
+		CAssetMgr::GetInst()->LoadSound(L"엔버use", L"sound\\엔버use.wav")->Play();
+		CSkillMgr::GetInst()->ActivateSkill(L"commonsoulcontractuse", GetPlayer()->GetPos(), ORT_LEFT);
+	}	
 	if (KEY_TAP(KEY::F5))
 	{
 		CSkillMgr::GetInst()->ActivateSkill(L"commonerdanovause", GetPlayer()->GetPos(), ORT_LEFT);
 	}
+
+	if (KEY_TAP(KEY::E))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"commonkarmafuryuse", GetPlayer()->GetPos(), ORT_LEFT);
+	}
+	if (KEY_TAP(KEY::G))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"commonbladetornadouse", GetPlayer()->GetPos(), pPlayer->ort);
+	}
+	if (KEY_TAP(KEY::F))
+	{
+		GetPlayer()->getStateMachine()->ChangeState((UINT)PLAYER_STATE::ATT_SP);
+		//ptmpskill = CSkillMgr::GetInst()->ActivateSkill(L"commonbladestormuse", GetPlayer()->GetPos(), pPlayer->ort);
+	}
+	//if (KEY_RELEASED(KEY::F))
+	//{
+	//	if (nullptr != ptmpskill && !ptmpskill->IsDead())
+	//	{
+	//		ptmpskill->Destroy();
+	//	}
+	//}
 
 	if (KEY_TAP(KEY::F6))
 	{

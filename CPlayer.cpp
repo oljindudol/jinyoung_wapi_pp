@@ -13,6 +13,7 @@
 #include "CEngine.h"
 
 #include "CGuided.h"
+#include "CPlayerAttSp.h"
 
 #include "CAssetMgr.h"
 #include "CTexture.h"
@@ -150,6 +151,8 @@ CPlayer::CPlayer()
 	m_PlayerState->AddState((UINT)PLAYER_STATE::DOWN, new CPlayerDown);
 	m_PlayerState->AddState((UINT)PLAYER_STATE::ATT_NM, new CPlayerAttNorm);
 	m_PlayerState->AddState((UINT)PLAYER_STATE::DEAD, new CPlayerDead);
+	m_PlayerState->AddState((UINT)PLAYER_STATE::ATT_SP, new CPlayerAttSp);
+
 	m_PlayerState->ChangeState((UINT)PLAYER_STATE::IDLE);
 
 }
@@ -187,7 +190,13 @@ void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
 	
-	//hp = maxhp;
+	//if (hp < 25000.f)
+	//{
+	//	CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\Æ÷¼Ç.wav")->Play();
+	//	hp = maxhp;
+	//	m_acctime = 0.f;
+	//}
+	
 
 	//Vec2 vPos = GetPos();
 	//m_acctime += _DT;
@@ -491,6 +500,7 @@ void CPlayer::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 void CPlayer::begin()
 {
 	m_Collider->InitColCnt();
+	m_acctime = 0.f;
 }
 
 void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)

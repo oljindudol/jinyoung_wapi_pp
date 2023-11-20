@@ -2,6 +2,7 @@
 
 #include "CEntity.h"
 #include "CLayer.h"
+class CSkill;
 
 class CPlayer;
 class CSound;
@@ -15,6 +16,7 @@ private:
 	CLayer* m_Layer[LAYER::END];
 	UINT	m_TileRow;
 	UINT	m_TileCol;
+	CSkill* ptmpskill;
 
 protected:
 	CSound* pBgm;

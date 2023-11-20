@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CNormalMonDie.h"
 #include "CMonsterMgr.h"
+#include "CUIMgr.h"
 
 CNormalMonDie::CNormalMonDie()
 {
@@ -13,11 +14,12 @@ CNormalMonDie::~CNormalMonDie()
 void CNormalMonDie::finaltick(float _DT)
 {
 	m_acctime += _DT;
-	if (m_acctime > (1.5f/ GetAnimator()->GetCurAnimmulti()) )
+	if (m_acctime > (4.f/ GetAnimator()->GetCurAnimmulti()) )
 	{
 		if (L"firstion" == GetOwner()->GetName())
 			ChangeLevel(LEVEL_TYPE::PHASE_SECOND);
 		GetOwner()->Destroy();
+
 	}
 
 }
@@ -26,6 +28,7 @@ void CNormalMonDie::Enter()
 {
 
 	Super::Enter();
+	CUIMgr::GetInst()->FloatNotice(L"검은마법사를 향한 길이 열린다.", 4.f);
 
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(GetOwner()->GetName() + L"die");

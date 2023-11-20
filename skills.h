@@ -6,6 +6,9 @@
 #include "CDamageSkinRed.h"
 #include "CRestraintRing.h"
 #include "CErdaNova.h"
+#include "CKarmaFury.h"
+#include "CBladeTornado.h"
+#include "CBladeStorm.h"
 
 
 //1페이즈 스킬

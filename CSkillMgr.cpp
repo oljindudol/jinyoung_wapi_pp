@@ -4,7 +4,7 @@
 #include "CSkillMgr.h"
 #include "skills.h"
 #include "CTimeManager.h"
-
+#include "CEngine.h"
 #include "CLogMgr.h"
 
 CSkillMgr::CSkillMgr()
@@ -27,7 +27,8 @@ void CSkillMgr::init()
 		AddSkill((CSkill*)new CDamageSkin);
 	}
 
-	for (int i = 0; i < 150; i++)
+	//뎀스만들기
+	for (int i = 0; i < 500; i++)
 	{
 		AddSkill((CSkill*)new CDamageSkinRed);
 	}
@@ -59,6 +60,17 @@ void CSkillMgr::init()
 
 
 	AddSkill(new CErdaNova);
+	AddSkill(new CKarmaFury);
+	AddSkill(new CBladeTornado);
+	AddSkill(new CBladeStorm);
+
+	AddSkillEff(new CSkill
+		, L"common", L"readytodie", L"use"
+		, .9f, Vec2(0.f, -150.f));
+
+	AddSkillEff(new CSkill
+		, L"common", L"soulcontract", L"use"
+		, .9f, Vec2(0.f, -40.f));
 }
 
 
@@ -205,6 +217,7 @@ CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
 
 	if (nullptr == pSkills)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		pSkill = nullptr;
 	}
@@ -228,6 +241,7 @@ void CSkillMgr::PrintDamageVioletSkin(Vec2 _pos, int _num)
 	CSkill* pskill = FindAvailableSkill(L"commonpinkbeandamageskin_violet");
 	if (nullptr == pskill)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_violet" );
 		return;
 	}
@@ -243,6 +257,7 @@ void CSkillMgr::PrintDamageRedSkin(Vec2 _pos, long long _num ,int _th)
 	CSkill* pskill = FindAvailableSkill(L"commonpinkbeandamageskin_red");
 	if (nullptr == pskill)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_red");
 		return;
 	}
@@ -253,18 +268,20 @@ void CSkillMgr::PrintDamageRedSkin(Vec2 _pos, long long _num ,int _th)
 }
 
 
-void CSkillMgr::ActivateSkill(wstring _skillname
+CSkill* CSkillMgr::ActivateSkill(wstring _skillname
 	, Vec2 _pos
 	, ORIENTATION _ort)
 {
 	CSkill* pskill = FindAvailableSkill(_skillname);
 	if (nullptr == pskill)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다" + _skillname).c_str());
-		return;
+		return nullptr;
 	}
 
 	pskill->activate(_pos, _ort);
+	return pskill;
 }
 
 
@@ -274,6 +291,7 @@ float CSkillMgr::GetCoolTime(wstring _skillname)
 	vector<CSkill*>* pskills = FindSkill(_skillname);
 	if (nullptr == pskills)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		return 0.f;
 	}
@@ -291,6 +309,7 @@ float CSkillMgr::GetSkillDuration(wstring _skillname)
 	vector<CSkill*>* pSkills = FindSkill(_skillname);
 	if (nullptr == pSkills)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		return 0.f;
 	}
@@ -412,6 +431,7 @@ void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos 
 
 	if (m_VecEffPlayer.end() == iter)
 	{
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, L"할당 가능한 이펙트 플레이어 없음")
 			return;
 	}
