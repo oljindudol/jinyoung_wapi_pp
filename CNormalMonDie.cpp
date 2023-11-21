@@ -14,7 +14,7 @@ CNormalMonDie::~CNormalMonDie()
 void CNormalMonDie::finaltick(float _DT)
 {
 	m_acctime += _DT;
-	if (m_acctime > (4.f/ GetAnimator()->GetCurAnimmulti()) )
+	if (m_acctime > (2.5f/ GetAnimator()->GetCurAnimmulti()) )
 	{
 		if (L"firstion" == GetOwner()->GetName())
 			ChangeLevel(LEVEL_TYPE::PHASE_SECOND);
