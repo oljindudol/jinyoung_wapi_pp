@@ -49,6 +49,16 @@ private:
     ORIENTATION m_ort;
 
 public:
+    Vec2 GetOffset() { return m_vecFrm[0].vOffset; }
+
+    void Setoffset(Vec2 _offset)
+    {
+        for (auto& f : m_vecFrm)
+        {
+            f.vOffset = _offset;
+        }
+    }
+
     void finaltick();
     void render(HDC _dc);
 

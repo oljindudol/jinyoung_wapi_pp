@@ -46,14 +46,14 @@ CBlackMage2::CBlackMage2()
 	m_Animator->CreateAnimation(L"second", L"blackmage", L"idle", Vec2(0.f, 0.f), 1.f);
 	m_Animator->CreateAnimation(L"second", L"blackmage", L"die",  Vec2(0.f, 0.f),  1.f);
 
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"morningstarfall", Vec2(0.f, 0.f),1.f,  -1);
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"eyeofruin", Vec2(0.f, 0.f),1.f,  -1);
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"noxspear", Vec2(0.f, 0.f), 1.f, -1);
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"blindness", Vec2(0.f, 0.f),1.f,  -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"morningstarfall", Vec2(-8.f, 0.f),1.f,  -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"eyeofruin", Vec2(7.f, -14.f),1.f,  -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"noxspear", Vec2(-8.f, 0.f), 1.f, -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"blindness", Vec2(18.f, 0.f),1.f,  -1);
 
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"powerleft", Vec2(0.f, 0.f), 1.f, -1);
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"powermiddle", Vec2(0.f, 0.f), 1.f, -1);
-	m_Animator->CreateAnimation(L"second", L"blackmage", L"powerright", Vec2(0.f, 0.f), 1.f, -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"powerleft", Vec2(-75.f, 0.f), 1.f, -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"powermiddle", Vec2(7.f, 0.f), 1.f, -1);
+	m_Animator->CreateAnimation(L"second", L"blackmage", L"powerright", Vec2(84.f, 0.f), 1.f, -1);
 
 	m_Animator->Play(GetName() + L"idle");
 

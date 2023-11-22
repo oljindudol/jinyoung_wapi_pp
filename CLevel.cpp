@@ -299,10 +299,97 @@ void CLevel::tick()
 		}
 	}
 
-
 	//디버그 로그
 	if (!DEBUG_RENDER)
 		return;
+
+	if (KEY_TAP(Y))
+	{
+
+		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+		auto ainum = ai->GetCurStateNum();
+		UINT nextainum = ainum + 1;
+		if (ai->FindState(nextainum))
+			ai->ChangeState(nextainum);
+		else
+			ai->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+		wstring statename = std::to_wstring(ai->GetCurStateNum());
+		LOG(LOG_LEVEL::LOG, statename.c_str());
+	}
+
+	if (KEY_TAP(T))
+	{
+
+		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+		auto ainum = ai->GetCurStateNum();
+		UINT nextainum = ainum - 1;
+		if (ai->FindState(nextainum))
+			ai->ChangeState(nextainum);
+		else
+			ai->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+		wstring statename = std::to_wstring(ai->GetCurStateNum());
+		LOG(LOG_LEVEL::LOG, statename.c_str());
+	}
+
+
+	if (KEY_TAP(H))
+	{
+		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+		auto ainum = ai->GetCurStateNum();
+
+		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+		auto newoffset = curanim->GetOffset() + Vec2(-1, 0);
+		curanim->Setoffset(newoffset);
+		wstring log = std::to_wstring(ainum) + L":"
+			+ L"(" + std::to_wstring((int)newoffset.x) + L","
+			+ std::to_wstring((int)newoffset.y) + L")";
+
+		LOG(LOG_LEVEL::LOG, log.c_str());
+
+	}
+	if (KEY_TAP(K))
+	{
+		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+		auto ainum = ai->GetCurStateNum();
+
+		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+		auto newoffset = curanim->GetOffset() + Vec2(1, 0);
+		curanim->Setoffset(newoffset);
+		wstring log = std::to_wstring(ainum) + L":"
+			+ L"(" + std::to_wstring((int)newoffset.x) + L","
+			+ std::to_wstring((int)newoffset.y) + L")";
+
+		LOG(LOG_LEVEL::LOG, log.c_str());
+	}
+	if (KEY_TAP(U))
+	{
+		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+		auto ainum = ai->GetCurStateNum();
+
+		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+		auto newoffset = curanim->GetOffset() + Vec2(0, -1);
+		curanim->Setoffset(newoffset);
+		wstring log = std::to_wstring(ainum) + L":"
+			+ L"(" + std::to_wstring((int)newoffset.x) + L","
+			+ std::to_wstring((int)newoffset.y) + L")";
+
+		LOG(LOG_LEVEL::LOG, log.c_str());
+	}
+	if (KEY_TAP(J))
+	{
+		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+		auto ainum = ai->GetCurStateNum();
+
+		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+		auto newoffset = curanim->GetOffset() + Vec2(0, 1);
+		curanim->Setoffset(newoffset);
+		wstring log = std::to_wstring(ainum) + L":"
+			+ L"(" + std::to_wstring((int)newoffset.x) + L","
+			+ std::to_wstring((int)newoffset.y) + L")";
+
+		LOG(LOG_LEVEL::LOG, log.c_str());
+	}
+
 
 	// 마우스 포지션
 	Vec2 mouspos = CKeyMgr::GetInst()->GetMousePos();

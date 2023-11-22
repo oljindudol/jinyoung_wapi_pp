@@ -103,6 +103,7 @@ void CStateMachine::ChangeState(UINT _NextID)
 	{
 		if(DEBUG_RENDER)
 			LOG(LOG_LEVEL::ERR, L"!!변경할 다음 상태가 없음!!");
+		return;
 	}
 
 	// 기존 스테이트 마무리

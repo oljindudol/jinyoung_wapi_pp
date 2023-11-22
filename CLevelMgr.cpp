@@ -261,19 +261,19 @@ CMonster* CLevelMgr::GetCurLevelMon()
 {
 	UINT lvnum = GetCurLevelNum();
 
-	if ((UINT)LEVEL_TYPE::PHASE_FIRST)
+	if ((UINT)LEVEL_TYPE::PHASE_FIRST == lvnum)
 		return (*(CMonsterMgr::GetInst()->FindMonster(L"firstion")))[0];
 
-	if ((UINT)LEVEL_TYPE::PHASE_SECOND)
+	if ((UINT)LEVEL_TYPE::PHASE_SECOND == lvnum)
 		return (*(CMonsterMgr::GetInst()->FindMonster(L"secondblackmage")))[0];
 
-	//if ((UINT)LEVEL_TYPE::PHASE_THIRD)
+	//if ((UINT)LEVEL_TYPE::PHASE_THIRD == lvnum)
 	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"thirdblackmage")))[0];
 
-	//if ((UINT)LEVEL_TYPE::PHASE_FOURTH)
+	//if ((UINT)LEVEL_TYPE::PHASE_FOURTH == lvnum)
 	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fourthblackmage")))[0];
 
-	//if ((UINT)LEVEL_TYPE::PHASE_FIFTH)
+	//if ((UINT)LEVEL_TYPE::PHASE_FIFTH == lvnum)
 	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fifthegg")))[0];
 
 
