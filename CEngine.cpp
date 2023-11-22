@@ -129,7 +129,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	CLevelMgr::GetInst()->init();
 
 
-	//레벨매니저로 이관
+	//레벨매니저로 이동
 	//// Level 생성
 	//m_Level = new CLevel;
 

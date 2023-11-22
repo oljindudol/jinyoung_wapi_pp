@@ -160,6 +160,7 @@
     <ClInclude Include="CAsset.h" />
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CBackGround.h" />
+    <ClInclude Include="CBlackMage2.h" />
     <ClInclude Include="CBladeStorm.h" />
     <ClInclude Include="CBladeTornado.h" />
     <ClInclude Include="CBtnUI.h" />
@@ -235,6 +236,15 @@
     <ClInclude Include="CRuleMon11Attack.h" />
     <ClInclude Include="CRuleMon12Attack.h" />
     <ClInclude Include="CRuleMon12Idle.h" />
+    <ClInclude Include="CSecondBMBlindness.h" />
+    <ClInclude Include="CSecondBMDie.h" />
+    <ClInclude Include="CSecondBMEyeofRuin.h" />
+    <ClInclude Include="CSecondBMIdle.h" />
+    <ClInclude Include="CSecondBMMorningStarFall.h" />
+    <ClInclude Include="CSecondBMNoxSpear.h" />
+    <ClInclude Include="CSecondBMPowerLeft.h" />
+    <ClInclude Include="CSecondBMPowerMiddle.h" />
+    <ClInclude Include="CSecondBMPowerRight.h" />
     <ClInclude Include="CSkill.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -299,6 +309,7 @@
     <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CBackGround.cpp" />
+    <ClCompile Include="CBlackMage2.cpp" />
     <ClCompile Include="CBladeStorm.cpp" />
     <ClCompile Include="CBladeTornado.cpp" />
     <ClCompile Include="CBtnUI.cpp" />
@@ -372,6 +383,15 @@
     <ClCompile Include="CRuleMon11Attack.cpp" />
     <ClCompile Include="CRuleMon12Attack.cpp" />
     <ClCompile Include="CRuleMon12Idle.cpp" />
+    <ClCompile Include="CSecondBMBlindness.cpp" />
+    <ClCompile Include="CSecondBMDie.cpp" />
+    <ClCompile Include="CSecondBMEyeofRuin.cpp" />
+    <ClCompile Include="CSecondBMIdle.cpp" />
+    <ClCompile Include="CSecondBMMorningStarFall.cpp" />
+    <ClCompile Include="CSecondBMNoxSpear.cpp" />
+    <ClCompile Include="CSecondBMPowerLeft.cpp" />
+    <ClCompile Include="CSecondBMPowerMiddle.cpp" />
+    <ClCompile Include="CSecondBMPowerRight.cpp" />
     <ClCompile Include="CSkill.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

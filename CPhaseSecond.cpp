@@ -82,7 +82,7 @@ void CPhaseSecond::init()
 
 	// ÇÃ·§Æû ¼³Ä¡1
 	CPlatform* pPlatform = new CPlatform;
-	pPlatform->SetPos(Vec2(m_LevelMiddle.x, 850.f));
+	pPlatform->SetPos(Vec2(m_LevelMiddle.x, (m_LevelMiddle.y)+380.f));
 	AddObject(PLATFORM, pPlatform);
 	CCollider* platforcol1 = pPlatform->AddComponent<CCollider>(L"PlatformCollider1");
 	platforcol1->SetScale(Vec2(5000.f, 250.f - 65.f));
@@ -95,8 +95,7 @@ void CPhaseSecond::init()
 	pBgm ->Play(true);
 
 
-	//CMonsterMgr::GetInst()->SpwanMonster(L"firstion", Vec2((m_LevelMiddle.x - 400.f), 400.f));
-	//CMonsterMgr::GetInst()->SpwanMonster(L"firstyalda", Vec2((m_LevelMiddle.x + 400.f), 400.f));
+	CMonsterMgr::GetInst()->SpwanMonster(L"secondblackmage", Vec2((m_LevelMiddle.x), (m_LevelMiddle.y) +10.f));
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon11");
 	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon12");
 

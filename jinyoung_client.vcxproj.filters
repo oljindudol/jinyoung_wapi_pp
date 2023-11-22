@@ -140,6 +140,18 @@
     <Filter Include="03.Game\10.StageZero\Player\Skill\DS">
       <UniqueIdentifier>{234b98fc-5c21-4b18-8c5c-ff9dd7cea803}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BM2State">
+      <UniqueIdentifier>{67b21425-99be-4ad4-a6df-0c62036866ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BM2State\normal%282%29">
+      <UniqueIdentifier>{31649890-1dd5-4f4a-8b4f-7d80fef13d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BM2State\attack%284%29">
+      <UniqueIdentifier>{f1b0cac0-0d31-41b3-80b1-1d1de2845c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BM2State\power%283%29">
+      <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -437,12 +449,42 @@
     <ClInclude Include="CKarmaFury.h">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClInclude>
-    <ClInclude Include="QuickSlotUI.h" />
     <ClInclude Include="CBladeStorm.h">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerAttSp.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CBlackMage2.h" />
+    <ClInclude Include="QuickSlotUI.h">
+      <Filter>03.Game\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMDie.h">
+      <Filter>BM2State\normal%282%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMIdle.h">
+      <Filter>BM2State\normal%282%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMBlindness.h">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMEyeofRuin.h">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMMorningStarFall.h">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMNoxSpear.h">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMPowerLeft.h">
+      <Filter>BM2State\power%283%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMPowerMiddle.h">
+      <Filter>BM2State\power%283%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondBMPowerRight.h">
+      <Filter>BM2State\power%283%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -727,12 +769,42 @@
     <ClCompile Include="CKarmaFury.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClCompile>
-    <ClCompile Include="QuickSlotUI.cpp" />
     <ClCompile Include="CBladeStorm.cpp">
       <Filter>03.Game\10.StageZero\Player\Skill</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerAttSp.cpp">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlackMage2.cpp" />
+    <ClCompile Include="QuickSlotUI.cpp">
+      <Filter>03.Game\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMDie.cpp">
+      <Filter>BM2State\normal%282%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMIdle.cpp">
+      <Filter>BM2State\normal%282%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMBlindness.cpp">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMEyeofRuin.cpp">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMMorningStarFall.cpp">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMNoxSpear.cpp">
+      <Filter>BM2State\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMPowerLeft.cpp">
+      <Filter>BM2State\power%283%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMPowerMiddle.cpp">
+      <Filter>BM2State\power%283%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondBMPowerRight.cpp">
+      <Filter>BM2State\power%283%29</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

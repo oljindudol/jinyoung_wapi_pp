@@ -9,11 +9,11 @@ class CNormalMonIdle :
     GENERATED_OBJECT(CState);
 public:
     CNormalMonIdle();
-    ~CNormalMonIdle();
     virtual void finaltick(float _DT);
     virtual void Enter();
     virtual void Exit();
 
+    ~CNormalMonIdle();
     CLONE(CNormalMonIdle);
 };
 

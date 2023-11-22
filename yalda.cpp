@@ -94,6 +94,7 @@ yalda::~yalda()
 
 void yalda::begin()
 {
+	Super::begin();
 }
 
 

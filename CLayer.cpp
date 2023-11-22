@@ -59,9 +59,12 @@ void CLayer::render(HDC _dc)
 	{
 		if ((*iter)->IsDead())
 		{
+			//이관
 			if ((LAYER::MONSTER_PJ == idxlayer) ||
 				(LAYER::PLAYER_PJ == idxlayer) ||
-				(LAYER::PLAYER_SKILL == idxlayer))
+				(LAYER::PLAYER_SKILL == idxlayer) ||
+				(LAYER::WORLD_STATIC == idxlayer)
+				)
 			{
 				CSkill* pSkill = dynamic_cast<CSkill*>(*iter);
 				CSkillMgr::GetInst()->DeActivateSkill(pSkill);
@@ -72,7 +75,9 @@ void CLayer::render(HDC _dc)
 				CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
 				CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
 			}
-			if ((LAYER::UI == idxlayer))
+			if ((LAYER::UI) == idxlayer ||
+				(LAYER::CUT_SCENE == idxlayer) ||
+				(LAYER::SUPER_UI == idxlayer))
 			{
 				CUI* pUI = dynamic_cast<CUI*>(*iter);
 				CUIMgr::GetInst()->SetUIInvisible(pUI);
@@ -102,7 +107,9 @@ void CLayer::DeleteAllObjects()
 		//스킬매니저에 이관
 		if ((LAYER::MONSTER_PJ == idxlayer) ||
 			(LAYER::PLAYER_PJ == idxlayer) ||
-			(LAYER::PLAYER_SKILL == idxlayer))
+			(LAYER::PLAYER_SKILL == idxlayer) ||
+			(LAYER::WORLD_STATIC == idxlayer)
+			)
 		{continue;}
 		//몬스터매니저에 이관
 		if ((LAYER::MONSTER) == idxlayer)

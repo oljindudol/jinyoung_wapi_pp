@@ -102,7 +102,8 @@ ion::~ion()
 
 void ion::begin()
 {
-	//Monster::Spawn에 이관.
+	Super::begin();
+	//Monster::Spawn에 이동.
 	//m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 }
 

@@ -239,20 +239,25 @@ enum class LEVEL_TYPE
 enum class ENORMAL_MON_STATE
 {
 	REGEN,
-	IDLE,
+	MOVE,
 
-	ATTACK1,
-	ATTACK2,
-	ATTACK3,
-	ATTACK4,
+	IDLE,
+	DIE,
+
+	//모닝스타폴,모닝스타폴 ,총알패턴1
+	ATTACK1, 
+	//파멸의눈  ,레이저     ,총알패턴2
+	ATTACK2, 
+	//녹스		,끌기		,총알패턴3
+	ATTACK3, 
+	//암흑	    ,차기		,속성폭탄
+	ATTACK4, 
 
 	POWER1,
 	POWER2,
 	POWER3,
 
 	BIND,
-	DIE,
-
 	DEBUG,
 };
 

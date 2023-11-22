@@ -83,7 +83,7 @@ void CLevelMgr::init()
 	//}
 
 	// Level
-	ChangeLevel(LEVEL_TYPE::PHASE_FIRST);
+	ChangeLevel(LEVEL_TYPE::PHASE_SECOND);
 
 	// Level 
 	//m_pCurLevel = m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL];
@@ -264,14 +264,14 @@ CMonster* CLevelMgr::GetCurLevelMon()
 	if ((UINT)LEVEL_TYPE::PHASE_FIRST)
 		return (*(CMonsterMgr::GetInst()->FindMonster(L"firstion")))[0];
 
-	//if ((UINT)LEVEL_TYPE::PHASE_SECOND)
-	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"secondbm")))[0];
+	if ((UINT)LEVEL_TYPE::PHASE_SECOND)
+		return (*(CMonsterMgr::GetInst()->FindMonster(L"secondblackmage")))[0];
 
 	//if ((UINT)LEVEL_TYPE::PHASE_THIRD)
-	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"thirdbm")))[0];
+	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"thirdblackmage")))[0];
 
 	//if ((UINT)LEVEL_TYPE::PHASE_FOURTH)
-	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fourthbm")))[0];
+	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fourthblackmage")))[0];
 
 	//if ((UINT)LEVEL_TYPE::PHASE_FIFTH)
 	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fifthegg")))[0];

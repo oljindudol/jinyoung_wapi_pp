@@ -21,6 +21,8 @@ void CMonsterMgr::init()
 	}
 	AddMonster(new rulemon12);
 
+	AddMonster(new CBlackMage2);
+
 }
 
 void CMonsterMgr::tick()

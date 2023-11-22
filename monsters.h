@@ -20,7 +20,7 @@
 
 //2페이즈 몬스터
 // 1.검은마법사
-//#include "CSecondBM"
+#include "CBlackMage2.h"
 
 // 2.모닝스타폴 5~7개정도 풀에넣어둠
 //#include "CMorningStarFall.h"

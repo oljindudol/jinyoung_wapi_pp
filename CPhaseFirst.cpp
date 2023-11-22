@@ -49,7 +49,7 @@ void CPhaseFirst::init()
 
 	// 카메라 range설정
 	m_CameraRangex = Vec2(685.f, mapsize.x - 685.f);
-	m_CameraRangey = Vec2( 683.f, 683.f);// + (mapsize.y - 767), 683.f);
+	m_CameraRangey = Vec2( 683.f + mapsize.y - 767 , 683.f );// + (mapsize.y - 767), 683.f);
 
 	// 카메라 lookat 설정
 	CCamera::GetInst()->SetLookAt(Vec2(m_LevelMiddle.x, m_CameraRangey.x-250.f));

@@ -86,7 +86,15 @@ void CMonster::Spawn(Vec2 _Spawnpos)
 	// 상태 변화
 	if (nullptr != m_AI)
 	{
-		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::REGEN);
+		//state변경에 실패햇을경우(regen이 없을경우)
+		if (nullptr != m_AI->FindState((UINT)ENORMAL_MON_STATE::REGEN))
+		{
+			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::REGEN);
+		}
+		else
+		{
+			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+		}
 	}
 
 	// 레벨에참여

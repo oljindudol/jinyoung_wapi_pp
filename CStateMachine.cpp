@@ -3,6 +3,7 @@
 
 #include "CState.h"
 #include "CLogMgr.h"
+#include "CEngine.h"
 
 CStateMachine::CStateMachine(CObj* _Owner)
 	: CComponent(_Owner)
@@ -100,8 +101,8 @@ void CStateMachine::ChangeState(UINT _NextID)
 
 	if (nullptr == pNextState)
 	{
-		LOG(LOG_LEVEL::ERR, L"!!변경할 다음 상태가 없음!!");
-		return;
+		if(DEBUG_RENDER)
+			LOG(LOG_LEVEL::ERR, L"!!변경할 다음 상태가 없음!!");
 	}
 
 	// 기존 스테이트 마무리
@@ -117,6 +118,7 @@ void CStateMachine::ChangeState(UINT _NextID)
 
 	// 새로운 스테이트로 진입(초기작업 수행)
 	m_pCurState->Enter();
+	
 }
 
 void* CStateMachine::GetDataFromBlackboard(const wstring _strKey)

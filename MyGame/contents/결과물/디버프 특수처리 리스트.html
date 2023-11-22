@@ -1,0 +1,243 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-cly1{text-align:left;vertical-align:middle}
+.tg .tg-w8j7{background-color:#434343;color:#FFF;font-weight:bold;text-align:right;vertical-align:middle}
+.tg .tg-1fk9{background-color:#434343;text-align:left;vertical-align:middle}
+.tg .tg-ysgl{background-color:#93C47D;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-0by1{background-color:#F9CB9C;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-9fqc{background-color:#93C47D;text-align:left;vertical-align:middle}
+.tg .tg-kafn{background-color:#A64D79;text-align:left;vertical-align:middle}
+.tg .tg-8nb1{background-color:#A64D79;color:#FFF;font-weight:bold;text-align:right;vertical-align:middle}
+.tg .tg-yla0{font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-cdua{background-color:#A64D79;color:#FFF;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-p2by{background-color:#EA9999;font-weight:bold;text-align:right;vertical-align:middle}
+.tg .tg-ktyf{background-color:#EA9999;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-a6oo{background-color:#EA9999;text-align:left;vertical-align:middle}
+.tg .tg-a7pj{background-color:#EA9999;color:#1F2328;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-cs94{background-color:#434343;color:#FFF;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-xsy2{background-color:#93C47D;font-weight:bold;text-align:right;vertical-align:middle}
+.tg .tg-v0lb{color:#FFF;font-weight:bold;text-align:right;vertical-align:middle}
+.tg .tg-xs5y{color:#FFF;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-eer2{background-color:#F9CB9C;font-weight:bold;text-align:right;vertical-align:middle}
+.tg .tg-t2rc{background-color:#F9CB9C;text-align:left;vertical-align:middle}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-yla0"><span style="font-weight:bold">#</span></th>
+    <th class="tg-cly1"></th>
+    <th class="tg-yla0"><span style="font-weight:bold">처리 효과</span></th>
+    <th class="tg-yla0"><span style="font-weight:bold">호출부</span></th>
+    <th class="tg-yla0"><span style="font-weight:bold">외부호출종류</span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-8nb1"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">1</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">파괴버프</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">머리 위 랜더</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">파괴버프 랜더</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-kafn"></td>
+    <td class="tg-kafn"></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">공격력2배</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">몬스터:getdamaged</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-kafn"></td>
+    <td class="tg-kafn"></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">피격데미지 2배</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">플레이어:getdamaged</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-kafn"></td>
+    <td class="tg-kafn"></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">포션사용 불가능</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">레벨 tick</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-kafn"></td>
+    <td class="tg-kafn"></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">창조 버프 중첩시 소멸</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">상태이상 이벤트 처리부</span></td>
+    <td class="tg-cdua"><span style="font-weight:bold;color:#FFF;background-color:#A64D79">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-p2by"><span style="font-weight:bold;background-color:#EA9999">2</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">창조버프</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">머리 위 랜더</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">파괴버프 랜더</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-a6oo"></td>
+    <td class="tg-a6oo"></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">공격력 절반</span></td>
+    <td class="tg-a7pj"><span style="font-weight:bold;color:#1F2328;background-color:#EA9999">몬스터:getdamaged</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-a6oo"></td>
+    <td class="tg-a6oo"></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">일정주기 체력회복</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">플레이어 tick</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-a6oo"></td>
+    <td class="tg-a6oo"></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">오브젝트생성</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">창조버프tick 에서 스킬소환</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-a6oo"></td>
+    <td class="tg-a6oo"></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">창조 버프 중첩시 소멸</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">상태이상 이벤트 처리부</span></td>
+    <td class="tg-ktyf"><span style="font-weight:bold;background-color:#EA9999">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-w8j7"><span style="font-weight:bold;color:#FFF;background-color:#434343">3</span></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">봉인</span></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">머리 위 랜더</span></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">봉인디버프 랜더</span></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-1fk9"></td>
+    <td class="tg-1fk9"></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">스킬사용불가</span></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">레벨tick</span></td>
+    <td class="tg-cs94"><span style="font-weight:bold;color:#FFF;background-color:#434343">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-xsy2"><span style="font-weight:bold;background-color:#93C47D">4</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">슬로우</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">머리 위 랜더</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">슬로우 디버프 랜더</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-9fqc"></td>
+    <td class="tg-9fqc"></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">이동속도 느리게</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">플레이어 move state</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-9fqc"></td>
+    <td class="tg-9fqc"></td>
+    <td class="tg-9fqc"></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">플레이어 on airstate</span></td>
+    <td class="tg-ysgl"><span style="font-weight:bold;background-color:#93C47D">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-v0lb"><span style="font-weight:bold;color:#FFF;background-color:#000">5</span></td>
+    <td class="tg-xs5y"><span style="font-weight:bold;color:#FFF;background-color:#000">암흑</span></td>
+    <td class="tg-xs5y"><span style="font-weight:bold;color:#FFF;background-color:#000">화면 어둡게 표시</span></td>
+    <td class="tg-xs5y"><span style="font-weight:bold;color:#FFF;background-color:#000">암흑디버프 랜더</span></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-xs5y"><span style="font-weight:bold;color:#FFF;background-color:#000">얼굴앞 아이콘 랜더</span></td>
+    <td class="tg-xs5y"><span style="font-weight:bold;color:#FFF;background-color:#000">암흑디버프 애님랜더</span></td>
+    <td class="tg-xs5y"><span style="font-weight:bold;color:#FFF;background-color:#000">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-eer2"><span style="font-weight:bold;background-color:#F9CB9C">6</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">무적</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">자체 처리 랜더없음</span><br><span style="font-weight:bold;background-color:#F9CB9C">(지속시간 관리만을 위한 더미스킬)</span></td>
+    <td class="tg-t2rc"></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-eer2"><span style="font-weight:bold;background-color:#F9CB9C">7</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">다크사이트</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">자체 처리 랜더없음</span><br><span style="font-weight:bold;background-color:#F9CB9C">(지속시간 관리만을 위한 더미스킬)</span></td>
+    <td class="tg-t2rc"></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-t2rc"></td>
+    <td class="tg-t2rc"></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">플레이어애님에 투명도주기</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">플레이어애님 랜더</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">조회</span></td>
+  </tr>
+  <tr>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+    <td class="tg-cly1"></td>
+  </tr>
+  <tr>
+    <td class="tg-eer2"><span style="font-weight:bold;background-color:#F9CB9C">8</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">피격시깜빡임</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">자체 처리 랜더없음</span><br><span style="font-weight:bold;background-color:#F9CB9C">(지속시간 관리만을 위한 더미스킬)</span></td>
+    <td class="tg-t2rc"></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">-</span></td>
+  </tr>
+  <tr>
+    <td class="tg-t2rc"></td>
+    <td class="tg-t2rc"></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">플레이어애님을 깜빡이게처리</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">플레이어애님 랜더</span></td>
+    <td class="tg-0by1"><span style="font-weight:bold;background-color:#F9CB9C">조회</span></td>
+  </tr>
+</tbody>
+</table>

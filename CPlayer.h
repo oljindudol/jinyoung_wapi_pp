@@ -37,7 +37,7 @@ public:
     class CCollider* getCollider() { return m_Collider; }
     class CStateMachine* getStateMachine() { return m_PlayerState; }
     virtual void tick(float _DT) override;
-    //더이상 오버라이드하지않고,애님에 이관한다.
+    //더이상 오버라이드하지않고,애님에 이동한다.
     //void render(HDC _dc) override;
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
     virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;

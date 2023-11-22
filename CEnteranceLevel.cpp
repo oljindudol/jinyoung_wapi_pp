@@ -73,7 +73,7 @@ void CEnteranceLevel::init()
 	CUIMgr::GetInst()->SetUIVisible(L"QuickSlotUI");
 
 
-	// 몬스터 매니저에 이관
+	// 몬스터 매니저에 처리이동
 	// 몬스터 생성
 	//ion* p_ion = nullptr;
 

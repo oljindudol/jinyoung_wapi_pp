@@ -346,7 +346,7 @@ void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 	_Object->m_iLayerIdx = _LayerType;
 }
 
-//level->exit때만(게임실행중) 호출
+//level->exit때만(게임실행중) 호출 이관3
 void CLevel::DeleteAllObjects()
 {
 	CMonsterMgr::GetInst()->DeActivateAllMonsters();

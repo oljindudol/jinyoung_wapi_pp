@@ -197,7 +197,7 @@ void QuickSlotUI::render(HDC _dc)
 		}
 
 		//¼îÆ®ÄÆÅ°
-		SettexturetoDcWithMagnification(_dc, m_VecShortCutKey[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(8, 8), 1.5f * mag);
+		SettexturetoDcWithMagnification(_dc, m_VecShortCutKey[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(8, 8), 0.8f* mag);
 	}
 
 	//ÄðÅ¸ÀÓ ¾Ë¸®¹Ì Ã³¸®

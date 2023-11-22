@@ -11,13 +11,18 @@ CDarkFallingIdle::~CDarkFallingIdle()
 
 void CDarkFallingIdle::finaltick(float _DT)
 {
+	m_acctime += _DT;
+
+	if (10.f < m_acctime)
+	{
+		ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+	}
 
 }
 
 void CDarkFallingIdle::Enter()
 {
 	Super::Enter();
-
 	CMovement* pMov = GetMovement();
 	pMov->SetVelocity(Vec2(0.f, 150.f));
 
