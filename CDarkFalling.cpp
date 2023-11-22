@@ -10,7 +10,7 @@
 
 CDarkFalling::CDarkFalling()
 {
-	ort = ORT_RIGHT;
+	ort = ORT_LEFT;
 	m_s1 = L"first";
 	m_s2 = L"darkfalling";
 
@@ -38,18 +38,17 @@ CDarkFalling::CDarkFalling()
 	m_Movement->SetGround(false);
 
 
-
-	// Collider 컴포넌트 추가
-	m_Collider = AddComponent<CCollider>(GetName() + L"Collider");
-
-	m_Collider->SetScale(GetScale());
-	m_Collider->SetOffsetPos(Vec2(-10.f, 0.f));
-
 	// Animator 컴포넌트 추가
 	m_Animator = AddComponent<CAnimator>(GetName() + L"Animator");
 	m_Animator->CreateAnimation(m_s1, m_s2, L"regen", Vec2(0.f, 0.f), 1.f, -1);
-	m_Animator->CreateAnimation(m_s1, m_s2, L"idle", Vec2(0.f, 0.f), 1.f , -1);
+	m_Animator->CreateAnimation(m_s1, m_s2, L"idle", Vec2(0.f, 0.f), 1.f , 0);
 	m_Animator->CreateAnimation(m_s1, m_s2, L"die", Vec2(0.f, 0.f), 1.f, -1);
+
+
+	// Collider 컴포넌트 추가
+	m_Collider = AddComponent<CCollider>(GetName() + L"Collider");
+	m_Collider->SetScale(GetScale());
+	m_Collider->SetOffsetPos(Vec2(-10.f, 0.f));
 
 
 	// 상태머신 컴포넌트 추가 및 설정
@@ -85,7 +84,7 @@ void CDarkFalling::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* 
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx()
-		||  (UINT)ENORMAL_MON_STATE::DIE != m_AI->GetCurStateNum())
+		&&  (UINT)ENORMAL_MON_STATE::DIE != m_AI->GetCurStateNum())
 	{
 		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.1f, DEBUFF::CREATION);
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);

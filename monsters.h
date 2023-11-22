@@ -23,7 +23,7 @@
 #include "CBlackMage2.h"
 
 // 2.모닝스타폴 5~7개정도 풀에넣어둠
-//#include "CMorningStarFall.h"
+#include "CMorningStarFall.h"
 // 사슬,감자몬스터 돌려쓰기
 // rulemon11.h , rulemon12.h ,CDarkFalling.h
 

@@ -125,8 +125,8 @@ void CLevel::tick()
 	if (KEY_TAP(KEY::LBTN))
 	{
 		//
-		//CMonsterMgr::GetInst()->SpwanMonster(L"firstdarkfalling",
-		//	CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
+		CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
+		CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 		// 
 		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 	}
@@ -242,13 +242,7 @@ void CLevel::tick()
 			GetPlayer()->getStateMachine()->ChangeState((UINT)PLAYER_STATE::ATT_SP);
 		}
 	}
-	//if (KEY_RELEASED(KEY::F))
-	//{
-	//	if (nullptr != ptmpskill && !ptmpskill->IsDead())
-	//	{
-	//		ptmpskill->Destroy();
-	//	}
-	//}
+
 
 	if (KEY_TAP(KEY::F6))
 	{

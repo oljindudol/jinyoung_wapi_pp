@@ -16,7 +16,6 @@ private:
 	CLayer* m_Layer[LAYER::END];
 	UINT	m_TileRow;
 	UINT	m_TileCol;
-	CSkill* ptmpskill;
 
 protected:
 	CSound* pBgm;

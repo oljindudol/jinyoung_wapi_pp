@@ -1,26 +1,22 @@
 #include "pch.h"
-#include "CDarkFallingRegen.h"
+#include "CMorningStarFallRegen.h"
 
-CDarkFallingRegen::CDarkFallingRegen()
+CMorningStarFallRegen::CMorningStarFallRegen()
 {
 }
 
-CDarkFallingRegen::~CDarkFallingRegen()
-{
-}
-
-void CDarkFallingRegen::finaltick(float _DT)
+void CMorningStarFallRegen::finaltick(float _DT)
 {
 	m_acctime += _DT;
 
-	if (m_acctime > 0.5f)
+	if (m_acctime > 0.63f)
 	{
 		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 
 	}
 }
 
-void CDarkFallingRegen::Enter()
+void CMorningStarFallRegen::Enter()
 {
 	Super::Enter();
 
@@ -35,6 +31,10 @@ void CDarkFallingRegen::Enter()
 	}
 }
 
-void CDarkFallingRegen::Exit()
+void CMorningStarFallRegen::Exit()
+{
+}
+
+CMorningStarFallRegen::~CMorningStarFallRegen()
 {
 }

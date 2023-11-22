@@ -194,6 +194,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CMorningStarFall.h" />
+    <ClInclude Include="CMorningStarFallDie.h" />
+    <ClInclude Include="CMorningStarFallIdle.h" />
+    <ClInclude Include="CMorningStarFallRegen.h" />
     <ClInclude Include="CMovement.h" />
     <ClInclude Include="CNormalMonAtt1.h" />
     <ClInclude Include="CNormalMonAtt3.h" />
@@ -269,6 +273,7 @@
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
+    <ClInclude Include="CUnderDog.h" />
     <ClInclude Include="CUpperBar.h" />
     <ClInclude Include="CWall.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -343,6 +348,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CMorningStarFall.cpp" />
+    <ClCompile Include="CMorningStarFallDie.cpp" />
+    <ClCompile Include="CMorningStarFallIdle.cpp" />
+    <ClCompile Include="CMorningStarFallRegen.cpp" />
     <ClCompile Include="CMovement.cpp" />
     <ClCompile Include="CNormalMonAtt1.cpp" />
     <ClCompile Include="CNormalMonAtt3.cpp" />
@@ -416,6 +425,7 @@
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />
+    <ClCompile Include="CUnderDog.cpp" />
     <ClCompile Include="CUpperBar.cpp" />
     <ClCompile Include="CWall.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

@@ -66,17 +66,24 @@ void CSkillMgr::init()
 	AddSkill(new CBladeTornado);
 	AddSkill(new CBladeStorm);
 
+	//레투다
 	AddSkillEff(new CSkill
 		, L"common", L"readytodie", L"use"
 		, .9f, Vec2(0.f, -150.f));
 
 	FindAvailableSkill(L"commonreadytodieuse")->cooltime = 60.f;
 
+	//엔버링크
 	AddSkillEff(new CSkill
 		, L"common", L"soulcontract", L"use"
 		, .9f, Vec2(0.f, -40.f));
-
 	FindAvailableSkill(L"commonsoulcontractuse")->cooltime = 50.f;
+
+
+	for (int i = 0; i < 15; i++)
+	{
+		AddSkill(new CUnderDog);
+	}
 
 }
 

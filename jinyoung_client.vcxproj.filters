@@ -152,6 +152,12 @@
     <Filter Include="BM2State\power%283%29">
       <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CMorningStarFall">
+      <UniqueIdentifier>{d41bc091-0d3a-40f6-ba8b-7de6f5a151fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMorningStarFall\state">
+      <UniqueIdentifier>{a45b11a5-2d69-4d05-8d41-81f14347755f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -486,6 +492,19 @@
     <ClInclude Include="CSecondBMPowerRight.h">
       <Filter>BM2State\power%283%29</Filter>
     </ClInclude>
+    <ClInclude Include="CMorningStarFall.h">
+      <Filter>CMorningStarFall</Filter>
+    </ClInclude>
+    <ClInclude Include="CMorningStarFallRegen.h">
+      <Filter>CMorningStarFall\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CMorningStarFallDie.h">
+      <Filter>CMorningStarFall\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CMorningStarFallIdle.h">
+      <Filter>CMorningStarFall\state</Filter>
+    </ClInclude>
+    <ClInclude Include="CUnderDog.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -806,5 +825,18 @@
     <ClCompile Include="CSecondBMPowerRight.cpp">
       <Filter>BM2State\power%283%29</Filter>
     </ClCompile>
+    <ClCompile Include="CMorningStarFall.cpp">
+      <Filter>CMorningStarFall</Filter>
+    </ClCompile>
+    <ClCompile Include="CMorningStarFallRegen.cpp">
+      <Filter>CMorningStarFall\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CMorningStarFallDie.cpp">
+      <Filter>CMorningStarFall\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CMorningStarFallIdle.cpp">
+      <Filter>CMorningStarFall\state</Filter>
+    </ClCompile>
+    <ClCompile Include="CUnderDog.cpp" />
   </ItemGroup>
 </Project>

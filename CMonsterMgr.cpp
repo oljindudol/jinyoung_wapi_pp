@@ -23,6 +23,11 @@ void CMonsterMgr::init()
 
 	AddMonster(new CBlackMage2);
 
+	for (int i = 0; i < 15; i++)
+	{
+		AddMonster(new CMorningStarFall);
+	}
+
 }
 
 void CMonsterMgr::tick()

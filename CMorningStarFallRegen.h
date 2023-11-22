@@ -1,15 +1,15 @@
 #pragma once
 #include "CState.h"
-class CDarkFallingRegen :
+class CMorningStarFallRegen :
     public CState
 {
     GENERATED_OBJECT(CState);
 public:
-    CDarkFallingRegen();
+    CMorningStarFallRegen();
     virtual void finaltick(float _DT);
     virtual void Enter();
     virtual void Exit();
-    ~CDarkFallingRegen();
+    ~CMorningStarFallRegen();
 
-    CLONE(CDarkFallingRegen);
+    CLONE(CMorningStarFallRegen);
 };
