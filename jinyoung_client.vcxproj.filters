@@ -152,10 +152,10 @@
     <Filter Include="BM2State\power%283%29">
       <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CMorningStarFall">
+    <Filter Include="03.Game\12.StageSecond\CMorningStarFall">
       <UniqueIdentifier>{d41bc091-0d3a-40f6-ba8b-7de6f5a151fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CMorningStarFall\state">
+    <Filter Include="03.Game\12.StageSecond\CMorningStarFall\state">
       <UniqueIdentifier>{a45b11a5-2d69-4d05-8d41-81f14347755f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -433,7 +433,6 @@
     <ClInclude Include="CUpperBar.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="CPhaseSecond.h" />
     <ClInclude Include="CFloatingNotice.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
@@ -461,7 +460,6 @@
     <ClInclude Include="CPlayerAttSp.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClInclude>
-    <ClInclude Include="CBlackMage2.h" />
     <ClInclude Include="QuickSlotUI.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
@@ -493,18 +491,29 @@
       <Filter>BM2State\power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFall.h">
-      <Filter>CMorningStarFall</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFallRegen.h">
-      <Filter>CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFallDie.h">
-      <Filter>CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFallIdle.h">
-      <Filter>CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
     </ClInclude>
-    <ClInclude Include="CUnderDog.h" />
+    <ClInclude Include="CUnderDog.h">
+      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
+    </ClInclude>
+    <ClInclude Include="CPhaseSecond.h">
+      <Filter>03.Game\12.StageSecond</Filter>
+    </ClInclude>
+    <ClInclude Include="CBlackMage2.h">
+      <Filter>03.Game\12.StageSecond\01.BM</Filter>
+    </ClInclude>
+    <ClInclude Include="CEyeofRuin_L.h" />
+    <ClInclude Include="CInvisibleWall.h" />
+    <ClInclude Include="CEyeofRuin_R.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -766,7 +775,6 @@
     <ClCompile Include="CUpperBar.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="CPhaseSecond.cpp" />
     <ClCompile Include="CFloatingNotice.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
@@ -794,7 +802,6 @@
     <ClCompile Include="CPlayerAttSp.cpp">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="CBlackMage2.cpp" />
     <ClCompile Include="QuickSlotUI.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
@@ -826,17 +833,28 @@
       <Filter>BM2State\power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFall.cpp">
-      <Filter>CMorningStarFall</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFallRegen.cpp">
-      <Filter>CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFallDie.cpp">
-      <Filter>CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFallIdle.cpp">
-      <Filter>CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
     </ClCompile>
-    <ClCompile Include="CUnderDog.cpp" />
+    <ClCompile Include="CUnderDog.cpp">
+      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhaseSecond.cpp">
+      <Filter>03.Game\12.StageSecond</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlackMage2.cpp">
+      <Filter>03.Game\12.StageSecond\01.BM</Filter>
+    </ClCompile>
+    <ClCompile Include="CEyeofRuin_L.cpp" />
+    <ClCompile Include="CInvisibleWall.cpp" />
+    <ClCompile Include="CEyeofRuin_R.cpp" />
   </ItemGroup>
 </Project>

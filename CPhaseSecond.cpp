@@ -6,6 +6,7 @@
 #include "CMonster.h"
 #include "CPlatform.h"
 #include "CWall.h"
+#include "CInvisibleWall.h"
 
 #include "CEngine.h"
 #include "CCamera.h"
@@ -78,6 +79,41 @@ void CPhaseSecond::init()
 	AddObject(WALL, pWall2);
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
+
+	// ÆÄ¸êÀÇ ´«¿ë ÄÃ¶óÀÌ´õ
+	CInvisibleWall* pIWall[4];
+	for (int i = 0; i < 4; ++i)
+	{
+		pIWall[i] = new CInvisibleWall;
+		AddObject(WALL_FOR_COL, pIWall[i]);
+	}
+
+	CInvisibleWall* ptmp = nullptr;
+	ptmp = pIWall[0];
+	ptmp->SetScale(Vec2(20, 1000));
+	ptmp->SetPos(Vec2(m_LevelMiddle.x - 510.f, m_LevelMiddle.y));
+	ptmp->SetName(L"Left_IWALL");
+	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
+	
+	ptmp = pIWall[1];
+	ptmp->SetScale(Vec2(20, 1000));
+	ptmp->SetPos(Vec2(m_LevelMiddle.x + 510.f, m_LevelMiddle.y));
+	ptmp->SetName(L"Right_IWALL");
+	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
+
+	ptmp = pIWall[2];
+	ptmp->SetScale(Vec2(1000, 20));
+	ptmp->SetPos(Vec2(m_LevelMiddle.x , m_LevelMiddle.y -400.f));
+	ptmp->SetName(L"Top_IWALL");
+	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
+
+	ptmp = pIWall[3];
+	ptmp->SetScale(Vec2(1000, 20));
+	ptmp->SetPos(Vec2(m_LevelMiddle.x, m_LevelMiddle.y +300.f));
+	ptmp->SetName(L"Bottom_IWALL");
+	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
+
+
 
 
 	// ÇÃ·§Æû ¼³Ä¡1

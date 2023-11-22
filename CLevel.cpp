@@ -125,43 +125,15 @@ void CLevel::tick()
 	if (KEY_TAP(KEY::LBTN))
 	{
 		//
-		CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
-		CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
+		//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
+		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 		// 
-		//CSkillMgr::GetInst()->ActivateSkill(L"firstrulemonchainattack", CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+		CSkillMgr::GetInst()->ActivateSkill(L"secondeyeofruinright", 
+			CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 	}
 
-	if (KEY_TAP(KEY::_5))
-	{
-		CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 2.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
-	}
 
-	if (KEY_TAP(KEY::_6))
-	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 2.f);
-		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
-	}
 
-	if (KEY_TAP(KEY::_7))
-	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"어.어.어.어.어.어.어.어.어.어.어.", 2.f);
-		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
-	}
-
-	if (KEY_TAP(KEY::_8))
-	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 2.f);
-		//CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 5.f);
-	}
 
 	if (KEY_TAP(KEY::_9))
 	{

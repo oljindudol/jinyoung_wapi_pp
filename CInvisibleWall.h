@@ -1,23 +1,20 @@
 #pragma once
 #include "CObj.h"
-class CWall :
+class CInvisibleWall :
     public CObj
 {
     GENERATED_OBJECT(CObj);
 private:
-    class CCollider* m_Collider;
 
 public:
+    CInvisibleWall();
     virtual void tick(float _DT) override;
     virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
     virtual void begin() override;
+    CInvisibleWall(const CInvisibleWall& _Origin);
+    ~CInvisibleWall();
 
 public:
-    CLONE(CWall);
-    CWall();
-    CWall(const CWall& _Origin);
-    ~CWall();
+    CLONE(CInvisibleWall);
 };
-
-

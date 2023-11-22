@@ -25,6 +25,12 @@ void CSkill::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Other
 {
 }
 
+void CSkill::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
+
+}
+
 void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
 

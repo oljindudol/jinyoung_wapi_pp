@@ -193,14 +193,9 @@ void CMonster::GetDamaged(float _damagepercent, int damagecnt)
 	int multi = 283472323;
 	float yoffset = 30.f;
 
-	for (int i = 0; i < damagecnt; i++)
-	{
-		long long damage = (long long) (linedamage  * (1.f + RandomPercentHtH() * 0.025) *multi);
-		//타격 데미지스킨을 출력한다
-		CSkillMgr::GetInst()->PrintDamageRedSkin(GetPos()
-			- Vec2(GetScale().x, GetScale().y + yoffset*i)
-			, damage , i);
-	}
+	Vec2 tScale = Vec2();
+
+
 
 	//아이온 일때
 	if (L"firstion" == m_monstername)
@@ -223,6 +218,7 @@ void CMonster::GetDamaged(float _damagepercent, int damagecnt)
 			if(nullptr != yalda)
 				yalda->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 		}
+		tScale = GetScale();
 	}
 	//얄다바오트 일때
 	else if (L"firstyalda" == m_monstername)
@@ -242,6 +238,7 @@ void CMonster::GetDamaged(float _damagepercent, int damagecnt)
 			ion->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 		}
+		tScale = GetScale();
 	}
 	//일반 몬스터일때
 	else
@@ -256,8 +253,17 @@ void CMonster::GetDamaged(float _damagepercent, int damagecnt)
 			m_Info.HP = 0.f;
 			m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 		}
+		tScale = Vec2(GetScale().x, GetScale().y) / 2;
 	}
 
+	for (int i = 0; i < damagecnt; i++)
+	{
+		long long damage = (long long)(linedamage * (1.f + RandomPercentHtH() * 0.025) * multi);
+		//타격 데미지스킨을 출력한다
+		CSkillMgr::GetInst()->PrintDamageRedSkin(GetPos()
+			- Vec2(tScale.x, tScale.y + yoffset * i)
+			, damage, i);
+	}
 
 	return;
 }

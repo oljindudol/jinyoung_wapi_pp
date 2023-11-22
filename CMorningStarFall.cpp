@@ -21,7 +21,6 @@ CMorningStarFall::CMorningStarFall()
 
 	SetName(m_monstername + L"_" + std::to_wstring(m_monsternum));
 
-
 	SetScale(Vec2(150.f, 150.f));
 
 	m_MonsterLayer = (UINT)LAYER::FALL_OBJ;
@@ -72,6 +71,10 @@ void CMorningStarFall::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollid
 	if (LAYER::PLATFORM == (UINT)_OtherObj->GetLayerIdx())
 	{
 		m_metfloor = true;
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+	}
+	if (LAYER::WALL == (UINT)_OtherObj->GetLayerIdx())
+	{
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 	}
 

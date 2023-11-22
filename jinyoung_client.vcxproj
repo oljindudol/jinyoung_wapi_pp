@@ -178,9 +178,12 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CErdaNova.h" />
+    <ClInclude Include="CEyeofRuin_L.h" />
+    <ClInclude Include="CEyeofRuin_R.h" />
     <ClInclude Include="CFloatingNotice.h" />
     <ClInclude Include="CGuided.h" />
     <ClInclude Include="ChainAttack.h" />
+    <ClInclude Include="CInvisibleWall.h" />
     <ClInclude Include="CKarmaFury.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
@@ -332,9 +335,12 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CErdaNova.cpp" />
+    <ClCompile Include="CEyeofRuin_L.cpp" />
+    <ClCompile Include="CEyeofRuin_R.cpp" />
     <ClCompile Include="CFloatingNotice.cpp" />
     <ClCompile Include="CGuided.cpp" />
     <ClCompile Include="ChainAttack.cpp" />
+    <ClCompile Include="CInvisibleWall.cpp" />
     <ClCompile Include="CKarmaFury.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />

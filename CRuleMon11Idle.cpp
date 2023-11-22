@@ -17,7 +17,7 @@ void CRuleMon11Idle::finaltick(float _DT)
 
 	m_acctime += _DT;
 
-	if (3.f < m_acctime)
+	if (6.f < m_acctime)
 	{
 		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK1);
 	}

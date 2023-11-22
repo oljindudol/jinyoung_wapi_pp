@@ -14,7 +14,7 @@ void CMorningStarFallDie::finaltick(float _DT)
 	CMovement* pMov = GetMovement();
 	pMov->SetVelocity(Vec2(0.f, 0.f));
 
-	if (m_acctime > 1.f)
+	if (m_acctime > 0.7f)
 	{
 		CMorningStarFall* powner = dynamic_cast<CMorningStarFall*>(GetOwner());
 		if (true == powner->IsMetFloor())

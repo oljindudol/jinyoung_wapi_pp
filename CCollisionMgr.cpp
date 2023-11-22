@@ -89,6 +89,9 @@ void CCollisionMgr::init()
 	CheckCollision(WALL, MONSTER);
 	CheckCollision(WALL, MONSTER_PJ);
 
+	CheckCollision(WALL_FOR_COL, MONSTER_PJ);
+
+	CheckCollision(MONSTER_PJB, PLAYER);
 	CheckCollision(MONSTER, PLAYER);
 	CheckCollision(MONSTER, PLAYER_PJ);
 

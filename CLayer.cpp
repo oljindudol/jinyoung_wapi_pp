@@ -61,6 +61,7 @@ void CLayer::render(HDC _dc)
 		{
 			//이관
 			if ((LAYER::MONSTER_PJ == idxlayer) ||
+				(LAYER::MONSTER_PJB == idxlayer) ||
 				(LAYER::PLAYER_PJ == idxlayer) ||
 				(LAYER::PLAYER_SKILL == idxlayer) ||
 				(LAYER::WORLD_STATIC == idxlayer)
@@ -106,6 +107,7 @@ void CLayer::DeleteAllObjects()
 		{continue;}
 		//스킬매니저에 이관
 		if ((LAYER::MONSTER_PJ == idxlayer) ||
+			(LAYER::MONSTER_PJB == idxlayer) ||
 			(LAYER::PLAYER_PJ == idxlayer) ||
 			(LAYER::PLAYER_SKILL == idxlayer) ||
 			(LAYER::WORLD_STATIC == idxlayer)

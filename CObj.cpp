@@ -99,7 +99,7 @@ void CObj::Destroy()
 void CObj::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	//if (_OtherObj->m_iLayerIdx==(UINT)LAYER::PLAYER ) 
-	//	m_collisiontimetoplayer = 0.f;
+		//m_collisiontimetoplayer = 0.f;
 }
 
 void CObj::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)

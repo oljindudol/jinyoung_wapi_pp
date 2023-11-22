@@ -42,7 +42,7 @@ CUnderDog::CUnderDog()
 	m_Collider->SetScale(GetScale());
 	m_Collider->m_vOffsetPos = (GetScale()/2);
 
-	m_skilllayer = LAYER::MONSTER_PJ;
+	m_skilllayer = LAYER::MONSTER_PJB;
 	duration = 15.f;
 	cooltime = 0.f;
 	m_att = 5.f;
@@ -82,7 +82,7 @@ void CUnderDog::begin()
 
 void CUnderDog::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
-
+	m_collisiontimetoplayer = 0.f;
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
 	{
 		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::DESTUCTION);
@@ -93,6 +93,16 @@ void CUnderDog::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Ot
 		m_MetWallTime = m_activedtime;
 		m_Animator->Play(m_s1 + m_s2 + L"die");
 	}
+}
+
+void CUnderDog::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+{
+	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
+	if (_OtherObj->GetLayerIdx() == (UINT)LAYER::PLAYER)
+		if (.7f < m_collisiontimetoplayer)
+		{
+			BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
+		}
 }
 
 CUnderDog::CUnderDog(const CUnderDog& _Origin)

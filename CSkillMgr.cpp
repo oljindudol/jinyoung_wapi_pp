@@ -85,6 +85,8 @@ void CSkillMgr::init()
 		AddSkill(new CUnderDog);
 	}
 
+	AddSkill(new CEyeofRuin_L);
+	AddSkill(new CEyeofRuin_R);
 }
 
 

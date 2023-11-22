@@ -13,9 +13,11 @@
 
 //1페이즈 스킬
 #include "ChainAttack.h"
-#include "CUnderDog.h"
 
 //2페이즈 스킬
+#include "CUnderDog.h"
+#include "CEyeofRuin_L.h"
+#include "CEyeofRuin_R.h"
 //#include "CNoxSpear.h"
 
 //3페이즈 스킬
