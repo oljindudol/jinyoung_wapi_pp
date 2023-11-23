@@ -18,7 +18,7 @@
 #include "CUnderDog.h"
 #include "CEyeofRuin_L.h"
 #include "CEyeofRuin_R.h"
-//#include "CNoxSpear.h"
+#include "CNoxSpear.h"
 #include "CSecondPowerLeft.h"
 #include "CSecondPowerRight.h"
 #include "CSecondPowerMiddle.h"

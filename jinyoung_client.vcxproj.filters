@@ -519,12 +519,10 @@
     <ClInclude Include="CInvisibleWall.h">
       <Filter>03.Game\04.Object</Filter>
     </ClInclude>
-    <ClInclude Include="CNoxSpear.h">
-      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
-    </ClInclude>
     <ClInclude Include="CSecondPowerLeft.h" />
     <ClInclude Include="CSecondPowerRight.h" />
     <ClInclude Include="CSecondPowerMiddle.h" />
+    <ClInclude Include="CNoxSpear.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -869,11 +867,9 @@
     <ClCompile Include="CInvisibleWall.cpp">
       <Filter>03.Game\04.Object</Filter>
     </ClCompile>
-    <ClCompile Include="CNoxSpear.cpp">
-      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
-    </ClCompile>
     <ClCompile Include="CSecondPowerLeft.cpp" />
     <ClCompile Include="CSecondPowerRight.cpp" />
     <ClCompile Include="CSecondPowerMiddle.cpp" />
+    <ClCompile Include="CNoxSpear.cpp" />
   </ItemGroup>
 </Project>

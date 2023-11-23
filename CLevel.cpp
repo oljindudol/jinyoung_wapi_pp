@@ -102,23 +102,28 @@ void CLevel::tick()
 	{
 		//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
 		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
-		// 
-		//CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse", 
-		//	CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
 
-		CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse",
-			Vec2(990, 400), ORT_LEFT);
+		Vec2 voffset = Vec2(0, 0);
+		for (int i = 0; i < 7; ++i)
+		{
+			CSkillMgr::GetInst()->ActivateSkill(L"secondnoxspearuse",
+				Vec2(250,720) + Vec2(250 *i , 0) + voffset*i, ORT_LEFT);
+		}
+
+
+		//CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse",
+		//	Vec2(990, 400), ORT_LEFT);
 	}
-	if (KEY_TAP(KEY::N))
-	{
-		CSkillMgr::GetInst()->ActivateSkill(L"secondpowermiddleuse",
-			Vec2(990, 400), ORT_LEFT);
-	}
-	if (KEY_TAP(KEY::M))
-	{
-		CSkillMgr::GetInst()->ActivateSkill(L"secondpowerrightuse",
-			Vec2(990, 400), ORT_LEFT);
-	}
+	//if (KEY_TAP(KEY::N))
+	//{
+	//	CSkillMgr::GetInst()->ActivateSkill(L"secondpowermiddleuse",
+	//		Vec2(990, 400), ORT_LEFT);
+	//}
+	//if (KEY_TAP(KEY::M))
+	//{
+	//	CSkillMgr::GetInst()->ActivateSkill(L"secondpowerrightuse",
+	//		Vec2(990, 400), ORT_LEFT);
+	//}
 
 	//if (KEY_TAP(KEY::N))
 //{
@@ -304,7 +309,6 @@ void CLevel::tick()
 
 	//if (KEY_TAP(Y))
 	//{
-
 	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
 	//	auto ainum = ai->GetCurStateNum();
 	//	UINT nextainum = ainum + 1;
@@ -331,63 +335,7 @@ void CLevel::tick()
 	//}
 
 
-	//if (KEY_TAP(H))
-	//{
-	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-	//	auto ainum = ai->GetCurStateNum();
-
-	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-	//	auto newoffset = curanim->GetOffset() + Vec2(-1, 0);
-	//	curanim->Setoffset(newoffset);
-	//	wstring log = std::to_wstring(ainum) + L":"
-	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
-	//		+ std::to_wstring((int)newoffset.y) + L")";
-
-	//	LOG(LOG_LEVEL::LOG, log.c_str());
-
-	//}
-	//if (KEY_TAP(K))
-	//{
-	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-	//	auto ainum = ai->GetCurStateNum();
-
-	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-	//	auto newoffset = curanim->GetOffset() + Vec2(1, 0);
-	//	curanim->Setoffset(newoffset);
-	//	wstring log = std::to_wstring(ainum) + L":"
-	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
-	//		+ std::to_wstring((int)newoffset.y) + L")";
-
-	//	LOG(LOG_LEVEL::LOG, log.c_str());
-	//}
-	//if (KEY_TAP(U))
-	//{
-	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-	//	auto ainum = ai->GetCurStateNum();
-
-	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-	//	auto newoffset = curanim->GetOffset() + Vec2(0, -1);
-	//	curanim->Setoffset(newoffset);
-	//	wstring log = std::to_wstring(ainum) + L":"
-	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
-	//		+ std::to_wstring((int)newoffset.y) + L")";
-
-	//	LOG(LOG_LEVEL::LOG, log.c_str());
-	//}
-	//if (KEY_TAP(J))
-	//{
-	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-	//	auto ainum = ai->GetCurStateNum();
-
-	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-	//	auto newoffset = curanim->GetOffset() + Vec2(0, 1);
-	//	curanim->Setoffset(newoffset);
-	//	wstring log = std::to_wstring(ainum) + L":"
-	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
-	//		+ std::to_wstring((int)newoffset.y) + L")";
-
-	//	LOG(LOG_LEVEL::LOG, log.c_str());
-	//}
+	
 
 
 	// 마우스 포지션

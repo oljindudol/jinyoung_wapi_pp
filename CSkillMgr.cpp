@@ -106,6 +106,16 @@ void CSkillMgr::init()
 	AddSkill(new CSecondPowerRight);
 	AddSkill(new CSecondPowerMiddle);
 
+	for (int i = 0; i < 7; i++)
+	{
+		AddSkill(new CNoxSpear);
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		AddSkillEff(new CSkill
+			, L"second", L"noxspear", L"hit"
+			, .7f, Vec2(0.f, 0.f));
+	}
 
 }
 

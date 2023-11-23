@@ -5,6 +5,8 @@ class CNoxSpear :
 {
     GENERATED_OBJECT(CSkill);
 
+private: 
+    bool m_Col_On;
 public:
     CNoxSpear();
     virtual void tick(float _DT) override;
