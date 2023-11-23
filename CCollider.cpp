@@ -16,6 +16,7 @@ CCollider::CCollider(CObj* _Owner)
 	: CComponent(_Owner)
 	, m_iCollisionCount(0)
 	, m_coltest(false)
+	, m_rad(_Owner->GetRotation())
 {
 
 }
@@ -64,7 +65,7 @@ void CCollider::render(HDC _dc)
 
 	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
 
-	float rad = GetOwner()->GetRotation();
+	float rad = m_rad;
 
 	if (m_coltest)
 	{

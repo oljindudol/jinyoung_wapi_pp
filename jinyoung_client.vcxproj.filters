@@ -523,6 +523,8 @@
       <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
     </ClInclude>
     <ClInclude Include="CSecondPowerLeft.h" />
+    <ClInclude Include="CSecondPowerRight.h" />
+    <ClInclude Include="CSecondPowerMiddle.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -871,5 +873,7 @@
       <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
     </ClCompile>
     <ClCompile Include="CSecondPowerLeft.cpp" />
+    <ClCompile Include="CSecondPowerRight.cpp" />
+    <ClCompile Include="CSecondPowerMiddle.cpp" />
   </ItemGroup>
 </Project>

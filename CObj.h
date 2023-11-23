@@ -27,7 +27,6 @@ protected:
 
 
 public:
-
 	float GetRotation() { return m_RotatedRad; }
 	void SetRotation(float _rad) { m_RotatedRad = _rad; }
 

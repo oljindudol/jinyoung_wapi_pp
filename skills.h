@@ -20,6 +20,8 @@
 #include "CEyeofRuin_R.h"
 //#include "CNoxSpear.h"
 #include "CSecondPowerLeft.h"
+#include "CSecondPowerRight.h"
+#include "CSecondPowerMiddle.h"
 
 //3페이즈 스킬
 //#include "CLaser.h"

@@ -102,8 +102,10 @@ void CSkillMgr::init()
 			, .72f, Vec2(0.f, 0.f));
 	}
 
-
 	AddSkill(new CSecondPowerLeft);
+	AddSkill(new CSecondPowerRight);
+	AddSkill(new CSecondPowerMiddle);
+
 
 }
 

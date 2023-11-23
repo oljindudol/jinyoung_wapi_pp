@@ -215,11 +215,11 @@ bool CheckDivided(const Vec2& _AtoB, const Vec2& _Vertical , CCollider* _Left, C
 	// Box 2
 	Vec2 vRColScale = _Right->GetScale();
 
-	Vec2 vLColUp = RotateDot(Vec2(0.f, 1.f) , _Left->GetOwner()->GetRotation());
-	Vec2 vLColRight = RotateDot(Vec2(1.f, 0.f) , _Left->GetOwner()->GetRotation());
+	Vec2 vLColUp = RotateDot(Vec2(0.f, 1.f) , _Left->GetRad());
+	Vec2 vLColRight = RotateDot(Vec2(1.f, 0.f) , _Left->GetRad());
 
-	Vec2 vRColUp = RotateDot(Vec2(0.f, 1.f) , _Right->GetOwner()->GetRotation());
-	Vec2 vRColRight = RotateDot(Vec2(1.f, 0.f) , _Right->GetOwner()->GetRotation());
+	Vec2 vRColUp = RotateDot(Vec2(0.f, 1.f) , _Right->GetRad());
+	Vec2 vRColRight = RotateDot(Vec2(1.f, 0.f) , _Right->GetRad());
 
 	if (fDistance > abs(VecDot(_Vertical,(vLColUp * vLColScale.y / 2.f)))
 		+ abs(VecDot(_Vertical, (vLColRight * vLColScale.x / 2.f)))
@@ -235,8 +235,10 @@ bool CheckDivided(const Vec2& _AtoB, const Vec2& _Vertical , CCollider* _Left, C
 
 bool CCollisionMgr::IsCollision(CCollider* _Left, CCollider* _Right)
 {
-	float LeftRot = _Left->GetOwner()->GetRotation();
-	float RightRot = _Right->GetOwner()->GetRotation();
+	//float LeftRot = _Left->GetOwner()->GetRotation();
+	//float RightRot = _Right->GetOwner()->GetRotation();
+	float LeftRot = _Left->GetRad();
+	float RightRot = _Right->GetRad();
 
 	//양쪽 컬라이더가 회전이 없으면 일반 충돌 처리
 	if (0.f == LeftRot &&
@@ -251,11 +253,11 @@ bool CCollisionMgr::IsCollision(CCollider* _Left, CCollider* _Right)
 	//하나라도 충돌이 있다면 OBB충돌처리
 	else
 	{
-		Vec2 vLColUp = RotateDot(Vec2(0.f, 1.f), _Left->GetOwner()->GetRotation());
-		Vec2 vLColRight = RotateDot(Vec2(1.f, 0.f), _Left->GetOwner()->GetRotation());
+		Vec2 vLColUp = RotateDot(Vec2(0.f, 1.f), LeftRot);
+		Vec2 vLColRight = RotateDot(Vec2(1.f, 0.f), LeftRot);
 
-		Vec2 vRColUp = RotateDot(Vec2(0.f, 1.f), _Right->GetOwner()->GetRotation());
-		Vec2 vRColRight = RotateDot(Vec2(1.f, 0.f), _Right->GetOwner()->GetRotation());
+		Vec2 vRColUp = RotateDot(Vec2(0.f, 1.f), RightRot);
+		Vec2 vRColRight = RotateDot(Vec2(1.f, 0.f), RightRot);
 
 		Vec2 vNorVec = _Left->GetPos() - _Right->GetPos();
 

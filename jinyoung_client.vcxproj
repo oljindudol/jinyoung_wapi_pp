@@ -259,6 +259,8 @@
     <ClInclude Include="CSecondBMPowerMiddle.h" />
     <ClInclude Include="CSecondBMPowerRight.h" />
     <ClInclude Include="CSecondPowerLeft.h" />
+    <ClInclude Include="CSecondPowerMiddle.h" />
+    <ClInclude Include="CSecondPowerRight.h" />
     <ClInclude Include="CSkill.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -421,6 +423,8 @@
     <ClCompile Include="CSecondBMPowerMiddle.cpp" />
     <ClCompile Include="CSecondBMPowerRight.cpp" />
     <ClCompile Include="CSecondPowerLeft.cpp" />
+    <ClCompile Include="CSecondPowerMiddle.cpp" />
+    <ClCompile Include="CSecondPowerRight.cpp" />
     <ClCompile Include="CSkill.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

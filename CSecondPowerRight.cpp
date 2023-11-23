@@ -1,18 +1,18 @@
 #include "pch.h"
-#include "CSecondPowerLeft.h"
+#include "CSecondPowerRight.h"
 
 #include "CSkillMgr.h"
 #include "CLevelMgr.h"
 #include "CPlayer.h"
 #include "CKeyMgr.h"
 
-CSecondPowerLeft::CSecondPowerLeft()
+CSecondPowerRight::CSecondPowerRight()
 	:m_used{ false,false,false }
 	, m_colon(false)
-	,m_dietime(0.f)
+	, m_dietime(0.f)
 {
 	m_s1 = L"second";
-	m_s2 = L"powerleft";
+	m_s2 = L"powerright";
 	m_s3 = L"use";
 
 	m_skillname = m_s1 + m_s2 + m_s3;
@@ -31,7 +31,6 @@ CSecondPowerLeft::CSecondPowerLeft()
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"regen",
 			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT)->SetMag(2.f);
-
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"use",
@@ -53,18 +52,19 @@ CSecondPowerLeft::CSecondPowerLeft()
 	m_Collider =
 		AddComponent<CCollider>(GetName() + L"Collider");
 	m_Collider->SetScale(GetScale());
-	m_Collider->m_vOffsetPos = Vec2(100,-100);
-	m_Collider->SetRad(-0.541052f);
+	m_Collider->m_vOffsetPos = Vec2(-100, -100);
+	m_Collider->SetRad(0.541052f);
 
-	//m_RotatedRad = -0.541052f;
+	//m_RotatedRad = 0.541052f;
 	m_skilllayer = LAYER::MONSTER_POWER;
-	duration = 11.70f ;
+	duration = 11.70f;
 	cooltime = 0.f;
 	m_att = 5.f;
 	m_debuff = DEBUFF::NONE;
 }
 
-void CSecondPowerLeft::tick(float _DT)
+
+void CSecondPowerRight::tick(float _DT)
 {
 	Super::tick(_DT);
 
@@ -109,7 +109,6 @@ void CSecondPowerLeft::tick(float _DT)
 	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
 	//		+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
 	//}
-
 	//if (KEY_TAP(KEY::V))
 	//{
 	//	m_RotatedRad -= 0.0174533f;
@@ -136,9 +135,9 @@ void CSecondPowerLeft::tick(float _DT)
 
 	if (2.43f > m_activedtime)
 	{
-		if (false == m_colon && 1.08f <= m_activedtime )
+		if (false == m_colon && 1.08f <= m_activedtime)
 		{
-			m_Collider->m_vOffsetPos = Vec2(100, -100);
+			m_Collider->m_vOffsetPos = Vec2(-100, -200);
 			m_colon = true;
 		}
 		return;
@@ -197,12 +196,11 @@ void CSecondPowerLeft::tick(float _DT)
 	}
 }
 
-
-void CSecondPowerLeft::activate(Vec2 _beginpos, ORIENTATION _ort)
+void CSecondPowerRight::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
 	m_Collider->m_vOffsetPos = Vec2(100, -5000);
 	m_colon = false;
-	for (int i = 0; i < 3; ++i) 
+	for (int i = 0; i < 3; ++i)
 	{
 		m_used[i] = false;
 	}
@@ -211,12 +209,12 @@ void CSecondPowerLeft::activate(Vec2 _beginpos, ORIENTATION _ort)
 	Super::activate(_beginpos, _ort);
 }
 
-void CSecondPowerLeft::begin()
+void CSecondPowerRight::begin()
 {
 	m_Collider->InitColCnt();
 }
 
-void CSecondPowerLeft::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+void CSecondPowerRight::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	m_collisiontimetoplayer = 0.f;
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
@@ -224,10 +222,9 @@ void CSecondPowerLeft::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollid
 		CSkillMgr::GetInst()->PlayMultipleEff(L"secondeyeofruinhit", 1, 0.f, Vec2(_OtherCol->GetPos().x, _OtherCol->GetPos().y), ORT_LEFT);
 		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(10.f, m_debuff);
 	}
-
 }
 
-void CSecondPowerLeft::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+void CSecondPowerRight::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
 	if (_OtherObj->GetLayerIdx() == (UINT)LAYER::PLAYER)
@@ -237,10 +234,10 @@ void CSecondPowerLeft::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 		}
 }
 
-CSecondPowerLeft::CSecondPowerLeft(const CSecondPowerLeft& _Origin)
+CSecondPowerRight::CSecondPowerRight(const CSecondPowerRight& _Origin)
 {
 }
 
-CSecondPowerLeft::~CSecondPowerLeft()
+CSecondPowerRight::~CSecondPowerRight()
 {
 }

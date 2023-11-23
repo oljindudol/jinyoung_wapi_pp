@@ -6,6 +6,7 @@ class CCollider :
     public CComponent
 {
 private:
+    float   m_rad;
     Vec2    m_vScale;      // Owner 로부터 추가 배율
 
     Vec2    m_vFinalPos;   // 충돌체의 최종 위치
@@ -20,6 +21,9 @@ public:
     virtual void render(HDC _dc) override;
 
 public:
+    void SetRad(float _rad) { m_rad = _rad; }
+    float GetRad() { return m_rad; }
+
     void SetOffsetPos(Vec2 _vOffsetPos) { m_vOffsetPos = _vOffsetPos; }
     void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
     Vec2 GetPos() { return m_vFinalPos; }

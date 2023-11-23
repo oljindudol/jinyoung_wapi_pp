@@ -95,6 +95,48 @@ void CLevel::tick()
 		m_Layer[i]->finaltick(DT);
 	}
 
+	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
+	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
+	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
+	if (KEY_TAP(KEY::B))
+	{
+		//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
+		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
+		// 
+		//CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse", 
+		//	CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+
+		CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse",
+			Vec2(990, 400), ORT_LEFT);
+	}
+	if (KEY_TAP(KEY::N))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"secondpowermiddleuse",
+			Vec2(990, 400), ORT_LEFT);
+	}
+	if (KEY_TAP(KEY::M))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"secondpowerrightuse",
+			Vec2(990, 400), ORT_LEFT);
+	}
+
+	//if (KEY_TAP(KEY::N))
+//{
+//	//
+//	//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
+//	//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
+//	// 
+//	//CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse", 
+//	//	CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+
+//	CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse",
+//		Vec2(990,400), ORT_LEFT);
+//}
+
+
+
+
+
 	// 
 	if (KEY_TAP(KEY::_1))
 	{
@@ -122,18 +164,6 @@ void CLevel::tick()
 		CLevelMgr::GetInst()->GetCurLevelMon()->GetAI()->ChangeState((UINT)ENORMAL_MON_STATE::DEBUG);
 	}
 
-	if (KEY_TAP(KEY::LBTN))
-	{
-		//
-		//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
-		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
-		// 
-		//CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse", 
-		//	CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
-
-		CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse",
-			Vec2(990,400), ORT_LEFT);
-	}
 
 
 

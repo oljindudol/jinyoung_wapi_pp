@@ -1,18 +1,19 @@
 #include "pch.h"
-#include "CSecondPowerLeft.h"
+#include "CSecondPowerMiddle.h"
 
 #include "CSkillMgr.h"
 #include "CLevelMgr.h"
 #include "CPlayer.h"
 #include "CKeyMgr.h"
 
-CSecondPowerLeft::CSecondPowerLeft()
+CSecondPowerMiddle::CSecondPowerMiddle()
 	:m_used{ false,false,false }
 	, m_colon(false)
-	,m_dietime(0.f)
+	, m_dietime(0.f)
+	, m_col2(nullptr)
 {
 	m_s1 = L"second";
-	m_s2 = L"powerleft";
+	m_s2 = L"powermiddle";
 	m_s3 = L"use";
 
 	m_skillname = m_s1 + m_s2 + m_s3;
@@ -22,7 +23,7 @@ CSecondPowerLeft::CSecondPowerLeft()
 
 	SetName(m_skillname + L"_" + std::to_wstring(m_skillnum));
 
-	SetScale(Vec2(1813.05f, 1813.05f));
+	SetScale(Vec2(1223.18f, 1223.18f));
 
 	//애니메이션
 	m_Animator =
@@ -31,7 +32,6 @@ CSecondPowerLeft::CSecondPowerLeft()
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"regen",
 			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT)->SetMag(2.f);
-
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"use",
@@ -49,25 +49,37 @@ CSecondPowerLeft::CSecondPowerLeft()
 		CreateAnimation(m_s1, m_s2, L"die",
 			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT)->SetMag(2.f);
 
-	//컬라이더
+
+
+	//m_RotatedRad = 0.453786f;
+
+	//컬라이더1
 	m_Collider =
 		AddComponent<CCollider>(GetName() + L"Collider");
 	m_Collider->SetScale(GetScale());
-	m_Collider->m_vOffsetPos = Vec2(100,-100);
-	m_Collider->SetRad(-0.541052f);
+	m_Collider->m_vOffsetPos = Vec2(-700, -200);
+	m_Collider->SetRad(0.453786f);
 
-	//m_RotatedRad = -0.541052f;
+	//컬라이더2
+	m_col2 =
+		AddComponent<CCollider>(GetName() + L"Collider");
+	m_col2->SetScale(GetScale());
+	m_col2->m_vOffsetPos = Vec2(700, -200);
+	m_col2->SetRad(-0.453786f);
+
 	m_skilllayer = LAYER::MONSTER_POWER;
-	duration = 11.70f ;
+	duration = 11.70f;
 	cooltime = 0.f;
 	m_att = 5.f;
 	m_debuff = DEBUFF::NONE;
 }
 
-void CSecondPowerLeft::tick(float _DT)
+void CSecondPowerMiddle::tick(float _DT)
 {
 	Super::tick(_DT);
 
+
+	//애니메이터 디버그 애니메이터 디버그 애니메이터 디버그
 	//if (KEY_TAP(KEY::J))
 	//{
 	//	auto panim = m_Animator->FindAnim(m_s1 + m_s2 + m_s3);
@@ -80,65 +92,66 @@ void CSecondPowerLeft::tick(float _DT)
 	//	panim->SetMag(panim->GetMag() + 0.1f);
 	//	LOG(LOG_LEVEL::LOG, std::to_wstring(panim->GetMag()).c_str());
 	//}
+	//애니메이터 디버그 애니메이터 디버그 애니메이터 디버그
 
+	//컬라이더 디버그 컬라이더 디버그 컬라이더 디버그 컬라이더 디버그
+	/*m_Collider->m_coltest = true;
+	if (KEY_TAP(KEY::H))
+	{
+		m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(-100, 0));
+		LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x) 
+			+ L"," +std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
+	}
+	if (KEY_TAP(KEY::K))
+	{
+		m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(100, 0));
+		LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
+			+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
+	}
 
-	//컬라이더 디버그
-	//m_Collider->m_coltest = true;
-	//if (KEY_TAP(KEY::H))
-	//{
-	//	m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(-100, 0));
-	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x) 
-	//		+ L"," +std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
-	//}
-	//if (KEY_TAP(KEY::K))
-	//{
-	//	m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(100, 0));
-	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
-	//		+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
-	//}
+	if (KEY_TAP(KEY::U))
+	{
+		m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(0, -100));
+		LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
+			+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
+	}
+	if (KEY_TAP(KEY::J))
+	{
+		m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(0, 100));
+		LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
+			+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
+	}
+	if (KEY_TAP(KEY::V))
+	{
+		m_RotatedRad -= 0.0174533f;
+		LOG(LOG_LEVEL::LOG, std::to_wstring(m_RotatedRad).c_str());
+	}
+	if (KEY_TAP(KEY::B))
+	{
+		m_RotatedRad += 0.0174533f;
+		LOG(LOG_LEVEL::LOG, std::to_wstring(m_RotatedRad).c_str());
+	}
 
-	//if (KEY_TAP(KEY::U))
-	//{
-	//	m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(0, -100));
-	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
-	//		+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
-	//}
-	//if (KEY_TAP(KEY::J))
-	//{
-	//	m_Collider->SetOffsetPos(m_Collider->GetOffsetPos() + Vec2(0, 100));
-	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetOffsetPos().x)
-	//		+ L"," + std::to_wstring(m_Collider->GetOffsetPos().y)).c_str());
-	//}
-
-	//if (KEY_TAP(KEY::V))
-	//{
-	//	m_RotatedRad -= 0.0174533f;
-	//	LOG(LOG_LEVEL::LOG, std::to_wstring(m_RotatedRad).c_str());
-	//}
-	//if (KEY_TAP(KEY::B))
-	//{
-	//	m_RotatedRad += 0.0174533f;
-	//	LOG(LOG_LEVEL::LOG, std::to_wstring(m_RotatedRad).c_str());
-	//}
-
-	//if (KEY_TAP(KEY::N))
-	//{
-	//	m_Collider->SetScale(m_Collider->GetScale() / 1.1f);
-	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetScale().x)
-	//		+ L"," + std::to_wstring(m_Collider->GetScale().x)).c_str());
-	//}
-	//if (KEY_TAP(KEY::M))
-	//{
-	//	m_Collider->SetScale(m_Collider->GetScale() * 1.1f);
-	//	LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetScale().x)
-	//		+ L"," + std::to_wstring(m_Collider->GetScale().x)).c_str());
-	//}
+	if (KEY_TAP(KEY::N))
+	{
+		m_Collider->SetScale(m_Collider->GetScale() / 1.1f);
+		LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetScale().x)
+			+ L"," + std::to_wstring(m_Collider->GetScale().x)).c_str());
+	}
+	if (KEY_TAP(KEY::M))
+	{
+		m_Collider->SetScale(m_Collider->GetScale() * 1.1f);
+		LOG(LOG_LEVEL::LOG, (std::to_wstring(m_Collider->GetScale().x)
+			+ L"," + std::to_wstring(m_Collider->GetScale().x)).c_str());
+	}*/
+	//컬라이더 디버그 컬라이더 디버그 컬라이더 디버그 컬라이더 디버그
 
 	if (2.43f > m_activedtime)
 	{
-		if (false == m_colon && 1.08f <= m_activedtime )
+		if (false == m_colon && 1.08f <= m_activedtime)
 		{
-			m_Collider->m_vOffsetPos = Vec2(100, -100);
+			m_Collider->m_vOffsetPos = Vec2(-700, -200);
+			m_col2->m_vOffsetPos = Vec2(700, -200);
 			m_colon = true;
 		}
 		return;
@@ -184,6 +197,7 @@ void CSecondPowerLeft::tick(float _DT)
 	{
 		m_Animator->Play(m_s1 + m_s2 + L"die");
 		m_Collider->m_vOffsetPos = Vec2(100, -5000);
+		m_col2->m_vOffsetPos = Vec2(100, -5000);
 		m_dietime = m_activedtime;
 	}
 
@@ -197,12 +211,12 @@ void CSecondPowerLeft::tick(float _DT)
 	}
 }
 
-
-void CSecondPowerLeft::activate(Vec2 _beginpos, ORIENTATION _ort)
+void CSecondPowerMiddle::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
 	m_Collider->m_vOffsetPos = Vec2(100, -5000);
+	m_col2->m_vOffsetPos = Vec2(100, -5000);
 	m_colon = false;
-	for (int i = 0; i < 3; ++i) 
+	for (int i = 0; i < 3; ++i)
 	{
 		m_used[i] = false;
 	}
@@ -211,12 +225,12 @@ void CSecondPowerLeft::activate(Vec2 _beginpos, ORIENTATION _ort)
 	Super::activate(_beginpos, _ort);
 }
 
-void CSecondPowerLeft::begin()
+void CSecondPowerMiddle::begin()
 {
 	m_Collider->InitColCnt();
 }
 
-void CSecondPowerLeft::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+void CSecondPowerMiddle::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	m_collisiontimetoplayer = 0.f;
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
@@ -224,10 +238,9 @@ void CSecondPowerLeft::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollid
 		CSkillMgr::GetInst()->PlayMultipleEff(L"secondeyeofruinhit", 1, 0.f, Vec2(_OtherCol->GetPos().x, _OtherCol->GetPos().y), ORT_LEFT);
 		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(10.f, m_debuff);
 	}
-
 }
 
-void CSecondPowerLeft::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
+void CSecondPowerMiddle::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
 	if (_OtherObj->GetLayerIdx() == (UINT)LAYER::PLAYER)
@@ -237,10 +250,10 @@ void CSecondPowerLeft::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 		}
 }
 
-CSecondPowerLeft::CSecondPowerLeft(const CSecondPowerLeft& _Origin)
+CSecondPowerMiddle::CSecondPowerMiddle(const CSecondPowerMiddle& _Origin)
 {
 }
 
-CSecondPowerLeft::~CSecondPowerLeft()
+CSecondPowerMiddle::~CSecondPowerMiddle()
 {
 }
