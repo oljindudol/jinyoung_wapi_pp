@@ -161,6 +161,12 @@
     <Filter Include="03.Game\12.StageSecond\CNoxSpear">
       <UniqueIdentifier>{80b799fe-a7c7-4e75-8365-f852c4c56c4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Game\12.StageSecond\CEyeofRuin">
+      <UniqueIdentifier>{fdd725d8-3c35-4100-8ab9-d6d055195719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\12.StageSecond\CSecondPower">
+      <UniqueIdentifier>{82b0579b-f8b2-4548-a592-07ac1b24dde4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -514,15 +520,28 @@
     <ClInclude Include="CBlackMage2.h">
       <Filter>03.Game\12.StageSecond\01.BM</Filter>
     </ClInclude>
-    <ClInclude Include="CEyeofRuin_L.h" />
-    <ClInclude Include="CEyeofRuin_R.h" />
     <ClInclude Include="CInvisibleWall.h">
       <Filter>03.Game\04.Object</Filter>
     </ClInclude>
-    <ClInclude Include="CSecondPowerLeft.h" />
-    <ClInclude Include="CSecondPowerRight.h" />
-    <ClInclude Include="CSecondPowerMiddle.h" />
-    <ClInclude Include="CNoxSpear.h" />
+    <ClInclude Include="CBlindness.h" />
+    <ClInclude Include="CSecondPowerLeft.h">
+      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondPowerMiddle.h">
+      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondPowerRight.h">
+      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+    </ClInclude>
+    <ClInclude Include="CEyeofRuin_L.h">
+      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
+    </ClInclude>
+    <ClInclude Include="CEyeofRuin_R.h">
+      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
+    </ClInclude>
+    <ClInclude Include="CNoxSpear.h">
+      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -862,14 +881,27 @@
     <ClCompile Include="CBlackMage2.cpp">
       <Filter>03.Game\12.StageSecond\01.BM</Filter>
     </ClCompile>
-    <ClCompile Include="CEyeofRuin_L.cpp" />
-    <ClCompile Include="CEyeofRuin_R.cpp" />
     <ClCompile Include="CInvisibleWall.cpp">
       <Filter>03.Game\04.Object</Filter>
     </ClCompile>
-    <ClCompile Include="CSecondPowerLeft.cpp" />
-    <ClCompile Include="CSecondPowerRight.cpp" />
-    <ClCompile Include="CSecondPowerMiddle.cpp" />
-    <ClCompile Include="CNoxSpear.cpp" />
+    <ClCompile Include="CBlindness.cpp" />
+    <ClCompile Include="CSecondPowerLeft.cpp">
+      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondPowerMiddle.cpp">
+      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondPowerRight.cpp">
+      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+    </ClCompile>
+    <ClCompile Include="CEyeofRuin_L.cpp">
+      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
+    </ClCompile>
+    <ClCompile Include="CEyeofRuin_R.cpp">
+      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
+    </ClCompile>
+    <ClCompile Include="CNoxSpear.cpp">
+      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

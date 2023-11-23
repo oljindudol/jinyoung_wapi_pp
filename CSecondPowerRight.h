@@ -9,6 +9,7 @@ private:
     bool m_colon;
     bool m_used[3];
     float m_dietime;
+
 public:
     CSecondPowerRight();
     virtual void tick(float _DT) override;

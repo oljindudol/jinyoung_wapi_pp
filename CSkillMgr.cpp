@@ -117,6 +117,8 @@ void CSkillMgr::init()
 			, .7f, Vec2(0.f, 0.f));
 	}
 
+	AddSkill(new CBlindness);
+
 }
 
 

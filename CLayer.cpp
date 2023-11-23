@@ -83,6 +83,9 @@ void CLayer::render(HDC _dc)
 			{
 				CUI* pUI = dynamic_cast<CUI*>(*iter);
 				CUIMgr::GetInst()->SetUIInvisible(pUI);
+
+				CSkill* pSkill = dynamic_cast<CSkill*>(*iter);
+				CSkillMgr::GetInst()->DeActivateSkill(pSkill);
 			}
 			iter = m_vecObjects.erase(iter);
 		}

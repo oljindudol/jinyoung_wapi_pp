@@ -62,6 +62,8 @@ CEngine::~CEngine()
 }
 void CEngine::CreateDefaultGDI()
 {
+
+	m_arrPen[BK_PEN] = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
 	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
 	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));

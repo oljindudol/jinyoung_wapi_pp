@@ -63,7 +63,6 @@ void CSkill::begin()
 
 
 
-
 CSkill::CSkill()
 	: m_s1(L"")
 	, m_s2(L"")

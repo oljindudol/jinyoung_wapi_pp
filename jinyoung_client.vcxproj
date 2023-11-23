@@ -163,6 +163,7 @@
     <ClInclude Include="CBlackMage2.h" />
     <ClInclude Include="CBladeStorm.h" />
     <ClInclude Include="CBladeTornado.h" />
+    <ClInclude Include="CBlindness.h" />
     <ClInclude Include="CBtnUI.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
@@ -329,6 +330,7 @@
     <ClCompile Include="CBlackMage2.cpp" />
     <ClCompile Include="CBladeStorm.cpp" />
     <ClCompile Include="CBladeTornado.cpp" />
+    <ClCompile Include="CBlindness.cpp" />
     <ClCompile Include="CBtnUI.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />

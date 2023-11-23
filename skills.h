@@ -22,6 +22,7 @@
 #include "CSecondPowerLeft.h"
 #include "CSecondPowerRight.h"
 #include "CSecondPowerMiddle.h"
+#include "CBlindness.h"
 
 //3페이즈 스킬
 //#include "CLaser.h"

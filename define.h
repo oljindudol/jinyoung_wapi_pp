@@ -210,6 +210,7 @@ enum FONT_TYPE
 
 enum PEN_TYPE
 {
+	BK_PEN,
 	GREEN_PEN,
 	BLUE_PEN,
 	RED_PEN,
