@@ -116,12 +116,12 @@ CAnim* CAnimator::FindAnim(const wstring& _strName)
 // roop == 0 은 일반루프
 // roop == -1 은 루프안함
 // roop == 그외숫자는 루프할때 돌아갈 프레임
-void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,int _roop, ORIENTATION _ort)
+CAnim* CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,int _roop, ORIENTATION _ort)
 {
 	CAnim* pAnim = FindAnim(_strphase+ _strobj+ _stranimname);
 	if (IsValid(pAnim))
 	{
-		return;
+		return nullptr;
 	}
 
 	pAnim = new CAnim;
@@ -130,6 +130,8 @@ void CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj
 	pAnim->m_ort = _ort;
 	pAnim->Create(_strphase, _strobj, _stranimname,_vOffset,_playmul);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
+
+	return pAnim;
 }
 
 

@@ -54,7 +54,7 @@ CEyeofRuin_R::CEyeofRuin_R()
 	m_att = 5.f;
 	m_debuff = DEBUFF::DESTUCTION;
 
-	m_speed = 80.f;
+	m_speed = 60.f;
 }
 
 
@@ -75,7 +75,7 @@ void CEyeofRuin_R::tick(float _DT)
 
 	if (0.8f <= m_activedtime && (duration - 0.9f) > m_activedtime)
 	{
-		SetPos(	GetPos() + (pPlayer->GetPos() - GetPos()).Normalize() * m_speed * _DT);
+		SetPos(	GetPos() + (pPlayer->GetPos() - Vec2(0.f, GetScale().y / 2.f) - GetPos()).Normalize() * m_speed * _DT);
 		return;
 	}
 
@@ -116,6 +116,7 @@ void CEyeofRuin_R::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* 
 	m_collisiontimetoplayer = 0.f;
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
 	{
+		CSkillMgr::GetInst()->PlayMultipleEff(L"secondeyeofruinhit", 1, 0.f, Vec2(_OtherCol->GetPos().x, _OtherCol->GetPos().y), ORT_LEFT);
 		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::DESTUCTION);
 	}
 }

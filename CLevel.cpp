@@ -128,8 +128,11 @@ void CLevel::tick()
 		//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
 		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 		// 
-		CSkillMgr::GetInst()->ActivateSkill(L"secondeyeofruinright", 
-			CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+		//CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse", 
+		//	CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+
+		CSkillMgr::GetInst()->ActivateSkill(L"secondpowerleftuse",
+			Vec2(990,400), ORT_LEFT);
 	}
 
 
@@ -244,117 +247,117 @@ void CLevel::tick()
 		pPlayer->hp = pPlayer->maxhp;
 	}
 
-	if (KEY_TAP(M))
-	{
-		CBackGround* pBack = m_BackGround;
-		bool bBack = m_BackOn;
+	//if (KEY_TAP(M))
+	//{
+	//	CBackGround* pBack = m_BackGround;
+	//	bool bBack = m_BackOn;
 
-		// pback 이 설정되어있고 백그라운드off이라면
-		// 켜준다
-		if (nullptr != pBack && !bBack)
-		{
-			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT,(UINT_PTR)LAYER::BACKGROUND ,(UINT_PTR)pBack });
-			m_BackOn = true;
-		}
-		// pback 이 설정되어있고 백그라운드on이라면
-		// 꺼준다
-		else if (nullptr != pBack && bBack)
-		{
-			CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)pBack });
-			m_BackOn = false;
-		}
-	}
+	//	// pback 이 설정되어있고 백그라운드off이라면
+	//	// 켜준다
+	//	if (nullptr != pBack && !bBack)
+	//	{
+	//		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT,(UINT_PTR)LAYER::BACKGROUND ,(UINT_PTR)pBack });
+	//		m_BackOn = true;
+	//	}
+	//	// pback 이 설정되어있고 백그라운드on이라면
+	//	// 꺼준다
+	//	else if (nullptr != pBack && bBack)
+	//	{
+	//		CTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::EXPEL_OBJECT, (UINT_PTR)pBack });
+	//		m_BackOn = false;
+	//	}
+	//}
 
 	//디버그 로그
 	if (!DEBUG_RENDER)
 		return;
 
-	if (KEY_TAP(Y))
-	{
+	//if (KEY_TAP(Y))
+	//{
 
-		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-		auto ainum = ai->GetCurStateNum();
-		UINT nextainum = ainum + 1;
-		if (ai->FindState(nextainum))
-			ai->ChangeState(nextainum);
-		else
-			ai->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
-		wstring statename = std::to_wstring(ai->GetCurStateNum());
-		LOG(LOG_LEVEL::LOG, statename.c_str());
-	}
+	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+	//	auto ainum = ai->GetCurStateNum();
+	//	UINT nextainum = ainum + 1;
+	//	if (ai->FindState(nextainum))
+	//		ai->ChangeState(nextainum);
+	//	else
+	//		ai->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+	//	wstring statename = std::to_wstring(ai->GetCurStateNum());
+	//	LOG(LOG_LEVEL::LOG, statename.c_str());
+	//}
 
-	if (KEY_TAP(T))
-	{
+	//if (KEY_TAP(T))
+	//{
 
-		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-		auto ainum = ai->GetCurStateNum();
-		UINT nextainum = ainum - 1;
-		if (ai->FindState(nextainum))
-			ai->ChangeState(nextainum);
-		else
-			ai->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
-		wstring statename = std::to_wstring(ai->GetCurStateNum());
-		LOG(LOG_LEVEL::LOG, statename.c_str());
-	}
+	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+	//	auto ainum = ai->GetCurStateNum();
+	//	UINT nextainum = ainum - 1;
+	//	if (ai->FindState(nextainum))
+	//		ai->ChangeState(nextainum);
+	//	else
+	//		ai->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
+	//	wstring statename = std::to_wstring(ai->GetCurStateNum());
+	//	LOG(LOG_LEVEL::LOG, statename.c_str());
+	//}
 
 
-	if (KEY_TAP(H))
-	{
-		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-		auto ainum = ai->GetCurStateNum();
+	//if (KEY_TAP(H))
+	//{
+	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+	//	auto ainum = ai->GetCurStateNum();
 
-		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(-1, 0);
-		curanim->Setoffset(newoffset);
-		wstring log = std::to_wstring(ainum) + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
+	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(-1, 0);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = std::to_wstring(ainum) + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
 
-	}
-	if (KEY_TAP(K))
-	{
-		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-		auto ainum = ai->GetCurStateNum();
+	//}
+	//if (KEY_TAP(K))
+	//{
+	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+	//	auto ainum = ai->GetCurStateNum();
 
-		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(1, 0);
-		curanim->Setoffset(newoffset);
-		wstring log = std::to_wstring(ainum) + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
+	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(1, 0);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = std::to_wstring(ainum) + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
-	}
-	if (KEY_TAP(U))
-	{
-		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-		auto ainum = ai->GetCurStateNum();
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
+	//if (KEY_TAP(U))
+	//{
+	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+	//	auto ainum = ai->GetCurStateNum();
 
-		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(0, -1);
-		curanim->Setoffset(newoffset);
-		wstring log = std::to_wstring(ainum) + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
+	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(0, -1);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = std::to_wstring(ainum) + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
-	}
-	if (KEY_TAP(J))
-	{
-		auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
-		auto ainum = ai->GetCurStateNum();
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
+	//if (KEY_TAP(J))
+	//{
+	//	auto ai = CLevelMgr::GetInst()->GetCurLevelMon()->GetAI();
+	//	auto ainum = ai->GetCurStateNum();
 
-		auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(0, 1);
-		curanim->Setoffset(newoffset);
-		wstring log = std::to_wstring(ainum) + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
+	//	auto curanim = CLevelMgr::GetInst()->GetCurLevelMon()->GetAnimator()->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(0, 1);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = std::to_wstring(ainum) + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
-	}
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
 
 
 	// 마우스 포지션

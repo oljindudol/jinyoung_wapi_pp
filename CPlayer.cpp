@@ -192,7 +192,6 @@ void CPlayer::tick(float _DT)
 	
 	if (hp < 25000.f)
 	{
-		CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\Æ÷¼Ç.wav")->Play();
 		hp = maxhp;
 		m_acctime = 0.f;
 	}

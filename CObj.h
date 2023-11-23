@@ -20,9 +20,9 @@ private:
 	vector<CComponent*>	m_vecComponent;
 	int					m_iLayerIdx;
 	bool				m_bDead;
-	float   m_RotatedRad;
 
 protected:
+	float   m_RotatedRad;
 	float m_collisiontimetoplayer;
 
 

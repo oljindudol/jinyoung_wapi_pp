@@ -48,7 +48,11 @@ private:
     float m_multi;
     ORIENTATION m_ort;
 
+    float m_mag;
+
 public:
+    void SetMag(float _mag) { m_mag = _mag; }
+    float GetMag() { return m_mag; }
     Vec2 GetOffset() { return m_vecFrm[0].vOffset; }
 
     void Setoffset(Vec2 _offset)

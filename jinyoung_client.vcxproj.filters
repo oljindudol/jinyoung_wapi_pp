@@ -158,6 +158,9 @@
     <Filter Include="03.Game\12.StageSecond\CMorningStarFall\state">
       <UniqueIdentifier>{a45b11a5-2d69-4d05-8d41-81f14347755f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Game\12.StageSecond\CNoxSpear">
+      <UniqueIdentifier>{80b799fe-a7c7-4e75-8365-f852c4c56c4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -512,8 +515,14 @@
       <Filter>03.Game\12.StageSecond\01.BM</Filter>
     </ClInclude>
     <ClInclude Include="CEyeofRuin_L.h" />
-    <ClInclude Include="CInvisibleWall.h" />
     <ClInclude Include="CEyeofRuin_R.h" />
+    <ClInclude Include="CInvisibleWall.h">
+      <Filter>03.Game\04.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CNoxSpear.h">
+      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecondPowerLeft.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -854,7 +863,13 @@
       <Filter>03.Game\12.StageSecond\01.BM</Filter>
     </ClCompile>
     <ClCompile Include="CEyeofRuin_L.cpp" />
-    <ClCompile Include="CInvisibleWall.cpp" />
     <ClCompile Include="CEyeofRuin_R.cpp" />
+    <ClCompile Include="CInvisibleWall.cpp">
+      <Filter>03.Game\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CNoxSpear.cpp">
+      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecondPowerLeft.cpp" />
   </ItemGroup>
 </Project>

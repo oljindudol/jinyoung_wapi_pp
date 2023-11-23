@@ -10,6 +10,8 @@
 CObj::CObj()
 	: m_iLayerIdx(-1)
 	, ort(ORT_LEFT)
+	, m_RotatedRad(0.f)
+	, m_bDead(false)
 {
 }
 

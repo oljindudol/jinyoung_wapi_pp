@@ -104,6 +104,7 @@ void ChainAttack::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 {
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
 	{
+		CSkillMgr::GetInst()->PlayMultipleEff(L"firstchainattackhit", 1, 0.f, Vec2(_OtherCol->GetPos().x, _OtherCol->GetPos().y), ORT_LEFT);
 		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::DESTUCTION);
 	}
 }

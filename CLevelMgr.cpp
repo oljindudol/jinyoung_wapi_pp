@@ -34,6 +34,7 @@ CLevelMgr::CLevelMgr()
 	, imag(1)
 	, m_iCurLevelNum(0)
 	, m_pRule(nullptr)
+	, m_acctime(0.f)
 {
 
 

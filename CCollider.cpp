@@ -9,9 +9,13 @@
 #include "CLevel.h"
 #include "CLayer.h"
 
+#include "CPal.h"
+
+
 CCollider::CCollider(CObj* _Owner)
 	: CComponent(_Owner)
 	, m_iCollisionCount(0)
+	, m_coltest(false)
 {
 
 }
@@ -22,6 +26,7 @@ CCollider::CCollider(const CCollider& _Origin)
 	, m_vScale(_Origin.m_vScale)
 	, m_vFinalPos(_Origin.m_vFinalPos)
 	, m_iCollisionCount(0)
+	, m_coltest(false)
 {
 }
 
@@ -61,13 +66,17 @@ void CCollider::render(HDC _dc)
 
 	float rad = GetOwner()->GetRotation();
 
+	if (m_coltest)
+	{
+		SelectObject(_dc, CPal::GetInst()->getHBrush(GREEN));
+	}
+
 	// render
 	if (0.f == rad)
 	{
 		if (0 < m_iCollisionCount)
 		{
 			SELECT_PEN(_dc, RED_PEN);
-
 			// render
 			Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
 				, int(vRenderPos.y - m_vScale.y / 2.f)
@@ -92,21 +101,30 @@ void CCollider::render(HDC _dc)
 		Vec2 DownRight((m_vScale.x / 2.f), (m_vScale.y / 2.f));
 		Vec2 DownLeft((m_vScale.x / -2.f), (m_vScale.y / 2.f)) ;
 
-		UpLeft = RotateDot(UpLeft, rad);
-		UpRight = RotateDot(UpRight, rad);
-		DownRight = RotateDot(DownRight, rad);
-		DownLeft = RotateDot(DownLeft, rad);
+		UpLeft = vRenderPos + RotateDot(UpLeft, rad);
+		UpRight = vRenderPos + RotateDot(UpRight, rad);
+		DownRight = vRenderPos + RotateDot(DownRight, rad);
+		DownLeft = vRenderPos + RotateDot(DownLeft, rad);
 
+		POINT p[4] = { {(LONG)UpLeft.x,(LONG)UpLeft.y} ,{(LONG)UpRight.x,(LONG)UpRight.y}
+		,{(LONG)DownRight.x,(LONG)DownRight.y},{(LONG)DownLeft.x,(LONG)DownLeft.y} };
+
+
+		if (m_coltest)
+		{
+			SelectObject(_dc, CPal::GetInst()->getHBrush(GREEN));
+		}
 
 		if (0 < m_iCollisionCount)
 		{
 			SELECT_PEN(_dc, RED_PEN);
 			// render
-			MoveToEx(_dc, int(vRenderPos.x +UpLeft.x), int(vRenderPos.y+UpLeft.y), nullptr);
-			LineTo(_dc, int(vRenderPos.x+UpRight.x), int(vRenderPos.y+UpRight.y));
-			LineTo(_dc, int(vRenderPos.x+DownRight.x), int(vRenderPos.y + DownRight.y));
-			LineTo(_dc, int(vRenderPos.x+DownLeft.x), int(vRenderPos.y + DownLeft.y));
-			LineTo(_dc, int(vRenderPos.x+UpLeft.x), int(vRenderPos.y + UpLeft.y));
+			Polygon(_dc, p, 4);
+			//MoveToEx(_dc, int(vRenderPos.x +UpLeft.x), int(vRenderPos.y+UpLeft.y), nullptr);
+			//LineTo(_dc, int(vRenderPos.x+UpRight.x), int(vRenderPos.y+UpRight.y));
+			//LineTo(_dc, int(vRenderPos.x+DownRight.x), int(vRenderPos.y + DownRight.y));
+			//LineTo(_dc, int(vRenderPos.x+DownLeft.x), int(vRenderPos.y + DownLeft.y));
+			//LineTo(_dc, int(vRenderPos.x+UpLeft.x), int(vRenderPos.y + UpLeft.y));
 
 		}
 		else
@@ -114,11 +132,12 @@ void CCollider::render(HDC _dc)
 			SELECT_PEN(_dc, GREEN_PEN);
 
 			// render
-			MoveToEx(_dc, int(vRenderPos.x + UpLeft.x), int(vRenderPos.y + UpLeft.y), nullptr);
-			LineTo(_dc, int(vRenderPos.x + UpRight.x), int(vRenderPos.y + UpRight.y));
-			LineTo(_dc, int(vRenderPos.x + DownRight.x), int(vRenderPos.y + DownRight.y));
-			LineTo(_dc, int(vRenderPos.x + DownLeft.x), int(vRenderPos.y + DownLeft.y));
-			LineTo(_dc, int(vRenderPos.x + UpLeft.x), int(vRenderPos.y + UpLeft.y));
+			Polygon(_dc, p, 4);
+			//MoveToEx(_dc, int(vRenderPos.x + UpLeft.x), int(vRenderPos.y + UpLeft.y), nullptr);
+			//LineTo(_dc, int(vRenderPos.x + UpRight.x), int(vRenderPos.y + UpRight.y));
+			//LineTo(_dc, int(vRenderPos.x + DownRight.x), int(vRenderPos.y + DownRight.y));
+			//LineTo(_dc, int(vRenderPos.x + DownLeft.x), int(vRenderPos.y + DownLeft.y));
+			//LineTo(_dc, int(vRenderPos.x + UpLeft.x), int(vRenderPos.y + UpLeft.y));
 		}
 	}
 

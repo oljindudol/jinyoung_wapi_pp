@@ -96,6 +96,7 @@ void CCollisionMgr::init()
 	CheckCollision(MONSTER, PLAYER_PJ);
 
 	CheckCollision(PLAYER, PLAYER_SKILL);
+	CheckCollision(PLAYER, MONSTER_POWER);
 	CheckCollision(PLAYER, MONSTER_PJ);
 	CheckCollision(PLAYER, PORTAL);
 	CheckCollision(PLAYER, FALL_OBJ);

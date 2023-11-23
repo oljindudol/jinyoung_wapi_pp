@@ -87,6 +87,24 @@ void CSkillMgr::init()
 
 	AddSkill(new CEyeofRuin_L);
 	AddSkill(new CEyeofRuin_R);
+
+	for (int i = 0; i < 5; i++)
+	{
+		AddSkillEff(new CSkill
+			, L"first", L"chainattack", L"hit"
+			, .84f, Vec2(0.f, -300.f));
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		AddSkillEff(new CSkill
+			, L"second", L"eyeofruin", L"hit"
+			, .72f, Vec2(0.f, 0.f));
+	}
+
+
+	AddSkill(new CSecondPowerLeft);
+
 }
 
 
@@ -456,7 +474,7 @@ void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos 
 		(*iter)->
 			SetEffEvent(pEff, _delay , _pos 
 				+ Vec2(
-					(float) (Scale.x * ( 0.2* RandomPercentHtH()))
+					(float) (Scale.x * ( 0.3* RandomPercentHtH()))
 					, (float) (Scale.y * (0.2 * RandomPercentHtH()))
 				)
 			, _ort);

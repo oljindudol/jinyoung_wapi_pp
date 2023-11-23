@@ -25,6 +25,7 @@ CAnim::CAnim()
 	, m_AccTime(0.f)
 	, m_ort(ORT_LEFT)
 	, m_multi(0.f)
+	, m_mag(1.f)
 {
 }
 
@@ -59,8 +60,6 @@ void CAnim::finaltick()
 
 void CAnim::render(HDC _dc)
 {
-
-
 	const FFrame& frm = m_vecFrm[m_iCurFrm];
 
 	CObj* pOwnerObject = m_pAnimator->GetOwner();
@@ -86,20 +85,42 @@ void CAnim::render(HDC _dc)
 	//회전 0일때,
 	//if (0.f == rot)
 	//{
-	BLENDFUNCTION blend = {};
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
+	if (1.f == m_mag)
+	{
+		BLENDFUNCTION blend = {};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
 
-	blend.SourceConstantAlpha = 255; // 0 ~ 255
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	
-	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + offsetx)
-		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
-		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, tmpdc
-		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
-		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, blend);
+		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + offsetx)
+			, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
+			, int(frm.vCutSize.x), int(frm.vCutSize.y)
+			, tmpdc
+			, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
+			, int(frm.vCutSize.x), int(frm.vCutSize.y)
+			, blend);
+	}
+	else
+	{
+		BLENDFUNCTION blend = {};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+
+		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f)*m_mag + offsetx)
+			, int(vRenderPos.y - (frm.vCutSize.y / 2.f) * m_mag + frm.vOffset.y)
+			, int(frm.vCutSize.x) * m_mag, int(frm.vCutSize.y) * m_mag
+			, tmpdc
+			, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
+			, int(frm.vCutSize.x), int(frm.vCutSize.y)
+			, blend);
+
+	}
+
 
 }
 	//회전이 0이아닐때
