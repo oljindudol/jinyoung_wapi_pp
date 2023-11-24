@@ -44,7 +44,15 @@ void CUI::SetUIVisible()
 
 	// 레벨에참여
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::UI, (UINT_PTR)this });
+}
 
+void CUI::SetUIVisibleSuper()
+{
+	m_visible = true;
+	SetLive();
+
+	// 레벨에참여
+	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)LAYER::SUPER_UI, (UINT_PTR)this });
 }
 
 void CUI::tick(float _DT)

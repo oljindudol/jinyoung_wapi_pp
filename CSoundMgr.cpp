@@ -91,7 +91,6 @@ CSound* CSoundMgr::GetPlayableSound(wstring _key)
 
 	while (vecsound.end() != iter2)
 	{
-		//float a = (*iter2)->GetPosition();
 
 		if (0.f == (*iter2)->GetPosition())
 		{

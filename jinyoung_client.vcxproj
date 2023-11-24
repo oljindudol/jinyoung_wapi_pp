@@ -278,6 +278,7 @@
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CStartLevel.h" />
     <ClInclude Include="CState.h" />
+    <ClInclude Include="CStateDebugUI.h" />
     <ClInclude Include="CStateMachine.h" />
     <ClInclude Include="CStatusUI.h" />
     <ClInclude Include="CTaskMgr.h" />
@@ -443,6 +444,7 @@
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CStartLevel.cpp" />
     <ClCompile Include="CState.cpp" />
+    <ClCompile Include="CStateDebugUI.cpp" />
     <ClCompile Include="CStateMachine.cpp" />
     <ClCompile Include="CStatusUI.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />

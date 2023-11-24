@@ -9,6 +9,7 @@ CState::CState()
 	, m_pPlayer(nullptr)
 	, m_stateduration(0.f)
 	, m_StateID(0)
+	, m_stateskillused(false)
 {
 }
 
@@ -19,6 +20,8 @@ CState::~CState()
 void CState::Enter()
 {
 	m_acctime = 0;
+	m_stateskillused = false;
+
 	CObj* pOwner = GetOwner();
 	pOwner->SetCollisionTime(0.f);
 

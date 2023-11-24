@@ -64,7 +64,7 @@ void CUIMgr::init()
 
 	AddUI(new CFloatingNotice);
 	AddUI(new QuickSlotUI);
-
+	AddUI(new CStateDebugUI);
 }
 
 void CUIMgr::FloatNotice(wstring _msg, float _duration)
@@ -91,6 +91,38 @@ void CUIMgr::SetUIVisible(wstring _uiname)
 		return;
 	}
 	pUI->SetUIVisible();
+}
+
+void CUIMgr::SetUIVisibleSuper(wstring _uiname)
+{
+	CUI* pUI = FindAvailableUI(_uiname);
+	if (nullptr == pUI)
+	{
+		LOG(LOG_LEVEL::LOG, (L"UI를 찾을수 없습니다"));
+		return;
+	}
+	pUI->SetUIVisibleSuper();
+}
+
+void CUIMgr::SetUIOnOffResponsible(wstring _uiname)
+{
+	auto pp = FindUI(_uiname);
+
+	if (nullptr == pp)
+		return;
+	
+	if (false == (*pp)[0]->m_visible)
+	{
+		if(_uiname == L"statedebugui")
+			(*pp)[0]->SetUIVisibleSuper();
+		else
+			(*pp)[0]->SetUIVisible();
+	}
+	else
+	{
+		(*pp)[0]->m_visible = false;
+		(*pp)[0]->Destroy();
+	}
 }
 
 void CUIMgr::DestroyUI(wstring _uiname)

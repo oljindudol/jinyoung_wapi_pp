@@ -18,6 +18,8 @@ public:
 	unordered_map<wstring, vector<CUI*>> m_UIMap;
 	void init();
 	void SetUIVisible(wstring _uiname);
+	void SetUIVisibleSuper(wstring _uiname);
+	void SetUIOnOffResponsible(wstring _uiname);
 	void DestroyUI(wstring _uiname);
 	void FloatNotice(wstring _msg, float _duration);
 

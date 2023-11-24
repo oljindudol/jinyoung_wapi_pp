@@ -64,9 +64,12 @@ void CEngine::CreateDefaultGDI()
 {
 
 	m_arrPen[BK_PEN] = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	m_arrPen[WT_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
+	m_arrPen[YELLOW_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 255, 0));
 	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
 	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
 	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
+
 
 
 	SetBkMode(m_SubTex->GetDC(), TRANSPARENT);
@@ -77,6 +80,10 @@ void CEngine::CreateDefaultGDI()
 	m_arrFont[STATUS_BAR_NAME] = CreateFont(11, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 	m_arrFont[LEVEL_ALERT] = CreateFont(15, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 
+	wstring conpath = CPathMgr::GetContentPath();
+	int a = AddFontResourceW( (conpath + L"D2Coding.ttf").c_str() );
+	m_arrFont[STATUS_DEBUG] = CreateFont(18, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("D2Coding"));
+	
 
 }
 

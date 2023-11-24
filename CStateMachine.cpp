@@ -66,21 +66,24 @@ void CStateMachine::finaltick(float _DT)
 
 float CStateMachine::GetCurstateAcctime()
 {
-	return m_pCurState->Getacctime();
+	return m_pCurState->GetAcctime();
 }
 
-void CStateMachine::AddState(UINT _id, CState* _State)
+CState* CStateMachine::AddState(UINT _id, CState* _State)
 {
 	CState* pFindState = FindState(_id);
 
 	if (nullptr != pFindState)
 	{
 		LOG(LOG_LEVEL::ERR, L"!!이미 같은 아이디의 State 가 StateMachine 에 있음!!");
-		return;
+		delete _State;
+		return nullptr;
 	}
 
 	m_mapState.insert(make_pair(_id, _State));
 	_State->m_pSM = this;
+
+	return _State;
 }
 
 CState* CStateMachine::FindState(UINT _id)

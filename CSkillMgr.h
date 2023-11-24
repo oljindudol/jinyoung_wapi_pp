@@ -72,8 +72,11 @@ private:
 	vector<CEffPlayer*> m_VecEffPlayer;
 
 public:
-	//사운드플레이어에 사운드 이벤트를 등록하는 함수
+	//이펙트플레이어에 이펙트 이벤트를 등록하는 함수
 	void PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos ,ORIENTATION _ort);
+
+	//이펙트플레이어에 이펙트 이벤트를 등록하는 함수
+	void ActivateSkillWithDelay(wstring _key,float _delay, vector<Vec2> _pos, ORIENTATION _ort);
 
 	friend class QuickSlotUI;
 };

@@ -316,6 +316,45 @@ Vec2 RotateDot(const Vec2& _Dot, float _rad)
 	return vRotateDir;
 }
 
+wstring RSpacePad(const wstring& _origin, int _size)
+{
+	int size = (int)_origin.size();
+	if (_size <= size)
+	{
+		return _origin;
+	}
+	else
+	{
+		wstring ret = _origin;
+		int cnt = (int)((_size - size));
+		for (int i = 0; i < cnt; ++i)
+		{
+			ret += L"  ";
+		}
+		return ret;
+	}
+
+}
+
+wstring LSpacePad_Number(const wstring& _origin, int _size)
+{
+	int size = (int)_origin.size();
+	if (_size <= size)
+	{
+		return _origin;
+	}
+	else
+	{
+		wstring ret = _origin;
+		int cnt = (int)((_size - size));
+		for (int i = 0; i < cnt; ++i)
+		{
+			ret = L" " + ret;
+		}
+		return ret;
+	}
+}
+
 void DrawRectToDc(HDC _dc, const Vec2& _UpRight, const Vec2& _UpLeft, const Vec2& _DownLeft, const Vec2& _DownRight)
 {
 

@@ -104,15 +104,14 @@ void CLevel::tick()
 		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 
 
-		//Vec2 voffset = Vec2(0, 0);
 		//for (int i = 0; i < 7; ++i)
 		//{
 		//	CSkillMgr::GetInst()->ActivateSkill(L"secondnoxspearuse",
 		//		Vec2(250,720) + Vec2(250 *i , 0) + voffset*i, ORT_LEFT);
 		//}
 
-		CSkillMgr::GetInst()->ActivateSkill(L"secondblindnessuse",
-			Vec2(990, 400), ORT_LEFT);
+		//CSkillMgr::GetInst()->ActivateSkill(L"secondpowermiddleuse",
+		//	Vec2(990, 400), ORT_LEFT);
 	}
 	//if (KEY_TAP(KEY::N))
 	//{

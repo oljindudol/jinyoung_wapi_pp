@@ -190,7 +190,8 @@ void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
 	
-	if (hp < 25000.f)
+	if (hp < 25000.f 
+		&& (UINT)PLAYER_STATE::DEAD != getStateMachine()->GetCurStateNum())
 	{
 		hp = maxhp;
 		m_acctime = 0.f;

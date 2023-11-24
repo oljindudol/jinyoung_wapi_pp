@@ -43,7 +43,7 @@ public:
     }
 
 
-    void AddState(UINT _id, CState* _State);
+    CState* AddState(UINT _id, CState* _State);
     CState* FindState(UINT _id);
     void ChangeState(UINT _NextID);
 

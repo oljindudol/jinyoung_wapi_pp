@@ -24,12 +24,15 @@ protected:
     float m_stateduration;
     int m_skillortsign;
     CPlayer* m_pPlayer;
+    bool m_stateskillused;
 
 
 
 
 public:
-    float Getacctime() { return m_acctime; }
+    float GetAcctime() { return m_acctime; }
+    float GetDuration() { return m_stateduration; }
+    void  Setduration(float _dur) { m_stateduration = _dur; }
     CStateMachine* GetOwnerSM() { return m_pSM; }
     CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }
     UINT GetStateID() { return m_StateID; }

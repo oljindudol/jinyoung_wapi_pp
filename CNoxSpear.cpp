@@ -8,6 +8,7 @@
 
 CNoxSpear::CNoxSpear()
 	:m_Col_On(false)
+	, m_Col_Off(false)
 {
 	m_s1 = L"second";
 	m_s2 = L"noxspear";
@@ -56,52 +57,59 @@ void CNoxSpear::tick(float _DT)
 		m_Collider->SetOffsetPos(Vec2(0.f, GetScale().y/-2.f));
 		m_Col_On = true;
 	}
+	if (3.51 > m_activedtime)
+		return;
 
-
-	if (KEY_TAP(H))
+	if (false == m_Col_Off)
 	{
-		auto curanim = m_Animator->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(-1, 0);
-		curanim->Setoffset(newoffset);
-		wstring log = curanim->GetName() + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
-
-		LOG(LOG_LEVEL::LOG, log.c_str());
+		m_Collider->SetOffsetPos(Vec2(0, -2000));
+		m_Col_Off = true;
 	}
-	if (KEY_TAP(K))
-	{
-		auto curanim = m_Animator->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(1, 0);
-		curanim->Setoffset(newoffset);
-		wstring log = curanim->GetName() + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
-	}
-	if (KEY_TAP(U))
-	{
-		auto curanim = m_Animator->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(0, -1);
-		curanim->Setoffset(newoffset);
-		wstring log = curanim->GetName() + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
+	//if (KEY_TAP(H))
+	//{
+	//	auto curanim = m_Animator->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(-1, 0);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = curanim->GetName() + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
-	}
-	if (KEY_TAP(J))
-	{
-		auto curanim = m_Animator->GetCurAnim();
-		auto newoffset = curanim->GetOffset() + Vec2(0, 1);
-		curanim->Setoffset(newoffset);
-		wstring log = curanim->GetName() + L":"
-			+ L"(" + std::to_wstring((int)newoffset.x) + L","
-			+ std::to_wstring((int)newoffset.y) + L")";
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
+	//if (KEY_TAP(K))
+	//{
+	//	auto curanim = m_Animator->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(1, 0);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = curanim->GetName() + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
 
-		LOG(LOG_LEVEL::LOG, log.c_str());
-	}
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
+	//if (KEY_TAP(U))
+	//{
+	//	auto curanim = m_Animator->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(0, -1);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = curanim->GetName() + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
+
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
+	//if (KEY_TAP(J))
+	//{
+	//	auto curanim = m_Animator->GetCurAnim();
+	//	auto newoffset = curanim->GetOffset() + Vec2(0, 1);
+	//	curanim->Setoffset(newoffset);
+	//	wstring log = curanim->GetName() + L":"
+	//		+ L"(" + std::to_wstring((int)newoffset.x) + L","
+	//		+ std::to_wstring((int)newoffset.y) + L")";
+
+	//	LOG(LOG_LEVEL::LOG, log.c_str());
+	//}
 
 
 }
@@ -109,6 +117,7 @@ void CNoxSpear::tick(float _DT)
 void CNoxSpear::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
 	m_Col_On = false;
+	m_Col_Off = false;
 	m_Collider->SetOffsetPos(Vec2(0, -2000));
 	m_Animator->Play(m_s1 + m_s2 + m_s3);
 	Super::activate(_beginpos, _ort);

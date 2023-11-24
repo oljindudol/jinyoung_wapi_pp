@@ -12,6 +12,7 @@ CObj::CObj()
 	, ort(ORT_LEFT)
 	, m_RotatedRad(0.f)
 	, m_bDead(false)
+	, m_collisiontimetoplayer(0.f)
 {
 }
 

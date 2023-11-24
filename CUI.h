@@ -14,10 +14,11 @@ private:
     bool                m_bMouseOn_Prev;
 
     bool                m_bMouseLBtnDown;
-    bool m_visible;
 
 protected:
+    bool m_visible;
     void SetUIVisible();
+    void SetUIVisibleSuper();
     wstring m_uiname;
 
 

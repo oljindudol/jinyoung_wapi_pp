@@ -265,7 +265,8 @@ CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
 
 	if (nullptr == pSkills)
 	{
-		if (DEBUG_RENDER)
+		if 
+
 		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		pSkill = nullptr;
 	}
@@ -429,7 +430,7 @@ void CSkillMgr::CEffPlayer::tick()
 		return;
 	}
 
-	// 사운드 이벤트가 존재한다면
+	// 이펙트 이벤트가 존재한다면
 	FEffectEvent& evnt = m_EventList.front();
 	if (false == evnt.activated)
 	{
@@ -493,5 +494,37 @@ void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos 
 				)
 			, _ort);
 	}
+}
 
+void CSkillMgr::ActivateSkillWithDelay(wstring _key, float _delay, vector<Vec2> _pos, ORIENTATION _ort)
+{
+	auto iter = m_VecEffPlayer.begin();
+	while (m_VecEffPlayer.end() != iter)
+	{
+		if (false == (*iter)->m_isplaying)
+			break;
+		++iter;
+	}
+
+	if (m_VecEffPlayer.end() == iter)
+	{
+		if (DEBUG_RENDER)
+			LOG(LOG_LEVEL::LOG, L"할당 가능한 이펙트 플레이어 없음")
+			return;
+	}
+
+	(*iter)->m_isplaying = true;
+
+	for (int i = 0; i < (int)_pos.size(); ++i)
+	{
+		auto pEff = FindAvailableSkill(_key);
+		//로그는 FindAvailableSkill에서처리
+		if (nullptr == pEff)
+			return;
+		pEff->m_OnActivate = true;
+
+		Vec2 Scale = pEff->m_Animator->GetScale();
+		(*iter)->
+			SetEffEvent(pEff, _delay, _pos[i], _ort);
+	}
 }

@@ -149,9 +149,6 @@
     <Filter Include="BM2State\attack%284%29">
       <UniqueIdentifier>{f1b0cac0-0d31-41b3-80b1-1d1de2845c52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BM2State\power%283%29">
-      <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\12.StageSecond\CMorningStarFall">
       <UniqueIdentifier>{d41bc091-0d3a-40f6-ba8b-7de6f5a151fe}</UniqueIdentifier>
     </Filter>
@@ -166,6 +163,9 @@
     </Filter>
     <Filter Include="03.Game\12.StageSecond\CSecondPower">
       <UniqueIdentifier>{82b0579b-f8b2-4548-a592-07ac1b24dde4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="power%283%29">
+      <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -491,13 +491,13 @@
       <Filter>BM2State\attack%284%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMPowerLeft.h">
-      <Filter>BM2State\power%283%29</Filter>
+      <Filter>power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMPowerMiddle.h">
-      <Filter>BM2State\power%283%29</Filter>
+      <Filter>power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMPowerRight.h">
-      <Filter>BM2State\power%283%29</Filter>
+      <Filter>power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFall.h">
       <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
@@ -516,9 +516,6 @@
     </ClInclude>
     <ClInclude Include="CPhaseSecond.h">
       <Filter>03.Game\12.StageSecond</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlackMage2.h">
-      <Filter>03.Game\12.StageSecond\01.BM</Filter>
     </ClInclude>
     <ClInclude Include="CInvisibleWall.h">
       <Filter>03.Game\04.Object</Filter>
@@ -542,6 +539,8 @@
     <ClInclude Include="CNoxSpear.h">
       <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
     </ClInclude>
+    <ClInclude Include="CBlackMage2.h" />
+    <ClInclude Include="CStateDebugUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -852,13 +851,13 @@
       <Filter>BM2State\attack%284%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMPowerLeft.cpp">
-      <Filter>BM2State\power%283%29</Filter>
+      <Filter>power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMPowerMiddle.cpp">
-      <Filter>BM2State\power%283%29</Filter>
+      <Filter>power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMPowerRight.cpp">
-      <Filter>BM2State\power%283%29</Filter>
+      <Filter>power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFall.cpp">
       <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
@@ -877,9 +876,6 @@
     </ClCompile>
     <ClCompile Include="CPhaseSecond.cpp">
       <Filter>03.Game\12.StageSecond</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlackMage2.cpp">
-      <Filter>03.Game\12.StageSecond\01.BM</Filter>
     </ClCompile>
     <ClCompile Include="CInvisibleWall.cpp">
       <Filter>03.Game\04.Object</Filter>
@@ -903,5 +899,7 @@
     <ClCompile Include="CNoxSpear.cpp">
       <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
     </ClCompile>
+    <ClCompile Include="CBlackMage2.cpp" />
+    <ClCompile Include="CStateDebugUI.cpp" />
   </ItemGroup>
 </Project>

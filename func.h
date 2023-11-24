@@ -43,6 +43,9 @@ void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos,int _alpha)
 void SettexturetoDcWithAlphaAndMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha, float _mag);
 Vec2 RotateDot(const Vec2& _Dot, float _rad);
 
+wstring RSpacePad(const wstring& _origin, int _size);
+wstring LSpacePad_Number(const wstring& _origin, int _size);
+
 void DrawRectToDc(HDC _dc
 	, const Vec2& _UpRight
 	, const Vec2& _UpLeft

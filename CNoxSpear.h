@@ -7,6 +7,7 @@ class CNoxSpear :
 
 private: 
     bool m_Col_On;
+    bool m_Col_Off;
 public:
     CNoxSpear();
     virtual void tick(float _DT) override;

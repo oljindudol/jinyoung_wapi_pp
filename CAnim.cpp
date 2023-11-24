@@ -113,7 +113,7 @@ void CAnim::render(HDC _dc)
 
 		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f)*m_mag + offsetx)
 			, int(vRenderPos.y - (frm.vCutSize.y / 2.f) * m_mag + frm.vOffset.y)
-			, int(frm.vCutSize.x) * m_mag, int(frm.vCutSize.y) * m_mag
+			, int(frm.vCutSize.x * m_mag), int(frm.vCutSize.y * m_mag)
 			, tmpdc
 			, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 			, int(frm.vCutSize.x), int(frm.vCutSize.y)
