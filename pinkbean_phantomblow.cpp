@@ -67,7 +67,7 @@ void pinkbean_phantomblow::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCo
 		if (!((UINT)ENORMAL_MON_STATE::REGEN == pMon->GetCurstateNum()
 			|| (UINT)ENORMAL_MON_STATE::DIE == pMon->GetCurstateNum()))
 		{
-			pMon->GetDamaged(0.01f, 12);
+			pMon->GetDamaged(0.001f, 12);
 			CSoundMgr::GetInst()->PlayMultipleSound(L"ÆÒºíhit", 12, 0.09f);
 			CSkillMgr::GetInst()->PlayMultipleEff(L"commonpinkbeanphantomblow_hit", 12, 0.09f, Vec2(_OtherCol->GetPos().x, _OwnCol->GetPos().y), ort);// - _OwnCol->GetScale().y / 2.f), ort);
 		}

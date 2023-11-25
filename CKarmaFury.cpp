@@ -137,7 +137,7 @@ void CKarmaFury::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _O
 		if (!((UINT)ENORMAL_MON_STATE::REGEN == pMon->GetCurstateNum()
 			|| (UINT)ENORMAL_MON_STATE::DIE == pMon->GetCurstateNum()))
 		{
-			pMon->GetDamaged(0.0001f, 14);
+			pMon->GetDamaged(0.001f, 14);
 			CSoundMgr::GetInst()->PlayMultipleSound(m_strhitsound, 14, 0.07f);
 			CSkillMgr::GetInst()->PlayMultipleEff(m_s1 + m_s2 + L"hit", 14, 0.09f, Vec2(_OtherCol->GetPos().x, _OwnCol->GetPos().y), ort);
 		}

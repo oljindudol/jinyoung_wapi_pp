@@ -46,6 +46,8 @@ int CSoundMgr::init(void)
 	}
 
 	LoadMultipleSound(L"팬블hit", L"sound\\팬블Hit.wav", 100);
+	LoadMultipleSound(L"itemdrop", L"sound\\DropItem.wav", 20);
+	LoadMultipleSound(L"aquireitem", L"sound\\aquireitem.wav", 20);
 
 
 	return true;

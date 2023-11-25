@@ -12,7 +12,6 @@ public:
     virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
     virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
     virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
-    virtual void render(HDC _dc) override;
     CBlackMage2(const CBlackMage2& _Origin);
     ~CBlackMage2();
 

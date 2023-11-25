@@ -1,12 +1,10 @@
 #pragma once
 #include "CObj.h"
 
-
 #include "CPlatform.h"
 #include "CSkill.h"
+
 class CTexture;
-
-
 class CCollider;
 
 class CMonster :

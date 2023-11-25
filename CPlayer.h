@@ -24,6 +24,8 @@ private:
 
 
 public:
+    float m_invincible_time;
+
     int level;
     int maxhp;
     int hp;

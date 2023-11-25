@@ -60,6 +60,7 @@ CPlayer::CPlayer()
 	, att(5)
 	, def(1000)
 	, m_acctime(0.f)
+	, m_invincible_time(0.f)
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {
@@ -190,6 +191,8 @@ void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
 	
+	m_invincible_time -= _DT;
+
 	if (hp < 25000.f 
 		&& (UINT)PLAYER_STATE::DEAD != getStateMachine()->GetCurStateNum())
 	{
@@ -506,12 +509,12 @@ void CPlayer::begin()
 void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 {
 	//dead일 경우 무시
-	if ((UINT)PLAYER_STATE::DEAD == m_PlayerState->GetCurStateNum())
+	if ((UINT)PLAYER_STATE::DEAD == m_PlayerState->GetCurStateNum() || m_invincible_time > 0.f)
 	{
 		return;
 	}
 	//TODO : DEBUFF::무적일 경우 무시
-
+	
 	//DEBUFF::다크사이트 일 경우는 호출부에서 처리
 
 	//TODO:*파괴디버프 보정 추가

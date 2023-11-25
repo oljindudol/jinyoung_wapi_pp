@@ -26,6 +26,7 @@ CAnim::CAnim()
 	, m_ort(ORT_LEFT)
 	, m_multi(0.f)
 	, m_mag(1.f)
+	, m_alpha(255)
 {
 }
 
@@ -91,7 +92,7 @@ void CAnim::render(HDC _dc)
 		blend.BlendOp = AC_SRC_OVER;
 		blend.BlendFlags = 0;
 
-		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.SourceConstantAlpha = m_alpha; // 0 ~ 255
 		blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + offsetx)
@@ -108,7 +109,7 @@ void CAnim::render(HDC _dc)
 		blend.BlendOp = AC_SRC_OVER;
 		blend.BlendFlags = 0;
 
-		blend.SourceConstantAlpha = 255; // 0 ~ 255
+		blend.SourceConstantAlpha = m_alpha; // 0 ~ 255
 		blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f)*m_mag + offsetx)
@@ -313,6 +314,41 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 	//}
 }
 
+void CAnim::CreateTurn(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul, float _period, int _fpp)
+{
+	SetName(_strphase + _strobj + _stranimname);
+
+	wstring filePath = CPathMgr::GetContentPath();
+	wstring addipath =
+		_strphase + L"\\"
+		+ _strobj + L"\\"
+		+ _stranimname;
+
+	int maxfrm = _fpp;
+	m_vecFrm.reserve(maxfrm);
+
+	wstring tmpname;
+
+	for (int i = 0; i < maxfrm; i++)
+	{
+		FFrame frm = {};
+		tmpname = addipath + L"\\0_100";
+		
+		int tmpdegree = int(-360 / _fpp)*i;
+
+		CTexture* pAtlas = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname + L"_" + std::to_wstring(tmpdegree), L"texture\\anim\\" + tmpname + L".png", tmpdegree);
+		CTexture* pAtlas_r = CAssetMgr::GetInst()->LoadTexture_r(tmpname + L"_r", L"texture\\anim\\" + tmpname + L".png");
+
+		frm.m_Atlas = pAtlas;
+		frm.m_Atlas_r = pAtlas_r;
+		frm.vOffset = _vOffset;
+		frm.Duration = (_period/_fpp) / _playmul;
+		frm.vCutSize = Vec2(pAtlas->GetWidth(), pAtlas->GetHeight());
+		m_vecFrm.push_back(frm);
+	}
+
+	m_multi = _playmul;
+}
 
 
 void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul)

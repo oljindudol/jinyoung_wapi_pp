@@ -25,6 +25,7 @@
 #include "CTexture.h"
 #include "CMonsterMgr.h"
 #include "CTimeManager.h"
+#include "CPhaseFifth.h"
 
 
 CLevelMgr::CLevelMgr()
@@ -73,6 +74,7 @@ void CLevelMgr::init()
 	// 모든 레벨 생성
 	//m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
 	//m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIFTH] = new CPhaseFifth;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_SECOND] = new CPhaseSecond;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIRST] = new CPhaseFirst;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_ZERO] = new CEnteranceLevel;
@@ -274,8 +276,8 @@ CMonster* CLevelMgr::GetCurLevelMon()
 	//if ((UINT)LEVEL_TYPE::PHASE_FOURTH == lvnum)
 	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fourthblackmage")))[0];
 
-	//if ((UINT)LEVEL_TYPE::PHASE_FIFTH == lvnum)
-	//	return (*(CMonsterMgr::GetInst()->FindMonster(L"fifthegg")))[0];
+	if ((UINT)LEVEL_TYPE::PHASE_FIFTH == lvnum)
+		return (*(CMonsterMgr::GetInst()->FindMonster(L"fifthgenesisegg")))[0];
 
 
 	return nullptr;

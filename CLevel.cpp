@@ -18,6 +18,7 @@
 #include "CMonster.h"
 
 
+
 class CEntity;
 class CLayer;
 
@@ -100,6 +101,9 @@ void CLevel::tick()
 	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
 	if (KEY_TAP(KEY::B))
 	{
+		CLevelMgr::GetInst()->GetCurLevelMon()->GetAI()->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
+
+
 		//CMonsterMgr::GetInst()->SpwanMonster(L"secondmorningstarfall",
 		//CCamera::GetInst()->GetRealPos( CKeyMgr::GetInst()->GetMousePos()));
 
@@ -277,8 +281,12 @@ void CLevel::tick()
 
 	if (KEY_TAP(KEY::LCTRL))
 	{
-		CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\포션.wav")->Play();
-		pPlayer->hp = pPlayer->maxhp;
+		if ((UINT)PLAYER_STATE::DEAD != pPlayer->getStateMachine()->GetCurStateNum()) 
+		{
+			CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\포션.wav")->Play();
+			pPlayer->hp = pPlayer->maxhp;
+		}
+
 	}
 
 	//if (KEY_TAP(M))

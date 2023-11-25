@@ -145,16 +145,6 @@ void CBlackMage2::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 {
 	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
 
-
-
-	//CPlatform* pPlatform = dynamic_cast<CPlatform*>(_OtherObj);
-
-	//if ((nullptr != pPlatform) && (pPlatform->GetLayerIdx() == LAYER::PLATFORM))
-	//{
-	//	m_Movement->SetGround(true);
-
-	//	return;
-	//}
 }
 
 void CBlackMage2::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
@@ -166,113 +156,6 @@ void CBlackMage2::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Ot
 	Super::EndOverlap(_OwnCol, _OtherObj, _OtherCol);
 }
 
-
-
-void CBlackMage2::render(HDC _dc)
-{
-	Super::render(_dc);
-
-	//Vec2 debug_renpos = GetRenderPos() - GetScale()/2 - Vec2(165,0) ;
-
-	//SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
-	//SELECT_PEN(_dc, WT_PEN);
-
-	//Rectangle(_dc
-	//	, (int)debug_renpos.x -1
-	//	, (int)debug_renpos.y
-	//	, (int)(debug_renpos.x + 165.f)
-	//	, (int)(debug_renpos.y + GetScale().y/2 -50)
-	//);
-
-	//SetBkColor(_dc, RGB(255, 255, 255));
-
-	//auto curstate = m_AI->GetCurState();
-	//auto curacctime = curstate->GetAcctime();
-	//auto curdur = curstate->GetDuration();
-
-	//int yoffset = 0;
-	//int yoffsetsize = 18;
-
-	//SELECT_FONT2(_dc, FONT_TYPE::STATUS_DEBUG);
-	//
-	////현재상태
-	//if (L"대기상태" == curstate->GetName())
-	//{
-	//	SetBkColor(_dc, RGB(255, 255, 255));
-	//	SetTextColor(_dc, RGB(0, 0, 255));
-	//}
-	//else
-	//{
-	//	SetBkColor(_dc, RGB(255, 255, 0));
-	//	SetTextColor(_dc, RGB(255, 0, 0));
-	//}
-
-	//wstring curstate_line = L"현재상태:" + curstate->GetName();
-	//TextOut(_dc, (int)(debug_renpos.x), (int)(debug_renpos.y) + yoffset* yoffsetsize, curstate_line.c_str(), (int)curstate_line.length());
-	//++yoffset;
-
-
-	//wstring percwstr = std::to_wstring((curacctime / curdur) *100.f);
-	//wstring curtimestr = std::to_wstring(curacctime);
-	//wstring curdurstr = std::to_wstring(curdur);
-
-
-	//SetBkColor(_dc, RGB(255, 255, 255));
-	////if (curacctime > curdur)
-	////{
-	////	SetTextColor(_dc, RGB(0, 0, 255));
-	////}
-
-	////상태누적시간
-	//wstring acctime_line = L"누적시간:" + curtimestr.substr(0, curtimestr.find(L".")) + L"/" + curdurstr.substr(0, curdurstr.find(L"."))
-	//	+ L"(" + percwstr.substr(0, percwstr.find(L".")) + L"%)";
-	//TextOut(_dc, (int)(debug_renpos.x), (int)(debug_renpos.y) + yoffset * yoffsetsize, acctime_line.c_str(), (int)acctime_line.length());
-	//++yoffset; ++yoffset;
-
-	//SetTextColor(_dc, RGB(0, 0, 0));
-
-	////상태별 남은 쿨타임
-	//wstring statecool_line = L"상태별 남은 쿨타임:";
-	//TextOut(_dc, (int)(debug_renpos.x), (int)(debug_renpos.y) + yoffset * yoffsetsize, statecool_line.c_str(), (int)statecool_line.length());
-	//++yoffset;
-
-	//int size = (int)sizeof(m_left_cool) / sizeof(float);
-	//for (int i = 0; i < size; ++i)
-	//{
-
-	//	if (m_left_cool[i] < 0.f)
-	//	{
-	//		SetBkColor(_dc, RGB(255, 255, 255));
-	//		SetTextColor(_dc, RGB(0, 0, 255));
-	//	}
-	//	else
-	//	{
-	//		SetBkColor(_dc, RGB(255, 255, 255));
-	//		SetTextColor(_dc, RGB(0, 0, 0));
-	//	}
-	//	if (curacctime * 1.1f > m_cooltime[i] - m_left_cool[i] &&
-	//		curacctime * 0.9f < m_cooltime[i] - m_left_cool[i]
-	//		&& 5.f < m_acctime )
-	//	{
-	//		SetBkColor(_dc, RGB(255, 255, 0));
-	//		SetTextColor(_dc, RGB(255, 0, 0));
-	//	}
-
-	//	wstring leftcool = std::to_wstring(m_left_cool[i]);
-	//	wstring cool = std::to_wstring(m_cooltime[i]);
-	//	wstring tmpmsg = RSpacePad(m_state_nick[i],4) + L": " + LSpacePad_Number(leftcool.substr(0, leftcool.find(L".")),2)
-	//		+ L"/" 
-	//		+ LSpacePad_Number(cool.substr(0, cool.find(L".")),2);
-	//	TextOut(_dc, (int)(debug_renpos.x), (int)(debug_renpos.y) + yoffset * yoffsetsize, tmpmsg.c_str(), (int)tmpmsg.length());
-	//	++yoffset;
-	//}
-
-
-	//SetBkColor(_dc, RGB(255, 255, 255));
-	//SetTextColor(_dc, RGB(0, 0, 0));
-
-
-}
 
 CBlackMage2::CBlackMage2(const CBlackMage2& _Origin)
 	:m_cooltime{

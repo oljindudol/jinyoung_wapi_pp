@@ -21,7 +21,7 @@ private:
 public:
     CAnim* GetCurAnim() { return m_CurAnim;  }
     Vec2 GetScale();
-    void Play(const wstring& _strName);//, bool _bRepeat);
+    CAnim* Play(const wstring& _strName);//, bool _bRepeat);
     void Stop();
     wstring GetCurAnimName() { return m_CurAnim->GetName(); }
 
@@ -41,6 +41,13 @@ public:
     // 아틀라스x 애니메이션 생성
     CAnim* CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname
         , Vec2 _vOffset = Vec2(),float _playmul = 1.f ,int _roop = 0 ,ORIENTATION _ort = ORT_LEFT);
+
+    // 한바퀴 회전 애니메이션 생성
+    // period : 주기 
+    // fpp :frame per period 한바퀴에 몇프레임
+    CAnim* CreateTurnAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, float _period, int _fpp
+        , Vec2 _vOffset = Vec2(),  float _playmul = 1.f, int _roop = 0, ORIENTATION _ort = ORT_LEFT);
+
 
     // 회전된 애니메이션 생성
     void CreateRotatedAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname

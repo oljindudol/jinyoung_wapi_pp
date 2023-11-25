@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CPhaseSecond.h"
 
-
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CPlatform.h"
@@ -157,6 +156,6 @@ void CPhaseSecond::tick()
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
+		ChangeLevel(LEVEL_TYPE::PHASE_FIFTH);
 	}
 }

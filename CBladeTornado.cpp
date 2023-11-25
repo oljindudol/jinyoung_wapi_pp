@@ -145,18 +145,18 @@ void CBladeTornado::activate(Vec2 _beginpos, ORIENTATION _ort)
 void CBladeTornado::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
 	CMonster* pMon = dynamic_cast<CMonster*>(_OtherObj);
-	int cnt = 14;
+	int cnt = 10;
 	if (L"firstyalda" == pMon->GetMonName()
 		|| L"firstion" == pMon->GetMonName()
 		)
-		cnt = 7;
+		cnt = 5;
 
 	if (nullptr != pMon)
 	{
 		if (!((UINT)ENORMAL_MON_STATE::REGEN == pMon->GetCurstateNum()
 			|| (UINT)ENORMAL_MON_STATE::DIE == pMon->GetCurstateNum()))
 		{
-			pMon->GetDamaged(0.0001f, cnt);
+			pMon->GetDamaged(0.001f, cnt);
 			CSoundMgr::GetInst()->PlayMultipleSound(m_strhitsound, cnt, 0.07f);
 			CSkillMgr::GetInst()->PlayMultipleEff(m_s1 + m_s2 + L"hit", cnt, 0.09f, Vec2(_OtherCol->GetPos().x, _OwnCol->GetPos().y), ort);
 		}

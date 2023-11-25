@@ -11,6 +11,11 @@ CSecondBMIdle::CSecondBMIdle()
 
 void CSecondBMIdle::finaltick(float _DT)
 {
+	if (true == GetOwnerSM()->GetForcedIdle())
+	{
+		return;
+	}
+
 	m_acctime += _DT;
 
 	if (m_stateduration > m_acctime)

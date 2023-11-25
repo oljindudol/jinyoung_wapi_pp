@@ -28,6 +28,9 @@ void CMonsterMgr::init()
 		AddMonster(new CMorningStarFall);
 	}
 
+	AddMonster(new CGenesisEgg);
+
+
 }
 
 void CMonsterMgr::tick()

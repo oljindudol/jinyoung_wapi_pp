@@ -58,12 +58,6 @@
     <Filter Include="03.Game\12.StageSecond">
       <UniqueIdentifier>{cc1d701e-7c0e-4b96-8c40-1e19dc3363dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\12.StageSecond\01.BM">
-      <UniqueIdentifier>{88fc47d1-0c28-496a-a197-52f8c99e6c8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Game\12.StageSecond\02.rulemon">
-      <UniqueIdentifier>{9804f2e4-fee4-4fc7-bc6a-06d05615dddf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\13.StageThird">
       <UniqueIdentifier>{cb0d4638-f5d5-4cfe-b7db-7287e79de593}</UniqueIdentifier>
     </Filter>
@@ -131,41 +125,47 @@
     <Filter Include="03.Game\11.StageFirst\03.rulemon2\state">
       <UniqueIdentifier>{9527d5cb-cb45-4939-9ee0-c2a862ca7544}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\11.StageFirst\dakfalling">
-      <UniqueIdentifier>{9b4d8077-f20b-4068-ae3f-faa4b33d7cc7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Game\11.StageFirst\dakfalling\state">
-      <UniqueIdentifier>{f9e458c9-fed2-43c0-b770-9437b479a628}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\10.StageZero\Player\Skill\DS">
       <UniqueIdentifier>{234b98fc-5c21-4b18-8c5c-ff9dd7cea803}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BM2State">
+    <Filter Include="03.Game\12.StageSecond\BM2State">
       <UniqueIdentifier>{67b21425-99be-4ad4-a6df-0c62036866ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BM2State\normal%282%29">
+    <Filter Include="03.Game\12.StageSecond\BM2State\normal%282%29">
       <UniqueIdentifier>{31649890-1dd5-4f4a-8b4f-7d80fef13d8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BM2State\attack%284%29">
+    <Filter Include="03.Game\12.StageSecond\BM2State\attack%284%29">
       <UniqueIdentifier>{f1b0cac0-0d31-41b3-80b1-1d1de2845c52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\12.StageSecond\CMorningStarFall">
+    <Filter Include="03.Game\12.StageSecond\BM2State\power%283%29">
+      <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\12.StageSecond\BM2Skill">
+      <UniqueIdentifier>{69243044-812e-41ec-9e22-d90312a67740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\12.StageSecond\BM2Power">
+      <UniqueIdentifier>{99dbc183-5419-40f4-8720-5678a8ef17f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\12.StageSecond\BM2Skill\CMorningStarFall">
       <UniqueIdentifier>{d41bc091-0d3a-40f6-ba8b-7de6f5a151fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\12.StageSecond\CMorningStarFall\state">
+    <Filter Include="03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state">
       <UniqueIdentifier>{a45b11a5-2d69-4d05-8d41-81f14347755f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\12.StageSecond\CNoxSpear">
-      <UniqueIdentifier>{80b799fe-a7c7-4e75-8365-f852c4c56c4f}</UniqueIdentifier>
+    <Filter Include="03.Game\11.StageFirst\ChainAttack">
+      <UniqueIdentifier>{88abbe09-df26-4b62-9f0f-69fbce810d43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\12.StageSecond\CEyeofRuin">
-      <UniqueIdentifier>{fdd725d8-3c35-4100-8ab9-d6d055195719}</UniqueIdentifier>
+    <Filter Include="03.Game\11.StageFirst\Darkfalling">
+      <UniqueIdentifier>{9b4d8077-f20b-4068-ae3f-faa4b33d7cc7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\12.StageSecond\CSecondPower">
-      <UniqueIdentifier>{82b0579b-f8b2-4548-a592-07ac1b24dde4}</UniqueIdentifier>
+    <Filter Include="03.Game\11.StageFirst\Darkfalling\state">
+      <UniqueIdentifier>{f9e458c9-fed2-43c0-b770-9437b479a628}</UniqueIdentifier>
     </Filter>
-    <Filter Include="power%283%29">
-      <UniqueIdentifier>{4f7a6a98-89e4-47a8-b9d0-38f16bc859d6}</UniqueIdentifier>
+    <Filter Include="EggState">
+      <UniqueIdentifier>{9a5ed572-1772-4654-bced-5ec44422a344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{0caf88c4-0860-45ef-a1c2-7aee6d925270}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -388,9 +388,6 @@
     <ClInclude Include="CNormalMonTrace.h">
       <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
     </ClInclude>
-    <ClInclude Include="ChainAttack.h">
-      <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
-    </ClInclude>
     <ClInclude Include="rulemon11.h">
       <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
     </ClInclude>
@@ -410,7 +407,7 @@
       <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFalling.h">
-      <Filter>03.Game\11.StageFirst\dakfalling</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling</Filter>
     </ClInclude>
     <ClInclude Include="CRuleMon12Idle.h">
       <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
@@ -422,13 +419,13 @@
       <Filter>04.CurWork</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFallingDie.h">
-      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling\state</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFallingIdle.h">
-      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling\state</Filter>
     </ClInclude>
     <ClInclude Include="CDarkFallingRegen.h">
-      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling\state</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerDead.h">
       <Filter>03.Game\10.StageZero\Player\State</Filter>
@@ -473,46 +470,46 @@
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMDie.h">
-      <Filter>BM2State\normal%282%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\normal%282%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMIdle.h">
-      <Filter>BM2State\normal%282%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\normal%282%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMBlindness.h">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMEyeofRuin.h">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMMorningStarFall.h">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMNoxSpear.h">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMPowerLeft.h">
-      <Filter>power%283%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMPowerMiddle.h">
-      <Filter>power%283%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CSecondBMPowerRight.h">
-      <Filter>power%283%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\power%283%29</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFall.h">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFallRegen.h">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFallDie.h">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state</Filter>
     </ClInclude>
     <ClInclude Include="CMorningStarFallIdle.h">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state</Filter>
     </ClInclude>
     <ClInclude Include="CUnderDog.h">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall</Filter>
     </ClInclude>
     <ClInclude Include="CPhaseSecond.h">
       <Filter>03.Game\12.StageSecond</Filter>
@@ -520,27 +517,61 @@
     <ClInclude Include="CInvisibleWall.h">
       <Filter>03.Game\04.Object</Filter>
     </ClInclude>
-    <ClInclude Include="CBlindness.h" />
+    <ClInclude Include="CStateDebugUI.h">
+      <Filter>03.Game\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CGenesisEgg.h" />
+    <ClInclude Include="CBlackMage2.h">
+      <Filter>03.Game\12.StageSecond</Filter>
+    </ClInclude>
+    <ClInclude Include="CBlindness.h">
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
+    </ClInclude>
     <ClInclude Include="CSecondPowerLeft.h">
-      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Power</Filter>
     </ClInclude>
     <ClInclude Include="CSecondPowerMiddle.h">
-      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Power</Filter>
     </ClInclude>
     <ClInclude Include="CSecondPowerRight.h">
-      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
-    </ClInclude>
-    <ClInclude Include="CEyeofRuin_L.h">
-      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
-    </ClInclude>
-    <ClInclude Include="CEyeofRuin_R.h">
-      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Power</Filter>
     </ClInclude>
     <ClInclude Include="CNoxSpear.h">
-      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
     </ClInclude>
-    <ClInclude Include="CBlackMage2.h" />
-    <ClInclude Include="CStateDebugUI.h" />
+    <ClInclude Include="CEyeofRuin_L.h">
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CEyeofRuin_R.h">
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="ChainAttack.h">
+      <Filter>03.Game\11.StageFirst\ChainAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="CGEggDie.h">
+      <Filter>EggState</Filter>
+    </ClInclude>
+    <ClInclude Include="CGEggHit.h">
+      <Filter>EggState</Filter>
+    </ClInclude>
+    <ClInclude Include="CGEggIdle.h">
+      <Filter>EggState</Filter>
+    </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemAbsorbing.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemOnAir.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemOnGround.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CPhaseFifth.h">
+      <Filter>Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -751,9 +782,6 @@
     <ClCompile Include="CNormalMonTrace.cpp">
       <Filter>03.Game\11.StageFirst\01.ion+yalda\state</Filter>
     </ClCompile>
-    <ClCompile Include="ChainAttack.cpp">
-      <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
-    </ClCompile>
     <ClCompile Include="rulemon11.cpp">
       <Filter>03.Game\11.StageFirst\02.rulemon1</Filter>
     </ClCompile>
@@ -767,7 +795,7 @@
       <Filter>03.Game\11.StageFirst\03.rulemon2</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFalling.cpp">
-      <Filter>03.Game\11.StageFirst\dakfalling</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling</Filter>
     </ClCompile>
     <ClCompile Include="CRuleMon12Attack.cpp">
       <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
@@ -776,13 +804,13 @@
       <Filter>03.Game\11.StageFirst\03.rulemon2\state</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFallingDie.cpp">
-      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling\state</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFallingIdle.cpp">
-      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling\state</Filter>
     </ClCompile>
     <ClCompile Include="CDarkFallingRegen.cpp">
-      <Filter>03.Game\11.StageFirst\dakfalling\state</Filter>
+      <Filter>03.Game\11.StageFirst\Darkfalling\state</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>04.CurWork</Filter>
@@ -833,46 +861,46 @@
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMDie.cpp">
-      <Filter>BM2State\normal%282%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\normal%282%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMIdle.cpp">
-      <Filter>BM2State\normal%282%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\normal%282%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMBlindness.cpp">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMEyeofRuin.cpp">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMMorningStarFall.cpp">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMNoxSpear.cpp">
-      <Filter>BM2State\attack%284%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\attack%284%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMPowerLeft.cpp">
-      <Filter>power%283%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMPowerMiddle.cpp">
-      <Filter>power%283%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CSecondBMPowerRight.cpp">
-      <Filter>power%283%29</Filter>
+      <Filter>03.Game\12.StageSecond\BM2State\power%283%29</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFall.cpp">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFallRegen.cpp">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFallDie.cpp">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state</Filter>
     </ClCompile>
     <ClCompile Include="CMorningStarFallIdle.cpp">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall\state</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall\state</Filter>
     </ClCompile>
     <ClCompile Include="CUnderDog.cpp">
-      <Filter>03.Game\12.StageSecond\CMorningStarFall</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall</Filter>
     </ClCompile>
     <ClCompile Include="CPhaseSecond.cpp">
       <Filter>03.Game\12.StageSecond</Filter>
@@ -880,26 +908,60 @@
     <ClCompile Include="CInvisibleWall.cpp">
       <Filter>03.Game\04.Object</Filter>
     </ClCompile>
-    <ClCompile Include="CBlindness.cpp" />
+    <ClCompile Include="CStateDebugUI.cpp">
+      <Filter>03.Game\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CGenesisEgg.cpp" />
+    <ClCompile Include="CBlackMage2.cpp">
+      <Filter>03.Game\12.StageSecond</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlindness.cpp">
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
+    </ClCompile>
     <ClCompile Include="CSecondPowerLeft.cpp">
-      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Power</Filter>
     </ClCompile>
     <ClCompile Include="CSecondPowerMiddle.cpp">
-      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Power</Filter>
     </ClCompile>
     <ClCompile Include="CSecondPowerRight.cpp">
-      <Filter>03.Game\12.StageSecond\CSecondPower</Filter>
-    </ClCompile>
-    <ClCompile Include="CEyeofRuin_L.cpp">
-      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
-    </ClCompile>
-    <ClCompile Include="CEyeofRuin_R.cpp">
-      <Filter>03.Game\12.StageSecond\CEyeofRuin</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Power</Filter>
     </ClCompile>
     <ClCompile Include="CNoxSpear.cpp">
-      <Filter>03.Game\12.StageSecond\CNoxSpear</Filter>
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
     </ClCompile>
-    <ClCompile Include="CBlackMage2.cpp" />
-    <ClCompile Include="CStateDebugUI.cpp" />
+    <ClCompile Include="CEyeofRuin_L.cpp">
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CEyeofRuin_R.cpp">
+      <Filter>03.Game\12.StageSecond\BM2Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="ChainAttack.cpp">
+      <Filter>03.Game\11.StageFirst\ChainAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="CGEggDie.cpp">
+      <Filter>EggState</Filter>
+    </ClCompile>
+    <ClCompile Include="CGEggHit.cpp">
+      <Filter>EggState</Filter>
+    </ClCompile>
+    <ClCompile Include="CGEggIdle.cpp">
+      <Filter>EggState</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemAbsorbing.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemOnAir.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemOnGround.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhaseFifth.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

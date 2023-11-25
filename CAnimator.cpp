@@ -70,13 +70,15 @@ Vec2 CAnimator::GetScale()
 	return Vec2();
 }
 
-void CAnimator::Play(const wstring& _strName)
+CAnim* CAnimator::Play(const wstring& _strName)
 {
 	//m_bRepeat = _bRepeat;
 
 	m_CurAnim = FindAnim(_strName);
 	m_CurAnim->m_bFinish = false;
 	m_CurAnim->m_iCurFrm = 0;
+
+	return m_CurAnim;
 }
 
 void CAnimator::Stop()
@@ -129,6 +131,26 @@ CAnim* CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _stro
 	pAnim->m_iRoop = _roop;
 	pAnim->m_ort = _ort;
 	pAnim->Create(_strphase, _strobj, _stranimname,_vOffset,_playmul);
+	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
+
+	return pAnim;
+}
+
+CAnim* CAnimator::CreateTurnAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, float _period, int _fpp
+	, Vec2 _vOffset, float _playmul, int _roop, ORIENTATION _ort)
+{
+	CAnim* pAnim = FindAnim(_strphase + _strobj + _stranimname);
+	if (IsValid(pAnim))
+	{
+		return nullptr;
+	}
+
+	pAnim = new CAnim;
+	pAnim->m_pAnimator = this;
+	pAnim->m_iRoop = _roop;
+	pAnim->m_ort = _ort;
+
+	pAnim->CreateTurn(_strphase, _strobj, _stranimname, _vOffset,_playmul ,_period, _fpp);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
 
 	return pAnim;

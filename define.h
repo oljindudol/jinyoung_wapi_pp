@@ -161,6 +161,7 @@ enum LAYER
 	MONSTER,
 	MONSTER_PJB,
 	PLAYER,
+	ITEM,
 	PLAYER_PJ,
 	PLAYER_SKILL,
 	MONSTER_POWER,
@@ -239,7 +240,7 @@ enum class LEVEL_TYPE
 	PHASE_SECOND,		//2
 	//PHASE_THIRD,		//3
 	//PHASE_FOURTH,		//4
-	//PHASE_FIFTH,		//5
+	PHASE_FIFTH,		//5
 	END,
 };
 
@@ -282,6 +283,13 @@ enum class PLAYER_STATE
 	DEAD	,
 };
 
+
+enum class ITEM_STATE
+{
+	ON_AIR,
+	ON_GROUND,
+	ABSORBING,
+};
 
 enum ORIENTATION
 {

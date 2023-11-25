@@ -49,10 +49,14 @@ private:
     ORIENTATION m_ort;
 
     float m_mag;
+    int m_alpha;
 
 public:
     void SetMag(float _mag) { m_mag = _mag; }
     float GetMag() { return m_mag; }
+    void SetAlpha(int _alpha) { m_alpha = _alpha; }
+    int GetAlpha() { return m_alpha; }
+
     Vec2 GetOffset() { return m_vecFrm[0].vOffset; }
 
     void Setoffset(Vec2 _offset)
@@ -73,6 +77,11 @@ public:
 
     // 아틀라스x 애님 생성
     void Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul );
+
+    // 한바퀴 회전 애님 생성
+    // period : 주기 
+    // fpp :frame per period 한바퀴에 몇프레임
+    void CreateTurn(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul, float _period ,int _fpp);
 
     void CreateRotated(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul);
 

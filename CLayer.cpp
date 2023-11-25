@@ -123,6 +123,8 @@ void CLayer::DeleteAllObjects()
 		{ continue;}
 		if ((LAYER::FALL_OBJ) == idxlayer)
 		{continue;}
+		if ((LAYER::ITEM) == idxlayer)
+		{continue;}
 		if(m_vecObjects[i])
 		delete m_vecObjects[i];
 	}

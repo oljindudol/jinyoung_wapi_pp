@@ -347,6 +347,9 @@ void resurr1()
 	
 	cp->getStateMachine()->ChangeState((UINT)PLAYER_STATE::IDLE);
 
+
+	cp->m_invincible_time = 5.f;
+
 	cp->hp = cp->maxhp;
 	cp->mp = cp->maxmp;
 }
@@ -360,6 +363,8 @@ void resurr2()
 
 	cp->hp = cp->maxhp;
 	cp->mp = cp->maxmp;
+
+	cp->m_invincible_time = 5.f;
 
 	ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
 }

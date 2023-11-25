@@ -265,8 +265,7 @@ CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
 
 	if (nullptr == pSkills)
 	{
-		if 
-
+		if (DEBUG_RENDER)
 		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		pSkill = nullptr;
 	}

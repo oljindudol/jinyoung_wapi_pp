@@ -54,4 +54,4 @@
 
 //5페이즈 몬스터
 // 1. 창세의알 (보상상자)
-//#include "CGenesisEgg"
+#include "CGenesisEgg.h"

@@ -48,11 +48,18 @@ void CStateDebugUI::render(HDC _dc)
 
 	SELECT_FONT2(_dc, FONT_TYPE::STATUS_DEBUG);
 
+	wstring staname = curstate->GetName();
+
 	//현재상태
-	if (L"대기상태" == curstate->GetName())
+	if (L"대기상태" == staname)
 	{
 		SetBkColor(_dc, RGB(255, 255, 255));
-		SetTextColor(_dc, RGB(255, 255, 255));
+		SetTextColor(_dc, RGB(0, 0, 255));
+
+		if (true == m_bm2->m_AI->GetForcedIdle())
+		{
+			staname = L"강제대기";
+		}
 	}
 	else
 	{
@@ -60,7 +67,7 @@ void CStateDebugUI::render(HDC _dc)
 		SetTextColor(_dc, RGB(255, 0, 0));
 	}
 
-	wstring curstate_line = L"현재상태:" + curstate->GetName();
+	wstring curstate_line = L"현재상태:" + staname;
 	TextOut(_dc, (int)(debug_renpos.x), (int)(debug_renpos.y) + yoffset * yoffsetsize, curstate_line.c_str(), (int)curstate_line.length());
 	++yoffset;
 
@@ -121,8 +128,7 @@ void CStateDebugUI::render(HDC _dc)
 	}
 
 
-	SetBkColor(_dc, RGB(255, 255, 255));
-	SetTextColor(_dc, RGB(0, 0, 0));
+	SetTextColor(_dc, RGB(255, 255, 255));
 }
 
 void CStateDebugUI::begin()
