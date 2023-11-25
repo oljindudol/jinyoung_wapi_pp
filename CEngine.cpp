@@ -79,6 +79,8 @@ void CEngine::CreateDefaultGDI()
 	m_arrFont[UPPER_BAR_PERCENT] = CreateFont(8, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("궁서"));
 	m_arrFont[STATUS_BAR_NAME] = CreateFont(11, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 	m_arrFont[LEVEL_ALERT] = CreateFont(15, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
+	m_arrFont[ACHIVEMENT] = CreateFont(15, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
+	m_arrFont[END_ROLL] = CreateFont(30, 0, 0, 0, 700, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 
 	wstring conpath = CPathMgr::GetContentPath();
 	int a = AddFontResourceW( (conpath + L"D2Coding.ttf").c_str() );

@@ -24,6 +24,9 @@
 #include "CSecondPowerMiddle.h"
 #include "CBlindness.h"
 
+#include "CAchievement.h"
+#include "CEndroll.h"
+
 //3페이즈 스킬
 //#include "CLaser.h"
 

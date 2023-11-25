@@ -7,7 +7,6 @@ class CUI :
 
 private:
     CUI* m_ParentUI;
-    vector<CUI*>        m_vecChildUI;
     Vec2                m_vFinalPos;
 
     bool                m_bMouseOn;
@@ -16,6 +15,7 @@ private:
     bool                m_bMouseLBtnDown;
 
 protected:
+    vector<CUI*>        m_vecChildUI;
     bool m_visible;
     void SetUIVisible();
     void SetUIVisibleSuper();

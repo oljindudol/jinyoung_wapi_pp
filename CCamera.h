@@ -30,6 +30,7 @@ public:
 	void tick();
 	void render(HDC _dc);
 	void SetLookAt(Vec2 _vLookAt) { m_vLookAt = _vLookAt; }
+	Vec2 GetLookAt() { return m_vLookAt; }
 
 
 	void FadeIn(float _time)

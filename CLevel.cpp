@@ -17,12 +17,8 @@
 #include "CLevelMgr.h"
 #include "CMonster.h"
 
-
-
 class CEntity;
 class CLayer;
-
-
 
 CLevel::CLevel()
 	: m_TileRow(0)
@@ -101,6 +97,18 @@ void CLevel::tick()
 	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
 	if (KEY_TAP(KEY::B))
 	{
+
+		CSkillMgr::GetInst()->ActivateSkill(L"fifthendrolluse",
+			Vec2(990, 400), ORT_LEFT);
+
+		CSkillMgr::GetInst()->ActivateSkill(L"fifthachievementuse",
+			Vec2(990, 400), ORT_LEFT);
+
+
+	}
+
+	if (KEY_TAP(KEY::V))
+	{
 		CLevelMgr::GetInst()->GetCurLevelMon()->GetAI()->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 
 
@@ -142,7 +150,10 @@ void CLevel::tick()
 //}
 
 
-
+	if (KEY_TAP(KEY::I))
+	{
+		CUIMgr::GetInst()->SetUIOnOffResponsible(L"inventoryui");
+	}
 
 
 	// 

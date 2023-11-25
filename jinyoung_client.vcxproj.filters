@@ -572,6 +572,11 @@
     <ClInclude Include="CPhaseFifth.h">
       <Filter>Item</Filter>
     </ClInclude>
+    <ClInclude Include="CInventory.h" />
+    <ClInclude Include="CInventoryItem.h" />
+    <ClInclude Include="CItemInfoUI.h" />
+    <ClInclude Include="CAchievement.h" />
+    <ClInclude Include="CEndroll.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -963,5 +968,10 @@
     <ClCompile Include="CPhaseFifth.cpp">
       <Filter>Item</Filter>
     </ClCompile>
+    <ClCompile Include="CInventory.cpp" />
+    <ClCompile Include="CInventoryItem.cpp" />
+    <ClCompile Include="CItemInfoUI.cpp" />
+    <ClCompile Include="CAchievement.cpp" />
+    <ClCompile Include="CEndroll.cpp" />
   </ItemGroup>
 </Project>

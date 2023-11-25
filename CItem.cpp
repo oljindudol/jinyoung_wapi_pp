@@ -14,6 +14,8 @@
 #include "CSoundMgr.h"
 
 #include "CKeyMgr.h"
+#include "CUIMgr.h"
+#include "CInventory.h"
 
 CItem::CItem(wstring _name, int _number)
 	:Super::CObj()
@@ -67,6 +69,18 @@ void CItem::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 			&& (UINT)LAYER::PLAYER == _OtherObj->GetLayerIdx())
 		{
 			CSoundMgr::GetInst()->PlayMultipleSound(L"aquireitem", 1, 0.05f);
+			auto puis = CUIMgr::GetInst()->FindUI(L"inventoryui");
+			if (nullptr != puis)
+			{
+				auto pinven = dynamic_cast<CInventory*>( (*puis)[0] );
+				if (nullptr != pinven)
+				{
+					pinven->GetItem();
+				}
+			}
+
+
+
 			m_SM->ChangeState((UINT)ITEM_STATE::ABSORBING);
 		}
 

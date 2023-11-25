@@ -15,6 +15,8 @@ CPanelUI::~CPanelUI()
 
 void CPanelUI::tick(float _DT)
 {
+
+
 	if (IsLBtnDown())
 	{
 		Vec2 vDiff = m_vLbtnDownPos - CKeyMgr::GetInst()->GetMousePos();

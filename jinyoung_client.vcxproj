@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAchievement.h" />
     <ClInclude Include="CAnim.h" />
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CAsset.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="CDarkFallingIdle.h" />
     <ClInclude Include="CDarkFallingRegen.h" />
     <ClInclude Include="CEditorLevel.h" />
+    <ClInclude Include="CEndroll.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CErdaNova.h" />
@@ -208,6 +210,8 @@
     </ClInclude>
     <ClInclude Include="CGuided.h" />
     <ClInclude Include="ChainAttack.h" />
+    <ClInclude Include="CInventory.h" />
+    <ClInclude Include="CInventoryItem.h" />
     <ClInclude Include="CInvisibleWall.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CItemAbsorbing.h">
@@ -216,6 +220,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CItemInfoUI.h" />
     <ClInclude Include="CItemOnAir.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -367,6 +372,7 @@
     <ClInclude Include="yalda.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAchievement.cpp" />
     <ClCompile Include="CAnim.cpp" />
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CAsset.cpp" />
@@ -388,6 +394,7 @@
     <ClCompile Include="CDarkFallingIdle.cpp" />
     <ClCompile Include="CDarkFallingRegen.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
+    <ClCompile Include="CEndroll.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CErdaNova.cpp" />
@@ -420,6 +427,8 @@
     </ClCompile>
     <ClCompile Include="CGuided.cpp" />
     <ClCompile Include="ChainAttack.cpp" />
+    <ClCompile Include="CInventory.cpp" />
+    <ClCompile Include="CInventoryItem.cpp" />
     <ClCompile Include="CInvisibleWall.cpp" />
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CItemAbsorbing.cpp">
@@ -428,6 +437,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CItemInfoUI.cpp" />
     <ClCompile Include="CItemOnAir.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

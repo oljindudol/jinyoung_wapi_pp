@@ -65,6 +65,8 @@ void CUIMgr::init()
 	AddUI(new CFloatingNotice);
 	AddUI(new QuickSlotUI);
 	AddUI(new CStateDebugUI);
+
+	AddUI(new CInventory);
 }
 
 void CUIMgr::FloatNotice(wstring _msg, float _duration)

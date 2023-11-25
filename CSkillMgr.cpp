@@ -118,6 +118,8 @@ void CSkillMgr::init()
 	}
 
 	AddSkill(new CBlindness);
+	AddSkill(new CAchievement);
+	AddSkill(new CEndroll);
 
 }
 

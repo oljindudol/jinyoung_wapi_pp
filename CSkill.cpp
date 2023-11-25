@@ -53,7 +53,8 @@ void CSkill::activate(Vec2 _beginpos, ORIENTATION _ort)
 	CTaskMgr::GetInst()->AddTask(FTask{ CREATE_OBJECT, (UINT_PTR)m_skilllayer, (UINT_PTR)this });
 
 	// 애니메이션 play
-	m_Animator->Play(m_Animator->GetCurAnimName());
+	if(nullptr != m_Animator)
+		m_Animator->Play(m_Animator->GetCurAnimName());
 
 }
 

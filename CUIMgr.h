@@ -36,5 +36,6 @@ public:
 	int FindNextUINumber(wstring _uiname);
 
 	friend class CSkillMgr;
+	friend class CItem;
 };
 
