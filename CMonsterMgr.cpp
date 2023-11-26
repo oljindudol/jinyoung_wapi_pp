@@ -29,7 +29,7 @@ void CMonsterMgr::init()
 	}
 
 	AddMonster(new CGenesisEgg);
-
+	AddMonster(new CAmon);
 
 }
 

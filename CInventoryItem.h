@@ -11,6 +11,7 @@ public:
     CTexture* m_ItemIcon;
     CTexture* m_Iteminfo;
     CItemInfoUI* m_pCItemInfoUI;
+    float m_onclick;
 
     bool m_itemon;
     bool m_hovered;
@@ -23,6 +24,7 @@ public:
     virtual void OnHovered(Vec2 _vMousePos) override;
     virtual void MouseOn(Vec2 _vMousePos) override;
     virtual void LBtnClicked(Vec2 _vMousePos)  override;
+    virtual void DoubleClicked();
 
     ~CInventoryItem();
 

@@ -79,9 +79,6 @@
     <Filter Include="03.Game\15.StageFifth">
       <UniqueIdentifier>{898bae20-0c12-4092-a29c-869178e999ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Game\15.StageFifth\01.Egg">
-      <UniqueIdentifier>{973d1514-fac0-4916-b850-afa34bd31c33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Game\09.Skill">
       <UniqueIdentifier>{9d289d84-0734-4372-8b0b-ddb22204b619}</UniqueIdentifier>
     </Filter>
@@ -161,11 +158,14 @@
     <Filter Include="03.Game\11.StageFirst\Darkfalling\state">
       <UniqueIdentifier>{f9e458c9-fed2-43c0-b770-9437b479a628}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EggState">
-      <UniqueIdentifier>{9a5ed572-1772-4654-bced-5ec44422a344}</UniqueIdentifier>
+    <Filter Include="03.Game\15.StageFifth\UI">
+      <UniqueIdentifier>{e3093b39-c991-49d0-a391-017438e234fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Item">
+    <Filter Include="03.Game\15.StageFifth\Item">
       <UniqueIdentifier>{0caf88c4-0860-45ef-a1c2-7aee6d925270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\15.StageFifth\EggState">
+      <UniqueIdentifier>{9a5ed572-1772-4654-bced-5ec44422a344}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -520,7 +520,6 @@
     <ClInclude Include="CStateDebugUI.h">
       <Filter>03.Game\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="CGenesisEgg.h" />
     <ClInclude Include="CBlackMage2.h">
       <Filter>03.Game\12.StageSecond</Filter>
     </ClInclude>
@@ -549,34 +548,51 @@
       <Filter>03.Game\11.StageFirst\ChainAttack</Filter>
     </ClInclude>
     <ClInclude Include="CGEggDie.h">
-      <Filter>EggState</Filter>
+      <Filter>03.Game\15.StageFifth\EggState</Filter>
     </ClInclude>
     <ClInclude Include="CGEggHit.h">
-      <Filter>EggState</Filter>
+      <Filter>03.Game\15.StageFifth\EggState</Filter>
     </ClInclude>
     <ClInclude Include="CGEggIdle.h">
-      <Filter>EggState</Filter>
+      <Filter>03.Game\15.StageFifth\EggState</Filter>
     </ClInclude>
     <ClInclude Include="CItem.h">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClInclude>
     <ClInclude Include="CItemAbsorbing.h">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClInclude>
     <ClInclude Include="CItemOnAir.h">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClInclude>
     <ClInclude Include="CItemOnGround.h">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClInclude>
     <ClInclude Include="CPhaseFifth.h">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClInclude>
-    <ClInclude Include="CInventory.h" />
-    <ClInclude Include="CInventoryItem.h" />
-    <ClInclude Include="CItemInfoUI.h" />
-    <ClInclude Include="CAchievement.h" />
-    <ClInclude Include="CEndroll.h" />
+    <ClInclude Include="CAchievement.h">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CEndroll.h">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CInventory.h">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CInventoryItem.h">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemInfoUI.h">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CAmon.h" />
+    <ClInclude Include="CMouseCol.h" />
+    <ClInclude Include="CDialogBox.h" />
+    <ClInclude Include="CDialogBtn.h" />
+    <ClInclude Include="CGenesisEgg.h">
+      <Filter>03.Game\15.StageFifth</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -916,7 +932,6 @@
     <ClCompile Include="CStateDebugUI.cpp">
       <Filter>03.Game\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="CGenesisEgg.cpp" />
     <ClCompile Include="CBlackMage2.cpp">
       <Filter>03.Game\12.StageSecond</Filter>
     </ClCompile>
@@ -945,33 +960,50 @@
       <Filter>03.Game\11.StageFirst\ChainAttack</Filter>
     </ClCompile>
     <ClCompile Include="CGEggDie.cpp">
-      <Filter>EggState</Filter>
+      <Filter>03.Game\15.StageFifth\EggState</Filter>
     </ClCompile>
     <ClCompile Include="CGEggHit.cpp">
-      <Filter>EggState</Filter>
+      <Filter>03.Game\15.StageFifth\EggState</Filter>
     </ClCompile>
     <ClCompile Include="CGEggIdle.cpp">
-      <Filter>EggState</Filter>
+      <Filter>03.Game\15.StageFifth\EggState</Filter>
     </ClCompile>
     <ClCompile Include="CItem.cpp">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClCompile>
     <ClCompile Include="CItemAbsorbing.cpp">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClCompile>
     <ClCompile Include="CItemOnAir.cpp">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClCompile>
     <ClCompile Include="CItemOnGround.cpp">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClCompile>
     <ClCompile Include="CPhaseFifth.cpp">
-      <Filter>Item</Filter>
+      <Filter>03.Game\15.StageFifth\Item</Filter>
     </ClCompile>
-    <ClCompile Include="CInventory.cpp" />
-    <ClCompile Include="CInventoryItem.cpp" />
-    <ClCompile Include="CItemInfoUI.cpp" />
-    <ClCompile Include="CAchievement.cpp" />
-    <ClCompile Include="CEndroll.cpp" />
+    <ClCompile Include="CAchievement.cpp">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CEndroll.cpp">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CInventory.cpp">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CInventoryItem.cpp">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemInfoUI.cpp">
+      <Filter>03.Game\15.StageFifth\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CAmon.cpp" />
+    <ClCompile Include="CMouseCol.cpp" />
+    <ClCompile Include="CDialogBox.cpp" />
+    <ClCompile Include="CDialogBtn.cpp" />
+    <ClCompile Include="CGenesisEgg.cpp">
+      <Filter>03.Game\15.StageFifth</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

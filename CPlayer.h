@@ -21,6 +21,7 @@ private:
     class CMovement* m_Movement;
     class CStateMachine* m_PlayerState;
     float m_acctime;
+    bool completemission;
 
 
 public:
@@ -34,6 +35,8 @@ public:
     int att;
     int def;
 
+    bool HasCompleteMission() { return completemission; }
+    void CompleteMission() { completemission = true; }
 
     class CMovement* getMovement() { return m_Movement; }
     class CCollider* getCollider() { return m_Collider; }
@@ -53,5 +56,10 @@ public:
     CPlayer(const CPlayer& _Origin);
     ~CPlayer();
 
+
+
+
+    friend class CDialogBox;
+    friend class CDialogBtn;
 };
 

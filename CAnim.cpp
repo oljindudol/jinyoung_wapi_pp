@@ -25,8 +25,8 @@ CAnim::CAnim()
 	, m_AccTime(0.f)
 	, m_ort(ORT_LEFT)
 	, m_multi(0.f)
-	, m_mag(1.f)
-	, m_alpha(255)
+	//, m_mag(1.f)
+	//, m_alpha(255)
 {
 }
 
@@ -86,13 +86,17 @@ void CAnim::render(HDC _dc)
 	//회전 0일때,
 	//if (0.f == rot)
 	//{
-	if (1.f == m_mag)
+
+	float tmag = m_pAnimator->GetMag();
+	int talpha = m_pAnimator->GetAlpha();
+
+	if (1.f == tmag)
 	{
 		BLENDFUNCTION blend = {};
 		blend.BlendOp = AC_SRC_OVER;
 		blend.BlendFlags = 0;
 
-		blend.SourceConstantAlpha = m_alpha; // 0 ~ 255
+		blend.SourceConstantAlpha = talpha; // 0 ~ 255
 		blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + offsetx)
@@ -109,12 +113,12 @@ void CAnim::render(HDC _dc)
 		blend.BlendOp = AC_SRC_OVER;
 		blend.BlendFlags = 0;
 
-		blend.SourceConstantAlpha = m_alpha; // 0 ~ 255
+		blend.SourceConstantAlpha = talpha; // 0 ~ 255
 		blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
-		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f)*m_mag + offsetx)
-			, int(vRenderPos.y - (frm.vCutSize.y / 2.f) * m_mag + frm.vOffset.y)
-			, int(frm.vCutSize.x * m_mag), int(frm.vCutSize.y * m_mag)
+		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f)* tmag + offsetx)
+			, int(vRenderPos.y - (frm.vCutSize.y / 2.f) * tmag + frm.vOffset.y)
+			, int(frm.vCutSize.x * tmag), int(frm.vCutSize.y * tmag)
 			, tmpdc
 			, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 			, int(frm.vCutSize.x), int(frm.vCutSize.y)

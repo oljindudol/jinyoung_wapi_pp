@@ -16,6 +16,7 @@ CInventoryItem::CInventoryItem()
 	,m_hovered(false)
 	, m_ItemIcon(nullptr)
 	, m_pCItemInfoUI(nullptr)
+	, m_onclick(0.f)
 {
 	m_ItemIcon = CAssetMgr::GetInst()->LoadTexture(L"genesisbadge", L"texture\\anim\\item\\genesisbadge\\inven.png");
 
@@ -27,6 +28,7 @@ void CInventoryItem::tick(float _DT)
 {
 	Super::tick(_DT);
 
+	m_onclick -= _DT;
 }
 
 void CInventoryItem::render(HDC _dc)
@@ -48,6 +50,7 @@ void CInventoryItem::render(HDC _dc)
 void CInventoryItem::begin()
 {
 	m_hovered = false;
+	m_onclick = 0.f;
 }
 
 void CInventoryItem::OnUnHovered(Vec2 _vMousePos)
@@ -67,6 +70,19 @@ void CInventoryItem::MouseOn(Vec2 _vMousePos)
 
 void CInventoryItem::LBtnClicked(Vec2 _vMousePos)
 {
+	if (0.f < m_onclick)
+	{
+		DoubleClicked();
+	}
+	else
+	{
+		m_onclick = 0.5f;
+		CAssetMgr::GetInst()->LoadSound(L"DragItem", L"sound\\DropItem.wav")->Play();
+	}
+}
+
+void CInventoryItem::DoubleClicked()
+{
 	CAssetMgr::GetInst()->LoadSound(L"DragEnd", L"sound\\DragEnd.wav")->Play();
 
 	CSkillMgr::GetInst()->ActivateSkill(L"fifthendrolluse",
@@ -74,6 +90,11 @@ void CInventoryItem::LBtnClicked(Vec2 _vMousePos)
 
 	CSkillMgr::GetInst()->ActivateSkill(L"fifthachievementuse",
 		Vec2(990, 400), ORT_LEFT);
+
+	m_itemon = false;
+	m_pCItemInfoUI->m_showtrigger = false;
+
+	CAssetMgr::GetInst()->LoadSound(L"BGM_04", L"sound\\LostSpace.wav")->Stop();
 }
 
 CInventoryItem::~CInventoryItem()

@@ -10,6 +10,8 @@ CAnimator::CAnimator(CObj* _Owner)
 	: CComponent(_Owner)
 	, m_CurAnim(nullptr)
 	, m_bRepeat(false)
+	, m_mag(1.f)
+	, m_alpha(255)
 {
 }
 

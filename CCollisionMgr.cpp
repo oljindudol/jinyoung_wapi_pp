@@ -90,6 +90,7 @@ void CCollisionMgr::init()
 	CheckCollision(WALL, MONSTER);
 	CheckCollision(WALL, MONSTER_PJ);
 
+	CheckCollision(NPC, MOUSE_COL);
 	CheckCollision(MONSTER_PJB,WALL_FOR_COL);
 
 	CheckCollision(MONSTER_PJB, PLAYER);

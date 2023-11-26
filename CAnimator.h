@@ -17,8 +17,15 @@ private:
 
     // 반복 재생 여부
     bool                 m_bRepeat;
+    int m_alpha;
+    float m_mag;
 
 public:
+    void SetMag(float _mag) { m_mag = _mag; }
+    float GetMag() { return m_mag; }
+    void SetAlpha(int _alpha) { m_alpha = _alpha; }
+    int GetAlpha() { return m_alpha; }
+
     CAnim* GetCurAnim() { return m_CurAnim;  }
     Vec2 GetScale();
     CAnim* Play(const wstring& _strName);//, bool _bRepeat);

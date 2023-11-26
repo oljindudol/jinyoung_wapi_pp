@@ -18,7 +18,7 @@ void CItemAbsorbing::finaltick(float _DT)
 	float stateperc = (m_stateduration - m_acctime) / m_stateduration;
 	if (0.f > stateperc)
 		stateperc = 0.f;
-	m_pAnim->SetAlpha((int)(255 * stateperc));
+	m_pItem->GetAnimator()->SetAlpha((int)(255 * stateperc));
 
 	m_ItemVel = m_ItemVel + Vec2((m_pPlayer->GetPos().x - m_pItem->GetPos().x) *5.f , 1200.f) * _DT;
 

@@ -33,6 +33,8 @@ void CGEggDie::Enter()
 	pAni->Play(GetOwner()->GetName() + L"die");
 
 	m_ItemDroped = false;
+
+	CLevelMgr::GetInst()->GetPlayer()->CompleteMission();
 }
 
 void CGEggDie::Exit()

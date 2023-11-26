@@ -40,5 +40,7 @@ public:
 	friend class CLevelMgr;
 	friend class CMonster;
 	friend class CNormalMonDebug;
+	friend class CDialogBox;
+	friend class CDialogBtn;
 
 };

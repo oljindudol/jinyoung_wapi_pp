@@ -48,14 +48,14 @@ private:
     float m_multi;
     ORIENTATION m_ort;
 
-    float m_mag;
-    int m_alpha;
+    //float m_mag;
+    //int m_alpha;
 
 public:
-    void SetMag(float _mag) { m_mag = _mag; }
-    float GetMag() { return m_mag; }
-    void SetAlpha(int _alpha) { m_alpha = _alpha; }
-    int GetAlpha() { return m_alpha; }
+    //void SetMag(float _mag) { m_mag = _mag; }
+    //float GetMag() { return m_mag; }
+    //void SetAlpha(int _alpha) { m_alpha = _alpha; }
+    //int GetAlpha() { return m_alpha; }
 
     Vec2 GetOffset() { return m_vecFrm[0].vOffset; }
 

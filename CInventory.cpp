@@ -70,7 +70,7 @@ void CInventory::render(HDC _dc)
 
 void CInventory::begin()
 {
-	// 자식 UI 들 Tick 호출
+	// 자식 UI 들 Begin 호출
 	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
 	{
 		m_vecChildUI[i]->begin();

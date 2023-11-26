@@ -70,6 +70,7 @@ void CGenesisEgg::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 
 CGenesisEgg::CGenesisEgg(const CGenesisEgg& _Origin)
 {
+	
 }
 
 CGenesisEgg::~CGenesisEgg()

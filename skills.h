@@ -10,6 +10,8 @@
 #include "CBladeTornado.h"
 #include "CBladeStorm.h"
 
+#include "CMouseCol.h"
+
 
 //1페이즈 스킬
 #include "ChainAttack.h"

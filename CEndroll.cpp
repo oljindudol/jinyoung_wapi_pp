@@ -52,7 +52,7 @@ CEndroll::CEndroll()
 
 	m_digit= (int)m_text.size();
 	CAssetMgr::GetInst()->LoadSound(L"타자소리", L"sound\\삼국전기텍스트사운드.wav")->SetVolume(100);
-	CAssetMgr::GetInst()->LoadSound(L"엔딩노래", L"sound\\Promise of Heaven_mvver.wav")->SetVolume(100);
+	CAssetMgr::GetInst()->LoadSound(L"엔딩노래", L"sound\\Promise of Heaven_mvver.wav")->SetVolume(50);
 }
 
 
@@ -95,7 +95,7 @@ void CEndroll::tick(float _DT)
 	if (7.f <= m_activedtime
 		&& 8.5f >= m_activedtime)
 	{
-		int tmp = (int)(((m_activedtime - 7.f) / 1.5f) * 88);
+		int tmp = (int)(((m_activedtime - 7.f) / 1.5f) * 100);
 
 		m_alpha2 = 255 - tmp;
 	}
@@ -137,8 +137,8 @@ void CEndroll::tick(float _DT)
 	if (m_activedtime > duration- 0.5f)
 	{
 		CAssetMgr::GetInst()->LoadSound(L"엔딩노래", L"sound\\Promise of Heaven_mvver.wav")->Stop();
+		ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
 	}
-
 }
 
 

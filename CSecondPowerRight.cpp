@@ -28,25 +28,27 @@ CSecondPowerRight::CSecondPowerRight()
 	m_Animator =
 		AddComponent<CAnimator>(GetName() + L"Animator");
 
+	m_Animator->SetMag(2.f);
+
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"regen",
-			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT)->SetMag(2.f);
+			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT);//->SetMag(2.f);
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"use",
-			Vec2(0.f, 0.f), 1.f, 0, ORT_LEFT)->SetMag(2.f);
+			Vec2(0.f, 0.f), 1.f, 0, ORT_LEFT);//->SetMag(2.f);
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"regen2",
-			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT)->SetMag(2.f);
+			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT);//->SetMag(2.f);
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"use2",
-			Vec2(0.f, 0.f), 1.f, 0, ORT_LEFT)->SetMag(2.f);
+			Vec2(0.f, 0.f), 1.f, 0, ORT_LEFT);//->SetMag(2.f);
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, L"die",
-			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT)->SetMag(2.f);
+			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT);//->SetMag(2.f);
 
 	//컬라이더
 	m_Collider =

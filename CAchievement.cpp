@@ -53,7 +53,7 @@ void CAchievement::tick(float _DT)
 		int tmp = (int)(((duration - m_activedtime) / 0.8f) * 255);
 		if (0 > tmp) tmp = 0;
 
-		m_pAnim->SetAlpha(tmp);
+		m_Animator->SetAlpha(tmp);
 	}
 	
 }
@@ -67,7 +67,7 @@ void CAchievement::activate(Vec2 _beginpos, ORIENTATION _ort)
 void CAchievement::begin()
 {
 	CAssetMgr::GetInst()->LoadSound(L"¾÷Àû", L"sound\\AchievmentComplete.wav")->Play();
-	m_pAnim->SetAlpha(255);
+	m_Animator->SetAlpha(255);
 }
 
 void CAchievement::render(HDC _dc)

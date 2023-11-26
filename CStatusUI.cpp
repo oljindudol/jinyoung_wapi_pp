@@ -89,7 +89,7 @@ void CStatusUI::render(HDC _dc)
 
 	//레벨 표시
 	SettexturetoDc(_dc, lvtex, (vRenderPos + Vec2(25.f, 9.f)));
-	SetNumberTextureToDc(_dc, 290, veclvtex, (vRenderPos + Vec2(42.f, 9.f)));
+	SetNumberTextureToDc(_dc, cPlayer->level, veclvtex, (vRenderPos + Vec2(42.f, 9.f)));
 
 
 	int xoffset = 0;

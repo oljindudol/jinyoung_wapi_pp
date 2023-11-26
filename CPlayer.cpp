@@ -61,6 +61,7 @@ CPlayer::CPlayer()
 	, def(1000)
 	, m_acctime(0.f)
 	, m_invincible_time(0.f)
+	, completemission(false)
 	//m_Speed(500.f)
 	//, m_Image(nullptr)
 {

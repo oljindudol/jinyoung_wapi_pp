@@ -110,6 +110,14 @@ void CLevel::tick()
 
 	}
 
+	if (KEY_TAP(KEY::LBTN))
+	{
+		CSkillMgr::GetInst()->ActivateSkill(L"commonmousecollider",
+			CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
+
+		
+	}
+
 	if (KEY_TAP(KEY::V))
 	{
 		CLevelMgr::GetInst()->GetCurLevelMon()->GetAI()->ChangeState((UINT)ENORMAL_MON_STATE::DIE);

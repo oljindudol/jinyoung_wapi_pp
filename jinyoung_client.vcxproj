@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAchievement.h" />
+    <ClInclude Include="CAmon.h" />
     <ClInclude Include="CAnim.h" />
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CAsset.h" />
@@ -176,6 +177,8 @@
     <ClInclude Include="CDarkFallingDie.h" />
     <ClInclude Include="CDarkFallingIdle.h" />
     <ClInclude Include="CDarkFallingRegen.h" />
+    <ClInclude Include="CDialogBox.h" />
+    <ClInclude Include="CDialogBtn.h" />
     <ClInclude Include="CEditorLevel.h" />
     <ClInclude Include="CEndroll.h" />
     <ClInclude Include="CEngine.h" />
@@ -250,6 +253,7 @@
     <ClInclude Include="CMorningStarFallDie.h" />
     <ClInclude Include="CMorningStarFallIdle.h" />
     <ClInclude Include="CMorningStarFallRegen.h" />
+    <ClInclude Include="CMouseCol.h" />
     <ClInclude Include="CMovement.h" />
     <ClInclude Include="CNormalMonAtt1.h" />
     <ClInclude Include="CNormalMonAtt3.h" />
@@ -373,6 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAchievement.cpp" />
+    <ClCompile Include="CAmon.cpp" />
     <ClCompile Include="CAnim.cpp" />
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CAsset.cpp" />
@@ -393,6 +398,8 @@
     <ClCompile Include="CDarkFallingDie.cpp" />
     <ClCompile Include="CDarkFallingIdle.cpp" />
     <ClCompile Include="CDarkFallingRegen.cpp" />
+    <ClCompile Include="CDialogBox.cpp" />
+    <ClCompile Include="CDialogBtn.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
     <ClCompile Include="CEndroll.cpp" />
     <ClCompile Include="CEngine.cpp" />
@@ -467,6 +474,7 @@
     <ClCompile Include="CMorningStarFallDie.cpp" />
     <ClCompile Include="CMorningStarFallIdle.cpp" />
     <ClCompile Include="CMorningStarFallRegen.cpp" />
+    <ClCompile Include="CMouseCol.cpp" />
     <ClCompile Include="CMovement.cpp" />
     <ClCompile Include="CNormalMonAtt1.cpp" />
     <ClCompile Include="CNormalMonAtt3.cpp" />

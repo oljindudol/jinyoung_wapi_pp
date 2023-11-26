@@ -65,14 +65,17 @@ void CLayer::render(HDC _dc)
 				(LAYER::MONSTER_POWER == idxlayer) ||
 				(LAYER::PLAYER_PJ == idxlayer) ||
 				(LAYER::PLAYER_SKILL == idxlayer) ||
-				(LAYER::WORLD_STATIC == idxlayer)
+				(LAYER::WORLD_STATIC == idxlayer) ||
+				(LAYER::MOUSE_COL == idxlayer)
 				)
 			{
 				CSkill* pSkill = dynamic_cast<CSkill*>(*iter);
 				CSkillMgr::GetInst()->DeActivateSkill(pSkill);
 			}
 			if ((LAYER::MONSTER == idxlayer) ||
-				(LAYER::FALL_OBJ == idxlayer))
+				(LAYER::FALL_OBJ == idxlayer) ||
+				(LAYER::NPC == idxlayer)
+				)
 			{
 				CMonster* pMonster = dynamic_cast<CMonster*>(*iter);
 				CMonsterMgr::GetInst()->DeActivateMonster(pMonster);
@@ -115,14 +118,16 @@ void CLayer::DeleteAllObjects()
 			(LAYER::MONSTER_POWER == idxlayer) ||
 			(LAYER::PLAYER_PJ == idxlayer) ||
 			(LAYER::PLAYER_SKILL == idxlayer) ||
-			(LAYER::WORLD_STATIC == idxlayer)
+			(LAYER::WORLD_STATIC == idxlayer) ||
+			(LAYER::MOUSE_COL == idxlayer)
 			)
 		{continue;}
 		//몬스터매니저에 이관
-		if ((LAYER::MONSTER) == idxlayer)
+		if ((LAYER::MONSTER == idxlayer) || 
+			(LAYER::FALL_OBJ == idxlayer) ||
+			(LAYER::NPC == idxlayer)
+			)
 		{ continue;}
-		if ((LAYER::FALL_OBJ) == idxlayer)
-		{continue;}
 		if ((LAYER::ITEM) == idxlayer)
 		{continue;}
 		if(m_vecObjects[i])

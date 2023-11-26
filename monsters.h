@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CAmon.h"
+
 //1페이즈 몬스터
 //1.창조의 아이온
 #include "ion.h"

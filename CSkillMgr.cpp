@@ -106,6 +106,8 @@ void CSkillMgr::init()
 	AddSkill(new CSecondPowerRight);
 	AddSkill(new CSecondPowerMiddle);
 
+
+
 	for (int i = 0; i < 7; i++)
 	{
 		AddSkill(new CNoxSpear);
@@ -120,6 +122,16 @@ void CSkillMgr::init()
 	AddSkill(new CBlindness);
 	AddSkill(new CAchievement);
 	AddSkill(new CEndroll);
+
+	for (int i = 0; i < 5; i++)
+	{
+		AddSkill(new CMouseCol);
+	}
+
+
+	AddSkillEff(new CSkill
+		, L"zero", L"levelup", L"use"
+		, 2.3f, Vec2(0.f, 0.f));
 
 }
 

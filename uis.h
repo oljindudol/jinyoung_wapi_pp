@@ -8,3 +8,5 @@
 #include "CStateDebugUI.h"
 #include "CInventoryItem.h"
 #include "CInventory.h"
+
+#include "CDialogBox.h"

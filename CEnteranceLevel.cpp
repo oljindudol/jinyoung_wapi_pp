@@ -136,11 +136,13 @@ void CEnteranceLevel::init()
 	//pStatusUI->SetPos(Vec2(600.f, 690.f));
 
 
+	CMonsterMgr::GetInst()->SpwanMonster(L"zeroamon", Vec2(1185, 505));
+
+
 	pBgm = CAssetMgr::GetInst()->LoadSound(L"BGM_00", L"sound\\TheWorld¡¯sEnd.wav");
-	pBgm->SetVolume(20);
+	pBgm->SetVolume(15);
 	pBgm->SetPosition(45.f);
 	pBgm->Play(true);
-
 
 
 }
