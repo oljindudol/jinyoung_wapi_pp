@@ -14,6 +14,7 @@
 
 #include "CTimeManager.h"
 #include "CLogMgr.h"
+#include "CKeyMgr.h"
 
 
 ion::ion()
@@ -113,6 +114,25 @@ void ion::begin()
 void ion::tick(float _DT)
 {
 	Super::tick(_DT);
+
+
+	if (KEY_TAP(KEY::_5))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK1);
+	}
+	if (KEY_TAP(KEY::_6))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK2);
+	}
+	if (KEY_TAP(KEY::_7))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK3);
+	}
+	if (KEY_TAP(KEY::_8))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK4);
+	}
+
 }
 
 void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
@@ -143,8 +163,6 @@ void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol
 
 		return;
 	}
-
-
 
 }
 

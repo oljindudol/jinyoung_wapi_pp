@@ -264,6 +264,9 @@ CMonster* CLevelMgr::GetCurLevelMon()
 {
 	UINT lvnum = GetCurLevelNum();
 
+	if ((UINT)LEVEL_TYPE::PHASE_ZERO == lvnum)
+		return (*(CMonsterMgr::GetInst()->FindMonster(L"firstion")))[0];
+
 	if ((UINT)LEVEL_TYPE::PHASE_FIRST == lvnum)
 		return (*(CMonsterMgr::GetInst()->FindMonster(L"firstion")))[0];
 

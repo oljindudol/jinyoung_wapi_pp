@@ -201,6 +201,33 @@ void CPlayer::tick(float _DT)
 		m_acctime = 0.f;
 	}
 	
+	if (KEY_TAP(KEY::K))
+	{
+		if (m_invincible_time > 0.f)
+		{
+			m_invincible_time = 0.f;
+		}
+		else
+		{
+			m_invincible_time = 1000.f;
+		}
+	}
+
+	if (KEY_TAP(KEY::GRAVE))
+	{
+		m_Movement->SetVelocity(Vec2(0, 0));
+	}
+	if (KEY_PRESSED(KEY::GRAVE))
+	{
+		m_Movement->UseGravity(false);
+	}
+	if (KEY_RELEASED(KEY::GRAVE))
+	{
+		if (false == m_Movement->IsGround())
+		{
+			m_Movement->UseGravity(true);
+		}
+	}
 
 	//Vec2 vPos = GetPos();
 	//m_acctime += _DT;

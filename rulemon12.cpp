@@ -5,6 +5,8 @@
 #include "CRuleMon12Idle.h"
 #include "CRuleMon12Attack.h"
 
+#include "CKeyMgr.h"
+
 rulemon12::rulemon12()
 {
 	ort = ORT_RIGHT;
@@ -41,6 +43,11 @@ void rulemon12::begin()
 void rulemon12::tick(float _DT)
 {
 	Super::tick(_DT);
+
+	if (KEY_TAP(KEY::_0))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK1);
+	}
 }
 
 

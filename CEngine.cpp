@@ -86,6 +86,7 @@ void CEngine::CreateDefaultGDI()
 	wstring conpath = CPathMgr::GetContentPath();
 	int a = AddFontResourceW( (conpath + L"D2Coding.ttf").c_str() );
 	m_arrFont[STATUS_DEBUG] = CreateFont(18, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("D2Coding"));
+	m_arrFont[DEBUG_MENU] = CreateFont(18, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 	
 
 }

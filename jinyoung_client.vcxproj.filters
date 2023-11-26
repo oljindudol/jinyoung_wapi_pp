@@ -593,6 +593,7 @@
     <ClInclude Include="CGenesisEgg.h">
       <Filter>03.Game\15.StageFifth</Filter>
     </ClInclude>
+    <ClInclude Include="CDebugUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -1005,5 +1006,6 @@
     <ClCompile Include="CGenesisEgg.cpp">
       <Filter>03.Game\15.StageFifth</Filter>
     </ClCompile>
+    <ClCompile Include="CDebugUI.cpp" />
   </ItemGroup>
 </Project>

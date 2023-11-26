@@ -95,27 +95,31 @@ void CLevel::tick()
 	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
 	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
 	//신스킬 테스트 신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트신스킬 테스트
-	if (KEY_TAP(KEY::B))
+	//if (KEY_TAP(KEY::B))
+	//{
+
+	//	CSkillMgr::GetInst()->ActivateSkill(L"fifthendrolluse",
+	//		Vec2(990, 400), ORT_LEFT);
+
+	//	CSkillMgr::GetInst()->ActivateSkill(L"fifthachievementuse",
+	//		Vec2(990, 400), ORT_LEFT);
+
+	//	CAssetMgr::GetInst()->LoadSound(L"BGM_04", L"sound\\LostSpace.wav")->Stop();
+
+	//	//CAssetMgr::GetInst()->LoadSound(L"타자소리", L"sound\\삼국전기텍스트사운드.wav")->Play();
+
+	//}
+
+	if (KEY_TAP(KEY::TAB))
 	{
-
-		CSkillMgr::GetInst()->ActivateSkill(L"fifthendrolluse",
-			Vec2(990, 400), ORT_LEFT);
-
-		CSkillMgr::GetInst()->ActivateSkill(L"fifthachievementuse",
-			Vec2(990, 400), ORT_LEFT);
-
-		CAssetMgr::GetInst()->LoadSound(L"BGM_04", L"sound\\LostSpace.wav")->Stop();
-
-		//CAssetMgr::GetInst()->LoadSound(L"타자소리", L"sound\\삼국전기텍스트사운드.wav")->Play();
-
+		CUIMgr::GetInst()->SetUIOnOffResponsible(L"debugui");
 	}
+
 
 	if (KEY_TAP(KEY::LBTN))
 	{
 		CSkillMgr::GetInst()->ActivateSkill(L"commonmousecollider",
 			CCamera::GetInst()->GetRealPos(CKeyMgr::GetInst()->GetMousePos()), ORT_LEFT);
-
-		
 	}
 
 	if (KEY_TAP(KEY::V))
@@ -198,13 +202,13 @@ void CLevel::tick()
 
 
 
-	if (KEY_TAP(KEY::_9))
-	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 1.f);
-		CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 2.f);
-	}
+	//if (KEY_TAP(KEY::_9))
+	//{
+	//	//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
+	//	//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
+	//	//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 1.f);
+	//	CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 2.f);
+	//}
 
 
 
@@ -279,13 +283,13 @@ void CLevel::tick()
 	}
 
 
-	if (KEY_TAP(KEY::F6))
-	{
-		//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
-		//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 5.f);
-		CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 1.f);
-	}
+	//if (KEY_TAP(KEY::F6))
+	//{
+	//	//CUIMgr::GetInst()->FloatNotice(L"아아아아아아아아아아아아아아아아아아아아", 5.f);
+	//	//CUIMgr::GetInst()->FloatNotice(L"아 아 아 아 아 아 아 아 아 아 아 아 ", 5.f);
+	//	//CUIMgr::GetInst()->FloatNotice(L"어. 어. 어. 어. 어. 어. 어. 어. 어. 어. 어.", 5.f);
+	//	CUIMgr::GetInst()->FloatNotice(L"파멸의 눈이 적을 쫓는다.", 1.f);
+	//}
 
 
 	if (KEY_TAP(KEY::PAGE_DOWN))

@@ -177,6 +177,7 @@
     <ClInclude Include="CDarkFallingDie.h" />
     <ClInclude Include="CDarkFallingIdle.h" />
     <ClInclude Include="CDarkFallingRegen.h" />
+    <ClInclude Include="CDebugUI.h" />
     <ClInclude Include="CDialogBox.h" />
     <ClInclude Include="CDialogBtn.h" />
     <ClInclude Include="CEditorLevel.h" />
@@ -398,6 +399,7 @@
     <ClCompile Include="CDarkFallingDie.cpp" />
     <ClCompile Include="CDarkFallingIdle.cpp" />
     <ClCompile Include="CDarkFallingRegen.cpp" />
+    <ClCompile Include="CDebugUI.cpp" />
     <ClCompile Include="CDialogBox.cpp" />
     <ClCompile Include="CDialogBtn.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />

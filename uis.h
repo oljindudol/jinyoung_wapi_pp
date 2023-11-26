@@ -10,3 +10,4 @@
 #include "CInventory.h"
 
 #include "CDialogBox.h"
+#include "CDebugUI.h"

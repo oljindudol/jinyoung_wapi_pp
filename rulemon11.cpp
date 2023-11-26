@@ -8,6 +8,7 @@
 
 #include "CTimeManager.h"
 #include "CLogMgr.h"
+#include "CKeyMgr.h"
 
 
 rulemon11::rulemon11()
@@ -50,6 +51,12 @@ void rulemon11::begin()
 void rulemon11::tick(float _DT)
 {
 	Super::tick(_DT);
+
+	if (KEY_TAP(KEY::_9))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK1);
+	}
+
 }
 
 
