@@ -12,6 +12,7 @@ private:
     wstring owner_name;
     wstring owner_email;
     wstring tobecontinued;
+    wstring thankyoforwatching;
     CTexture* m_veil;
     CTexture* m_veil2;
 
@@ -21,6 +22,9 @@ private:
     int m_alpha2;
     int m_alpha3;
     int m_digit;
+
+    bool m_effecsoundplayed;
+    bool m_musicplayed;
 
 public:
     CEndroll();

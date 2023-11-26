@@ -150,5 +150,6 @@ void CPhaseFifth::tick()
 	if (KEY_TAP(KEY::ENTER))
 	{
 		ChangeLevel(LEVEL_TYPE::PHASE_ZERO);
+		CAssetMgr::GetInst()->LoadSound(L"엔딩노래", L"sound\\Promise of Heaven_mvver.wav")->Stop();
 	}
 }

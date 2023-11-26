@@ -104,6 +104,9 @@ void CLevel::tick()
 		CSkillMgr::GetInst()->ActivateSkill(L"fifthachievementuse",
 			Vec2(990, 400), ORT_LEFT);
 
+		CAssetMgr::GetInst()->LoadSound(L"BGM_04", L"sound\\LostSpace.wav")->Stop();
+
+		//CAssetMgr::GetInst()->LoadSound(L"타자소리", L"sound\\삼국전기텍스트사운드.wav")->Play();
 
 	}
 
