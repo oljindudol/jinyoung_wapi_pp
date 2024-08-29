@@ -93,14 +93,14 @@ CPlayer::CPlayer()
 	m_Animator = AddComponent<CAnimator>(L"Animator");
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(13.f, -41.f));
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(20.f, -45.f), 3.f);
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -45.f),2.f);
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -45.f), 1.f,-1);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"doublejump", Vec2(0.f, -45.f), 2.f);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"onair", Vec2(0.f, -45.f), 1.f, -1);
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"stab", Vec2(0.f, -55.f), 1.f, -1);
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"down", Vec2(-30.f, -20.f), 1.f, -1);
 
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"move", Vec2(20.f, -45.f), 3.f);
-	m_Animator->CreateAnimation(L"common", L"pinkbean", L"dead", Vec2(20.f, -45.f), 1.f,18);
+	m_Animator->CreateAnimation(L"common", L"pinkbean", L"dead", Vec2(20.f, -45.f), 1.f, 18);
 
 	m_Animator->Play(L"commonpinkbeanidle");
 
@@ -191,16 +191,17 @@ CPlayer::~CPlayer()
 void CPlayer::tick(float _DT)
 {
 	Super::tick(_DT);
-	
+
 	m_invincible_time -= _DT;
 
-	if (hp < 25000.f 
+	//디버그용 자동회복
+	if (hp < 25000.f
 		&& (UINT)PLAYER_STATE::DEAD != getStateMachine()->GetCurStateNum())
 	{
 		hp = maxhp;
 		m_acctime = 0.f;
 	}
-	
+
 	if (KEY_TAP(KEY::K))
 	{
 		if (m_invincible_time > 0.f)
@@ -213,21 +214,27 @@ void CPlayer::tick(float _DT)
 		}
 	}
 
-	if (KEY_TAP(KEY::GRAVE))
+	if (KEY_TAP(KEY::F12))
 	{
-		m_Movement->SetVelocity(Vec2(0, 0));
+		hp = maxhp;
+		m_PlayerState->ChangeState((UINT)PLAYER_STATE::IDLE);
 	}
-	if (KEY_PRESSED(KEY::GRAVE))
-	{
-		m_Movement->UseGravity(false);
-	}
-	if (KEY_RELEASED(KEY::GRAVE))
-	{
-		if (false == m_Movement->IsGround())
-		{
-			m_Movement->UseGravity(true);
-		}
-	}
+
+	//if (KEY_TAP(KEY::GRAVE))
+	//{
+	//	m_Movement->SetVelocity(Vec2(0, 0));
+	//}
+	//if (KEY_PRESSED(KEY::GRAVE))
+	//{
+	//	m_Movement->UseGravity(false);
+	//}
+	//if (KEY_RELEASED(KEY::GRAVE))
+	//{
+	//	if (false == m_Movement->IsGround())
+	//	{
+	//		m_Movement->UseGravity(true);
+	//	}
+	//}
 
 	//Vec2 vPos = GetPos();
 	//m_acctime += _DT;
@@ -477,18 +484,18 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	Super::BeginOverlap(_OwnCol, _OtherObj, _OtherCol);
 
 	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx() ||
-		(UINT)LAYER::PLATFORM_DEBUG == _OtherObj->GetLayerIdx() )
+		(UINT)LAYER::PLATFORM_DEBUG == _OtherObj->GetLayerIdx())
 	{
 		Vec2 playerprevpos = _OwnCol->GetPrevPos();
 		Vec2 playerscale = _OwnCol->GetScale();
 		Vec2 platpos = _OtherCol->GetPos();
 		Vec2 platscale = _OtherCol->GetScale();
 
-		float playerbottom = (playerprevpos.y ) * -1;
+		float playerbottom = (playerprevpos.y) * -1;
 		float plattop = (platpos.y + platscale.y / 2.f) * -1;
 
-		bool above = (platscale.x + playerscale.x) /2.f  >=
-			abs(playerprevpos.x- platpos.x);
+		bool above = (platscale.x + playerscale.x) / 2.f >=
+			abs(playerprevpos.x - platpos.x);
 
 		if (playerbottom >= plattop && above)
 		{
@@ -508,7 +515,7 @@ void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherC
 	if ((UINT)LAYER::PLATFORM == _OtherObj->GetLayerIdx() ||
 		(UINT)LAYER::PLATFORM_DEBUG == _OtherObj->GetLayerIdx())
 	{
-		float playerbottom = (_OwnCol->GetPrevPos().y ) * -1;
+		float playerbottom = (_OwnCol->GetPrevPos().y) * -1;
 		float plattop = (_OtherCol->GetPos().y + _OtherCol->GetScale().y / 2.f) * -1;
 
 
@@ -542,17 +549,17 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 		return;
 	}
 	//TODO : DEBUFF::무적일 경우 무시
-	
+
 	//DEBUFF::다크사이트 일 경우는 호출부에서 처리
 
 	//TODO:*파괴디버프 보정 추가
-	int damage = (int)(maxhp * _percentdmg * (1.f + RandomPercentHtH()*0.025));
+	int damage = (int)(maxhp * _percentdmg * (1.f + RandomPercentHtH() * 0.025));
 
 	int resthp = hp - damage;
 
 	//피격 데미지스킨을 출력한다
 	CSkillMgr::GetInst()->PrintDamageVioletSkin(GetPos() - Vec2(GetScale().x / .7f, GetScale().y / .4f), damage);
-	
+
 	//TODO:디버프 갱신
 
 	if (resthp > 0.f)
@@ -562,9 +569,9 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	else
 	{
 		hp = 0;
-		
+
 		m_PlayerState->ChangeState((UINT)PLAYER_STATE::DEAD);
 	}
-	
+
 	return;
 }
