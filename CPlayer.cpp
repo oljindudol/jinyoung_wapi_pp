@@ -556,6 +556,8 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	{
 		return;
 	}
+	PushDebuff(_debuff);
+
 	//TODO : DEBUFF::公利老 版快 公矫
 
 	//DEBUFF::促农荤捞飘 老 版快绰 龋免何俊辑 贸府
@@ -662,8 +664,6 @@ void CPlayer::ProcessDebuff()
 			else
 				m_Animator->SetAlpha(255);
 		}
-
-
 	}
 }
 

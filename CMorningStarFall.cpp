@@ -81,7 +81,15 @@ void CMorningStarFall::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollid
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx()
 		&& (UINT)ENORMAL_MON_STATE::DIE != m_AI->GetCurStateNum())
 	{
-		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.1f, DEBUFF::CREATION);
+		auto pPlayer = CLevelMgr::GetInst()->GetPlayer();
+		if (pPlayer->IsDebuffActive(DEBUFF::DARKSITE))
+		{
+			//아무것도 하지않는다
+		}
+		else
+		{
+			pPlayer->GetDamaged(0.1f, DEBUFF::CREATION);
+		}
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 	}
 }

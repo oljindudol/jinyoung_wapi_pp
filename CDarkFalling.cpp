@@ -19,7 +19,7 @@ CDarkFalling::CDarkFalling()
 	//몇번째 몬스터 인지
 	m_monsternum = CMonsterMgr::GetInst()->FindNextMonsterNumber(m_monstername);
 
-	SetName(m_monstername +L"_" + std::to_wstring(m_monsternum));
+	SetName(m_monstername + L"_" + std::to_wstring(m_monsternum));
 
 
 	SetScale(Vec2(100.f, 100.f));
@@ -41,7 +41,7 @@ CDarkFalling::CDarkFalling()
 	// Animator 컴포넌트 추가
 	m_Animator = AddComponent<CAnimator>(GetName() + L"Animator");
 	m_Animator->CreateAnimation(m_s1, m_s2, L"regen", Vec2(0.f, 0.f), 1.f, -1);
-	m_Animator->CreateAnimation(m_s1, m_s2, L"idle", Vec2(0.f, 0.f), 1.f , 0);
+	m_Animator->CreateAnimation(m_s1, m_s2, L"idle", Vec2(0.f, 0.f), 1.f, 0);
 	m_Animator->CreateAnimation(m_s1, m_s2, L"die", Vec2(0.f, 0.f), 1.f, -1);
 
 
@@ -84,9 +84,17 @@ void CDarkFalling::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* 
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx()
-		&&  (UINT)ENORMAL_MON_STATE::DIE != m_AI->GetCurStateNum())
+		&& (UINT)ENORMAL_MON_STATE::DIE != m_AI->GetCurStateNum())
 	{
-		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.1f, DEBUFF::CREATION);
+		auto pPlayer = CLevelMgr::GetInst()->GetPlayer();
+		if (pPlayer->IsDebuffActive(DEBUFF::DARKSITE))
+		{
+
+		}
+		else
+		{
+			pPlayer->GetDamaged(0.1f, DEBUFF::CREATION);
+		}
 		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 	}
 }
