@@ -54,8 +54,8 @@ CPlayer* CLevel::GetPlayer()
 
 	if (nullptr == pPlayer)
 	{
-		vector<CObj*> objvec= GetObjects(LAYER::PLAYER);
-		if(0 != objvec.size())
+		vector<CObj*> objvec = GetObjects(LAYER::PLAYER);
+		if (0 != objvec.size())
 			return dynamic_cast<CPlayer*>(objvec[0]);
 
 	}
@@ -124,6 +124,7 @@ void CLevel::tick()
 
 	if (KEY_TAP(KEY::V))
 	{
+		CLevelMgr::GetInst()->GetCurLevelMon()->m_Info.HP = 0.f;
 		CLevelMgr::GetInst()->GetCurLevelMon()->GetAI()->ChangeState((UINT)ENORMAL_MON_STATE::DIE);
 
 
@@ -218,12 +219,12 @@ void CLevel::tick()
 		{
 
 		}
-		else 
+		else
 		{
 			CAssetMgr::GetInst()->LoadSound(L"레투다use", L"sound\\레투다use.wav")->Play();
 			CSkillMgr::GetInst()->ActivateSkill(L"commonreadytodieuse", GetPlayer()->GetPos(), ORT_LEFT);
 		}
-	}	
+	}
 	if (KEY_TAP(KEY::F4))
 	{
 		if (CSkillMgr::GetInst()->IsCoolTime(L"commonsoulcontractuse"))
@@ -235,7 +236,7 @@ void CLevel::tick()
 			CAssetMgr::GetInst()->LoadSound(L"엔버use", L"sound\\엔버use.wav")->Play();
 			CSkillMgr::GetInst()->ActivateSkill(L"commonsoulcontractuse", GetPlayer()->GetPos(), ORT_LEFT);
 		}
-	}	
+	}
 	if (KEY_TAP(KEY::F5))
 	{
 		if (CSkillMgr::GetInst()->IsCoolTime(L"commonerdanovause"))
@@ -307,7 +308,7 @@ void CLevel::tick()
 
 	if (KEY_TAP(KEY::LCTRL))
 	{
-		if ((UINT)PLAYER_STATE::DEAD != pPlayer->getStateMachine()->GetCurStateNum()) 
+		if ((UINT)PLAYER_STATE::DEAD != pPlayer->getStateMachine()->GetCurStateNum())
 		{
 			CAssetMgr::GetInst()->CAssetMgr::GetInst()->LoadSound(L"potion", L"sound\\포션.wav")->Play();
 			pPlayer->hp = pPlayer->maxhp;
@@ -368,7 +369,7 @@ void CLevel::tick()
 	//}
 
 
-	
+
 
 
 	// 마우스 포지션
