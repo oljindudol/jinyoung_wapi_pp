@@ -22,12 +22,12 @@ public:
 	{
 		float f = Length();
 
-		if (0 == f) 
+		if (0 == f)
 		{
 			Vec2 tmp;
 			return tmp;
 		}
-		
+
 		x /= f;
 		y /= f;
 
@@ -238,4 +238,12 @@ struct FRule
 	{
 
 	}
+};
+
+struct FDebuff
+{
+	DEBUFF Debuff;
+	float Duration;
+	float Acctime;
+	bool Active;
 };

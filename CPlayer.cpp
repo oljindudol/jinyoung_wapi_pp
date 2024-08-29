@@ -157,6 +157,7 @@ CPlayer::CPlayer()
 
 	m_PlayerState->ChangeState((UINT)PLAYER_STATE::IDLE);
 
+	InitDebuff();
 }
 
 CPlayer::CPlayer(const CPlayer& _Origin)
@@ -220,6 +221,11 @@ void CPlayer::tick(float _DT)
 		m_PlayerState->ChangeState((UINT)PLAYER_STATE::IDLE);
 	}
 
+	if (KEY_TAP(KEY::R))
+	{
+		PushDebuff(DEBUFF::DARKSITE);
+	}
+	ProcessDebuff();
 	//if (KEY_TAP(KEY::GRAVE))
 	//{
 	//	m_Movement->SetVelocity(Vec2(0, 0));
@@ -539,6 +545,8 @@ void CPlayer::begin()
 {
 	m_Collider->InitColCnt();
 	m_acctime = 0.f;
+
+	InitDebuff();
 }
 
 void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
@@ -574,4 +582,125 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 	}
 
 	return;
+}
+
+void CPlayer::InitDebuff()
+{
+	m_Debuff.resize(0);
+
+	//다크사이트
+	FDebuff debuff = {};
+	debuff.Debuff = DEBUFF::DARKSITE;
+	debuff.Duration = 360.f;
+	debuff.Acctime = 0.f;
+	debuff.Active = false;
+	if (false == HasDebuff(debuff.Debuff))
+	{
+		m_Debuff.push_back(debuff);
+	}
+
+
+}
+
+void CPlayer::ProcessDebuff()
+{
+	// 디버프 이벤트 처리
+	for (auto& e : m_DebuffEvent)
+	{
+		auto iter = m_Debuff.begin();
+		for (; m_Debuff.end() != iter; ++iter)
+		{
+			if (e == iter->Debuff)
+				break;
+			else
+				continue;
+		}
+
+		if (m_Debuff.end() == iter)
+			continue;
+		else
+		{
+			if (DEBUFF::DARKSITE == iter->Debuff && true == iter->Active)
+			{
+				iter->Active = false;
+			}
+			else
+			{
+				iter->Acctime = 0.f;
+				iter->Active = true;
+			}
+		}
+	}
+	m_DebuffEvent.resize(0);
+
+	auto dt = DT;
+
+	// 디버프 처리
+	for (auto& e : m_Debuff)
+	{
+		if (false == e.Active)
+		{
+			continue;
+		}
+		else
+		{
+			e.Acctime += dt;
+			if (e.Duration < e.Acctime)
+			{
+				e.Active = false;
+				e.Acctime = 0.f;
+			}
+		}
+	}
+
+	for (auto& e : m_Debuff)
+	{
+		if (DEBUFF::DARKSITE == e.Debuff)
+		{
+			if (true == e.Active)
+				m_Animator->SetAlpha(120);
+			else
+				m_Animator->SetAlpha(255);
+		}
+
+
+	}
+}
+
+void CPlayer::PushDebuff(DEBUFF _debuff)
+{
+	m_DebuffEvent.push_back(_debuff);
+}
+
+bool CPlayer::IsDebuffActive(DEBUFF _debuff)
+{
+	bool ret = false;
+	for (auto& e : m_Debuff)
+	{
+		if (_debuff == e.Debuff)
+		{
+			if (true == e.Active)
+				ret = true;
+			break;
+		}
+	}
+	return ret;
+}
+
+bool CPlayer::HasDebuff(DEBUFF _debuff)
+{
+	bool ret = false;
+	for (auto& e : m_Debuff)
+	{
+		if (_debuff == e.Debuff)
+		{
+			ret = true;
+			break;
+		}
+	}
+	return ret;
+}
+
+void CPlayer::RenderDebuff()
+{
 }
