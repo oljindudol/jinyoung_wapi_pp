@@ -8,19 +8,19 @@
 
 CUpperBar::CUpperBar()
 	:vecbossthumbs()
-	,hptex(nullptr)
-	,hpbarcovertex(nullptr)
-	,percenttex(nullptr)
-	,percentback(nullptr)
-	,dethcountbacktex(nullptr)
-	,vecdeathcnttex()
-	,timerbacktex(nullptr)
-	,vectimetex()
-	,vecbindtex()
-	,m_hpbuffer(0)
-	,CurLevelMon(nullptr)
-	,pRule(nullptr)
-	,CurLevelNum(0)
+	, hptex(nullptr)
+	, hpbarcovertex(nullptr)
+	, percenttex(nullptr)
+	, percentback(nullptr)
+	, dethcountbacktex(nullptr)
+	, vecdeathcnttex()
+	, timerbacktex(nullptr)
+	, vectimetex()
+	, vecbindtex()
+	, m_hpbuffer(0)
+	, CurLevelMon(nullptr)
+	, pRule(nullptr)
+	, CurLevelNum(0)
 {
 	m_uiname = L"UpperBarUI";
 	SetScale(Vec2(801.f, 200.f));
@@ -38,7 +38,7 @@ CUpperBar::CUpperBar()
 	}
 
 	//보스 체력바
-	hptex = asmgr->LoadTexture(L"bosshptex" , L"texture\\upperbar\\redbar.png");
+	hptex = asmgr->LoadTexture(L"bosshptex", L"texture\\upperbar\\redbar.png");
 	hpbarcovertex = asmgr->LoadTexture(L"bosshpbar", L"texture\\upperbar\\boss_will_hp.backgrnd.png");
 	percentback = asmgr->LoadTexture(L"bosshppercentback", L"texture\\upperbar\\MobHPRatioInfo.mob.0.backgrnd.png");
 	percenttex = asmgr->LoadTexture(L"bosshppercent", L"texture\\upperbar\\MobHPRatioInfo.num.percent.png");
@@ -88,12 +88,18 @@ void CUpperBar::begin()
 
 void CUpperBar::tick(float _DT)
 {
+	if (nullptr == CurLevelMon)
+		return;
+
 	m_hpbuffer = m_hpbuffer + ((float)CurLevelMon->GetMonsterHp() - m_hpbuffer) * _DT * 5.f;
 	Super::tick(_DT);
 }
 
 void CUpperBar::render(HDC _dc)
 {
+	if (nullptr == CurLevelMon)
+		return;
+
 	Vec2 vRenderPos = GetPos();
 	Vec2 vScale = GetScale();
 
@@ -110,10 +116,10 @@ void CUpperBar::render(HDC _dc)
 
 
 	//체력커버
-	SettexturetoDc(_dc, hpbarcovertex, vRenderPos );
+	SettexturetoDc(_dc, hpbarcovertex, vRenderPos);
 
 	AlphaBlend(_dc
-		, (int)(vRenderPos.x +40.f)
+		, (int)(vRenderPos.x + 40.f)
 		, (int)(vRenderPos.y + 5.f)
 		, (int)(757 * perc)
 		, 10
@@ -128,9 +134,9 @@ void CUpperBar::render(HDC _dc)
 
 	//퍼센트 텍스쳐
 	SettexturetoDc(_dc, percenttex, vRenderPos + Vec2(26.f, 40.f));
-	
 
-	float percent =  CurLevelMon->GetMonsterHp() * 100 / CurLevelMon->GetMonsterMaxHp();
+
+	float percent = CurLevelMon->GetMonsterHp() * 100 / CurLevelMon->GetMonsterMaxHp();
 	wstring a;
 
 	if (100.f == percent)
@@ -150,10 +156,10 @@ void CUpperBar::render(HDC _dc)
 
 
 	//보스 썸네일
-	SettexturetoDc(_dc, vecbossthumbs[(CurLevelNum-1)], vRenderPos +Vec2(5.f,5.f));
+	SettexturetoDc(_dc, vecbossthumbs[(CurLevelNum - 1)], vRenderPos + Vec2(5.f, 5.f));
 
 	//데스카운트
-	SettexturetoDc(_dc, dethcountbacktex, vRenderPos + Vec2(203.f ,50.f));
+	SettexturetoDc(_dc, dethcountbacktex, vRenderPos + Vec2(203.f, 50.f));
 
 
 	int lakeofhpdigit = 0;

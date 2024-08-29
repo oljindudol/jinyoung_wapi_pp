@@ -604,6 +604,7 @@
     <ClInclude Include="CMouseCol.h">
       <Filter>03.Game\10.StageZero</Filter>
     </ClInclude>
+    <ClInclude Include="CPhaseThird.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -1027,5 +1028,6 @@
     <ClCompile Include="CMouseCol.cpp">
       <Filter>03.Game\10.StageZero</Filter>
     </ClCompile>
+    <ClCompile Include="CPhaseThird.cpp" />
   </ItemGroup>
 </Project>

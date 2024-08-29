@@ -26,6 +26,7 @@
 #include "CMonsterMgr.h"
 #include "CTimeManager.h"
 #include "CPhaseFifth.h"
+#include "CPhaseThird.h"
 
 
 CLevelMgr::CLevelMgr()
@@ -75,6 +76,7 @@ void CLevelMgr::init()
 	//m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
 	//m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIFTH] = new CPhaseFifth;
+	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_THIRD] = new CPhaseThird;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_SECOND] = new CPhaseSecond;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIRST] = new CPhaseFirst;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_ZERO] = new CEnteranceLevel;
@@ -169,7 +171,7 @@ void CLevelMgr::tick()
 	m_acctime += DT;
 	if (1.f < m_acctime)
 	{
-		if(0 < m_pRule->leftsecond)
+		if (0 < m_pRule->leftsecond)
 			--m_pRule->leftsecond;
 		m_acctime = 0;
 	}
@@ -215,8 +217,8 @@ void CLevelMgr::render(HDC _dc)
 			_dc,
 			0,//(int)(ptResolution.x * ((mag - 1.f) / (-2.f))),
 			(int)(ptResolution.y * ((mag - 1.f) / (-2.f))),
-			(int)(ptResolution.x ),
-			(int)(ptResolution.y ),
+			(int)(ptResolution.x),
+			(int)(ptResolution.y),
 			tmpdc,
 			0,//(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
 			0,//(int)(ptResolution.x * ((1.f - mag) / (-2.f))),
@@ -241,7 +243,7 @@ void CLevelMgr::imagUp()
 {
 	imag++;
 	float mag = 1.f + (((float)imag - 1.f) / 10.f);
-	
+
 	if (!DEBUG_RENDER)
 	{
 		wstring msg = L"확대배율:" + std::to_wstring(mag).substr(0, 3);

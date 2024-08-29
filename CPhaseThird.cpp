@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPhaseSecond.h"
+#include "CPhaseThird.h"
 
 #include "CPlayer.h"
 #include "CMonster.h"
@@ -27,17 +27,16 @@
 
 #include "CUIMgr.h"
 
-CPhaseSecond::~CPhaseSecond()
+CPhaseThird::~CPhaseThird()
 {
 }
 
-void CPhaseSecond::init()
+void CPhaseThird::init()
 {
-
 	// 배경생성
 	//CBackGround* pBackGround = nullptr;
 	m_BackGround = new CBackGround;
-	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage2", L"texture\\Stage2.png"));
+	m_BackGround->SetTextre(CAssetMgr::GetInst()->LoadTexture(L"Stage3", L"texture\\Stage3.png"));
 	m_BackOn = true;
 
 	Vec2 mapsize =
@@ -79,42 +78,6 @@ void CPhaseSecond::init()
 	CCollider* wallcol2 = pWall2->AddComponent<CCollider>(L"WallCollider2");
 	wallcol2->SetScale(Vec2(200.f, 1000.f));
 
-	// 파멸의 눈용 컬라이더
-	CInvisibleWall* pIWall[4];
-	for (int i = 0; i < 4; ++i)
-	{
-		pIWall[i] = new CInvisibleWall;
-		AddObject(WALL_FOR_COL, pIWall[i]);
-	}
-
-	CInvisibleWall* ptmp = nullptr;
-	ptmp = pIWall[0];
-	ptmp->SetScale(Vec2(20, 1000));
-	ptmp->SetPos(Vec2(m_LevelMiddle.x - 510.f, m_LevelMiddle.y));
-	ptmp->SetName(L"Left_IWALL");
-	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
-
-	ptmp = pIWall[1];
-	ptmp->SetScale(Vec2(20, 1000));
-	ptmp->SetPos(Vec2(m_LevelMiddle.x + 510.f, m_LevelMiddle.y));
-	ptmp->SetName(L"Right_IWALL");
-	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
-
-	ptmp = pIWall[2];
-	ptmp->SetScale(Vec2(1000, 20));
-	ptmp->SetPos(Vec2(m_LevelMiddle.x, m_LevelMiddle.y - 400.f));
-	ptmp->SetName(L"Top_IWALL");
-	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
-
-	ptmp = pIWall[3];
-	ptmp->SetScale(Vec2(1000, 20));
-	ptmp->SetPos(Vec2(m_LevelMiddle.x, m_LevelMiddle.y + 300.f));
-	ptmp->SetName(L"Bottom_IWALL");
-	ptmp->AddComponent<CCollider>(ptmp->GetName() + L"Col")->SetScale(ptmp->GetScale());
-
-
-
-
 	// 플랫폼 설치1
 	CPlatform* pPlatform = new CPlatform;
 	pPlatform->SetPos(Vec2(m_LevelMiddle.x, (m_LevelMiddle.y) + 380.f));
@@ -124,38 +87,31 @@ void CPhaseSecond::init()
 
 
 	// 
-	pBgm = CAssetMgr::GetInst()->LoadSound(L"BGM_02", L"sound\\ThroneOfDarkness.wav");
+	pBgm = CAssetMgr::GetInst()->LoadSound(L"BGM_03", L"sound\\WorldHorizon.wav");
 	pBgm->SetVolume(20);
 	pBgm->SetPosition(45.f);
 	pBgm->Play(true);
-
-
-	CMonsterMgr::GetInst()->SpwanMonster(L"secondblackmage", Vec2((m_LevelMiddle.x), (m_LevelMiddle.y) + 10.f));
-	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon11");
-	CMonsterMgr::GetInst()->SpwanRuleMonster(L"firstrulemon12");
-
-
 }
 
-void CPhaseSecond::enter()
+void CPhaseThird::enter()
 {
 	init();
 	CCamera::GetInst()->FadeIn(0.3f);
 }
 
-void CPhaseSecond::exit()
+void CPhaseThird::exit()
 {
 	pBgm->Stop(true);
 	DeleteAllObjects();
 }
 
-void CPhaseSecond::tick()
+void CPhaseThird::tick()
 {
 	CLevel::tick();
 
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::PHASE_THIRD);
+		ChangeLevel(LEVEL_TYPE::PHASE_FIFTH);
 	}
 }

@@ -173,7 +173,7 @@ enum LAYER
 	WORLD_STATIC,
 
 	UI = 29,
-	CUT_SCENE =30,
+	CUT_SCENE = 30,
 	SUPER_UI = 31,
 	END = 32,
 };
@@ -243,7 +243,7 @@ enum class LEVEL_TYPE
 	PHASE_ZERO,			//0
 	PHASE_FIRST,		//1
 	PHASE_SECOND,		//2
-	//PHASE_THIRD,		//3
+	PHASE_THIRD,		//3
 	//PHASE_FOURTH,		//4
 	PHASE_FIFTH,		//5
 	END,
@@ -267,13 +267,13 @@ enum class ENORMAL_MON_STATE
 	DIE,
 
 	//모닝스타폴,모닝스타폴 ,총알패턴1
-	ATTACK1, 
+	ATTACK1,
 	//파멸의눈  ,레이저     ,총알패턴2
-	ATTACK2, 
+	ATTACK2,
 	//녹스		,끌기		,총알패턴3
-	ATTACK3, 
+	ATTACK3,
 	//암흑	    ,차기		,속성폭탄
-	ATTACK4, 
+	ATTACK4,
 
 	POWER1,
 	POWER2,
@@ -285,15 +285,15 @@ enum class ENORMAL_MON_STATE
 
 enum class PLAYER_STATE
 {
-	IDLE	,
-	MOVE    ,
-	ON_AIR	,
-	DOWN	,
-	ATT_NM	,
-	ATT_SP	,
-	ATT_HX	,
-	ROPE    ,
-	DEAD	,
+	IDLE,
+	MOVE,
+	ON_AIR,
+	DOWN,
+	ATT_NM,
+	ATT_SP,
+	ATT_HX,
+	ROPE,
+	DEAD,
 };
 
 

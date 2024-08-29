@@ -278,6 +278,7 @@
     <ClInclude Include="CPhaseFifth.h" />
     <ClInclude Include="CPhaseFirst.h" />
     <ClInclude Include="CPhaseSecond.h" />
+    <ClInclude Include="CPhaseThird.h" />
     <ClInclude Include="CPlatform.h" />
     <ClInclude Include="CEnteranceLevel.h" />
     <ClInclude Include="CPlayerAttNorm.h" />
@@ -499,6 +500,7 @@
     <ClCompile Include="CPhaseFifth.cpp" />
     <ClCompile Include="CPhaseFirst.cpp" />
     <ClCompile Include="CPhaseSecond.cpp" />
+    <ClCompile Include="CPhaseThird.cpp" />
     <ClCompile Include="CPlatform.cpp" />
     <ClCompile Include="CEnteranceLevel.cpp" />
     <ClCompile Include="CPlayerAttNorm.cpp" />
