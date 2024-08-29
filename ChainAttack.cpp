@@ -9,13 +9,13 @@ void ChainAttack::tick(float _DT)
 	Super::tick(_DT);
 	if (m_activedtime > 1.86f)
 	{
-		m_Collider->SetOffsetPos(Vec2(m_Collider->GetOffsetPos().x , 4000.f));
-			return;
+		m_Collider->SetOffsetPos(Vec2(m_Collider->GetOffsetPos().x, 4000.f));
+		return;
 	}
 	if (m_activedtime < 0.78f)
 	{
 		m_Collider->SetOffsetPos(Vec2(m_Collider->GetOffsetPos().x, 4000.f));
-			return;
+		return;
 	}
 
 	if (m_activedtime > 0.78f)
@@ -23,7 +23,7 @@ void ChainAttack::tick(float _DT)
 		m_Collider->SetOffsetPos(Vec2(m_Collider->GetOffsetPos().x, -500.f));
 		return;
 	}
-	
+
 
 }
 
@@ -56,12 +56,13 @@ ChainAttack::ChainAttack()
 		CreateAnimation(m_s1, m_s2, m_s3,
 			Vec2(0.f, 0.f), 1.f, -1, ORT_LEFT);
 
-	for (int i = 20; i > -20; i-=4)
-	{
-		m_Animator->
-			CreateRotatedAnimation(m_s1, m_s2, m_s3,
-				i, Vec2( -500.f * tanf(0.0174533f * i), -500.f), 1.f, -1, ORT_LEFT);
-	}
+	//시연시 주석풀기
+	//for (int i = 20; i > -20; i -= 4)
+	//{
+	//	m_Animator->
+	//		CreateRotatedAnimation(m_s1, m_s2, m_s3,
+	//			i, Vec2(-500.f * tanf(0.0174533f * i), -500.f), 1.f, -1, ORT_LEFT);
+	//}
 
 
 	m_skilllayer = LAYER::MONSTER_PJ;
@@ -79,14 +80,16 @@ ChainAttack::ChainAttack(const ChainAttack& _Origin)
 void ChainAttack::activate(Vec2 _beginpos, ORIENTATION _ort)
 {
 
-	float perc = (float)rand()/ (float)32767;
-	int rot = 20 - 4*((int)(10 * perc));
+	float perc = (float)rand() / (float)32767;
+	int rot = 20 - 4 * ((int)(10 * perc));
 
-	m_Animator->Play(m_s1 + m_s2 + m_s3 + L"_" + std::to_wstring(rot));
-	//m_Animator->Play(m_s1 + m_s2 + m_s3 );
+	//시연용
+	//m_Animator->Play(m_s1 + m_s2 + m_s3 + L"_" + std::to_wstring(rot));
+	//디버그용
+	m_Animator->Play(m_s1 + m_s2 + m_s3);
 
-	m_Collider->SetRad((float)rot* -0.0174533f);
-	m_Collider->SetOffsetPos(Vec2(  -15.f -500.f * tanf(0.0174533f * rot), -2000.f));
+	m_Collider->SetRad((float)rot * -0.0174533f);
+	m_Collider->SetOffsetPos(Vec2(-15.f - 500.f * tanf(0.0174533f * rot), -2000.f));
 	Super::activate(_beginpos, _ort);
 
 }
