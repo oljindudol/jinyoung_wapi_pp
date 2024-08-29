@@ -586,14 +586,24 @@
     <ClInclude Include="CItemInfoUI.h">
       <Filter>03.Game\15.StageFifth\UI</Filter>
     </ClInclude>
-    <ClInclude Include="CAmon.h" />
-    <ClInclude Include="CMouseCol.h" />
-    <ClInclude Include="CDialogBox.h" />
-    <ClInclude Include="CDialogBtn.h" />
     <ClInclude Include="CGenesisEgg.h">
       <Filter>03.Game\15.StageFifth</Filter>
     </ClInclude>
-    <ClInclude Include="CDebugUI.h" />
+    <ClInclude Include="CAmon.h">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClInclude>
+    <ClInclude Include="CDebugUI.h">
+      <Filter>03.Game\12.StageSecond</Filter>
+    </ClInclude>
+    <ClInclude Include="CDialogBox.h">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClInclude>
+    <ClInclude Include="CDialogBtn.h">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClInclude>
+    <ClInclude Include="CMouseCol.h">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -999,13 +1009,23 @@
     <ClCompile Include="CItemInfoUI.cpp">
       <Filter>03.Game\15.StageFifth\UI</Filter>
     </ClCompile>
-    <ClCompile Include="CAmon.cpp" />
-    <ClCompile Include="CMouseCol.cpp" />
-    <ClCompile Include="CDialogBox.cpp" />
-    <ClCompile Include="CDialogBtn.cpp" />
     <ClCompile Include="CGenesisEgg.cpp">
       <Filter>03.Game\15.StageFifth</Filter>
     </ClCompile>
-    <ClCompile Include="CDebugUI.cpp" />
+    <ClCompile Include="CAmon.cpp">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClCompile>
+    <ClCompile Include="CDebugUI.cpp">
+      <Filter>03.Game\12.StageSecond</Filter>
+    </ClCompile>
+    <ClCompile Include="CDialogBox.cpp">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClCompile>
+    <ClCompile Include="CDialogBtn.cpp">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClCompile>
+    <ClCompile Include="CMouseCol.cpp">
+      <Filter>03.Game\10.StageZero</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
