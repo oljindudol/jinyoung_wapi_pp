@@ -119,6 +119,36 @@ void CBlackMage3::tick(float _DT)
 		m_left_cool[i] -= _DT;
 	}
 
+
+	if (KEY_TAP(KEY::_5))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK1);
+	}
+	if (KEY_TAP(KEY::_6))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK2);
+	}
+	if (KEY_TAP(KEY::_7))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK3);
+	}
+	if (KEY_TAP(KEY::_8))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::ATTACK4);
+	}
+
+	if (KEY_TAP(KEY::F9))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::POWER1);
+	}
+	if (KEY_TAP(KEY::F10))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::POWER2);
+	}
+	if (KEY_TAP(KEY::F11))
+	{
+		m_AI->ChangeState((UINT)ENORMAL_MON_STATE::POWER3);
+	}
 }
 
 void CBlackMage3::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
