@@ -22,6 +22,7 @@ void CMonsterMgr::init()
 	AddMonster(new rulemon12);
 
 	AddMonster(new CBlackMage2);
+	AddMonster(new CBlackMage3);
 
 	for (int i = 0; i < 15; i++)
 	{
@@ -76,7 +77,7 @@ int CMonsterMgr::FindNextMonsterNumber(wstring _mostername)
 	}
 
 	return (int)iter->second.size();
-	
+
 }
 
 void CMonsterMgr::ChangeAllMonsterForcedIdle()
@@ -90,7 +91,7 @@ void CMonsterMgr::ChangeAllMonsterForcedIdle()
 				p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 				p->m_AI->m_forcedidle = true;
 			}
-				
+
 		}
 	}
 }
@@ -106,7 +107,7 @@ void CMonsterMgr::ChangeAllMonsterIdle()
 				p->m_AI->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 				p->m_AI->m_forcedidle = false;
 			}
-				
+
 		}
 	}
 }

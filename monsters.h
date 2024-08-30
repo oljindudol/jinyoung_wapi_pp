@@ -37,7 +37,7 @@
 
 //3페이즈 몬스터
 // 1. 검은마법사
-//#include "CThirdBM"
+#include "CBlackMage3.h"
 // 감자몬스터 돌려쓰기
 // 레이저는 검은마법사가 소환하는 스킬형식
 

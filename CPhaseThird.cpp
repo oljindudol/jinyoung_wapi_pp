@@ -91,6 +91,8 @@ void CPhaseThird::init()
 	pBgm->SetVolume(20);
 	pBgm->SetPosition(45.f);
 	pBgm->Play(true);
+
+	CMonsterMgr::GetInst()->SpwanMonster(L"thirdblackmage", Vec2((m_LevelMiddle.x), (m_LevelMiddle.y) + 10.f));
 }
 
 void CPhaseThird::enter()

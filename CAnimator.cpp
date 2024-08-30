@@ -9,7 +9,7 @@
 CAnimator::CAnimator(CObj* _Owner)
 	: CComponent(_Owner)
 	, m_CurAnim(nullptr)
-	, m_bRepeat(false)
+	, m_bPlay(false)
 	, m_mag(1.f)
 	, m_alpha(255)
 {
@@ -18,7 +18,7 @@ CAnimator::CAnimator(CObj* _Owner)
 CAnimator::CAnimator(const CAnimator& _Origin)
 	: CComponent(_Origin)
 	, m_CurAnim(nullptr)
-	, m_bRepeat(_Origin.m_bRepeat)
+	, m_bPlay(_Origin.m_bPlay)
 {
 	for (const auto& pair : _Origin.m_mapAnim)
 	{
@@ -46,7 +46,7 @@ void CAnimator::finaltick(float _DT)
 {
 	if (IsValid(m_CurAnim))
 	{
-		if ((m_CurAnim->m_iRoop>-1) && m_CurAnim->IsFinish())
+		if ((m_CurAnim->m_iRoop > -1) && m_CurAnim->IsFinish())
 		{
 			m_CurAnim->Reset();
 		}
@@ -74,7 +74,7 @@ Vec2 CAnimator::GetScale()
 
 CAnim* CAnimator::Play(const wstring& _strName)
 {
-	//m_bRepeat = _bRepeat;
+	m_bPlay = true;
 
 	m_CurAnim = FindAnim(_strName);
 	m_CurAnim->m_bFinish = false;
@@ -85,6 +85,7 @@ CAnim* CAnimator::Play(const wstring& _strName)
 
 void CAnimator::Stop()
 {
+	m_bPlay = false;
 }
 
 CAnim* CAnimator::FindAnim(const wstring& _strName)
@@ -120,9 +121,9 @@ CAnim* CAnimator::FindAnim(const wstring& _strName)
 // roop == 0 은 일반루프
 // roop == -1 은 루프안함
 // roop == 그외숫자는 루프할때 돌아갈 프레임
-CAnim* CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset , float _playmul,int _roop, ORIENTATION _ort)
+CAnim* CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul, int _roop, ORIENTATION _ort)
 {
-	CAnim* pAnim = FindAnim(_strphase+ _strobj+ _stranimname);
+	CAnim* pAnim = FindAnim(_strphase + _strobj + _stranimname);
 	if (IsValid(pAnim))
 	{
 		return nullptr;
@@ -132,7 +133,7 @@ CAnim* CAnimator::CreateAnimation(const wstring& _strphase, const wstring& _stro
 	pAnim->m_pAnimator = this;
 	pAnim->m_iRoop = _roop;
 	pAnim->m_ort = _ort;
-	pAnim->Create(_strphase, _strobj, _stranimname,_vOffset,_playmul);
+	pAnim->Create(_strphase, _strobj, _stranimname, _vOffset, _playmul);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
 
 	return pAnim;
@@ -152,7 +153,7 @@ CAnim* CAnimator::CreateTurnAnimation(const wstring& _strphase, const wstring& _
 	pAnim->m_iRoop = _roop;
 	pAnim->m_ort = _ort;
 
-	pAnim->CreateTurn(_strphase, _strobj, _stranimname, _vOffset,_playmul ,_period, _fpp);
+	pAnim->CreateTurn(_strphase, _strobj, _stranimname, _vOffset, _playmul, _period, _fpp);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname, pAnim));
 
 	return pAnim;
@@ -162,7 +163,7 @@ CAnim* CAnimator::CreateTurnAnimation(const wstring& _strphase, const wstring& _
 
 void CAnimator::CreateRotatedAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul, int _roop, ORIENTATION _ort)
 {
-	CAnim* pAnim = FindAnim(_strphase + _strobj + _stranimname +L"_"+std::to_wstring(_rot));
+	CAnim* pAnim = FindAnim(_strphase + _strobj + _stranimname + L"_" + std::to_wstring(_rot));
 	if (IsValid(pAnim))
 	{
 		return;
@@ -172,7 +173,7 @@ void CAnimator::CreateRotatedAnimation(const wstring& _strphase, const wstring& 
 	pAnim->m_pAnimator = this;
 	pAnim->m_iRoop = _roop;
 	pAnim->m_ort = _ort;
-	pAnim->CreateRotated(_strphase, _strobj, _stranimname , _rot, _vOffset, _playmul);
+	pAnim->CreateRotated(_strphase, _strobj, _stranimname, _rot, _vOffset, _playmul);
 	m_mapAnim.insert(make_pair(_strphase + _strobj + _stranimname + L"_" + std::to_wstring(_rot), pAnim));
 }
 

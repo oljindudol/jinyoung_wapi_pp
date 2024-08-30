@@ -167,6 +167,15 @@
     <Filter Include="03.Game\15.StageFifth\EggState">
       <UniqueIdentifier>{9a5ed572-1772-4654-bced-5ec44422a344}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Game\13.StageThird\01.BM\attack%284%29">
+      <UniqueIdentifier>{5308c165-8f3a-4552-a0f4-60dad060b547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\13.StageThird\01.BM\normal%282%29">
+      <UniqueIdentifier>{8829fc05-b07d-4b06-a149-a467316a903d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Game\13.StageThird\01.BM\power%282%29">
+      <UniqueIdentifier>{0a5875c7-7526-4b9d-b437-dc36f0cc80db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -605,6 +614,31 @@
       <Filter>03.Game\10.StageZero</Filter>
     </ClInclude>
     <ClInclude Include="CPhaseThird.h" />
+    <ClInclude Include="CBlackMage3.h" />
+    <ClInclude Include="CThirdBMDie.h">
+      <Filter>03.Game\13.StageThird\01.BM\normal%282%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMIdle.h">
+      <Filter>03.Game\13.StageThird\01.BM\normal%282%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMLaser.h">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMMorningStarFall.h">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMPowerDown.h">
+      <Filter>03.Game\13.StageThird\01.BM\power%282%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMPowerUp.h">
+      <Filter>03.Game\13.StageThird\01.BM\power%282%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMPull.h">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CThirdBMPush.h">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -935,9 +969,6 @@
     <ClCompile Include="CUnderDog.cpp">
       <Filter>03.Game\12.StageSecond\BM2Skill\CMorningStarFall</Filter>
     </ClCompile>
-    <ClCompile Include="CPhaseSecond.cpp">
-      <Filter>03.Game\12.StageSecond</Filter>
-    </ClCompile>
     <ClCompile Include="CInvisibleWall.cpp">
       <Filter>03.Game\04.Object</Filter>
     </ClCompile>
@@ -1029,5 +1060,31 @@
       <Filter>03.Game\10.StageZero</Filter>
     </ClCompile>
     <ClCompile Include="CPhaseThird.cpp" />
+    <ClCompile Include="CBlackMage3.cpp" />
+    <ClCompile Include="CThirdBMDie.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\normal%282%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMIdle.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\normal%282%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMLaser.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMMorningStarFall.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMPowerDown.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\power%282%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMPowerUp.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\power%282%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMPull.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CThirdBMPush.cpp">
+      <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhaseSecond.cpp" />
   </ItemGroup>
 </Project>

@@ -163,6 +163,7 @@
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CBlackMage2.h" />
+    <ClInclude Include="CBlackMage3.h" />
     <ClInclude Include="CBladeStorm.h" />
     <ClInclude Include="CBladeTornado.h" />
     <ClInclude Include="CBlindness.h" />
@@ -338,6 +339,14 @@
     <ClInclude Include="CStatusUI.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTexture.h" />
+    <ClInclude Include="CThirdBMDie.h" />
+    <ClInclude Include="CThirdBMIdle.h" />
+    <ClInclude Include="CThirdBMLaser.h" />
+    <ClInclude Include="CThirdBMMorningStarFall.h" />
+    <ClInclude Include="CThirdBMPowerDown.h" />
+    <ClInclude Include="CThirdBMPowerUp.h" />
+    <ClInclude Include="CThirdBMPull.h" />
+    <ClInclude Include="CThirdBMPush.h" />
     <ClInclude Include="CTile.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="CUI.h" />
@@ -386,6 +395,7 @@
     <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CBlackMage2.cpp" />
+    <ClCompile Include="CBlackMage3.cpp" />
     <ClCompile Include="CBladeStorm.cpp" />
     <ClCompile Include="CBladeTornado.cpp" />
     <ClCompile Include="CBlindness.cpp" />
@@ -559,6 +569,14 @@
     <ClCompile Include="CStatusUI.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="CThirdBMDie.cpp" />
+    <ClCompile Include="CThirdBMIdle.cpp" />
+    <ClCompile Include="CThirdBMLaser.cpp" />
+    <ClCompile Include="CThirdBMMorningStarFall.cpp" />
+    <ClCompile Include="CThirdBMPowerDown.cpp" />
+    <ClCompile Include="CThirdBMPowerUp.cpp" />
+    <ClCompile Include="CThirdBMPull.cpp" />
+    <ClCompile Include="CThirdBMPush.cpp" />
     <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="CUI.cpp" />

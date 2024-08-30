@@ -36,6 +36,8 @@ CAnim::~CAnim()
 
 void CAnim::finaltick()
 {
+	if (false == m_pAnimator->m_bPlay)
+		return;
 	if (m_bFinish)
 		return;
 
@@ -73,7 +75,7 @@ void CAnim::render(HDC _dc)
 		offsetx *= -1;
 	}
 
-	
+
 	/*TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 					  , int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 					  , int(frm.vCutSize.x), int(frm.vCutSize.y)
@@ -116,7 +118,7 @@ void CAnim::render(HDC _dc)
 		blend.SourceConstantAlpha = talpha; // 0 ~ 255
 		blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
-		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f)* tmag + offsetx)
+		AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) * tmag + offsetx)
 			, int(vRenderPos.y - (frm.vCutSize.y / 2.f) * tmag + frm.vOffset.y)
 			, int(frm.vCutSize.x * tmag), int(frm.vCutSize.y * tmag)
 			, tmpdc
@@ -128,95 +130,95 @@ void CAnim::render(HDC _dc)
 
 
 }
-	//회전이 0이아닐때
-	//else
-	//{
+//회전이 0이아닐때
+//else
+//{
 
-	//	Vec2 offset((float)offsetx, frm.vOffset.y);
-	//	Vec2 finalrednerpos = vRenderPos  + offset;
+//	Vec2 offset((float)offsetx, frm.vOffset.y);
+//	Vec2 finalrednerpos = vRenderPos  + offset;
 
-	//	//POINT threepoints[3];
-	//	////좌상단점
-	//	//Vec2 LeftUp	   = RotateDot(Vec2(frm.vCutSize.x / -2.f, frm.vCutSize.y / -2.f), rot);
-	//	////우상단점
-	//	//Vec2 RightUp = RotateDot(Vec2(frm.vCutSize.x / 2.f, frm.vCutSize.y / -2.f), rot);
-	//	////좌하단점 
-	//	//Vec2 LeftDown  = RotateDot(Vec2(frm.vCutSize.x / -2.f, frm.vCutSize.y / 2.f), rot);
-	//	// 
-	//	//LeftUp += finalrednerpos;
-	//	//RightUp += finalrednerpos;
-	//	//LeftDown += finalrednerpos;
+//	//POINT threepoints[3];
+//	////좌상단점
+//	//Vec2 LeftUp	   = RotateDot(Vec2(frm.vCutSize.x / -2.f, frm.vCutSize.y / -2.f), rot);
+//	////우상단점
+//	//Vec2 RightUp = RotateDot(Vec2(frm.vCutSize.x / 2.f, frm.vCutSize.y / -2.f), rot);
+//	////좌하단점 
+//	//Vec2 LeftDown  = RotateDot(Vec2(frm.vCutSize.x / -2.f, frm.vCutSize.y / 2.f), rot);
+//	// 
+//	//LeftUp += finalrednerpos;
+//	//RightUp += finalrednerpos;
+//	//LeftDown += finalrednerpos;
 
-	//	//threepoints[0] = POINT((int)LeftUp.x, (int)LeftUp.y);
-	//	//threepoints[1] = POINT((int)RightUp.x, (int)RightUp.y);
-	//	//threepoints[2] = POINT((int)LeftDown.x, (int)LeftDown.y);
-
-
-	//	//SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
-
-	//	//PlgBlt(_dc, threepoints
-	//	//	, tmpdc, 0, 0, (int)frm.vCutSize.x, (int)frm.vCutSize.y,
-	//	//	NULL, 0, 0);
-	//	//CAssetMgr::GetInst()->GetTransHBITMAP(), 0, 0);
+//	//threepoints[0] = POINT((int)LeftUp.x, (int)LeftUp.y);
+//	//threepoints[1] = POINT((int)RightUp.x, (int)RightUp.y);
+//	//threepoints[2] = POINT((int)LeftDown.x, (int)LeftDown.y);
 
 
+//	//SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+
+//	//PlgBlt(_dc, threepoints
+//	//	, tmpdc, 0, 0, (int)frm.vCutSize.x, (int)frm.vCutSize.y,
+//	//	NULL, 0, 0);
+//	//CAssetMgr::GetInst()->GetTransHBITMAP(), 0, 0);
 
 
 
-	//	SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
-
-	//	//
-	//	// (destDC, 0, 0, dest_width, dest_height, PATCOPY);                           // 선택된 브러시로, 회전할 비트맵을 출력받을 DC에, 미리 색상을 채워 지움   
-
-	//	float cosine = (float)cos(rot);                                              // 회전이동변환 행렬에 들어갈 cos세타 값을 구함          
-	//	float sine = (float)sin(rot);                                              // 회전이동변환 행렬에 들어갈 sin세타 값을 구함   
-
-	//	SetGraphicsMode(_dc, GM_ADVANCED);                                               // 윈도우 좌표계의 회전을 위하여, 그래픽모드를 확장모드로 변경합니다.(요구사항:윈98,NT이상)   
-
-	//	// 회전이동변환 행렬을 정의.   
-	//	// (윈도우즈 API정복 개정판 2권 Page(1279) 참조.)   
-	//	// (게임 프로그래머를 위한 기초수학과 물리 Page(196) 참조.)   
-
-	//	XFORM xform;                                                                        // 방정식을 표현하는 3행3열의 행렬 선언   
-	//	xform.eM11 = cosine;                                                                // 1행 1열 성분 설정 (회전성분)   
-	//	xform.eM12 = sine;                                                                  // 1행 2열 성분 설정 (회전성분)   
-	//	xform.eM21 = -sine;                                                                 // 2행 1열 성분 설정 (회전성분)   
-	//	xform.eM22 = cosine;                                                                // 2행 2열 성분 설정 (회전성분)   
-	//	xform.eDx = finalrednerpos.x;                                               // 3행 1열 성분 설정 (X축 이동 성분)   
-	//	xform.eDy = finalrednerpos.y;                                              // 3행 2열 성분 설정 (Y축 이동 성분)   
-
-	//	// 설정한 행렬로, 인수DC의 윈도우즈 좌표계를 변환.   
-	//	// 인수DC는 출력대상으로 메모리비트맵을 가지므로,   
-	//	// 선택하고 있는 메모리비트맵의 좌표체계가 회전된다.   
-
-	//	SetWorldTransform(_dc, &xform);
-
-	//	BLENDFUNCTION blend = {};
-	//	blend.BlendOp = AC_SRC_OVER;
-	//	blend.BlendFlags = 0;
-
-	//	blend.SourceConstantAlpha = 255; // 0 ~ 255
-	//	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-
-	//	AlphaBlend(_dc
-	//		, int(frm.vCutSize.x/-2.f)
-	//		, int(frm.vCutSize.y /- 2.f)
-	//		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-	//		, tmpdc
-	//		, 0, 0
-	//		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-	//		, blend);
 
 
-	//	xform.eM11 = 1.f;
-	//	xform.eM12 = 0.f;
-	//	xform.eM21 = 0.f;
-	//	xform.eM22 = 1.f;
-	//	xform.eDx = 0.f;
-	//	xform.eDy = 0.f;
-	//	SetWorldTransform(_dc, &xform);
+//	SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(WHITE_BRUSH));
 
-	//}
+//	//
+//	// (destDC, 0, 0, dest_width, dest_height, PATCOPY);                           // 선택된 브러시로, 회전할 비트맵을 출력받을 DC에, 미리 색상을 채워 지움   
+
+//	float cosine = (float)cos(rot);                                              // 회전이동변환 행렬에 들어갈 cos세타 값을 구함          
+//	float sine = (float)sin(rot);                                              // 회전이동변환 행렬에 들어갈 sin세타 값을 구함   
+
+//	SetGraphicsMode(_dc, GM_ADVANCED);                                               // 윈도우 좌표계의 회전을 위하여, 그래픽모드를 확장모드로 변경합니다.(요구사항:윈98,NT이상)   
+
+//	// 회전이동변환 행렬을 정의.   
+//	// (윈도우즈 API정복 개정판 2권 Page(1279) 참조.)   
+//	// (게임 프로그래머를 위한 기초수학과 물리 Page(196) 참조.)   
+
+//	XFORM xform;                                                                        // 방정식을 표현하는 3행3열의 행렬 선언   
+//	xform.eM11 = cosine;                                                                // 1행 1열 성분 설정 (회전성분)   
+//	xform.eM12 = sine;                                                                  // 1행 2열 성분 설정 (회전성분)   
+//	xform.eM21 = -sine;                                                                 // 2행 1열 성분 설정 (회전성분)   
+//	xform.eM22 = cosine;                                                                // 2행 2열 성분 설정 (회전성분)   
+//	xform.eDx = finalrednerpos.x;                                               // 3행 1열 성분 설정 (X축 이동 성분)   
+//	xform.eDy = finalrednerpos.y;                                              // 3행 2열 성분 설정 (Y축 이동 성분)   
+
+//	// 설정한 행렬로, 인수DC의 윈도우즈 좌표계를 변환.   
+//	// 인수DC는 출력대상으로 메모리비트맵을 가지므로,   
+//	// 선택하고 있는 메모리비트맵의 좌표체계가 회전된다.   
+
+//	SetWorldTransform(_dc, &xform);
+
+//	BLENDFUNCTION blend = {};
+//	blend.BlendOp = AC_SRC_OVER;
+//	blend.BlendFlags = 0;
+
+//	blend.SourceConstantAlpha = 255; // 0 ~ 255
+//	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+//	AlphaBlend(_dc
+//		, int(frm.vCutSize.x/-2.f)
+//		, int(frm.vCutSize.y /- 2.f)
+//		, int(frm.vCutSize.x), int(frm.vCutSize.y)
+//		, tmpdc
+//		, 0, 0
+//		, int(frm.vCutSize.x), int(frm.vCutSize.y)
+//		, blend);
+
+
+//	xform.eM11 = 1.f;
+//	xform.eM12 = 0.f;
+//	xform.eM21 = 0.f;
+//	xform.eM22 = 1.f;
+//	xform.eDx = 0.f;
+//	xform.eDy = 0.f;
+//	SetWorldTransform(_dc, &xform);
+
+//}
 
 //}
 
@@ -249,13 +251,13 @@ static bool comparefirst(pair<wstring, wstring> _p1, pair<wstring, wstring> _p2)
 {
 	return stoi(_p1.first) < stoi(_p2.first);
 }
-void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset ,float _playmul )
+void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul)
 {
-	SetName(_strphase+ _strobj+_stranimname);
+	SetName(_strphase + _strobj + _stranimname);
 
 
 	wstring filePath = CPathMgr::GetContentPath();
-	wstring addipath = 
+	wstring addipath =
 		_strphase + L"\\"
 		+ _strobj + L"\\"
 		+ _stranimname;
@@ -263,7 +265,7 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 	filePath += L"texture\\anim\\"
 		+ addipath;
 
-	vector<pair<wstring,wstring>> tmpvec;
+	vector<pair<wstring, wstring>> tmpvec;
 	wstring t;
 
 
@@ -274,31 +276,31 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 		int idxu = (int)t.find(L"_");
 		tmpvec.push_back(
 			pair<wstring, wstring>
-			(t.substr(0,idxu), t.substr(idxu+1,t.find(L".png")- idxu-1))
+			(t.substr(0, idxu), t.substr(idxu + 1, t.find(L".png") - idxu - 1))
 		);
 
 	}
 
-	sort(tmpvec.begin(), tmpvec.end(),comparefirst);
+	sort(tmpvec.begin(), tmpvec.end(), comparefirst);
 
 	int maxfrm = (int)tmpvec.size();
 	m_vecFrm.reserve(maxfrm);
 
 	wstring tmpname;
 
-	for(int i=0;i<maxfrm;i++)
+	for (int i = 0; i < maxfrm; i++)
 	{
 		FFrame frm = {};
-		tmpname = addipath +L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
+		tmpname = addipath + L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
 
-		CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(tmpname, L"texture\\anim\\" +tmpname+L".png");
+		CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(tmpname, L"texture\\anim\\" + tmpname + L".png");
 		CTexture* pAtlas_r = CAssetMgr::GetInst()->LoadTexture_r(tmpname + L"_r", L"texture\\anim\\" + tmpname + L".png");
 
 
 		frm.m_Atlas = pAtlas;
 		frm.m_Atlas_r = pAtlas_r;
 		frm.vOffset = _vOffset;
-		frm.Duration = ((stoi(tmpvec[i].second)- stoi(tmpvec[i].first))/1000.f)/_playmul;
+		frm.Duration = ((stoi(tmpvec[i].second) - stoi(tmpvec[i].first)) / 1000.f) / _playmul;
 		frm.vCutSize = Vec2(pAtlas->GetWidth(), pAtlas->GetHeight());
 		m_vecFrm.push_back(frm);
 	}
@@ -337,8 +339,8 @@ void CAnim::CreateTurn(const wstring& _strphase, const wstring& _strobj, const w
 	{
 		FFrame frm = {};
 		tmpname = addipath + L"\\0_100";
-		
-		int tmpdegree = int(-360 / _fpp)*i;
+
+		int tmpdegree = int(-360 / _fpp) * i;
 
 		CTexture* pAtlas = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname + L"_" + std::to_wstring(tmpdegree), L"texture\\anim\\" + tmpname + L".png", tmpdegree);
 		CTexture* pAtlas_r = CAssetMgr::GetInst()->LoadTexture_r(tmpname + L"_r", L"texture\\anim\\" + tmpname + L".png");
@@ -346,7 +348,7 @@ void CAnim::CreateTurn(const wstring& _strphase, const wstring& _strobj, const w
 		frm.m_Atlas = pAtlas;
 		frm.m_Atlas_r = pAtlas_r;
 		frm.vOffset = _vOffset;
-		frm.Duration = (_period/_fpp) / _playmul;
+		frm.Duration = (_period / _fpp) / _playmul;
 		frm.vCutSize = Vec2(pAtlas->GetWidth(), pAtlas->GetHeight());
 		m_vecFrm.push_back(frm);
 	}
@@ -358,8 +360,8 @@ void CAnim::CreateTurn(const wstring& _strphase, const wstring& _strobj, const w
 void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul)
 {
 	SetName(_strphase + _strobj + _stranimname + L"_" + std::to_wstring(_rot));
-	
-	CAnim* pOriginAnim = m_pAnimator->FindAnim(_strphase + _strobj + _stranimname );
+
+	CAnim* pOriginAnim = m_pAnimator->FindAnim(_strphase + _strobj + _stranimname);
 
 
 	wstring filePath = CPathMgr::GetContentPath();
@@ -390,7 +392,7 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 
 	wstring tmpname;
 
-	
+
 
 	for (int i = 0; i < pOriginAnim->m_vecFrm.size(); i++)
 	{
@@ -400,7 +402,7 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 		FFrame tmpf = pOriginAnim->m_vecFrm[i];
 
 		CTexture* pOriginAtlas = tmpf.m_Atlas;
-		CTexture* pAtlas_rotated = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname+ L"_" + std::to_wstring(_rot), L"texture\\anim\\" + tmpname + L".png", _rot);
+		CTexture* pAtlas_rotated = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname + L"_" + std::to_wstring(_rot), L"texture\\anim\\" + tmpname + L".png", _rot);
 
 
 		frm.m_Atlas = pAtlas_rotated;
