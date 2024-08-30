@@ -54,8 +54,12 @@ void CPlayerDown::Enter()
 {
 	CAnimator* pAni = GetAnimator();
 	pAni->Play(L"commonpinkbeandown");
+	GetOwner()->GetComponent<CCollider>()->SetOffsetPos(Vec2(0.f, -10.f));
+	GetOwner()->GetComponent<CCollider>()->SetScale(Vec2(80.f, 20.f));
 }
 
 void CPlayerDown::Exit()
 {
+	GetOwner()->GetComponent<CCollider>()->SetOffsetPos(Vec2(0.f, -40.f));
+	GetOwner()->GetComponent<CCollider>()->SetScale(Vec2(80.f, 80.f));
 }
