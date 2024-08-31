@@ -75,16 +75,16 @@ CBlackMage3::CBlackMage3()
 
 	// 상태머신 컴포넌트 추가 및 설정
 	m_AI = AddComponent<CStateMachine>(GetName() + L"AI");
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::IDLE, new CThirdBMIdle)->Setduration(5.f);
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::DIE, new CThirdBMDie)->Setduration(4.f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::IDLE, new CThirdBMIdle)->Setduration(2.f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::DIE, new CThirdBMDie)->Setduration(3.8f);
 
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK1, new CThirdBMPush)->Setduration(2.16f);
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK2, new CThirdBMPull)->Setduration(2.16f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK1, new CThirdBMPush)->Setduration(1.f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK2, new CThirdBMPull)->Setduration(1.8f);
 	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK3, new CThirdBMMorningStarFall)->Setduration(2.16f);
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK4, new CThirdBMLaser)->Setduration(2.16f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::ATTACK4, new CThirdBMLaser)->Setduration(1.18f);
 
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::POWER1, new CThirdBMPowerUp)->Setduration(3.33f);
-	m_AI->AddState((UINT)ENORMAL_MON_STATE::POWER2, new CThirdBMPowerDown)->Setduration(3.8f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::POWER1, new CThirdBMPowerUp)->Setduration(1.78f);
+	m_AI->AddState((UINT)ENORMAL_MON_STATE::POWER2, new CThirdBMPowerDown)->Setduration(1.78f);
 
 }
 
@@ -94,7 +94,7 @@ void CBlackMage3::begin()
 	//권능
 	m_left_cool[0] = m_cooltime[0];
 	//밀기
-	m_left_cool[1] = 10.f;
+	m_left_cool[1] = 2.f;
 	//끌기
 	m_left_cool[2] = 7.f;
 	//메테오
@@ -158,6 +158,34 @@ void CBlackMage3::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _
 
 void CBlackMage3::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
+	Super::Overlap(_OwnCol, _OtherObj, _OtherCol);
+
+	// 플레이어가 아니면 return 
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_OtherObj);
+	if (nullptr == pPlayer)
+	{
+		return;
+	}
+
+	if ((UINT)ENORMAL_MON_STATE::ATTACK1 == m_AI->GetCurStateNum())
+	{
+		float m_acctime = m_AI->GetCurstateAcctime();
+
+		if (m_collisiontimetoplayer < 0.1f &&
+			m_acctime > 0.6f &&
+			m_acctime < 1.0f
+			)
+		{
+			float force = 5000.f;
+			pPlayer->getMovement()->AddForce(Vec2((ort == ORT_LEFT) ? -1.f : 1.f, -1.f) * force);
+
+			if (false == m_attacked)
+			{
+				m_attacked = true;
+				pPlayer->GetDamaged(0.25, DEBUFF::CREATION);
+			}
+		}
+	}
 }
 
 void CBlackMage3::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)

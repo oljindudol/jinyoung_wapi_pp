@@ -7,6 +7,9 @@ CThirdBMPull::CThirdBMPull()
 
 void CThirdBMPull::finaltick(float _DT)
 {
+	m_acctime += _DT;
+	if (m_stateduration < m_acctime)
+		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 }
 
 void CThirdBMPull::Enter()

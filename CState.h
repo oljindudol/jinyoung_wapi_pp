@@ -13,58 +13,61 @@
 #include "CSkillMgr.h"
 
 class CState :
-    public CEntity
+	public CEntity
 {
 private:
-    CStateMachine* m_pSM;
-    UINT            m_StateID;
+	CStateMachine* m_pSM;
+	UINT            m_StateID;
 
 protected:
-    float m_acctime;
-    float m_stateduration;
-    int m_skillortsign;
-    CPlayer* m_pPlayer;
-    bool m_stateskillused;
+	float m_acctime;
+	float m_stateduration;
+	int m_skillortsign;
+	CPlayer* m_pPlayer;
+	bool m_stateskillused;
 
 
 
 
 public:
-    float GetAcctime() { return m_acctime; }
-    float GetDuration() { return m_stateduration; }
-    void  Setduration(float _dur) { m_stateduration = _dur; }
-    CStateMachine* GetOwnerSM() { return m_pSM; }
-    CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }
-    UINT GetStateID() { return m_StateID; }
+	float GetAcctime() { return m_acctime; }
+	float GetDuration() { return m_stateduration; }
+	void  Setduration(float _dur) { m_stateduration = _dur; }
+	CStateMachine* GetOwnerSM() { return m_pSM; }
+	CObj* GetOwner() { return GetOwnerSM()->GetOwner(); }
+	UINT GetStateID() { return m_StateID; }
 
 
-    void ChangeState(UINT _NextID) { GetOwnerSM()->ChangeState(_NextID); }
-    class CAnimator* GetAnimator()
-    {
-        return GetOwnerSM()->GetAnimatorComponent();
-    }
+	void ChangeState(UINT _NextID) { GetOwnerSM()->ChangeState(_NextID); }
+	class CAnimator* GetAnimator()
+	{
+		return GetOwnerSM()->GetAnimatorComponent();
+	}
 
-    class CMovement* GetMovement()
-    {
-        return GetOwnerSM()->GetMoveMentComponent();
-    }
-    class CCollider* GetCollider()
-    {
-        return GetOwnerSM()->GetColliderComponent();
-    }
+	class CMovement* GetMovement()
+	{
+		return GetOwnerSM()->GetMoveMentComponent();
+	}
+	class CCollider* GetCollider()
+	{
+		return GetOwnerSM()->GetColliderComponent();
+	}
 
-public:
-    virtual void finaltick(float _DT) = 0;
-    virtual void Enter();
-    virtual void Exit() = 0;
+	int getSkillOrt();
+	float getPlayerDist();
 
 public:
-    virtual CState* Clone() = 0;
+	virtual void finaltick(float _DT) = 0;
+	virtual void Enter();
+	virtual void Exit() = 0;
 
 public:
-    CState();
-    ~CState();
+	virtual CState* Clone() = 0;
 
-    friend class CStateMachine;
+public:
+	CState();
+	~CState();
+
+	friend class CStateMachine;
 };
 

@@ -18,8 +18,8 @@ void CSecondBMIdle::finaltick(float _DT)
 
 	m_acctime += _DT;
 
-	if (m_stateduration > m_acctime)
-		return;
+	//if (m_stateduration > m_acctime)
+	//	return;
 
 	for (int i = 0; i < 5; ++i)
 	{
@@ -56,9 +56,9 @@ void CSecondBMIdle::ActivatePower()
 
 	if (0 == a)
 	{
-	GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::POWER1);
+		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::POWER1);
 	}
-	else if(1 == a)
+	else if (1 == a)
 	{
 		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::POWER2);
 	}

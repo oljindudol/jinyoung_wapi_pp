@@ -35,6 +35,7 @@ public:
 	CLONE(CMonster);
 
 
+	friend class CThirdBMIdle;
 	friend class CStateDebugUI;
 };
 

@@ -7,6 +7,9 @@ CThirdBMPowerDown::CThirdBMPowerDown()
 
 void CThirdBMPowerDown::finaltick(float _DT)
 {
+	m_acctime += _DT;
+	if (m_stateduration < m_acctime)
+		GetOwnerSM()->ChangeState((UINT)ENORMAL_MON_STATE::IDLE);
 }
 
 void CThirdBMPowerDown::Enter()

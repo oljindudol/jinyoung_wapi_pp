@@ -9,6 +9,9 @@ public:
 	virtual void finaltick(float _DT);
 	virtual void Enter();
 	virtual void Exit();
+	void ActivatePower();
+
+	class CBlackMage3* m_pBlackMage3 = nullptr;
 
 	~CThirdBMIdle();
 	CLONE(CThirdBMIdle);
