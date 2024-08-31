@@ -45,7 +45,7 @@ void CTimeManager::tick()
 	//초당 빈도
 	QueryPerformanceCounter(&m_CurCount);
 
-	m_DeltaTime= float(m_CurCount.QuadPart - m_PrevCount.QuadPart)/float(m_Frequency.QuadPart);
+	m_DeltaTime = float(m_CurCount.QuadPart - m_PrevCount.QuadPart) / float(m_Frequency.QuadPart);
 
 	m_PrevCount = m_CurCount;
 
@@ -58,9 +58,9 @@ void CTimeManager::tick()
 	m_fTime += m_DeltaTime;
 	if (1.f <= m_fTime)
 	{
-		wchar_t szText[50] = {};
-		swprintf_s(szText, 50, L"DeltaTime : %f, FPS : %d", m_DeltaTime, m_iCall);
-		SetWindowText(CEngine::GetInst()->GetMainWind(), szText);
+		//wchar_t szText[50] = {};
+		//swprintf_s(szText, 50, L"DeltaTime : %f, FPS : %d", m_DeltaTime, m_iCall);
+		//SetWindowText(CEngine::GetInst()->GetMainWind(), szText);
 
 		m_iCall = 0;
 		m_fTime = 0.f;
