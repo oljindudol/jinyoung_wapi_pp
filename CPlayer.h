@@ -24,6 +24,9 @@ private:
 	bool completemission;
 	vector< FDebuff> m_Debuff;
 	vector <DEBUFF> m_DebuffEvent;
+	class CSkill* m_pCreation = nullptr;
+	class CSkill* m_pDestuction = nullptr;
+
 
 
 public:

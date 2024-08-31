@@ -71,7 +71,7 @@ void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _per
 	AlphaBlend(_dc
 		, (int)_pos.x
 		, (int)_pos.y
-		, (int) (_tex->GetWidth() * _perc)
+		, (int)(_tex->GetWidth() * _perc)
 		, _tex->GetHeight()
 		, _tex->GetDC()
 		, 0, 0
@@ -146,7 +146,7 @@ void SetNumberTextureToDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex,
 void SetNumberTextureToDcWithTwoDigitZeroPadding(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
 {
 	wstring strnums = std::to_wstring(_num);
-	
+
 	if (1 == strnums.size())
 	{
 		strnums = L'0' + strnums;
@@ -307,10 +307,10 @@ void SettexturetoDcWithMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, fl
 
 Vec2 RotateDot(const Vec2& _Dot, float _rad)
 {
-	Vec2 vRotateDir = 
-		Vec2(cosf(_rad) * _Dot.x 
-			- sinf(_rad) * _Dot.y, 
-			sinf(_rad) * _Dot.x 
+	Vec2 vRotateDir =
+		Vec2(cosf(_rad) * _Dot.x
+			- sinf(_rad) * _Dot.y,
+			sinf(_rad) * _Dot.x
 			+ cosf(_rad) * _Dot.y);
 
 	return vRotateDir;

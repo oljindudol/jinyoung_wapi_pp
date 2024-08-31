@@ -139,6 +139,15 @@ void CSkillMgr::init()
 			, L"common", L"debuff", L"deathbycurse"
 			, 0.9f, Vec2(0.f, 0.f), -1, ERenderType::OnCamera);
 	}
+
+
+	AddSkillEff(new CSkill
+		, L"common", L"debuff", L"creation"
+		, 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
+
+	AddSkillEff(new CSkill
+		, L"common", L"debuff", L"destruction"
+		, 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
 }
 
 

@@ -23,7 +23,7 @@ public:
 	FRule* GetpRule() { return m_pRule; }
 	CMonster* GetCurLevelMon();
 
-	CPlayer* GetPlayer() {return m_Player;}
+	CPlayer* GetPlayer() { return m_Player; }
 	Vec2 GetCurLevelCameraRangeX();
 	Vec2 GetCurLevelCameraRangeY();
 	Vec2 GetCurLevelMiddle();

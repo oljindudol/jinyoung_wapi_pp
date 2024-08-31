@@ -439,7 +439,11 @@ void CPlayer::tick(float _DT)
 
 	if (KEY_TAP(KEY::T))
 	{
-		DeathByCurse();
+		PushDebuff(DEBUFF::CREATION);
+	}
+	if (KEY_TAP(KEY::Y))
+	{
+		PushDebuff(DEBUFF::DESTUCTION);
 	}
 }
 
@@ -565,8 +569,6 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 
 	//TODO : DEBUFF::무적일 경우 무시
 
-	//DEBUFF::다크사이트 일 경우는 호출부에서 처리
-
 	//TODO:*파괴디버프 보정 추가
 	int damage = (int)(maxhp * _percentdmg * (1.f + RandomPercentHtH() * 0.025));
 
@@ -574,8 +576,6 @@ void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 
 	//피격 데미지스킨을 출력한다
 	CSkillMgr::GetInst()->PrintDamageVioletSkin(GetPos() - Vec2(GetScale().x / .7f, GetScale().y / .4f), damage);
-
-	//TODO:디버프 갱신
 
 	if (resthp > 0.f)
 	{
@@ -606,7 +606,23 @@ void CPlayer::InitDebuff()
 		m_Debuff.push_back(debuff);
 	}
 
+	debuff.Debuff = DEBUFF::CREATION;
+	debuff.Duration = 5.f;
+	debuff.Acctime = 0.f;
+	debuff.Active = false;
+	if (false == HasDebuff(debuff.Debuff))
+	{
+		m_Debuff.push_back(debuff);
+	}
 
+	debuff.Debuff = DEBUFF::DESTUCTION;
+	debuff.Duration = 5.f;
+	debuff.Acctime = 0.f;
+	debuff.Active = false;
+	if (false == HasDebuff(debuff.Debuff))
+	{
+		m_Debuff.push_back(debuff);
+	}
 }
 
 void CPlayer::ProcessDebuff()
@@ -623,26 +639,52 @@ void CPlayer::ProcessDebuff()
 				continue;
 		}
 
+		// 푸쉬된 버프이벤트가 버프배열에 존재하지않을시 무시.
 		if (m_Debuff.end() == iter)
 			continue;
 		else
 		{
-			if (DEBUFF::DARKSITE == iter->Debuff && true == iter->Active)
+			if (DEBUFF::DARKSITE == iter->Debuff)
 			{
-				iter->Active = false;
+				if (true == iter->Active)
+				{
+					iter->Active = false;
+				}
+				else
+				{
+					iter->Acctime = 0.f;
+					iter->Active = true;
+				}
+
 			}
-			else
+
+			if (DEBUFF::CREATION == iter->Debuff)
 			{
 				iter->Acctime = 0.f;
-				iter->Active = true;
+				if (false == iter->Active)
+				{
+					iter->Active = true;
+					m_pCreation = CSkillMgr::GetInst()->ActivateSkill(L"commondebuffcreation", CCamera::GetInst()->GetLookAt());
+				}
 			}
+
+			if (DEBUFF::DESTUCTION == iter->Debuff)
+			{
+				iter->Acctime = 0.f;
+				if (false == iter->Active)
+				{
+					iter->Active = true;
+					m_pDestuction = CSkillMgr::GetInst()->ActivateSkill(L"commondebuffdestruction", CCamera::GetInst()->GetLookAt());
+				}
+			}
+
 		}
 	}
 	m_DebuffEvent.resize(0);
 
 	auto dt = DT;
 
-	// 디버프 처리
+	// 지속시간 처리
 	for (auto& e : m_Debuff)
 	{
 		if (false == e.Active)
@@ -656,9 +698,20 @@ void CPlayer::ProcessDebuff()
 			{
 				e.Active = false;
 				e.Acctime = 0.f;
+
+				if (DEBUFF::CREATION == e.Debuff && nullptr != m_pCreation)
+				{
+					m_pCreation->Destroy();
+				}
+				if (DEBUFF::DESTUCTION == e.Debuff && nullptr != m_pDestuction)
+				{
+					m_pDestuction->Destroy();
+				}
 			}
 		}
 	}
+
+	// 디버프 효과처리
 
 	for (auto& e : m_Debuff)
 	{
@@ -669,6 +722,40 @@ void CPlayer::ProcessDebuff()
 			else
 				m_Animator->SetAlpha(255);
 		}
+
+		if (DEBUFF::CREATION == e.Debuff)
+		{
+			if (true == e.Active)
+			{
+				auto iter = m_Debuff.begin();
+				for (; m_Debuff.end() != iter; ++iter)
+				{
+					if (DEBUFF::DESTUCTION == iter->Debuff)
+					{
+						break;
+					}
+				}
+				//파괴버프가 배열에 존재하고 ,활성화 일시,
+				// 1. 창조,파괴버프를 해제한다.
+				// 2. 저주사를 실행한다.
+				if (m_Debuff.end() != iter && true == iter->Active)
+				{
+					// 창조 해제
+					if (nullptr != m_pCreation)
+						m_pCreation->Destroy();
+					e.Acctime = 0.f;
+					e.Active = false;
+					// 파괴 해제
+					if (nullptr != m_pDestuction)
+						m_pDestuction->Destroy();
+					iter->Acctime = 0.f;
+					iter->Active = false;
+					// 저주사
+					DeathByCurse();
+				}
+			}
+		}
+
 	}
 }
 
@@ -710,7 +797,22 @@ void CPlayer::RenderDebuff()
 {
 }
 
+#include "CUIMgr.h"
 void CPlayer::DeathByCurse()
 {
+	//데스카운트 깍기
+	FRule* pRule = CLevelMgr::GetInst()->GetpRule();
+	--(pRule->DeathCount);
+
+	//부활메세지 출력1 : 데스카운트가 1이상일때
+	if (pRule->DeathCount >= 1)
+	{
+	}
+	//부활메세지 출력2 : 데스카운트가 1보다 작을때
+	else
+	{
+
+	}
+
 	CSkillMgr::GetInst()->ActivateSkill(L"commondebuffdeathbycurse", CCamera::GetInst()->GetLookAt());
 }
