@@ -29,7 +29,7 @@ CNoxSpear::CNoxSpear()
 
 	m_Animator->
 		CreateAnimation(m_s1, m_s2, m_s3,
-			Vec2(0.f, GetScale().y/-2), 1.f, -1, ORT_LEFT);
+			Vec2(0.f, GetScale().y / -2), 1.f, -1, ORT_LEFT);
 
 
 	//컬라이더
@@ -54,7 +54,7 @@ void CNoxSpear::tick(float _DT)
 
 	if (false == m_Col_On)
 	{
-		m_Collider->SetOffsetPos(Vec2(0.f, GetScale().y/-2.f));
+		m_Collider->SetOffsetPos(Vec2(0.f, GetScale().y / -2.f));
 		m_Col_On = true;
 	}
 	if (3.51 > m_activedtime)
@@ -134,7 +134,7 @@ void CNoxSpear::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Ot
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
 	{
 		CSkillMgr::GetInst()->PlayMultipleEff(L"secondnoxspearhit", 1, 0.f, Vec2(_OtherCol->GetPos().x, _OtherCol->GetPos().y), ORT_LEFT);
-		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::DESTUCTION);
+		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::CREATION);
 	}
 }
 

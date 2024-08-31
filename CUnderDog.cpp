@@ -40,7 +40,7 @@ CUnderDog::CUnderDog()
 	m_Collider =
 		AddComponent<CCollider>(GetName() + L"Collider");
 	m_Collider->SetScale(GetScale());
-	m_Collider->m_vOffsetPos = (GetScale()/2);
+	m_Collider->m_vOffsetPos = (GetScale() / 2);
 
 	m_skilllayer = LAYER::MONSTER_PJB;
 	duration = 15.f;
@@ -85,7 +85,7 @@ void CUnderDog::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Ot
 	m_collisiontimetoplayer = 0.f;
 	if (LAYER::PLAYER == (UINT)_OtherObj->GetLayerIdx())
 	{
-		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::DESTUCTION);
+		CLevelMgr::GetInst()->GetPlayer()->GetDamaged(0.15f, DEBUFF::CREATION);
 	}
 
 	if (LAYER::WALL == (UINT)_OtherObj->GetLayerIdx())
