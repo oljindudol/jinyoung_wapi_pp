@@ -436,6 +436,11 @@ void CPlayer::tick(float _DT)
 		//LOG(WARNING, L"°æ°í");		
 	//}
 	//SetPos(vPos);
+
+	if (KEY_TAP(KEY::T))
+	{
+		DeathByCurse();
+	}
 }
 
 
@@ -703,4 +708,9 @@ bool CPlayer::HasDebuff(DEBUFF _debuff)
 
 void CPlayer::RenderDebuff()
 {
+}
+
+void CPlayer::DeathByCurse()
+{
+	CSkillMgr::GetInst()->ActivateSkill(L"commondebuffdeathbycurse", CCamera::GetInst()->GetLookAt());
 }

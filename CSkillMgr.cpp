@@ -39,7 +39,7 @@ void CSkillMgr::init()
 	{
 		AddSkillEff(new CSkill
 			, L"common", L"pinkbean", L"phantomblow_hit"
-			, .48f , Vec2(0.f,0.f));
+			, .48f, Vec2(0.f, 0.f));
 	}
 
 	for (int i = 0; i < 50; ++i)
@@ -133,12 +133,18 @@ void CSkillMgr::init()
 		, L"zero", L"levelup", L"use"
 		, 2.3f, Vec2(0.f, 0.f));
 
+	for (int i = 0; i < 5; ++i)
+	{
+		AddSkillEff(new CSkill
+			, L"common", L"debuff", L"deathbycurse"
+			, 0.9f, Vec2(0.f, 0.f), -1, ERenderType::OnCamera);
+	}
 }
 
 
 void CSkillMgr::AddSkillEff(CSkill* _pSkill
 	, wstring _s1, wstring _s2, wstring _s3
-	, float _duration, Vec2 _offset , int _roop)
+	, float _duration, Vec2 _offset, int _roop, ERenderType _RenderType)
 {
 	_pSkill->m_s1 = _s1;
 	_pSkill->m_s2 = _s2;
@@ -157,6 +163,8 @@ void CSkillMgr::AddSkillEff(CSkill* _pSkill
 	//애니메이션
 	_pSkill->m_Animator =
 		_pSkill->AddComponent<CAnimator>(_pSkill->GetName() + L"Animator");
+
+	_pSkill->m_Animator->SetRenderType(_RenderType);
 
 	_pSkill->m_Animator->
 		CreateAnimation(_pSkill->m_s1, _pSkill->m_s2, _pSkill->m_s3,
@@ -208,7 +216,7 @@ CSkillMgr::~CSkillMgr()
 {
 	for (const auto& pair : m_skillmap)
 	{
-		for(const auto& p : pair.second )
+		for (const auto& p : pair.second)
 		{
 			delete p;
 		}
@@ -280,7 +288,7 @@ CSkill* CSkillMgr::FindAvailableSkill(wstring _skillname)
 	if (nullptr == pSkills)
 	{
 		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
+			LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		pSkill = nullptr;
 	}
 	else
@@ -304,7 +312,7 @@ void CSkillMgr::PrintDamageVioletSkin(Vec2 _pos, int _num)
 	if (nullptr == pskill)
 	{
 		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_violet" );
+			LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_violet");
 		return;
 	}
 
@@ -314,19 +322,19 @@ void CSkillMgr::PrintDamageVioletSkin(Vec2 _pos, int _num)
 
 }
 
-void CSkillMgr::PrintDamageRedSkin(Vec2 _pos, long long _num ,int _th)
+void CSkillMgr::PrintDamageRedSkin(Vec2 _pos, long long _num, int _th)
 {
 	CSkill* pskill = FindAvailableSkill(L"commonpinkbeandamageskin_red");
 	if (nullptr == pskill)
 	{
 		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_red");
+			LOG(LOG_LEVEL::LOG, L"스킬을 찾을수 없습니다 commonpinkbeandamageskin_red");
 		return;
 	}
 
 	CDamageSkinRed* pDs = dynamic_cast<CDamageSkinRed*>(pskill);
 	if (nullptr != pDs)
-		pDs->PrintDamage(_pos, _num ,_th);
+		pDs->PrintDamage(_pos, _num, _th);
 }
 
 
@@ -338,7 +346,7 @@ CSkill* CSkillMgr::ActivateSkill(wstring _skillname
 	if (nullptr == pskill)
 	{
 		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다" + _skillname).c_str());
+			LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다" + _skillname).c_str());
 		return nullptr;
 	}
 
@@ -362,7 +370,7 @@ float CSkillMgr::GetSkillDuration(wstring _skillname)
 	if (nullptr == pSkills)
 	{
 		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
+			LOG(LOG_LEVEL::LOG, (L"스킬을 찾을수 없습니다"));
 		return 0.f;
 	}
 
@@ -458,7 +466,7 @@ void CSkillMgr::CEffPlayer::tick()
 	}
 }
 
-void CSkillMgr::CEffPlayer::SetEffEvent(CSkill* _pSkillEff, float _delay , Vec2 _pos , ORIENTATION _ort)
+void CSkillMgr::CEffPlayer::SetEffEvent(CSkill* _pSkillEff, float _delay, Vec2 _pos, ORIENTATION _ort)
 {
 	FEffectEvent evnt = {};
 	evnt.pSkill = _pSkillEff;
@@ -471,7 +479,7 @@ void CSkillMgr::CEffPlayer::SetEffEvent(CSkill* _pSkillEff, float _delay , Vec2 
 	m_EventList.push_back(evnt);
 }
 
-void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos ,ORIENTATION _ort)
+void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay, Vec2 _pos, ORIENTATION _ort)
 {
 	auto iter = m_VecEffPlayer.begin();
 	while (m_VecEffPlayer.end() != iter)
@@ -484,7 +492,7 @@ void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos 
 	if (m_VecEffPlayer.end() == iter)
 	{
 		if (DEBUG_RENDER)
-		LOG(LOG_LEVEL::LOG, L"할당 가능한 이펙트 플레이어 없음")
+			LOG(LOG_LEVEL::LOG, L"할당 가능한 이펙트 플레이어 없음")
 			return;
 	}
 
@@ -500,12 +508,12 @@ void CSkillMgr::PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos 
 
 		Vec2 Scale = pEff->m_Animator->GetScale();
 		(*iter)->
-			SetEffEvent(pEff, _delay , _pos 
+			SetEffEvent(pEff, _delay, _pos
 				+ Vec2(
-					(float) (Scale.x * ( 0.3* RandomPercentHtH()))
-					, (float) (Scale.y * (0.2 * RandomPercentHtH()))
+					(float)(Scale.x * (0.3 * RandomPercentHtH()))
+					, (float)(Scale.y * (0.2 * RandomPercentHtH()))
 				)
-			, _ort);
+				, _ort);
 	}
 }
 

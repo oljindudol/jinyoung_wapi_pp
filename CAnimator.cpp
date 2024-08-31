@@ -42,8 +42,25 @@ CAnimator::~CAnimator()
 	}
 }
 
+#include "CObj.h"
+#include "CLevelMgr.h"
+#include "CPlayer.h"
 void CAnimator::finaltick(float _DT)
 {
+	if (ERenderType::OnDefault == m_RenderType)
+	{
+
+	}
+	else if (ERenderType::OnCamera == m_RenderType)
+	{
+		GetOwner()->SetPos(CCamera::GetInst()->GetLookAt());
+	}
+	else if (ERenderType::OnPlayer == m_RenderType)
+	{
+		GetOwner()->SetPos(CLevelMgr::GetInst()->GetPlayer()->GetPos());
+	}
+
+
 	if (IsValid(m_CurAnim))
 	{
 		if ((m_CurAnim->m_iRoop > -1) && m_CurAnim->IsFinish())

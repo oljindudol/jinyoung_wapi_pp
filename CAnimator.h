@@ -5,6 +5,13 @@
 class CAnim;
 class CTexture;
 
+enum ERenderType
+{
+	OnDefault,
+	OnCamera,
+	OnPlayer,
+};
+
 class CAnimator :
 	public CComponent
 {
@@ -19,8 +26,10 @@ private:
 	bool                 m_bPlay;
 	int m_alpha;
 	float m_mag;
+	ERenderType m_RenderType = ERenderType::OnDefault;
 
 public:
+	void SetRenderType(ERenderType _RenderType) { m_RenderType = _RenderType; }
 	void SetMag(float _mag) { m_mag = _mag; }
 	float GetMag() { return m_mag; }
 	void SetAlpha(int _alpha) { m_alpha = _alpha; }

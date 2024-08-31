@@ -3,7 +3,7 @@ class CSkill;
 
 struct FEffectEvent
 {
-	CSkill*		pSkill;
+	CSkill* pSkill;
 	Vec2		vPos;
 	bool		activated;
 	ORIENTATION ort;
@@ -25,7 +25,7 @@ public:
 	void init();
 	CSkill* ActivateSkill(wstring _skillname,
 		Vec2 _pos,
-		ORIENTATION _ort);
+		ORIENTATION _ort = ORT_LEFT);
 
 private:
 	CSkill* FindAvailableSkill(
@@ -38,23 +38,23 @@ private:
 public:
 	void AddSkillEff(CSkill* _pSkill
 		, wstring _s1, wstring _s2, wstring _s3
-		, float _duration , Vec2 _offset = Vec2() ,int _roop=-1);
+		, float _duration, Vec2 _offset = Vec2(), int _roop = -1, ERenderType _RenderType = ERenderType::OnDefault);
 
 public:
 	void DeActivateAllSkills();
 	void DeActivateSkill(CSkill* _skill);
 	int FindNextSkillNumber(wstring _skillname);
 	void PrintDamageVioletSkin(Vec2 _pos, int _num);
-	void PrintDamageRedSkin(Vec2 _pos, long long _num , int _th);
+	void PrintDamageRedSkin(Vec2 _pos, long long _num, int _th);
 	void tick();
 
 public:
 	float GetSkillDuration(wstring _skillname);
 	bool IsCoolTime(wstring _skillname);
 
-	
 
-private: 
+
+private:
 
 	//이펙트 플레이어 관련
 	class CEffPlayer
@@ -63,7 +63,7 @@ private:
 		list<FEffectEvent> m_EventList;
 		bool m_isplaying;
 		void tick();
-		void SetEffEvent(CSkill* _pSkillEff, float _delay,Vec2 _pos ,ORIENTATION _ort);
+		void SetEffEvent(CSkill* _pSkillEff, float _delay, Vec2 _pos, ORIENTATION _ort);
 
 		CEffPlayer() :m_isplaying(false) {}
 		friend class CSkillMgr;
@@ -73,10 +73,10 @@ private:
 
 public:
 	//이펙트플레이어에 이펙트 이벤트를 등록하는 함수
-	void PlayMultipleEff(wstring _key, int _cnt, float _delay ,Vec2 _pos ,ORIENTATION _ort);
+	void PlayMultipleEff(wstring _key, int _cnt, float _delay, Vec2 _pos, ORIENTATION _ort);
 
 	//이펙트플레이어에 이펙트 이벤트를 등록하는 함수
-	void ActivateSkillWithDelay(wstring _key,float _delay, vector<Vec2> _pos, ORIENTATION _ort);
+	void ActivateSkillWithDelay(wstring _key, float _delay, vector<Vec2> _pos, ORIENTATION _ort);
 
 	friend class QuickSlotUI;
 };

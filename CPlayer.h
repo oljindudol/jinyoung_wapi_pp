@@ -58,6 +58,8 @@ public:
 	bool HasDebuff(DEBUFF _debuff);
 	void RenderDebuff();
 
+	void DeathByCurse();
+
 public:
 	CLONE(CPlayer);
 	CPlayer();

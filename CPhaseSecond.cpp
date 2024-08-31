@@ -156,6 +156,6 @@ void CPhaseSecond::tick()
 	// Enter 키가 눌리면 StartLevel 로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{
-		ChangeLevel(LEVEL_TYPE::PHASE_THIRD);
+		ChangeLevel(LEVEL_TYPE::PHASE_FIFTH);
 	}
 }

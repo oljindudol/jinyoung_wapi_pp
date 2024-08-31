@@ -31,6 +31,9 @@ public:
 	virtual void init() = 0;
 	virtual void enter() = 0;
 	virtual void exit() = 0;
+	Vec2 GetLevelMiddle() {
+		return m_LevelMiddle;
+	}
 
 	virtual void begin();
 	virtual void tick();
