@@ -124,6 +124,8 @@ void SettexturetoDcPartiallyDownWithMagnification(HDC _dc, CTexture* _tex, Vec2 
 
 void SetNumberTextureToDc(HDC _dc, int _num, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset)
 {
+	if (_num < 0)
+		return;
 	wstring strnums = std::to_wstring(_num);
 
 	Vec2 offset = Vec2(_offset, 0.f);
