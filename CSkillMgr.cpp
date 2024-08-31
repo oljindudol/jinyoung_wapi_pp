@@ -148,6 +148,10 @@ void CSkillMgr::init()
 	AddSkillEff(new CSkill
 		, L"common", L"debuff", L"destruction"
 		, 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
+
+	AddSkillEff(new CSkill
+		, L"common", L"debuff", L"inability"
+		, 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
 }
 
 

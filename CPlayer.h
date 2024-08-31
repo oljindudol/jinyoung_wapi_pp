@@ -26,6 +26,7 @@ private:
 	vector <DEBUFF> m_DebuffEvent;
 	class CSkill* m_pCreation = nullptr;
 	class CSkill* m_pDestuction = nullptr;
+	class CSkill* m_pInablity = nullptr;
 
 
 

@@ -71,9 +71,6 @@ CPlayer::CPlayer()
 	//wstring strPath = CPathMgr::GetContentDir();
 	//strPath+= L"texture\\Fighter.bmp";
 
-
-
-
 	// Movement 컴포넌트 추가
 	m_Movement = AddComponent<CMovement>(L"PlayerMovement");
 	m_Movement->SetMass(1.f);
@@ -84,11 +81,6 @@ CPlayer::CPlayer()
 	m_Movement->UseGravity(true);
 	m_Movement->SetGravity(Vec2(0.f, 2500.f));
 	m_Movement->SetGround(false);
-
-
-
-	// 애니메이터 컴포넌트 추가
-	//CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link_alpha.bmp");
 
 	m_Animator = AddComponent<CAnimator>(L"Animator");
 	m_Animator->CreateAnimation(L"common", L"pinkbean", L"idle", Vec2(13.f, -41.f));
@@ -104,34 +96,6 @@ CPlayer::CPlayer()
 
 	m_Animator->Play(L"commonpinkbeanidle");
 
-
-
-
-
-	//m_Animator->CreateAnimation(L"WalkDown", pAtlas, Vec2(0.f, 520.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	//m_Animator->CreateAnimation(L"WalkLeft", pAtlas, Vec2(0.f, 650.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	//m_Animator->CreateAnimation(L"WalkUp", pAtlas, Vec2(0.f, 780.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);
-	//m_Animator->CreateAnimation(L"WalkRight", pAtlas, Vec2(0.f, 910.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 10);	
-	//m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	//m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	//m_Animator->CreateAnimation(L"IdleUp", pAtlas, Vec2(0.f, 260.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 1);
-	//m_Animator->CreateAnimation(L"IdleRight", pAtlas, Vec2(0.f, 390.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-	//m_Animator->SaveAnimations(L"animdata");
-
-
-	//m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
-	//m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
-	//m_Animator->LoadAnimation(L"animdata\\IdleRight.txt");
-	//m_Animator->LoadAnimation(L"animdata\\IdleUp.txt");
-	//m_Animator->LoadAnimation(L"animdata\\WalkDown.txt");
-	//m_Animator->LoadAnimation(L"animdata\\WalkLeft.txt");
-	//m_Animator->LoadAnimation(L"animdata\\WalkRight.txt");
-	//m_Animator->LoadAnimation(L"animdata\\WalkUp.txt");
-
-
-
-	//m_Animator = AddComponent<CAnimator>(L"Animator");
-
 	// 충돌체 컴포넌트 추가
 	m_Collider = AddComponent<CCollider>(L"PlayerCollider");
 	//m_Collider->SetOffsetPos(Vec2(0.f, 10.f));
@@ -141,10 +105,6 @@ CPlayer::CPlayer()
 	//AddComponent<CMovement>();
 	// 이미지가 존재하는 상대경로(constent 폴더로부터)
 	//m_pTexture = CAssetMgr::GetInst()->LoadTexture(L"PlayerTexture", L"texture\\fighter.bmp");
-
-
-
-
 
 	m_PlayerState = AddComponent<CStateMachine>(L"PlayerState");
 	m_PlayerState->AddState((UINT)PLAYER_STATE::IDLE, new CPlayerIdle);
@@ -179,8 +139,6 @@ CPlayer::CPlayer(const CPlayer& _Origin)
 	m_Animator = GetComponent<CAnimator>();
 	m_Movement = GetComponent<CMovement>();
 }
-
-
 
 CPlayer::~CPlayer()
 {
@@ -251,8 +209,8 @@ void CPlayer::tick(float _DT)
 	{
 		PushDebuff(DEBUFF::DESTUCTION);
 	}
-}
 
+}
 
 //void CPlayer::render(HDC _dc)
 //{
@@ -326,8 +284,6 @@ void CPlayer::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _Othe
 	}
 
 }
-
-
 
 void CPlayer::EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 {
@@ -429,6 +385,15 @@ void CPlayer::InitDebuff()
 	{
 		m_Debuff.push_back(debuff);
 	}
+
+	debuff.Debuff = DEBUFF::INABILITY;
+	debuff.Duration = 3.f;
+	debuff.Acctime = 0.f;
+	debuff.Active = false;
+	if (false == HasDebuff(debuff.Debuff))
+	{
+		m_Debuff.push_back(debuff);
+	}
 }
 
 void CPlayer::ProcessDebuff()
@@ -461,9 +426,7 @@ void CPlayer::ProcessDebuff()
 					iter->Acctime = 0.f;
 					iter->Active = true;
 				}
-
 			}
-
 			if (DEBUFF::CREATION == iter->Debuff)
 			{
 				iter->Acctime = 0.f;
@@ -473,7 +436,6 @@ void CPlayer::ProcessDebuff()
 					m_pCreation = CSkillMgr::GetInst()->ActivateSkill(L"commondebuffcreation", CCamera::GetInst()->GetLookAt());
 				}
 			}
-
 			if (DEBUFF::DESTUCTION == iter->Debuff)
 			{
 				iter->Acctime = 0.f;
@@ -481,6 +443,15 @@ void CPlayer::ProcessDebuff()
 				{
 					iter->Active = true;
 					m_pDestuction = CSkillMgr::GetInst()->ActivateSkill(L"commondebuffdestruction", CCamera::GetInst()->GetLookAt());
+				}
+			}
+			if (DEBUFF::INABILITY == iter->Debuff)
+			{
+				iter->Acctime = 0.f;
+				if (false == iter->Active)
+				{
+					iter->Active = true;
+					m_pInablity = CSkillMgr::GetInst()->ActivateSkill(L"commondebuffinability", CCamera::GetInst()->GetLookAt());
 				}
 			}
 
@@ -513,6 +484,10 @@ void CPlayer::ProcessDebuff()
 				{
 					m_pDestuction->Destroy();
 				}
+				if (DEBUFF::INABILITY == e.Debuff && nullptr != m_pInablity)
+				{
+					m_pInablity->Destroy();
+				}
 			}
 		}
 	}
@@ -544,6 +519,7 @@ void CPlayer::ProcessDebuff()
 				//파괴버프가 배열에 존재하고 ,활성화 일시,
 				// 1. 창조,파괴버프를 해제한다.
 				// 2. 저주사를 실행한다.
+				// 3. 봉인상태이상
 				if (m_Debuff.end() != iter && true == iter->Active)
 				{
 					// 창조 해제
@@ -558,6 +534,8 @@ void CPlayer::ProcessDebuff()
 					iter->Active = false;
 					// 저주사
 					DeathByCurse();
+					// 봉인상태이상
+					PushDebuff(DEBUFF::INABILITY);
 				}
 			}
 		}
