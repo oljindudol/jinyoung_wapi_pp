@@ -22,7 +22,7 @@ void CMonsterMgr::init()
 	AddMonster(new rulemon12);
 
 	AddMonster(new CBlackMage2);
-	AddMonster(new CBlackMage3);
+	//AddMonster(new CBlackMage3);
 
 	for (int i = 0; i < 15; i++)
 	{

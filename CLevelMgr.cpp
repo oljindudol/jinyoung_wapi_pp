@@ -76,7 +76,7 @@ void CLevelMgr::init()
 	//m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL] = new CStartLevel;
 	//m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL] = new CEditorLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIFTH] = new CPhaseFifth;
-	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_THIRD] = new CPhaseThird;
+	//m_arrLevels[(UINT)LEVEL_TYPE::PHASE_THIRD] = new CPhaseThird;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_SECOND] = new CPhaseSecond;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_FIRST] = new CPhaseFirst;
 	m_arrLevels[(UINT)LEVEL_TYPE::PHASE_ZERO] = new CEnteranceLevel;
