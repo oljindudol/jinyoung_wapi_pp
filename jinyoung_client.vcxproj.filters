@@ -639,6 +639,9 @@
     <ClInclude Include="CThirdBMPush.h">
       <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
     </ClInclude>
+    <ClInclude Include="CThreadPoolMgr.h">
+      <Filter>03.Game\03.Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="jinyoung_client.rc">
@@ -1086,5 +1089,8 @@
       <Filter>03.Game\13.StageThird\01.BM\attack%284%29</Filter>
     </ClCompile>
     <ClCompile Include="CPhaseSecond.cpp" />
+    <ClCompile Include="CThreadPoolMgr.cpp">
+      <Filter>03.Game\03.Manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

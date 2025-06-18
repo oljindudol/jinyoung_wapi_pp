@@ -349,6 +349,7 @@
     <ClInclude Include="CThirdBMPush.h" />
     <ClInclude Include="CTile.h" />
     <ClInclude Include="CTimeManager.h" />
+    <ClInclude Include="CThreadPoolMgr.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
     <ClInclude Include="CUnderDog.h" />
@@ -577,6 +578,7 @@
     <ClCompile Include="CThirdBMPowerUp.cpp" />
     <ClCompile Include="CThirdBMPull.cpp" />
     <ClCompile Include="CThirdBMPush.cpp" />
+    <ClCompile Include="CThreadPoolMgr.cpp" />
     <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="CUI.cpp" />

@@ -21,6 +21,7 @@
 
 #include "CSkillMgr.h"
 #include "CMonsterMgr.h"
+#include "CThreadPoolMgr.h"
 
 #include "CTexture.h"
 
@@ -35,7 +36,7 @@ using namespace std::chrono;
 
 
 
-#define MEASURE_INIT(func)                                      \
+#define MEASURE_PERFORMANCE(func)                                      \
     {                                                                                    \
         auto start = std::chrono::high_resolution_clock::now();                         \
         func;                                                                            \
@@ -143,17 +144,18 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	//DeleteObject((HBITMAP)SelectObject(m_subdc, m_subbitmap));
 
 	// Manager 초기화
-	MEASURE_INIT(CTimeManager::GetInst()->init());
-	MEASURE_INIT(CKeyMgr::GetInst()->init());
-	MEASURE_INIT(CPathMgr::init());
-	MEASURE_INIT(CSoundMgr::GetInst()->init());
-	MEASURE_INIT(CCollisionMgr::GetInst()->init());
-	MEASURE_INIT(CSkillMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CThreadPoolMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CTimeManager::GetInst()->init());
+	MEASURE_PERFORMANCE(CKeyMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CPathMgr::init());
+	MEASURE_PERFORMANCE(CSoundMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CCollisionMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CSkillMgr::GetInst()->init());
 	//UI매니저가 스킬매니저를 참조한다.
-	MEASURE_INIT(CUIMgr::GetInst()->init());
-	MEASURE_INIT(CMonsterMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CUIMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CMonsterMgr::GetInst()->init());
 	//레벨매니저가 위에있는 것을 참조한다.(UI 등)
-	MEASURE_INIT(CLevelMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CLevelMgr::GetInst()->init());
 
 
 	//레벨매니저로 이동

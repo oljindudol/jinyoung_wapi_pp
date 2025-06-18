@@ -20,6 +20,7 @@
 #include <crtdbg.h>
 #include <assert.h>
 #include <unordered_map>
+#include <queue>
 
 
 #pragma comment(lib, "Msimg32.lib")
