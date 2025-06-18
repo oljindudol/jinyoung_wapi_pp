@@ -15,13 +15,13 @@ public:
 	void SpwanMonster(wstring _monstername,
 		Vec2 _pos);
 	void SpwanRuleMonster(wstring _monstername);
+	vector<CMonster*>* FindMonster(
+		wstring _monstername);
 
 private:
 	CMonster* FindAvailableMonster(
 		wstring _monstername);
 
-	vector<CMonster*>* FindMonster(
-		wstring _monstername);
 
 	void AddMonster(CMonster* _pMonster);
 

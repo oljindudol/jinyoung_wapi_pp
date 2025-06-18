@@ -249,7 +249,8 @@ void CLevel::tick()
 		}
 	}
 
-	if (KEY_TAP(KEY::E))
+	auto InabilityActivated = GetPlayer()->IsDebuffActive(DEBUFF::INABILITY);
+	if (KEY_TAP(KEY::E) && false == InabilityActivated)
 	{
 		if (CSkillMgr::GetInst()->IsCoolTime(L"commonkarmafuryuse"))
 		{
@@ -260,7 +261,7 @@ void CLevel::tick()
 			CSkillMgr::GetInst()->ActivateSkill(L"commonkarmafuryuse", GetPlayer()->GetPos(), ORT_LEFT);
 		}
 	}
-	if (KEY_TAP(KEY::G))
+	if (KEY_TAP(KEY::G) && false == InabilityActivated)
 	{
 		if (CSkillMgr::GetInst()->IsCoolTime(L"commonbladetornadouse"))
 		{
@@ -271,7 +272,7 @@ void CLevel::tick()
 			CSkillMgr::GetInst()->ActivateSkill(L"commonbladetornadouse", GetPlayer()->GetPos(), pPlayer->ort);
 		}
 	}
-	if (KEY_TAP(KEY::F))
+	if (KEY_TAP(KEY::F) && false == InabilityActivated)
 	{
 		if (CSkillMgr::GetInst()->IsCoolTime(L"commonbladestormuse"))
 		{

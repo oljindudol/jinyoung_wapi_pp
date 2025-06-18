@@ -18,16 +18,16 @@
 
 QuickSlotUI::QuickSlotUI()
 	:backtex(nullptr)
-	,col(0)
-	,row(2)
+	, col(0)
+	, row(2)
 {
 	m_uiname = L"QuickSlotUI";
 
 	CAssetMgr* asmgr = CAssetMgr::GetInst();
 	CSkillMgr* skmgr = CSkillMgr::GetInst();
-	auto res =	CEngine::GetInst()->GetResolution();
+	auto res = CEngine::GetInst()->GetResolution();
 
-	backtex = asmgr->LoadTexture(m_uiname+L"Back", L"texture\\quickslot\\100_200.png");
+	backtex = asmgr->LoadTexture(m_uiname + L"Back", L"texture\\quickslot\\100_200.png");
 
 	wstring icon = L"_icon";
 	wstring grayicon = L"_grayicon";
@@ -37,7 +37,7 @@ QuickSlotUI::QuickSlotUI()
 	// 블링크 : ' 
 	m_VecSkill.push_back(skmgr->FindAvailableSkill(L"commonpinkbeanphantomblow"));
 	m_VecIcon.push_back(asmgr->LoadTexture(L"blink" + icon, L"texture\\quickslot\\icon\\151001004.icon.png"));
-	m_VecGrayIcon.push_back(asmgr->LoadTexture(L"blink" + grayicon , L"texture\\quickslot\\icon\\151001004.iconDisabled.png"));
+	m_VecGrayIcon.push_back(asmgr->LoadTexture(L"blink" + grayicon, L"texture\\quickslot\\icon\\151001004.iconDisabled.png"));
 	m_VecShortCutKey.push_back(asmgr->LoadTexture(L"`" + shortcuticon, L"texture\\quickslot\\shortcuticon\\`.png"));
 
 	// 파워엘릭서 : ctrl 
@@ -122,13 +122,13 @@ QuickSlotUI::QuickSlotUI()
 	}
 	mag = 0.8f;
 
-	tilesize = Vec2(68 , 64) * mag;
-	col = (int)ceil((float)m_VecSkill.size()/(float)row);
-	SetScale(Vec2(tilesize.x * col, tilesize.y*row));
-	SetPos(Vec2(res.x-GetScale().x
-		, res.y 
+	tilesize = Vec2(68, 64) * mag;
+	col = (int)ceil((float)m_VecSkill.size() / (float)row);
+	SetScale(Vec2(tilesize.x * col, tilesize.y * row));
+	SetPos(Vec2(res.x - GetScale().x
+		, res.y
 		//경험치바
-		- 10.f 
+		- 10.f
 		- GetScale().y));
 }
 
@@ -164,20 +164,19 @@ void QuickSlotUI::render(HDC _dc)
 		int c = i / 2;
 		int r = i % 2;
 		//깔개
-		SettexturetoDcWithMagnification(_dc, backtex, renderpos + Vec2(tilesize.x * c, tilesize.y * r) ,mag );
+		SettexturetoDcWithMagnification(_dc, backtex, renderpos + Vec2(tilesize.x * c, tilesize.y * r), mag);
 
 		//그레이 스케일 아이콘 먼저
-		SettexturetoDc(_dc, m_VecGrayIcon[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(5, 4) );
+		SettexturetoDc(_dc, m_VecGrayIcon[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(5, 4));
 
-		
 		if (0.f == m_VecSkill[i]->m_leftcool)
 		{
-			SettexturetoDc(_dc, m_VecIcon[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(5, 4) );
+			SettexturetoDc(_dc, m_VecIcon[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(5, 4));
 		}
 		else
 		{
 			//스킬아이콘 남은쿨타임 % 계산하기
-			float perc = 1- m_VecSkill[i]->m_leftcool / m_VecSkill[i]->cooltime;
+			float perc = 1 - m_VecSkill[i]->m_leftcool / m_VecSkill[i]->cooltime;
 			SettexturetoDcPartiallyDown(_dc, m_VecIcon[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(5, 4), perc);
 
 
@@ -193,11 +192,11 @@ void QuickSlotUI::render(HDC _dc)
 				digitoffset = 5;
 				break;
 			}
-			SetNumberTextureToDc(_dc, (int)m_VecSkill[i]->m_leftcool, m_VecCoolDownNum, renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(11, 17) + Vec2(digitoffset,0) );
+			SetNumberTextureToDc(_dc, (int)m_VecSkill[i]->m_leftcool, m_VecCoolDownNum, renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(11, 17) + Vec2(digitoffset, 0));
 		}
 
 		//쇼트컷키
-		SettexturetoDcWithMagnification(_dc, m_VecShortCutKey[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(8, 8), 0.8f* mag);
+		SettexturetoDcWithMagnification(_dc, m_VecShortCutKey[i], renderpos + Vec2(tilesize.x * c, tilesize.y * r) + Vec2(8, 8), 0.8f * mag);
 	}
 
 	//쿨타임 알리미 처리
@@ -229,12 +228,16 @@ void QuickSlotUI::render(HDC _dc)
 		else
 		{
 			float& acc = (*iter).acctime;
-			if (.9f < acc) { AlertRender1(_dc, Vec2(1180, 598 -  56* i) , 3); }
+			if (.9f < acc) { AlertRender1(_dc, Vec2(1180, 598 - 56 * i), 3); }
 			else if (.9f >= acc
-				&& 0.18f <= acc){AlertRender2(_dc,Vec2(1180, 598 - 56 * i),  (*iter).tex) ;}
+				&& 0.18f <= acc) {
+				AlertRender2(_dc, Vec2(1180, 598 - 56 * i), (*iter).tex);
+			}
 			else if (0.18f > acc
-				&& 0.09f < acc) {AlertRender1(_dc,Vec2(1180, 598 - 56 * i), 1);}
-			else{				AlertRender1(_dc,Vec2(1180, 598 - 56 * i),0);}
+				&& 0.09f < acc) {
+				AlertRender1(_dc, Vec2(1180, 598 - 56 * i), 1);
+			}
+			else { AlertRender1(_dc, Vec2(1180, 598 - 56 * i), 0); }
 			iter++;
 			++i;
 		}
@@ -251,7 +254,7 @@ void QuickSlotUI::AlertRender1(HDC _dc, Vec2 _pos, int _num)
 void QuickSlotUI::AlertRender2(HDC _dc, Vec2 _pos, CTexture* _icon)
 {
 	SettexturetoDc(_dc, m_VecCoolAlertTex[2], _pos);
-	SettexturetoDcWithMagnification(_dc, _icon, _pos + Vec2(11,11), mag);
+	SettexturetoDcWithMagnification(_dc, _icon, _pos + Vec2(11, 11), mag);
 	int i = 0;
 }
 
@@ -278,7 +281,7 @@ bool QuickSlotUI::IsCoolTime(wstring _skillname)
 
 void QuickSlotUI::SetAlert(CTexture* _pTex)
 {
-	FCoolAlert CA= {};
+	FCoolAlert CA = {};
 
 	CA.isstarted = false;
 	CA.duration = .99f;

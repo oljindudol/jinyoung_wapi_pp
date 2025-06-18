@@ -42,9 +42,18 @@ void CPlayerIdle::finaltick(float _DT)
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::DOWN);
 	}
 
-	if (KEY_PRESSED(X))
+	if (nullptr == m_pPlayer)
+		m_pPlayer = CLevelMgr::GetInst()->GetPlayer();
+
+	bool CanChageState = true;
+	if (nullptr != m_pPlayer)
+		CanChageState = m_pPlayer->IsDebuffActive(DEBUFF::INABILITY);
+	if (false == CanChageState)
 	{
-		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ATT_NM);
+		if (KEY_PRESSED(X))
+		{
+			GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ATT_NM);
+		}
 	}
 
 	if (KEY_PRESSED(LALT))
@@ -52,9 +61,6 @@ void CPlayerIdle::finaltick(float _DT)
 		pMov->SetVelocity(Vec2(pMov->GetVelocity().x, -750.f));
 		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ON_AIR);
 	}
-
-
-
 }
 
 void CPlayerIdle::Enter()

@@ -317,7 +317,6 @@ enum class DEBUFF
 	DARKSITE,
 	//버프:무적
 	INVINCIBLE,
-
 	//피격 깜빡임
 	ON_DAMAGED,
 	//창조의 저주

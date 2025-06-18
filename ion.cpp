@@ -23,7 +23,7 @@ ion::ion()
 	m_s1 = L"first";
 	m_s2 = L"ion";
 
-	m_monstername = m_s1 + m_s2 ;
+	m_monstername = m_s1 + m_s2;
 
 	//몇번째 몬스터 인지
 	m_monsternum = CMonsterMgr::GetInst()->FindNextMonsterNumber(m_monstername);
@@ -48,7 +48,7 @@ ion::ion()
 
 
 	// Collider 컴포넌트 추가
-	m_Collider = AddComponent<CCollider>(GetName()+ L"Collider");
+	m_Collider = AddComponent<CCollider>(GetName() + L"Collider");
 
 
 	m_Collider->SetScale(GetScale());
@@ -58,13 +58,13 @@ ion::ion()
 	m_Animator = AddComponent<CAnimator>(GetName() + L"Animator");
 	m_Animator->CreateAnimation(L"first", L"ion", L"idle", Vec2(-0.f, -260.f), 1.f);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack2", Vec2(-0.f, -300.f), 1.f);
-	m_Animator->CreateAnimation(L"first", L"ion", L"regen", Vec2(-0.f, -300.f), 1.f,-1);
+	m_Animator->CreateAnimation(L"first", L"ion", L"regen", Vec2(-0.f, -300.f), 1.f, -1);
 	m_Animator->CreateAnimation(L"first", L"ion", L"die", Vec2(-0.f, -260.f), .5f, -1);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack1", Vec2(-0.f, -260.f), 1, -1);
 	m_Animator->CreateAnimation(L"first", L"ion", L"attack3", Vec2(-0.f, -540.f), 1, -1);
 	m_Animator->CreateAnimation(L"first", L"ion", L"bind", Vec2(-0.f, -260.f), 1.f);
 
-	m_Animator->Play(GetName()+L"idle");
+	m_Animator->Play(GetName() + L"idle");
 
 
 
@@ -85,7 +85,7 @@ ion::ion()
 	m_AI->AddDataToBlackboard(L"Detect Range", firstmon_attack2_dist);
 	m_AI->AddDataToBlackboard(L"Att3 Range", 1500.f);
 	m_AI->AddDataToBlackboard(L"Speed", 300.f);
-	
+
 
 }
 
@@ -154,7 +154,7 @@ void ion::BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol
 	//	}
 	//	return;
 	//}
-	
+
 	CPlatform* pPlatform = dynamic_cast<CPlatform*>(_OtherObj);
 
 	if ((nullptr != pPlatform) && (pPlatform->GetLayerIdx() == LAYER::PLATFORM))
@@ -174,11 +174,11 @@ void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 
 	// 플레이어가 아니면 return 
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_OtherObj);
-	if(nullptr == pPlayer)
+	if (nullptr == pPlayer)
 	{
 		return;
 	}
-	
+
 	// 플레이어 이고, dead이면 충돌처리안함
 	if (nullptr != pPlayer)
 	{
@@ -188,9 +188,9 @@ void ion::Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol)
 
 	if ((UINT)ENORMAL_MON_STATE::ATTACK2 == m_AI->GetCurStateNum())
 	{
-		float m_acctime= m_AI->GetCurstateAcctime();
+		float m_acctime = m_AI->GetCurstateAcctime();
 
-		if (m_collisiontimetoplayer < 0.1f && 
+		if (m_collisiontimetoplayer < 0.1f &&
 			m_acctime > 1.3f &&
 			m_acctime < 2.82f
 			)

@@ -26,20 +26,37 @@
 
 //레벨을 알고있어야 delete소멸자호출가능
 #include "CLevel.h"
+#include "chrono"
+
+#include <iostream>
+using namespace std;
+using namespace std::chrono;
+
+
+
+
+#define MEASURE_INIT(func)                                      \
+    {                                                                                    \
+        auto start = std::chrono::high_resolution_clock::now();                         \
+        func;                                                                            \
+        auto end = std::chrono::high_resolution_clock::now();                           \
+        std::chrono::duration<double> duration = end - start;                           \
+        std::cout << std::fixed << std::setprecision(1);                                \
+        std::cout << #func << " took " << duration.count() << " s" << std::endl;        \
+    }
+
 
 CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_dc(nullptr)
-	, m_bDebugRender(true)
+	, m_bDebugRender(false)
 	, m_arrPen{}
 	, m_SubTex(nullptr)
 	, m_arrFont{}
 	, m_TmpTex(nullptr)
 {
 }
-
-
 
 CEngine::~CEngine()
 {
@@ -84,10 +101,10 @@ void CEngine::CreateDefaultGDI()
 	m_arrFont[END_ROLL] = CreateFont(30, 0, 0, 0, 700, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
 
 	wstring conpath = CPathMgr::GetContentPath();
-	int a = AddFontResourceW( (conpath + L"D2Coding.ttf").c_str() );
+	int a = AddFontResourceW((conpath + L"D2Coding.ttf").c_str());
 	m_arrFont[STATUS_DEBUG] = CreateFont(18, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("D2Coding"));
 	m_arrFont[DEBUG_MENU] = CreateFont(18, 0, 0, 0, 600, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("돋움"));
-	
+
 
 }
 
@@ -111,10 +128,10 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 
 	// 추가 비트맵 버퍼
-	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x , m_ptResolution.y );
+	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
 
 	// 추가 비트맵 버퍼
-	m_TmpTex = CAssetMgr::GetInst()->CreateTexture(L"TmpTex", m_ptResolution.x  , m_ptResolution.y );
+	m_TmpTex = CAssetMgr::GetInst()->CreateTexture(L"TmpTex", m_ptResolution.x, m_ptResolution.y);
 
 
 
@@ -126,20 +143,17 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	//DeleteObject((HBITMAP)SelectObject(m_subdc, m_subbitmap));
 
 	// Manager 초기화
-	CTimeManager::GetInst()->init();
-	CKeyMgr::GetInst()->init();
-	CPathMgr::init();
-	CSoundMgr::GetInst()->init();
-
-	CCollisionMgr::GetInst()->init();
-	CSkillMgr::GetInst()->init();
+	MEASURE_INIT(CTimeManager::GetInst()->init());
+	MEASURE_INIT(CKeyMgr::GetInst()->init());
+	MEASURE_INIT(CPathMgr::init());
+	MEASURE_INIT(CSoundMgr::GetInst()->init());
+	MEASURE_INIT(CCollisionMgr::GetInst()->init());
+	MEASURE_INIT(CSkillMgr::GetInst()->init());
 	//UI매니저가 스킬매니저를 참조한다.
-	CUIMgr::GetInst()->init();
-
-	CMonsterMgr::GetInst()->init();
-
+	MEASURE_INIT(CUIMgr::GetInst()->init());
+	MEASURE_INIT(CMonsterMgr::GetInst()->init());
 	//레벨매니저가 위에있는 것을 참조한다.(UI 등)
-	CLevelMgr::GetInst()->init();
+	MEASURE_INIT(CLevelMgr::GetInst()->init());
 
 
 	//레벨매니저로 이동
@@ -173,8 +187,8 @@ void CEngine::tick()
 	CTimeManager::GetInst()->tick();
 	CKeyMgr::GetInst()->tick();
 	CCamera::GetInst()->tick();
-	
-	
+
+
 
 	//m_Level->tick();
 	//m_Level->render(m_dc);

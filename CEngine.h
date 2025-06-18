@@ -3,6 +3,8 @@
 class CLevel;
 class CTexture;
 
+void AttachConsoleAndRedirect();
+void DetachConsoleAndCleanup();
 //엔진은 게임프로그램의 관리자.
 //디자인패턴(설계의 유형)
 //Singleton 패턴 단 하나의 객체를 위해설계됨
@@ -17,7 +19,7 @@ class CEngine
 	//- 정적멤버함수에서도 접근가능하다.
 	// 문법:클래스안에 있는 선언은 전방선언역할
 	// 실제 초기화는 cpp에서 해줘야한다.
-	
+
 	SINGLETON(CEngine);
 
 private:
@@ -73,7 +75,7 @@ public:
 	//	delete pEngine;
 	//	pEngine = nullptr;
 	//}
-	
+
 	//장점 : 데이터영역에 있으므로 destroy가필요없다.
 	//단점 : runtime 도중에 지울 수 없다. (여러개 매니저가 쌓여있을 수 있음)
 

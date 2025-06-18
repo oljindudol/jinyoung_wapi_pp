@@ -22,7 +22,6 @@ void CPlayerDown::finaltick(float _DT)
 		return;
 	}
 
-
 	if (KEY_TAP(KEY::LEFT))
 	{
 		ort = ORT_LEFT;
@@ -42,12 +41,21 @@ void CPlayerDown::finaltick(float _DT)
 		ChangeState((UINT)PLAYER_STATE::IDLE);
 		return;
 	}
-	if (KEY_PRESSED(X))
-	{
-		GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ATT_NM);
-		return;
-	}
 
+	if (nullptr == m_pPlayer)
+		m_pPlayer = CLevelMgr::GetInst()->GetPlayer();
+
+	bool CanChageState = true;
+	if (nullptr != m_pPlayer)
+		CanChageState = m_pPlayer->IsDebuffActive(DEBUFF::INABILITY);
+	if (false == CanChageState)
+	{
+		if (KEY_PRESSED(X))
+		{
+			GetOwnerSM()->ChangeState((UINT)PLAYER_STATE::ATT_NM);
+			return;
+		}
+	}
 }
 
 void CPlayerDown::Enter()

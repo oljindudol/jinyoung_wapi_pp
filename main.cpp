@@ -23,6 +23,39 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+BOOL WINAPI ConsoleHandler(DWORD signal) {
+	if (signal == CTRL_CLOSE_EVENT || signal == CTRL_C_EVENT) {
+		DetachConsoleAndCleanup(); // 수동 정리
+		ExitProcess(0); // 프로세스 강제 종료
+		return TRUE;
+	}
+	return FALSE;
+}
+
+#include <iostream>
+using namespace std;
+// 콘솔 연결
+void AttachConsoleAndRedirect()
+{
+	AllocConsole();
+	FILE* fp;
+	freopen_s(&fp, "CONOUT$", "w", stdout);   // 표준 출력 연결
+	freopen_s(&fp, "CONOUT$", "w", stderr);   // 표준 에러 연결
+	freopen_s(&fp, "CONIN$", "r", stdin);     // 표준 입력 연결
+
+	cout.clear();  // 스트림 상태 초기화
+	cerr.clear();
+	cin.clear();
+}
+
+// 콘솔 해제 (릭 방지)
+void DetachConsoleAndCleanup()
+{
+	fclose(stdout); // freopen으로 변경된 스트림 해제
+	fclose(stderr);
+	fclose(stdin);
+	FreeConsole();
+}
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPWSTR    lpCmdLine,
@@ -45,6 +78,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	{
 		return FALSE;
 	}
+	SetConsoleCtrlHandler(ConsoleHandler, TRUE);
+	AttachConsoleAndRedirect();
 	CEngine::GetInst()->init(g_hWnd, POINT{ 1366 , 768 });
 
 
@@ -102,6 +137,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			CEngine::GetInst()->tick();
 		}
 	}
+
+	//DetachConsoleAndCleanup();
 	//KillTimer(g_hWnd,TimerID);
 	return (int)msg.wParam;
 }

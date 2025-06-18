@@ -161,7 +161,7 @@ void CPlayer::tick(float _DT)
 		m_acctime = 0.f;
 	}
 
-	if (KEY_TAP(KEY::K))
+	if (KEY_TAP(KEY::Q))
 	{
 		if (m_invincible_time > 0.f)
 		{
@@ -169,15 +169,21 @@ void CPlayer::tick(float _DT)
 		}
 		else
 		{
-			m_invincible_time = 1000.f;
+			m_invincible_time = 3.f;
 		}
 	}
 
-	if (KEY_TAP(KEY::F12))
+	if (KEY_TAP(KEY::C))
 	{
 		hp = maxhp;
 		m_PlayerState->ChangeState((UINT)PLAYER_STATE::IDLE);
 	}
+
+	//if (KEY_TAP(KEY::F10))
+	//{
+	//	hp = 0.f;
+	//	m_PlayerState->ChangeState((UINT)PLAYER_STATE::DEAD);
+	//}
 
 	if (KEY_TAP(KEY::R))
 	{
@@ -201,14 +207,14 @@ void CPlayer::tick(float _DT)
 	//	}
 	//}
 
-	if (KEY_TAP(KEY::T))
-	{
-		PushDebuff(DEBUFF::CREATION);
-	}
-	if (KEY_TAP(KEY::Y))
-	{
-		PushDebuff(DEBUFF::DESTUCTION);
-	}
+	//if (KEY_TAP(KEY::T))
+	//{
+	//	PushDebuff(DEBUFF::CREATION);
+	//}
+	//if (KEY_TAP(KEY::Y))
+	//{
+	//	PushDebuff(DEBUFF::DESTUCTION);
+	//}
 
 }
 
@@ -322,6 +328,9 @@ void CPlayer::begin()
 
 void CPlayer::GetDamaged(float _percentdmg, DEBUFF _debuff)
 {
+	if (m_invincible_time > 0.f)
+		return;
+
 	//dead일 경우 무시
 	if ((UINT)PLAYER_STATE::DEAD == m_PlayerState->GetCurStateNum() || m_invincible_time > 0.f)
 	{

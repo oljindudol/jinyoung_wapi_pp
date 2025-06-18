@@ -24,6 +24,7 @@ private:
 	bool completemission;
 	vector< FDebuff> m_Debuff;
 	vector <DEBUFF> m_DebuffEvent;
+
 	class CSkill* m_pCreation = nullptr;
 	class CSkill* m_pDestuction = nullptr;
 	class CSkill* m_pInablity = nullptr;
@@ -55,13 +56,13 @@ public:
 	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) override;
 	virtual void begin() override;
 	void GetDamaged(float _percentdmg, DEBUFF _debuff);
+
 	void InitDebuff();
 	void ProcessDebuff();
 	void PushDebuff(DEBUFF _debuff);
 	bool IsDebuffActive(DEBUFF _debuff);
 	bool HasDebuff(DEBUFF _debuff);
 	void RenderDebuff();
-
 	void DeathByCurse();
 
 public:
