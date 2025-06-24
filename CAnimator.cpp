@@ -177,9 +177,10 @@ CAnim* CAnimator::CreateTurnAnimation(const wstring& _strphase, const wstring& _
 }
 
 
-
+#include "CProfileMgr.h"
 void CAnimator::CreateRotatedAnimation(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul, int _roop, ORIENTATION _ort)
 {
+	PROFILE_SCOPE("CreateRotatedAnimation");
 	CAnim* pAnim = FindAnim(_strphase + _strobj + _stranimname + L"_" + std::to_wstring(_rot));
 	if (IsValid(pAnim))
 	{

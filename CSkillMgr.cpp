@@ -217,6 +217,7 @@ void CSkillMgr::MUL_LoadSkills()
 		});
 
 	pool->WaitAll();
+
 }
 
 
@@ -361,6 +362,7 @@ void CSkillMgr::LoadSkills()
 		, 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
 }
 
+#include "CProfileMgr.h"
 void CSkillMgr::init()
 {
 	//싱글스레드
@@ -371,7 +373,7 @@ void CSkillMgr::init()
 
 	//멀티스레드 2
 	MUL_LoadSkills();
-
+	CProfileMgr::GetInst().Print();
 }
 
 

@@ -73,3 +73,39 @@ enum COLOR
 
 
 #include "global.h"
+
+#include <iostream>
+
+struct Profiler {
+	std::string name;
+	double total = 0;
+	int count = 0;
+
+	Profiler(const std::string& n) : name(n) {}
+
+	void add(double duration) {
+		total += duration;
+		count++;
+	}
+
+	void print() {
+		std::cout << name << " - total: " << total
+			<< " s, count: " << count
+			<< ", avg: " << (total / count) << " s\n";
+	}
+};
+
+struct ScopedProfiler {
+	Profiler& profiler;
+	std::chrono::high_resolution_clock::time_point start;
+
+	ScopedProfiler(Profiler& p) : profiler(p), start(std::chrono::high_resolution_clock::now()) {}
+
+	~ScopedProfiler() {
+		auto end = std::chrono::high_resolution_clock::now();
+		profiler.add(std::chrono::duration<double>(end - start).count());
+	}
+};
+
+
+

@@ -108,8 +108,10 @@ HBITMAP CAssetMgr::GetTransHBITMAP()
 	return m_transtex->GetBitmap();
 }
 
+#include "CProfileMgr.h"
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
+	PROFILE_SCOPE("LoadTexture");
 	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
