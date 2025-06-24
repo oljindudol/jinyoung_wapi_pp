@@ -29,7 +29,77 @@ public:
 
 private:
 	void LoadSkills();
+	void MUL_LoadSkill();
 	void MUL_LoadSkills();
+	template<typename T>
+	void CreateAndAddMultipleSkills(int count)
+	{
+		std::vector<CSkill*> skills;
+		skills.reserve(count);  // 메모리 파편화 줄이기
+
+		for (int i = 0; i < count; ++i)
+			skills.push_back(new T);
+
+		{
+			std::lock_guard<std::mutex> lock(m_SMmutex);
+			for (auto skill : skills)
+				AddSkill(skill);  // 기존 AddSkill 그대로 사용
+		}
+	}
+
+	template<typename T>
+	void CreateAndAddMultipleSkillEff(
+		int count,
+		const std::wstring& s1,
+		const std::wstring& s2,
+		const std::wstring& s3,
+		float duration,
+		const Vec2& offset = Vec2(0.f, 0.f),
+		int roop = -1,
+		ERenderType renderType = ERenderType::OnCamera)
+	{
+		std::vector<CSkill*> skills;
+		skills.reserve(count);
+
+		for (int i = 0; i < count; ++i)
+		{
+			CSkill* skill = new T;
+			skill->m_s1 = s1;
+			skill->m_s2 = s2;
+			skill->m_s3 = s3;
+
+			skill->m_skillname = s1 + s2 + s3;
+			skill->m_skillnum = FindNextSkillNumber(skill->m_skillname);
+			skill->SetName(skill->m_skillname + L"_" + std::to_wstring(skill->m_skillnum));
+
+			skill->m_skilllayer = LAYER::PLAYER_SKILL;
+			skill->duration = duration;
+
+			skill->m_Animator = skill->AddComponent<CAnimator>(skill->GetName() + L"Animator");
+			skill->m_Animator->SetRenderType(renderType);
+			skill->m_Animator->CreateAnimation(s1, s2, s3, offset, 1.f, roop, ORT_LEFT);
+			skill->m_Animator->Play(s1 + s2 + s3);
+
+			skills.push_back(skill);
+		}
+
+		{
+			std::lock_guard<std::mutex> lock(m_SMmutex);
+			for (auto skill : skills)
+			{
+				vector<CSkill*>* pSkills = FindSkill(skill->m_skillname);
+				if (!pSkills)
+				{
+					m_skillmap[skill->m_skillname] = { skill };
+				}
+				else
+				{
+					pSkills->push_back(skill);
+				}
+			}
+		}
+	}
+
 	CSkill* FindAvailableSkill(
 		wstring _skillname);
 

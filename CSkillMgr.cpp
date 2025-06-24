@@ -16,7 +16,7 @@ CSkillMgr::CSkillMgr()
 
 
 
-void CSkillMgr::MUL_LoadSkills()
+void CSkillMgr::MUL_LoadSkill()
 {
 	auto pool = CThreadPoolMgr::GetInst();
 
@@ -125,6 +125,100 @@ void CSkillMgr::MUL_LoadSkills()
 
 	pool->WaitAll();
 }
+
+void CSkillMgr::MUL_LoadSkills()
+{
+	auto pool = CThreadPoolMgr::GetInst();
+
+	// 단일 스킬
+	pool->Enqueue([this]() { AddSkill(new pinkbean_doublejump); });
+	pool->Enqueue([this]() { AddSkill(new pinkbean_doublejump); });
+	pool->Enqueue([this]() { AddSkill(new pinkbean_phantomblow); });
+
+	// 다수 스킬 일괄 생성
+	pool->Enqueue([this]() { CreateAndAddMultipleSkills<ChainAttack>(5); });
+	pool->Enqueue([this]() { CreateAndAddMultipleSkills<CDamageSkin>(10); });
+	pool->Enqueue([this]() { CreateAndAddMultipleSkills<CDamageSkinRed>(500); });
+
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(80, L"common", L"pinkbean", L"phantomblow_hit", .48f);
+		});
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(2, L"common", L"pinkbean", L"upperjump", .72f);
+		});
+
+	// 기타 스킬들
+	pool->Enqueue([this]() { AddSkill(new CRestraintRing); });
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"common", L"restraintring", L"eff", .9f, Vec2(0.f, -40.f));
+		});
+
+	pool->Enqueue([this]() { AddSkill(new CErdaNova); });
+	pool->Enqueue([this]() { AddSkill(new CKarmaFury); });
+	pool->Enqueue([this]() { AddSkill(new CBladeTornado); });
+	pool->Enqueue([this]() { AddSkill(new CBladeStorm); });
+
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"common", L"readytodie", L"use", .9f, Vec2(0.f, -150.f));
+		});
+	pool->Enqueue([this]() {
+		auto skill = FindAvailableSkill(L"commonreadytodieuse");
+		if (skill) skill->cooltime = 60.f;
+		});
+
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"common", L"soulcontract", L"use", .9f, Vec2(0.f, -40.f));
+		});
+	pool->Enqueue([this]() {
+		auto skill = FindAvailableSkill(L"commonsoulcontractuse");
+		if (skill) skill->cooltime = 50.f;
+		});
+
+	pool->Enqueue([this]() { CreateAndAddMultipleSkills<CUnderDog>(15); });
+	pool->Enqueue([this]() { AddSkill(new CEyeofRuin_L); });
+	pool->Enqueue([this]() { AddSkill(new CEyeofRuin_R); });
+
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(5, L"first", L"chainattack", L"hit", .84f, Vec2(0.f, -300.f));
+		});
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(5, L"second", L"eyeofruin", L"hit", .72f);
+		});
+
+	pool->Enqueue([this]() { AddSkill(new CSecondPowerLeft); });
+	pool->Enqueue([this]() { AddSkill(new CSecondPowerRight); });
+	pool->Enqueue([this]() { AddSkill(new CSecondPowerMiddle); });
+	pool->Enqueue([this]() { CreateAndAddMultipleSkills<CNoxSpear>(7); });
+
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(5, L"second", L"noxspear", L"hit", .7f);
+		});
+
+	pool->Enqueue([this]() { AddSkill(new CBlindness); });
+	pool->Enqueue([this]() { AddSkill(new CAchievement); });
+	pool->Enqueue([this]() { AddSkill(new CEndroll); });
+
+	pool->Enqueue([this]() { CreateAndAddMultipleSkills<CMouseCol>(5); });
+
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"zero", L"levelup", L"use", 2.3f);
+		});
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(5, L"common", L"debuff", L"deathbycurse", 0.9f, Vec2(0.f, 0.f), -1, ERenderType::OnCamera);
+		});
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"common", L"debuff", L"creation", 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
+		});
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"common", L"debuff", L"destruction", 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
+		});
+	pool->Enqueue([this]() {
+		CreateAndAddMultipleSkillEff<CSkill>(1, L"common", L"debuff", L"inability", 100.f, Vec2(0.f, -120.f), 0, ERenderType::OnPlayer);
+		});
+
+	pool->WaitAll();
+}
+
 
 void CSkillMgr::LoadSkills()
 {
@@ -273,7 +367,11 @@ void CSkillMgr::init()
 	//LoadSkills();
 
 	//멀티스레드
+	//MUL_LoadSkill();
+
+	//멀티스레드 2
 	MUL_LoadSkills();
+
 }
 
 
@@ -281,7 +379,7 @@ void CSkillMgr::AddSkillEff(CSkill* _pSkill
 	, wstring _s1, wstring _s2, wstring _s3
 	, float _duration, Vec2 _offset, int _roop, ERenderType _RenderType)
 {
-	std::lock_guard<std::mutex> lock(m_SMmutex);
+	//std::lock_guard<std::mutex> lock(m_SMmutex);
 	_pSkill->m_s1 = _s1;
 	_pSkill->m_s2 = _s2;
 	_pSkill->m_s3 = _s3;
@@ -331,7 +429,7 @@ void CSkillMgr::AddSkillEff(CSkill* _pSkill
 
 void CSkillMgr::AddSkill(CSkill* _pSkill)
 {
-	std::lock_guard<std::mutex> lock(m_SMmutex);
+	//std::lock_guard<std::mutex> lock(m_SMmutex);
 	vector<CSkill*>* pSkills;
 	wstring skillname = _pSkill->m_skillname;
 	pSkills = FindSkill(skillname);
