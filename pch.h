@@ -35,6 +35,10 @@
 #include <dsound.h>
 #include <dinput.h>
 
+// ¹ÂÅØ½º
+#include <mutex>
+using std::mutex;
+
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "dsound.lib")
 

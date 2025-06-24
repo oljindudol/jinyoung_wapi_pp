@@ -18,8 +18,8 @@ CAssetMgr::CAssetMgr()
 	SetBkMode(transdc, TRANSPARENT);
 
 	SELECT_BRUSH(transdc, (HBRUSH)GetStockObject(WHITE_BRUSH));
-	
-	Rectangle(transdc, -1, -1, vResol.x+1, vResol.y+1);
+
+	Rectangle(transdc, -1, -1, vResol.x + 1, vResol.y + 1);
 
 }
 
@@ -39,6 +39,7 @@ CAssetMgr::~CAssetMgr()
 
 CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRelativePath)
 {
+	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
@@ -69,10 +70,10 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 	return pTexture;
 }
 
-CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _strRelativePath, int _rot )
+CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _strRelativePath, int _rot)
 {
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
-	CTexture* pTexture = FindTexture( _strKey);
+	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
 	{
 		// 이미 있는 텍스쳐면 찾은걸 반환해준다.
@@ -85,7 +86,7 @@ CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _
 
 	pTexture = new CTexture;
 	//pTexture->Load(strFilePath);
-	if (!pTexture->Load_rotated(strFilePath, (float)_rot * 0.0174533f ))
+	if (!pTexture->Load_rotated(strFilePath, (float)_rot * 0.0174533f))
 	{
 		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
 		delete pTexture;
@@ -109,6 +110,7 @@ HBITMAP CAssetMgr::GetTransHBITMAP()
 
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
+	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)

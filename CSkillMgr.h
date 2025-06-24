@@ -12,14 +12,14 @@ struct FEffectEvent
 };
 
 
-
+#include <mutex>
 class CSkillMgr
 {
 	SINGLETON(CSkillMgr);
 
 private:
+	mutex m_SMmutex;
 	unordered_map<wstring, vector<CSkill*>> m_skillmap;
-
 
 public:
 	void init();
@@ -28,6 +28,8 @@ public:
 		ORIENTATION _ort = ORT_LEFT);
 
 private:
+	void LoadSkills();
+	void MUL_LoadSkills();
 	CSkill* FindAvailableSkill(
 		wstring _skillname);
 
