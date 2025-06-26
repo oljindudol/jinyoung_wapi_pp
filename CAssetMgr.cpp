@@ -72,6 +72,7 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 
 CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _strRelativePath, int _rot)
 {
+	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
@@ -219,4 +220,37 @@ CSound* CAssetMgr::FindSound(const wstring& _strKey)
 	}
 
 	return iter->second;
+}
+
+void CAssetMgr::PrintAllTextures()
+{
+	printf("\n=== [전체 로드된 텍스처 목록] ===\n");
+	for (const auto& pair : m_mapTex)
+	{
+		const wstring& key = pair.first;
+		CTexture* pTex = pair.second;
+
+		wprintf(L"Key: %s | Size: %d x %d\n",
+			key.c_str(),
+			pTex->GetWidth(),
+			pTex->GetHeight());
+	}
+	printf("총 텍스처 수: %zu개\n", m_mapTex.size());
+}
+
+void CAssetMgr::PrintTextureMemoryUsage()
+{
+	size_t totalBytes = 0;
+
+	for (const auto& pair : m_mapTex)
+	{
+		CTexture* pTex = pair.second;
+		int width = pTex->GetWidth();
+		int height = pTex->GetHeight();
+		int bpp = 4; // 예: RGBA8888 기준
+
+		totalBytes += static_cast<size_t>(width) * height * bpp;
+	}
+
+	printf("추정 총 텍스처 메모리 사용량: %.2f MB\n", totalBytes / (1024.0 * 1024.0));
 }
