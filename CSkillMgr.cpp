@@ -373,7 +373,7 @@ void CSkillMgr::init()
 
 	//멀티스레드 2
 	MUL_LoadSkills();
-	CProfileMgr::GetInst().Print();
+	//CProfileMgr::GetInst().Print();
 }
 
 
