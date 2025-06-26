@@ -26,4 +26,7 @@ public:
 	CSound* FindSound(const wstring& _strKey);
 	bool IsPlaying(CSound* _pSound) { return _pSound->m_bPlay; }
 
+	void PrintAllTextures();
+	void PrintTextureMemoryUsage();
+
 };
