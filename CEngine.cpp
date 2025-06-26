@@ -156,7 +156,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	MEASURE_PERFORMANCE(CMonsterMgr::GetInst()->init());
 	//레벨매니저가 위에있는 것을 참조한다.(UI 등)
 	MEASURE_PERFORMANCE(CLevelMgr::GetInst()->init());
-	CAssetMgr::GetInst()->PrintAllTextures();
+	//CAssetMgr::GetInst()->PrintAllTextures();
 	CAssetMgr::GetInst()->PrintTextureMemoryUsage();
 
 
