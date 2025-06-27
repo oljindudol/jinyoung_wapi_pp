@@ -81,7 +81,7 @@ HBITMAP GetRotatedBitmap(HDC hdc, HBITMAP hBitmap, float radians)// COLORREF clr
 	hbmOldDest = (HBITMAP)SelectObject(destDC, hbmResult);
 
 	// Draw the background color before we change mapping mode
-	SELECT_BRUSH(destDC,(HBRUSH)GetStockObject(HOLLOW_BRUSH));
+	SELECT_BRUSH(destDC, (HBRUSH)GetStockObject(HOLLOW_BRUSH));
 	PatBlt(destDC, 0, 0, w, h, PATCOPY);
 
 	// We will use world transform to rotate the bitmap
@@ -109,7 +109,7 @@ HBITMAP GetRotatedBitmap(HDC hdc, HBITMAP hBitmap, float radians)// COLORREF clr
 
 }
 
-bool CTexture::Load_rotated(const wstring& _strFilePath,  float _rad)
+bool CTexture::Load_rotated(const wstring& _strFilePath, float _rad)
 {
 	wchar_t szExt[20] = {};
 	_wsplitpath_s(_strFilePath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, szExt, 20);
@@ -127,9 +127,9 @@ bool CTexture::Load_rotated(const wstring& _strFilePath,  float _rad)
 
 	else if (!wcscmp(szExt, L".png") || !wcscmp(szExt, L".PNG"))
 	{
-		ULONG_PTR gdiplusToken = 0;
-		GdiplusStartupInput gidstartupInput = {};
-		GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
+		//ULONG_PTR gdiplusToken = 0;
+		//GdiplusStartupInput gidstartupInput = {};
+		//GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
 		Image* pImg = Image::FromFile(_strFilePath.c_str(), false);
 
 		Bitmap* pBitmap = (Bitmap*)pImg->Clone();
@@ -198,9 +198,9 @@ bool CTexture::Load_r(const wstring& _strFilePath)
 
 	else if (!wcscmp(szExt, L".png") || !wcscmp(szExt, L".PNG"))
 	{
-		ULONG_PTR gdiplusToken = 0;
-		GdiplusStartupInput gidstartupInput = {};
-		GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
+		//ULONG_PTR gdiplusToken = 0;
+		//GdiplusStartupInput gidstartupInput = {};
+		//GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
 		Image* pImg = Image::FromFile(_strFilePath.c_str(), false);
 
 		Bitmap* pBitmap = (Bitmap*)pImg->Clone();
@@ -240,9 +240,9 @@ bool CTexture::Load(const wstring& _strFilePath)
 
 	else if (!wcscmp(szExt, L".png") || !wcscmp(szExt, L".PNG"))
 	{
-		ULONG_PTR gdiplusToken = 0;
-		GdiplusStartupInput gidstartupInput = {};
-		GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
+		//ULONG_PTR gdiplusToken = 0;
+		//GdiplusStartupInput gidstartupInput = {};
+		//GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
 		Image* pImg = Image::FromFile(_strFilePath.c_str(), false);
 
 		Bitmap* pBitmap = (Bitmap*)pImg->Clone();

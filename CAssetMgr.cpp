@@ -34,12 +34,13 @@ CAssetMgr::~CAssetMgr()
 	{
 		delete pair.second;
 	}
+
+	ShutdownGDIPlus();
 }
 
 
 CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRelativePath)
 {
-	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
@@ -61,18 +62,25 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 		return nullptr;
 	}
 
-	// Asset 에 키값과 경로값을 알려준다.
-	pTexture->m_strKey = _strKey;
-	pTexture->m_strRelativePath = _strRelativePath;
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 
-	m_mapTex.insert(make_pair(_strKey, pTexture));
+		if (CTexture* tex = FindTexture(_strKey)) // 다른 스레드가 이미 넣었는지 확인
+		{
+			delete pTexture;
+			return tex;
+		}
 
-	return pTexture;
+		pTexture->m_strKey = _strKey;
+		pTexture->m_strRelativePath = _strRelativePath;
+		m_mapTex.insert({ _strKey, pTexture });
+
+		return pTexture;
+	}
 }
 
 CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _strRelativePath, int _rot)
 {
-	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
@@ -94,13 +102,21 @@ CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _
 		return nullptr;
 	}
 
-	// Asset 에 키값과 경로값을 알려준다.
-	pTexture->m_strKey = _strKey;
-	pTexture->m_strRelativePath = L"";
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 
-	m_mapTex.insert(make_pair(_strKey, pTexture));
+		if (CTexture* tex = FindTexture(_strKey))
+		{
+			delete pTexture;
+			return tex;
+		}
 
-	return pTexture;
+		pTexture->m_strKey = _strKey;
+		pTexture->m_strRelativePath = L"";
+		m_mapTex.insert({ _strKey, pTexture });
+
+		return pTexture;
+	}
 }
 
 
@@ -113,7 +129,6 @@ HBITMAP CAssetMgr::GetTransHBITMAP()
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
 	PROFILE_SCOPE("LoadTexture");
-	std::lock_guard<std::mutex> lock(m_mutex);
 	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
@@ -135,13 +150,21 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 		return nullptr;
 	}
 
-	// Asset 에 키값과 경로값을 알려준다.
-	pTexture->m_strKey = _strKey;
-	pTexture->m_strRelativePath = _strRelativePath;
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
 
-	m_mapTex.insert(make_pair(_strKey, pTexture));
+		if (CTexture* tex = FindTexture(_strKey))
+		{
+			delete pTexture;
+			return tex;
+		}
 
-	return pTexture;
+		pTexture->m_strKey = _strKey;
+		pTexture->m_strRelativePath = _strRelativePath;
+		m_mapTex.insert({ _strKey, pTexture });
+
+		return pTexture;
+	}
 }
 
 CTexture* CAssetMgr::CreateTexture(const wstring& _strKey, UINT _width, UINT _height)
@@ -254,3 +277,21 @@ void CAssetMgr::PrintTextureMemoryUsage()
 
 	printf("추정 총 텍스처 메모리 사용량: %.2f MB\n", totalBytes / (1024.0 * 1024.0));
 }
+
+ULONG_PTR g_gdiplusToken = 0;
+void CAssetMgr::InitGDIPlus()
+{
+	GdiplusStartupInput gdiStartupInput;
+	GdiplusStartup(&g_gdiplusToken, &gdiStartupInput, nullptr);
+}
+
+void CAssetMgr::ShutdownGDIPlus()
+{
+	GdiplusShutdown(g_gdiplusToken);
+}
+void CAssetMgr::init()
+{
+	InitGDIPlus();
+}
+
+
