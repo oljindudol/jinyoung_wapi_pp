@@ -56,7 +56,7 @@ private:
 		float duration,
 		const Vec2& offset = Vec2(0.f, 0.f),
 		int roop = -1,
-		ERenderType renderType = ERenderType::OnPlayer)
+		ERenderType renderType = ERenderType::OnDefault)
 	{
 		std::vector<CSkill*> skills;
 		skills.reserve(count);
