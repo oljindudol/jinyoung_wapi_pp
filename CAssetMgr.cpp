@@ -55,6 +55,7 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 
 	pTexture = new CTexture;
 	//pTexture->Load(strFilePath);
+	std::lock_guard<std::mutex> lock(m_mutex);
 	if (!pTexture->Load_r(strFilePath))
 	{
 		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
@@ -63,8 +64,6 @@ CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRe
 	}
 
 	{
-		std::lock_guard<std::mutex> lock(m_mutex);
-
 		if (CTexture* tex = FindTexture(_strKey)) // 다른 스레드가 이미 넣었는지 확인
 		{
 			delete pTexture;
@@ -94,7 +93,7 @@ CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _
 	wstring strFilePath = strContentPath + _strRelativePath;
 
 	pTexture = new CTexture;
-	//pTexture->Load(strFilePath);
+	std::lock_guard<std::mutex> lock(m_mutex);
 	if (!pTexture->Load_rotated(strFilePath, (float)_rot * 0.0174533f))
 	{
 		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
@@ -103,8 +102,6 @@ CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _
 	}
 
 	{
-		std::lock_guard<std::mutex> lock(m_mutex);
-
 		if (CTexture* tex = FindTexture(_strKey))
 		{
 			delete pTexture;
@@ -142,6 +139,7 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	wstring strFilePath = strContentPath + _strRelativePath;
 
 	pTexture = new CTexture;
+	std::lock_guard<std::mutex> lock(m_mutex);
 	//pTexture->Load(strFilePath);
 	if (!pTexture->Load(strFilePath))
 	{
@@ -151,8 +149,6 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 	}
 
 	{
-		std::lock_guard<std::mutex> lock(m_mutex);
-
 		if (CTexture* tex = FindTexture(_strKey))
 		{
 			delete pTexture;
