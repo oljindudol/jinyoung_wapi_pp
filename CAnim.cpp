@@ -415,8 +415,6 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 
 	m_multi = _playmul;
 
-
-
 }
 
 
