@@ -28,5 +28,8 @@ public:
 
 	void PrintAllTextures();
 	void PrintTextureMemoryUsage();
+	void init();
+	void InitGDIPlus();
+	void ShutdownGDIPlus();
 
 };
