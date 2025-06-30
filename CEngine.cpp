@@ -144,6 +144,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	//DeleteObject((HBITMAP)SelectObject(m_subdc, m_subbitmap));
 
 	// Manager 초기화
+	CAssetMgr::GetInst()->init();
 	MEASURE_PERFORMANCE(CThreadPoolMgr::GetInst()->init());
 	MEASURE_PERFORMANCE(CTimeManager::GetInst()->init());
 	MEASURE_PERFORMANCE(CKeyMgr::GetInst()->init());
