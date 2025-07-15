@@ -220,6 +220,56 @@ void CSkillMgr::MUL_LoadSkills()
 
 }
 
+void CSkillMgr::AddSkillsBulk(std::vector<CSkill*>&& skills)
+{
+	if (skills.empty()) return;
+
+	// 모든 스킬이 같은 이름이라는 전제
+	std::wstring skillname = skills.front()->m_skillname;
+
+	auto it = m_skillmap.find(skillname);
+	if (it == m_skillmap.end())
+	{
+		m_skillmap.insert({ skillname, std::move(skills) });
+	}
+	else
+	{
+		auto& existingVec = it->second;
+		existingVec.reserve(existingVec.size() + skills.size());
+		existingVec.insert(existingVec.end(), skills.begin(), skills.end());
+	}
+}
+
+
+//void CSkillMgr::LoadSkills()
+//{
+//	// ... 여러스킬 등록
+//	for (int i = 0; i < 5; i++)
+//	{
+//		AddSkill((CSkill*)new ChainAttack);
+//	}
+//	// ...
+//}
+
+void CSkillMgr::AddSkill(CSkill* _pSkill)
+{
+	vector<CSkill*>* pSkills;
+	wstring skillname = _pSkill->m_skillname;
+	pSkills = FindSkill(skillname);
+
+	//1. 해당 key(스킬이름)로 처음 등록되는 스킬인경우.
+	if (nullptr == pSkills)
+	{
+		vector<CSkill*> newskillvec;
+		newskillvec.push_back(_pSkill);
+		m_skillmap.insert(pair<wstring, vector<CSkill*>>(skillname, newskillvec));
+	}
+	//2. 동일 key(스킬이름)를 가지는 스킬이 등록되어있는경우.
+	else
+	{
+		pSkills->push_back(_pSkill);
+	}
+}
 
 void CSkillMgr::LoadSkills()
 {
@@ -429,25 +479,6 @@ void CSkillMgr::AddSkillEff(CSkill* _pSkill
 	}
 }
 
-void CSkillMgr::AddSkill(CSkill* _pSkill)
-{
-	//std::lock_guard<std::mutex> lock(m_SMmutex);
-	vector<CSkill*>* pSkills;
-	wstring skillname = _pSkill->m_skillname;
-	pSkills = FindSkill(skillname);
-
-	//없는지 확인하는게 당연한처리기 때문에 못찾아도 로그를 내지않는다.
-	if (nullptr == pSkills)
-	{
-		vector<CSkill*> newskillvec;
-		newskillvec.push_back(_pSkill);
-		m_skillmap.insert(pair<wstring, vector<CSkill*>>(skillname, newskillvec));
-	}
-	else
-	{
-		pSkills->push_back(_pSkill);
-	}
-}
 
 CSkillMgr::~CSkillMgr()
 {

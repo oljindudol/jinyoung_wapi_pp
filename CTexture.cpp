@@ -20,6 +20,27 @@ CTexture::~CTexture()
 
 
 
+HBITMAP CreateHBitmapFromRaw(const ImageData& img)
+{
+	HDC hdc = GetDC(NULL);
+	BITMAPINFO bmi = {};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = img.width;
+	bmi.bmiHeader.biHeight = -img.height; // top-down
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
+
+	void* bits = nullptr;
+	HBITMAP hBmp = CreateDIBSection(hdc, &bmi, DIB_RGB_COLORS, &bits, nullptr, 0);
+
+	if (hBmp && bits)
+		memcpy(bits, img.pixels.data(), img.pixels.size());
+
+	ReleaseDC(NULL, hdc);
+	return hBmp;
+}
+
 //-----------------------------------------------------------------------------
 // Name : GetRotatedBitmap()
 // Desc : ºñÆ®¸Ê È¸Àü
@@ -240,9 +261,6 @@ bool CTexture::Load(const wstring& _strFilePath)
 
 	else if (!wcscmp(szExt, L".png") || !wcscmp(szExt, L".PNG"))
 	{
-		//ULONG_PTR gdiplusToken = 0;
-		//GdiplusStartupInput gidstartupInput = {};
-		//GdiplusStartup(&gdiplusToken, &gidstartupInput, nullptr);
 		Image* pImg = Image::FromFile(_strFilePath.c_str(), false);
 
 		Bitmap* pBitmap = (Bitmap*)pImg->Clone();
@@ -251,7 +269,6 @@ bool CTexture::Load(const wstring& _strFilePath)
 		if (Status::Ok != stat)
 			return false;
 	}
-
 
 	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 	DeleteObject(SelectObject(m_hDC, m_hBit));

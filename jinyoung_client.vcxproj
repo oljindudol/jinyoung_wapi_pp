@@ -179,6 +179,7 @@
     <ClInclude Include="CDarkFallingIdle.h" />
     <ClInclude Include="CDarkFallingRegen.h" />
     <ClInclude Include="CDebugUI.h" />
+    <ClInclude Include="CDecodeThreadPool.h" />
     <ClInclude Include="CDialogBox.h" />
     <ClInclude Include="CDialogBtn.h" />
     <ClInclude Include="CEditorLevel.h" />
@@ -381,6 +382,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="rulemon11.h" />
     <ClInclude Include="rulemon12.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="skills.h" />
@@ -413,6 +415,7 @@
     <ClCompile Include="CDarkFallingIdle.cpp" />
     <ClCompile Include="CDarkFallingRegen.cpp" />
     <ClCompile Include="CDebugUI.cpp" />
+    <ClCompile Include="CDecodeThreadPool.cpp" />
     <ClCompile Include="CDialogBox.cpp" />
     <ClCompile Include="CDialogBtn.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />

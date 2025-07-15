@@ -11,7 +11,7 @@ private:
 public:
 	__inline UINT_PTR GetID() { return m_ID; }
 	void SetName(const wstring& _strName) { m_strName = _strName; }
-	const wstring& GetName() { return m_strName; }
+	const wstring& GetName() const { return m_strName; };
 	virtual CEntity* Clone() = 0;
 	bool IsDead() { return m_bDead; }
 

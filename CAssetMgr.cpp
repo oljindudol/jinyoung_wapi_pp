@@ -41,79 +41,47 @@ CAssetMgr::~CAssetMgr()
 
 CTexture* CAssetMgr::LoadTexture_r(const wstring& _strKey, const wstring& _strRelativePath)
 {
-	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
-	CTexture* pTexture = FindTexture(_strKey);
-	if (nullptr != pTexture)
-	{
-		// 이미 있는 텍스쳐면 찾은걸 반환해준다.
-		return pTexture;
-	}
+	std::lock_guard<std::mutex> lock(m_mutex);
 
-	// 입력된 키에 해당하는 텍스쳐가 없으면 로딩해서 반환해준다.
-	wstring strContentPath = CPathMgr::GetContentPath();
-	wstring strFilePath = strContentPath + _strRelativePath;
+	CTexture* pTexture = FindTexture(_strKey);
+	if (pTexture != nullptr)
+		return pTexture;
 
 	pTexture = new CTexture;
-	//pTexture->Load(strFilePath);
-	std::lock_guard<std::mutex> lock(m_mutex);
-	if (!pTexture->Load_r(strFilePath))
+	if (!pTexture->Load_r(CPathMgr::GetContentPath() + _strRelativePath))
 	{
-		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
 		delete pTexture;
 		return nullptr;
 	}
 
-	{
-		if (CTexture* tex = FindTexture(_strKey)) // 다른 스레드가 이미 넣었는지 확인
-		{
-			delete pTexture;
-			return tex;
-		}
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = _strRelativePath;
+	m_mapTex[_strKey] = pTexture;
 
-		pTexture->m_strKey = _strKey;
-		pTexture->m_strRelativePath = _strRelativePath;
-		m_mapTex.insert({ _strKey, pTexture });
-
-		return pTexture;
-	}
+	return pTexture;
 }
 
 CTexture* CAssetMgr::LoadRotatedTexture(const wstring& _strKey, const wstring& _strRelativePath, int _rot)
 {
-	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
-	CTexture* pTexture = FindTexture(_strKey);
-	if (nullptr != pTexture)
-	{
-		// 이미 있는 텍스쳐면 찾은걸 반환해준다.
-		return pTexture;
-	}
+	std::lock_guard<std::mutex> lock(m_mutex);
 
-	// 입력된 키에 해당하는 텍스쳐가 없으면 로딩해서 반환해준다.
-	wstring strContentPath = CPathMgr::GetContentPath();
-	wstring strFilePath = strContentPath + _strRelativePath;
+	CTexture* pTexture = FindTexture(_strKey);
+	if (pTexture != nullptr)
+		return pTexture;
 
 	pTexture = new CTexture;
-	std::lock_guard<std::mutex> lock(m_mutex);
-	if (!pTexture->Load_rotated(strFilePath, (float)_rot * 0.0174533f))
+	float rad = static_cast<float>(_rot) * 0.0174533f;
+	if (!pTexture->Load_rotated(CPathMgr::GetContentPath() + _strRelativePath, rad))
 	{
-		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
 		delete pTexture;
 		return nullptr;
 	}
 
-	{
-		if (CTexture* tex = FindTexture(_strKey))
-		{
-			delete pTexture;
-			return tex;
-		}
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = L""; // 회전된 텍스처는 상대 경로 X
+	m_mapTex[_strKey] = pTexture;
 
-		pTexture->m_strKey = _strKey;
-		pTexture->m_strRelativePath = L"";
-		m_mapTex.insert({ _strKey, pTexture });
-
-		return pTexture;
-	}
+	return pTexture;
 }
 
 
@@ -122,45 +90,33 @@ HBITMAP CAssetMgr::GetTransHBITMAP()
 	return m_transtex->GetBitmap();
 }
 
+
+
 #include "CProfileMgr.h"
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
 	PROFILE_SCOPE("LoadTexture");
-	// 입력된 키에 해당하는 텍스쳐가 있는지 확인한다.
-	CTexture* pTexture = FindTexture(_strKey);
-	if (nullptr != pTexture)
-	{
-		// 이미 있는 텍스쳐면 찾은걸 반환해준다.
-		return pTexture;
-	}
 
-	// 입력된 키에 해당하는 텍스쳐가 없으면 로딩해서 반환해준다.
-	wstring strContentPath = CPathMgr::GetContentPath();
-	wstring strFilePath = strContentPath + _strRelativePath;
-
-	pTexture = new CTexture;
 	std::lock_guard<std::mutex> lock(m_mutex);
-	//pTexture->Load(strFilePath);
-	if (!pTexture->Load(strFilePath))
+
+	//  1. 락 안에서만 1회 확인
+	CTexture* pTexture = FindTexture(_strKey);
+	if (pTexture != nullptr)
+		return pTexture;
+
+	//  2. 생성 및 로딩
+	pTexture = new CTexture;
+	if (!pTexture->Load(CPathMgr::GetContentPath() + _strRelativePath))
 	{
-		// 텍스쳐 로드가 실패한 경우(경로 문제 등등..)
 		delete pTexture;
 		return nullptr;
 	}
 
-	{
-		if (CTexture* tex = FindTexture(_strKey))
-		{
-			delete pTexture;
-			return tex;
-		}
-
-		pTexture->m_strKey = _strKey;
-		pTexture->m_strRelativePath = _strRelativePath;
-		m_mapTex.insert({ _strKey, pTexture });
-
-		return pTexture;
-	}
+	//  3. 등록 후 반환
+	pTexture->m_strKey = _strKey;
+	pTexture->m_strRelativePath = _strRelativePath;
+	m_mapTex[_strKey] = pTexture;
+	return pTexture;
 }
 
 CTexture* CAssetMgr::CreateTexture(const wstring& _strKey, UINT _width, UINT _height)
@@ -285,6 +241,95 @@ void CAssetMgr::ShutdownGDIPlus()
 {
 	GdiplusShutdown(g_gdiplusToken);
 }
+
+
+CTexture* CAssetMgr::CreateTextureFromImageData(const ImageData& img)
+{
+	std::lock_guard<std::mutex> lock(m_mutex);
+
+	if (CTexture* tex = FindTexture(img.key))
+		return tex;
+
+	CTexture* tex = new CTexture;
+
+	HDC hdc = GetDC(NULL);
+
+	BITMAPINFO bmi = {};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = img.width;
+	bmi.bmiHeader.biHeight = -img.height; // top-down
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
+
+	void* bits = nullptr;
+	HBITMAP hBmp = CreateDIBSection(hdc, &bmi, DIB_RGB_COLORS, &bits, nullptr, 0);
+	if (!hBmp || !bits)
+	{
+		delete tex;
+		ReleaseDC(NULL, hdc);
+		return nullptr;
+	}
+
+	memcpy(bits, img.pixels.data(), img.pixels.size());
+
+	tex->m_hDC = CreateCompatibleDC(hdc);
+	DeleteObject(SelectObject(tex->m_hDC, hBmp));
+
+	tex->m_hBit = hBmp;
+	GetObject(hBmp, sizeof(BITMAP), &tex->m_Info);
+	tex->m_strKey = img.key;
+	tex->m_strRelativePath = img.relativePath;
+
+	m_mapTex[img.key] = tex;
+
+	ReleaseDC(NULL, hdc);
+	return tex;
+}
+CTexture* CAssetMgr::CreateTextureFromImageData(const std::vector<unsigned char>& pixels, int width, int height, const std::wstring& key)
+{
+	std::lock_guard<std::mutex> lock(m_mutex);
+
+	if (CTexture* tex = FindTexture(key))
+		return tex;
+
+	CTexture* tex = new CTexture;
+
+	HDC hdc = GetDC(NULL);
+
+	BITMAPINFO bmi = {};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = width;
+	bmi.bmiHeader.biHeight = -height; // top-down
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
+
+	void* bits = nullptr;
+	HBITMAP hBmp = CreateDIBSection(hdc, &bmi, DIB_RGB_COLORS, &bits, nullptr, 0);
+	if (!hBmp || !bits)
+	{
+		delete tex;
+		ReleaseDC(NULL, hdc);
+		return nullptr;
+	}
+
+	memcpy(bits, pixels.data(), pixels.size());
+
+	tex->m_hDC = CreateCompatibleDC(hdc);
+	DeleteObject(SelectObject(tex->m_hDC, hBmp));
+
+	tex->m_hBit = hBmp;
+	GetObject(hBmp, sizeof(BITMAP), &tex->m_Info);
+	tex->m_strKey = key;
+	tex->m_strRelativePath = L""; // 필요시 인자로 받을 수 있음
+
+	m_mapTex[key] = tex;
+
+	ReleaseDC(NULL, hdc);
+	return tex;
+}
+
 void CAssetMgr::init()
 {
 	InitGDIPlus();

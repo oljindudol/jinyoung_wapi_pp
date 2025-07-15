@@ -22,6 +22,7 @@
 #include "CSkillMgr.h"
 #include "CMonsterMgr.h"
 #include "CThreadPoolMgr.h"
+#include "CDecodeThreadPool.h"
 
 #include "CTexture.h"
 
@@ -146,6 +147,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	// Manager 초기화
 	CAssetMgr::GetInst()->init();
 	MEASURE_PERFORMANCE(CThreadPoolMgr::GetInst()->init());
+	MEASURE_PERFORMANCE(CDecodeThreadPool::GetInst()->Init());
 	MEASURE_PERFORMANCE(CTimeManager::GetInst()->init());
 	MEASURE_PERFORMANCE(CKeyMgr::GetInst()->init());
 	MEASURE_PERFORMANCE(CPathMgr::init());

@@ -32,4 +32,10 @@ public:
 	void InitGDIPlus();
 	void ShutdownGDIPlus();
 
+	CTexture* CreateTextureFromImageData(const ImageData& img);
+	CTexture* CreateTextureFromImageData(
+		const std::vector<unsigned char>& pixels,
+		int width, int height,
+		const std::wstring& key);
+
 };

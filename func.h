@@ -28,8 +28,8 @@ void SaveWString(const wstring& _str, FILE* _File);
 void LoadWString(wstring& _str, FILE* _File);
 
 void SettexturetoDcPartiallyRight(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
-void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc );
-void SettexturetoDcPartiallyDownWithMagnification(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc , float _mag);
+void SettexturetoDcPartiallyDown(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc);
+void SettexturetoDcPartiallyDownWithMagnification(HDC _dc, CTexture* _tex, Vec2 _pos, float _perc, float _mag);
 
 
 void SetNumberTextureToDc(HDC _dc, int _num
@@ -38,8 +38,8 @@ void SetNumberTextureToDcWithTwoDigitZeroPadding(HDC _dc, int _num
 	, const vector<CTexture*> _vecnumtex, Vec2 _pos, float _offset = 0.f);
 
 void SettexturetoDc(HDC _dc, CTexture* _ptexture, Vec2 _pos);
-void SettexturetoDcWithMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos ,float _mag);
-void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos,int _alpha);
+void SettexturetoDcWithMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, float _mag);
+void SettexturetoDcWithAlpha(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha);
 void SettexturetoDcWithAlphaAndMagnification(HDC _dc, CTexture* _ptexture, Vec2 _pos, int _alpha, float _mag);
 Vec2 RotateDot(const Vec2& _Dot, float _rad);
 
@@ -61,3 +61,11 @@ float RandomPercentZtoO();
 
 //ret : -0.49..f ~ +0.49...f
 float RandomPercentHtH();
+
+ImageData LoadImageData(const wstring& _strFilePath, const wstring& _key, int _rot);
+
+void ConvertRGBAtoBGRA(std::vector<unsigned char>& pixels);
+
+std::vector<unsigned char> FlipHorizontal(const ImageData& img);
+
+std::vector<unsigned char> ConvertAndFlipRGBAtoBGRA(unsigned char* src, int width, int height);

@@ -376,3 +376,198 @@ float RandomPercentHtH()
 {
 	return ((float)rand()) / 32767.f - 0.5f;
 }
+
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+string ToUtf8(const std::wstring& wide)
+{
+	if (wide.empty())
+		return std::string();
+
+	int utf8Len = ::WideCharToMultiByte(
+		CP_UTF8,            // UTF-8 code page
+		0,                  // no special flags
+		wide.c_str(),       // source wide string
+		-1,                 // null-terminated
+		nullptr,            // no output buffer yet
+		0,                  // calculate required size
+		nullptr, nullptr);  // no default char
+
+	if (utf8Len == 0)
+		return std::string(); // conversion failed
+
+	std::string utf8(utf8Len, 0);
+
+	::WideCharToMultiByte(
+		CP_UTF8, 0,
+		wide.c_str(), -1,
+		&utf8[0], utf8Len,
+		nullptr, nullptr);
+
+	// Remove null terminator from std::string
+	if (!utf8.empty() && utf8.back() == '\0')
+		utf8.pop_back();
+
+	return utf8;
+}
+
+ImageData LoadImageData(const wstring& _strFilePath)
+{
+	ImageData img;
+	img.key = _strFilePath;
+	img.relativePath = _strFilePath;
+
+	std::string utf8Path = ToUtf8(_strFilePath);
+	int w, h, c;
+	unsigned char* raw = stbi_load(utf8Path.c_str(), &w, &h, &c, 4); // force RGBA
+
+	if (raw)
+	{
+		img.width = w;
+		img.height = h;
+		img.channels = 4;
+		img.pixels.assign(raw, raw + (w * h * 4));
+		stbi_image_free(raw);
+	}
+
+	return img;
+}
+
+#include "CPathMgr.h"
+ImageData LoadImageData(const wstring& _strFilePath, const wstring& _key, int _rot)
+{
+	ImageData img;
+	img.key = _key;
+	img.relativePath = _strFilePath;
+
+	// 절대경로 조립
+	std::wstring absPath = CPathMgr::GetContentPath() + _strFilePath;
+	std::string utf8Path = ToUtf8(absPath);
+
+	int w, h, c;
+	unsigned char* raw = stbi_load(utf8Path.c_str(), &w, &h, &c, 4); // force RGBA
+
+	if (!raw)
+		return img;
+
+	img.width = w;
+	img.height = h;
+	img.channels = 4;
+
+	// 회전이 필요 없으면 그대로 복사
+	if (_rot == 0)
+	{
+		img.pixels.assign(raw, raw + (w * h * 4));
+		img.flippedPixels = ConvertAndFlipRGBAtoBGRA(raw, w, h);
+		stbi_image_free(raw);
+		ConvertRGBAtoBGRA(img.pixels);
+		//img.flippedPixels = FlipHorizontal(img);
+		return img;
+	}
+
+	// 회전된 이미지 버퍼 생성
+	std::vector<unsigned char> rotated(w * h * 4, 0);
+
+	// 회전 각도(rad)
+	float rad = static_cast<float>(_rot) * 0.0174533f;
+	float cosA = cosf(rad);
+	float sinA = sinf(rad);
+
+	// 중심 기준 회전
+	int cx = w / 2;
+	int cy = h / 2;
+
+	for (int y = 0; y < h; ++y)
+	{
+		for (int x = 0; x < w; ++x)
+		{
+			// 원래 좌표를 중심 기준으로 회전
+			int dx = x - cx;
+			int dy = y - cy;
+
+			int rx = static_cast<int>(dx * cosA - dy * sinA + cx);
+			int ry = static_cast<int>(dx * sinA + dy * cosA + cy);
+
+			if (rx < 0 || rx >= w || ry < 0 || ry >= h)
+				continue;
+
+			int srcIdx = (ry * w + rx) * 4;
+			int dstIdx = (y * w + x) * 4;
+
+			rotated[dstIdx + 0] = raw[srcIdx + 0]; // R
+			rotated[dstIdx + 1] = raw[srcIdx + 1]; // G
+			rotated[dstIdx + 2] = raw[srcIdx + 2]; // B
+			rotated[dstIdx + 3] = raw[srcIdx + 3]; // A
+		}
+	}
+
+	stbi_image_free(raw);
+	ConvertRGBAtoBGRA(rotated);
+	img.pixels = std::move(rotated);
+
+	return img;
+}
+
+void ConvertRGBAtoBGRA(std::vector<unsigned char>& pixels)
+{
+	for (size_t i = 0; i + 3 < pixels.size(); i += 4)
+	{
+		float alpha = pixels[i + 3] / 255.0f;
+		pixels[i + 0] = static_cast<unsigned char>(pixels[i + 0] * alpha); // R
+		pixels[i + 1] = static_cast<unsigned char>(pixels[i + 1] * alpha); // G
+		pixels[i + 2] = static_cast<unsigned char>(pixels[i + 2] * alpha); // B
+	}
+
+	for (size_t i = 0; i + 3 < pixels.size(); i += 4)
+	{
+		std::swap(pixels[i], pixels[i + 2]); // R ↔ B
+	}
+}
+
+std::vector<unsigned char> FlipHorizontal(const ImageData& img)
+{
+	int w = img.width;
+	int h = img.height;
+	std::vector<unsigned char> flipped(img.pixels.size());
+
+	for (int y = 0; y < h; ++y)
+	{
+		for (int x = 0; x < w; ++x)
+		{
+			int src = (y * w + x) * 4;
+			int dst = (y * w + (w - 1 - x)) * 4;
+
+			flipped[dst + 0] = img.pixels[src + 0]; // R
+			flipped[dst + 1] = img.pixels[src + 1]; // G
+			flipped[dst + 2] = img.pixels[src + 2]; // B
+			flipped[dst + 3] = img.pixels[src + 3]; // A
+		}
+	}
+	return flipped;
+}
+
+std::vector<unsigned char> ConvertAndFlipRGBAtoBGRA(unsigned char* src, int width, int height)
+{
+	std::vector<unsigned char> flipped(width * height * 4);
+
+	for (int y = 0; y < height; ++y)
+	{
+		for (int x = 0; x < width; ++x)
+		{
+			int srcIdx = (y * width + x) * 4;
+			int dstIdx = (y * width + (width - 1 - x)) * 4;
+
+			float alpha = src[srcIdx + 3] / 255.0f;
+
+			// premultiplied alpha + BGRA 변환
+			flipped[dstIdx + 0] = static_cast<unsigned char>(src[srcIdx + 2] * alpha); // B
+			flipped[dstIdx + 1] = static_cast<unsigned char>(src[srcIdx + 1] * alpha); // G
+			flipped[dstIdx + 2] = static_cast<unsigned char>(src[srcIdx + 0] * alpha); // R
+			flipped[dstIdx + 3] = src[srcIdx + 3];                                     // A
+		}
+	}
+
+	return flipped;
+}

@@ -247,3 +247,13 @@ struct FDebuff
 	float Acctime;
 	bool Active;
 };
+
+struct ImageData {
+	int width = 0;
+	int height = 0;
+	int channels = 0;
+	std::vector<unsigned char> pixels; // RGBA
+	std::vector<unsigned char> flippedPixels; // ÁÂ¿ì¹ÝÀü
+	std::wstring key;
+	std::wstring relativePath;
+};

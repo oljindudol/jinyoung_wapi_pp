@@ -72,6 +72,18 @@ public:
 
 	void SaveAnimations(const wstring& _strRelativePath);
 	void LoadAnimation(const wstring& _strRelativePath);
+	void CopyAnimationsFrom(const CAnimator& origin)
+	{
+		for (const auto& pair : origin.m_mapAnim)
+		{
+			//m_mapAnim[pair.first] = pair.second; // shallow copy (주의)
+
+			// 또는 deep copy하려면
+			auto node = new CAnim(*pair.second);
+			node->m_pAnimator = this;
+			m_mapAnim[pair.first] = node;
+		}
+	}
 
 public:
 	virtual void finaltick(float _DT) override;

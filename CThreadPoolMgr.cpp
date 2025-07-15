@@ -4,7 +4,7 @@
 void CThreadPoolMgr::init()
 {
 	// I/O 바운드 작업기준으로 논쓰*2할당
-	int threadCount = std::thread::hardware_concurrency() * 2;
+	int threadCount = std::thread::hardware_concurrency() * 1;
 	m_Stop = false;
 	m_TaskCount = 0;
 

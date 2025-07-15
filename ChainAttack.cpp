@@ -79,7 +79,28 @@ ChainAttack::ChainAttack()
 
 ChainAttack::ChainAttack(const ChainAttack& _Origin)
 {
-	//m_Animator->get
+	m_s1 = _Origin.m_s1;
+	m_s2 = _Origin.m_s2;
+	m_s3 = _Origin.m_s3;
+	m_skillname = _Origin.m_skillname;
+
+	// 새 고유 이름 할당 (skill number 갱신)
+	m_skillnum = CSkillMgr::GetInst()->FindNextSkillNumber(m_skillname);
+	SetName(m_skillname + L"_" + std::to_wstring(m_skillnum));
+
+	// 컴포넌트는 깊은 복사 또는 새로 생성
+	m_Collider = AddComponent<CCollider>(GetName() + L"Collider");
+	m_Collider->SetScale(Vec2(100.f, 1300.f));
+	m_Collider->m_vOffsetPos = Vec2(-15.f, -500.f);
+
+	m_Animator = AddComponent<CAnimator>(GetName() + L"Animator");
+	m_Animator->CopyAnimationsFrom(*_Origin.m_Animator);  // 복사 메서드 필요
+
+	m_skilllayer = _Origin.m_skilllayer;
+	duration = _Origin.duration;
+	cooltime = _Origin.cooltime;
+	m_att = _Origin.m_att;
+	m_debuff = _Origin.m_debuff;
 }
 
 void ChainAttack::activate(Vec2 _beginpos, ORIENTATION _ort)

@@ -18,7 +18,7 @@ class CSkillMgr
 	SINGLETON(CSkillMgr);
 
 private:
-	mutex m_SMmutex;
+	mutex m_mutex;
 	unordered_map<wstring, vector<CSkill*>> m_skillmap;
 
 public:
@@ -31,20 +31,23 @@ private:
 	void LoadSkills();
 	void MUL_LoadSkill();
 	void MUL_LoadSkills();
-	template<typename T>
+	void AddSkillsBulk(std::vector<CSkill*>&& skills);
+
+
+	template <typename T>
 	void CreateAndAddMultipleSkills(int count)
 	{
 		std::vector<CSkill*> skills;
-		skills.reserve(count);  // 메모리 파편화 줄이기
+		skills.reserve(count);
 
+		// 1회 실제 생성 (I/O 포함)
+		std::unique_ptr<T> templateSkill = std::make_unique<T>();
+
+		// 복사 생성
 		for (int i = 0; i < count; ++i)
-			skills.push_back(new T);
+			skills.push_back(new T(*templateSkill));
 
-		{
-			std::lock_guard<std::mutex> lock(m_SMmutex);
-			for (auto skill : skills)
-				AddSkill(skill);  // 기존 AddSkill 그대로 사용
-		}
+		AddSkillsBulk(move(skills));
 	}
 
 	template<typename T>
@@ -84,7 +87,7 @@ private:
 		}
 
 		{
-			std::lock_guard<std::mutex> lock(m_SMmutex);
+			std::lock_guard<std::mutex> lock(m_mutex);
 			for (auto skill : skills)
 			{
 				vector<CSkill*>* pSkills = FindSkill(skill->m_skillname);

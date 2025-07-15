@@ -34,6 +34,27 @@ CAnim::~CAnim()
 {
 }
 
+
+CAnim::CAnim(const CAnim& _Origin)
+	: m_pAnimator(nullptr), // 복사 시점에서는 설정 안 함 (CloneFrom 등에서 설정)
+	m_Atlas(_Origin.m_Atlas),
+	m_iCurFrm(_Origin.m_iCurFrm),
+	m_bFinish(_Origin.m_bFinish),
+	m_iRoop(_Origin.m_iRoop),
+	m_AccTime(_Origin.m_AccTime),
+	m_ort(_Origin.m_ort),
+	m_multi(_Origin.m_multi)
+{
+	SetName(_Origin.GetName());
+
+	m_vecFrm.reserve(_Origin.m_vecFrm.size());
+	for (const FFrame& frm : _Origin.m_vecFrm)
+	{
+		FFrame copyFrm = frm;
+		m_vecFrm.push_back(copyFrm);
+	}
+}
+
 void CAnim::finaltick()
 {
 	if (false == m_pAnimator->m_bPlay)
@@ -251,6 +272,72 @@ static bool comparefirst(pair<wstring, wstring> _p1, pair<wstring, wstring> _p2)
 {
 	return stoi(_p1.first) < stoi(_p2.first);
 }
+
+#include <future>
+#include "CDecodeThreadPool.h"
+//#define mul
+#ifdef mul
+void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul)
+{
+	SetName(_strphase + _strobj + _stranimname);
+
+	// 경로 설정
+	wstring filePath = CPathMgr::GetContentPath();
+	wstring addipath = _strphase + L"\\" + _strobj + L"\\" + _stranimname;
+	filePath += L"texture\\anim\\" + addipath;
+
+	// 파일 목록 정렬
+	vector<pair<wstring, wstring>> tmpvec;
+	for (auto& p : std::filesystem::directory_iterator(filePath))
+	{
+		wstring name = p.path().filename();
+		int idxu = (int)name.find(L"_");
+		tmpvec.emplace_back(name.substr(0, idxu), name.substr(idxu + 1, name.find(L".png") - idxu - 1));
+	}
+	std::sort(tmpvec.begin(), tmpvec.end(), comparefirst);
+
+	int maxfrm = (int)tmpvec.size();
+	m_vecFrm.reserve(maxfrm);
+
+	// 병렬 디코딩 및 Flip 처리
+	std::vector<ImageData> decodedFrames(maxfrm);
+	auto decodePool = CDecodeThreadPool::GetInst();
+
+	for (int i = 0; i < maxfrm; ++i)
+	{
+		decodePool->Enqueue([&, i]() {
+			wstring tmpname = addipath + L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
+			wstring fullpath = L"texture\\anim\\" + tmpname + L".png";
+			wstring key = tmpname;
+
+			ImageData img = LoadImageData(fullpath, key, 0);
+			decodedFrames[i] = std::move(img);
+			});
+	}
+
+	decodePool->WaitAll();
+
+	// 직렬 텍스처 생성 (GDI 자원)
+	for (int i = 0; i < maxfrm; ++i)
+	{
+		const ImageData& img = decodedFrames[i];
+
+		CTexture* pAtlas = CAssetMgr::GetInst()->CreateTextureFromImageData(img.pixels, img.width, img.height, img.key);
+		CTexture* pAtlas_r = CAssetMgr::GetInst()->CreateTextureFromImageData(img.flippedPixels, img.width, img.height, img.key + L"_r");
+
+		FFrame frm = {};
+		frm.m_Atlas = pAtlas;
+		frm.m_Atlas_r = pAtlas_r;
+		frm.vOffset = _vOffset;
+		frm.Duration = ((stoi(tmpvec[i].second) - stoi(tmpvec[i].first)) / 1000.f) / _playmul;
+		frm.vCutSize = Vec2(pAtlas->GetWidth(), pAtlas->GetHeight());
+
+		m_vecFrm.push_back(frm);
+	}
+
+	m_multi = _playmul;
+}
+#else
 void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul)
 {
 	SetName(_strphase + _strobj + _stranimname);
@@ -319,6 +406,8 @@ void CAnim::Create(const wstring& _strphase, const wstring& _strobj, const wstri
 	//	m_vecFrm.push_back(frm);
 	//}
 }
+#endif
+
 
 void CAnim::CreateTurn(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, Vec2 _vOffset, float _playmul, float _period, int _fpp)
 {
@@ -357,13 +446,17 @@ void CAnim::CreateTurn(const wstring& _strphase, const wstring& _strobj, const w
 }
 
 
+
+
 void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, const wstring& _stranimname, int _rot, Vec2 _vOffset, float _playmul)
 {
 	SetName(_strphase + _strobj + _stranimname + L"_" + std::to_wstring(_rot));
 
 	CAnim* pOriginAnim = m_pAnimator->FindAnim(_strphase + _strobj + _stranimname);
+	if (!pOriginAnim)
+		return;
 
-
+	// 파일 경로 설정
 	wstring filePath = CPathMgr::GetContentPath();
 	wstring addipath =
 		_strphase + L"\\"
@@ -373,48 +466,58 @@ void CAnim::CreateRotated(const wstring& _strphase, const wstring& _strobj, cons
 	filePath += L"texture\\anim\\"
 		+ addipath;
 
+	// 프레임 순서 정렬
 	vector<pair<wstring, wstring>> tmpvec;
-	wstring t;
-
 	for (auto& p : std::filesystem::directory_iterator(filePath))
 	{
-
-		t = p.path().filename();
-		int idxu = (int)t.find(L"_");
-		tmpvec.push_back(
-			pair<wstring, wstring>
-			(t.substr(0, idxu), t.substr(idxu + 1, t.find(L".png") - idxu - 1))
-		);
+		wstring name = p.path().filename();
+		int idxu = (int)name.find(L"_");
+		tmpvec.emplace_back(name.substr(0, idxu), name.substr(idxu + 1, name.find(L".png") - idxu - 1));
 	}
-	sort(tmpvec.begin(), tmpvec.end(), comparefirst);
-	int maxfrm = (int)tmpvec.size();
-	m_vecFrm.reserve(maxfrm);
+	std::sort(tmpvec.begin(), tmpvec.end(), comparefirst);
 
-	wstring tmpname;
+	// 병렬 디코딩 (LoadImageData)
+	std::vector<std::future<ImageData>> futures;
+	std::vector<ImageData> decodedFrames;
+	int maxfrm = (int)pOriginAnim->m_vecFrm.size();
+	decodedFrames.reserve(maxfrm);
 
-
-
-	for (int i = 0; i < pOriginAnim->m_vecFrm.size(); i++)
+	for (int i = 0; i < maxfrm; ++i)
 	{
-		tmpname = addipath + L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
+		wstring tmpname = addipath + L"\\" + tmpvec[i].first + L"_" + tmpvec[i].second;
+		wstring fullpath = L"texture\\anim\\" + tmpname + L".png";
+		wstring key = tmpname + L"_" + std::to_wstring(_rot);
+
+		futures.push_back(std::async(std::launch::async, [=]() {
+			return LoadImageData(fullpath, key, _rot); // _rot 전달되는 변형된 LoadImageData
+			}));
+	}
+
+	for (auto& fut : futures)
+		decodedFrames.push_back(fut.get());
+
+	// 직렬 텍스처 생성 (GDI 자원)
+	m_vecFrm.reserve(maxfrm);
+	for (int i = 0; i < maxfrm; ++i)
+	{
+		const FFrame& base = pOriginAnim->m_vecFrm[i];
+		const ImageData& img = decodedFrames[i];
 
 		FFrame frm = {};
-		FFrame tmpf = pOriginAnim->m_vecFrm[i];
+		CTexture* tex = CAssetMgr::GetInst()->CreateTextureFromImageData(img);
+		if (!tex)
+			continue;
 
-		CTexture* pOriginAtlas = tmpf.m_Atlas;
-		CTexture* pAtlas_rotated = CAssetMgr::GetInst()->LoadRotatedTexture(tmpname + L"_" + std::to_wstring(_rot), L"texture\\anim\\" + tmpname + L".png", _rot);
-
-
-		frm.m_Atlas = pAtlas_rotated;
+		frm.m_Atlas = tex;
 		frm.m_Atlas_r = nullptr;
 		frm.vOffset = _vOffset;
-		frm.Duration = tmpf.Duration;
-		frm.vCutSize = Vec2(pAtlas_rotated->GetWidth(), pAtlas_rotated->GetHeight());
+		frm.Duration = base.Duration;
+		frm.vCutSize = Vec2(tex->GetWidth(), tex->GetHeight());
+
 		m_vecFrm.push_back(frm);
 	}
 
 	m_multi = _playmul;
-
 }
 
 
